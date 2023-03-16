@@ -1,13 +1,16 @@
 import React from "react";
 import { render } from "react-dom";
+import Reviews from "./components/Reviews";
 
 // Do we want to migrate the app into a separate folder?
 const App = () => (
+  <>
   <div>Hello u stinky World</div>
-  // <Overview/>
-  // <Related/>
-  // <QnA/>
-  // <Reviews/>
+    <Reviews/>
+    {/* <Overview/>
+    <Related/>
+    <QnA/> */}
+  </>
 )
 
 render(

@@ -1,3 +1,8 @@
+import React from "react"
+const Reviews = () => (<div>hello from reviews</div>);
+
+export default Reviews;
+
 /* Ratings & Reviews
 The Ratings & Reviews module will allow viewing and submission of reviews for the product selected. The functionality contained within this module can be divided into several pieces:
 Write new review
