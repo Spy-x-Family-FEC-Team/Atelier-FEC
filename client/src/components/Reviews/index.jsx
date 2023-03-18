@@ -1,5 +1,23 @@
 import React from "react"
-const Reviews = () => (<div>hello from reviews</div>);
+import styled from "styled-components";
+import Ratings from "./Ratings"
+import ReviewList from "./ReviewList"
+import WriteReview from "./WriteReview"
+
+const ThirdsGrid = styled.section`
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr;
+
+`;
+
+const Reviews = () => (<>
+	<div>hello from reviews</div>
+	<ThirdsGrid>
+		<Ratings/>
+		<ReviewList/>
+		<WriteReview/>
+	</ThirdsGrid>
+</>);
 
 export default Reviews;
 

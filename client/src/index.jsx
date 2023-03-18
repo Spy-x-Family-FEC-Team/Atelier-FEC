@@ -1,16 +1,36 @@
 import React from "react";
+import styled from "styled-components";
 import { render } from "react-dom";
 import Reviews from "./components/Reviews";
 
-// Do we want to migrate the app into a separate folder?
+const FoldWrapper = styled.section`
+margin: auto;
+width: 90%;
+background: papayawhip;
+`;
+
+const BelowFoldWrapper = styled.section`
+margin: auto;
+width: 80%;
+background: lightgrey;
+`;
+
+
+
 const App = () => (
-  <>
-  <div>Hello u stinky World</div>
-    <Reviews/>
-    {/* <Overview/>
-    <Related/>
-    <QnA/> */}
-  </>
+<>
+  <FoldWrapper>
+    <div>Hello u stinky World</div>
+    <div>Overview would go here in the slightly thicker bit</div>
+
+  </FoldWrapper>
+  <BelowFoldWrapper>
+  {/* <Overview/>
+<Related/>
+<QnA/> */}
+  <Reviews/>
+</BelowFoldWrapper>
+</>
 )
 
 render(
