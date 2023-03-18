@@ -1,3 +1,4 @@
+
 /*
 Related Items & Comparison
 The Related Items & Comparison module will display two sets of related products. The first set will be a list of products, determined internally, that are related to the product currently being viewed. The second set will be a list, custom created by the user, of products which the user has grouped with the current product into an ‘outfit’.
@@ -58,3 +59,4 @@ The list should persist for each customer even if they exit the website and retu
 The action button on cards within the Related Products list will appear as an ‘X’ icon. The button will remove the product from the Outfit list.
 
 */
+
