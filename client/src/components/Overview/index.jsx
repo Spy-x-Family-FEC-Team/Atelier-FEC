@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import ImageGallery from './ImageGallery.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
 
-//dummy data to use for now
-// const path = require("path");
-// const dummyProductPath = path.join(__dirname, '..', '..', '..', 'server', 'exampleData', 'product.js');
+//dummy data to use for now. Changed filetype to .json
 import product from '/Users/jenessapeterson/hr/FEC/Atelier-FEC/server/exampleData/product.json';
 
 
@@ -21,7 +19,6 @@ const MainImageWrapper = styled.section`
   background: whitesmoke;
   margin-right: 15px;
   height: 70vh;
-
 `;
 
 const SelectorSectionWrapper = styled.section`
@@ -45,13 +42,15 @@ const Overview = () => {
 
   return(
     <div>
-      <div>This is the overview component</div>
       <OverviewGrid>
         <MainImageWrapper>
-          <ImageGallery currentImage={currentImage}/>
+          <ImageGallery
+            currentImage={currentImage}/>
         </MainImageWrapper>
         <SelectorSectionWrapper>
-          <TitleCatRev/>
+          <TitleCatRev
+            title={product.name}
+            category={product.category}/>
         </SelectorSectionWrapper>
       </OverviewGrid>
       <ProductDetailsWrapper>
