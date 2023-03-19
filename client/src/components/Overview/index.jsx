@@ -1,5 +1,35 @@
 
-//HEllo wrorldsasdkfjhaklsjdfhjklahsdf
+import React from 'react';
+import styled from 'styled-components';
+
+
+const ThirdsGrid = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+`;
+
+const Overview = () => {
+
+  return(
+    <div>
+      <div>This is the overview component</div>
+      <ThirdsGrid>
+        <div>1st div</div>
+        <div>2nd div</div>
+        <div>3rd div</div>
+      </ThirdsGrid>
+    </div>
+  )
+};
+
+export default Overview;
+
+
+
+
+
+
+
 
 
 /*
