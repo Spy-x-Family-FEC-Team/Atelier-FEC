@@ -1,23 +1,62 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import ImageGallery from './ImageGallery.jsx';
+import TitleCatRev from './TitleCatRev.jsx';
+
+//dummy data to use for now
+// const path = require("path");
+// const dummyProductPath = path.join(__dirname, '..', '..', '..', 'server', 'exampleData', 'product.js');
+import product from '/Users/jenessapeterson/hr/FEC/Atelier-FEC/server/exampleData/product.json';
 
 
-const ThirdsGrid = styled.section`
+const OverviewGrid = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 35%;
+  height: 70vh;
+`;
+// 70vh is 70% of viewport / screen.
+
+const MainImageWrapper = styled.section`
+  background: whitesmoke;
+  margin-right: 15px;
+  height: 70vh;
+
+`;
+
+const SelectorSectionWrapper = styled.section`
+  background: azure;
+`;
+
+const ProductDetailsWrapper = styled.section`
+  background: thistle;
+  margin: auto;
+  width: 88.8888%;
 `;
 
 const Overview = () => {
 
+  const [currentId, setcurrentId] = useState(40344);
+  const [currentImage, setCurrentImage] = useState("https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80");
+  const [currentProduct, setCurrentProduct] =useState(product);
+
+
+
+
   return(
     <div>
       <div>This is the overview component</div>
-      <ThirdsGrid>
-        <div>1st div</div>
-        <div>2nd div</div>
+      <OverviewGrid>
+        <MainImageWrapper>
+          <ImageGallery currentImage={currentImage}/>
+        </MainImageWrapper>
+        <SelectorSectionWrapper>
+          <TitleCatRev/>
+        </SelectorSectionWrapper>
+      </OverviewGrid>
+      <ProductDetailsWrapper>
         <div>3rd div</div>
-      </ThirdsGrid>
+      </ProductDetailsWrapper>
     </div>
   )
 };
