@@ -29,9 +29,9 @@ const App = () => (
     <Overview product={product}/>
   </FoldWrapper>
   <BelowFoldWrapper>
-    <StarRating rawRating={3.7}/>
     <Related />
-  <Reviews/>
+    <StarRating rawRating={3.7}/>
+    <Reviews/>
 </BelowFoldWrapper>
 </>
 )
