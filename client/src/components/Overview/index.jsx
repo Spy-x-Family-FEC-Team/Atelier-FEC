@@ -16,11 +16,6 @@ const OverviewGrid = styled.section`
 `;
 // 70vh is 70% of viewport.
 
-const MainImageWrapper = styled.section`
-  background: whitesmoke;
-  margin-right: 15px;
-  height: 70vh;
-`;
 
 const SelectorSectionWrapper = styled.section`
   background: azure;
@@ -45,10 +40,8 @@ const Overview = (props) => {
   return(
     <div>
       <OverviewGrid>
-        <MainImageWrapper>
-          <ImageGallery
-            currentImage={currentImage}/>
-        </MainImageWrapper>
+        <ImageGallery
+          currentImage={currentImage}/>
         <SelectorSectionWrapper>
           <TitleCatRev
             title={currentProduct.name}

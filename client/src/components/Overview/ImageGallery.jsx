@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ImageWrapper = styled.section`
+const StyledMainImage = styled.img`
   max-height: 70vh;
   width: auto;
   display: flex;
@@ -14,11 +14,7 @@ const ImageGallery = (props) => {
 
   return(
     <div>
-      <ImageWrapper>
-        <img
-          className= "mainImage"
-          src={props.currentImage}/>
-      </ImageWrapper>
+      <StyledMainImage src={props.currentImage}/>
     </div>
   )
 };
