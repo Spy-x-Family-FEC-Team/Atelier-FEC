@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { render } from "react-dom";
+import Overview from "./components/Overview/index";
 import Reviews from "./components/Reviews";
 import StarRating from "./components/assets/StarRating.jsx";
+
+// Dummy data access. Figured out we needed to change the filetype to .json. Feel free to add the others if you want to use them.
+import product from '../../server/exampleData/product.json';
 
 const FoldWrapper = styled.section`
 margin: auto;
@@ -21,14 +25,10 @@ background: lightgrey;
 const App = () => (
 <>
   <FoldWrapper>
-    <div>Hello u stinky World</div>
-    <div>Overview would go here in the slightly thicker bit</div>
+    <Overview product={product}/>
   </FoldWrapper>
   <BelowFoldWrapper>
     <StarRating rawRating={3.7}/>
-  {/* <Overview/>
-<Related/>
-<QnA/> */}
   <Reviews/>
 </BelowFoldWrapper>
 </>
