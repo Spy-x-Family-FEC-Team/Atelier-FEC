@@ -15,12 +15,12 @@ const ImageGallery = (props) => {
   return(
     <div>
       <ImageWrapper>
-        <img className= "mainImage" src={props.currentImage}/>
+        <img
+          className= "mainImage"
+          src={props.currentImage}/>
       </ImageWrapper>
-
     </div>
   )
-
 };
 
 export default ImageGallery;

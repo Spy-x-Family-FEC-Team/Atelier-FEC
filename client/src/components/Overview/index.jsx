@@ -14,7 +14,7 @@ const OverviewGrid = styled.section`
   grid-template-columns: 1fr 35%;
   height: 70vh;
 `;
-// 70vh is 70% of viewport / screen.
+// 70vh is 70% of viewport.
 
 const MainImageWrapper = styled.section`
   background: whitesmoke;
@@ -37,7 +37,7 @@ const ProductDetailsWrapper = styled.section`
 
 const Overview = (props) => {
   // Currently, useState is probably unnecessary, but I figure it might be needed later.
-  const [currentId, setcurrentId] = useState(40344);
+  // Using dummy data for now.
   const [currentImage, setCurrentImage] = useState("https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80");
   const [currentProduct, setCurrentProduct] = useState(props.product);
 

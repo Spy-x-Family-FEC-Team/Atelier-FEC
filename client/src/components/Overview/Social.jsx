@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
@@ -9,7 +9,7 @@ const SocialSectionWrapper = styled.section`
   grid-template-columns: 1fr 1fr 1fr 1fr;
 `;
 
-const Social = (props) => {
+const Social = () => {
 
   return(
     <div>
@@ -21,7 +21,6 @@ const Social = (props) => {
           rel="noreferrer">
           <FontAwesomeIcon icon={faFacebook} />
         </a>
-
         <a
           href="https://twitter.com/?lang=en"
           target="_blank"

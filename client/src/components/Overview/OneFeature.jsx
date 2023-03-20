@@ -7,7 +7,10 @@ const OneFeature = (props) => {
 
   return(
     <div>
-     <span><FontAwesomeIcon icon={faCheck}/>     {props.featureName}: {props.value}</span>
+     <span>
+      <FontAwesomeIcon icon={faCheck}/>
+        {props.featureName}: {props.value}
+      </span>
     </div>
   )
 }

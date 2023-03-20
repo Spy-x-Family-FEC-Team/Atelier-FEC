@@ -38,10 +38,8 @@ const ProductDetails = (props) => {
           </ul>
         </FeaturesWrapper>
       </ProductDetailsGrid>
-
     </div>
   )
-
 };
 
 export default ProductDetails;
