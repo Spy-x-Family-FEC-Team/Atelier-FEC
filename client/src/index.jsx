@@ -5,6 +5,9 @@ import Overview from "./components/Overview/index";
 import Reviews from "./components/Reviews";
 import StarRating from "./components/assets/StarRating.jsx";
 
+// Dummy data access. Figured out we needed to change the filetype to .json. Feel free to add the others if you want to use them.
+import product from '../../server/exampleData/product.json';
+
 const FoldWrapper = styled.section`
 margin: auto;
 width: 90%;
@@ -22,7 +25,7 @@ background: lightgrey;
 const App = () => (
 <>
   <FoldWrapper>
-    <Overview/>
+    <Overview product={product}/>
   </FoldWrapper>
   <BelowFoldWrapper>
     <StarRating rawRating={3.7}/>

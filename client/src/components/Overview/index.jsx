@@ -5,8 +5,6 @@ import ImageGallery from './ImageGallery.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
 import ProductDetails from './ProductDetails.jsx';
 
-//dummy data to use for now. Changed filetype to .json
-import product from '/Users/jenessapeterson/hr/FEC/Atelier-FEC/server/exampleData/product.json';
 
 
 const OverviewGrid = styled.section`
@@ -24,6 +22,8 @@ const MainImageWrapper = styled.section`
 
 const SelectorSectionWrapper = styled.section`
   background: azure;
+  display:grid;
+  grid-template-rows: 1fr 1fr 1fr;
 `;
 
 const ProductDetailsWrapper = styled.section`
@@ -33,11 +33,11 @@ const ProductDetailsWrapper = styled.section`
   height: 20vh;
 `;
 
-const Overview = () => {
-
+const Overview = (props) => {
+  // Currently, useState is probably unnecessary, but I figure it might be needed later.
   const [currentId, setcurrentId] = useState(40344);
   const [currentImage, setCurrentImage] = useState("https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80");
-  const [currentProduct, setCurrentProduct] =useState(product);
+  const [currentProduct, setCurrentProduct] = useState(props.product);
 
 
   return(
@@ -49,14 +49,15 @@ const Overview = () => {
         </MainImageWrapper>
         <SelectorSectionWrapper>
           <TitleCatRev
-            title={product.name}
-            category={product.category}/>
+            title={currentProduct.name}
+            category={currentProduct.category}/>
         </SelectorSectionWrapper>
       </OverviewGrid>
       <ProductDetailsWrapper>
         <ProductDetails
-          description={product.description}
-          features={product.features}/>
+          description={currentProduct.description}
+          features={currentProduct.features}/>
+        <StyleSection />
       </ProductDetailsWrapper>
     </div>
   )
