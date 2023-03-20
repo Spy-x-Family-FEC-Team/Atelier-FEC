@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import StyleAndPrice from './StyleAndPrice.jsx';
+import SizeAndQuantity from './SizeAndQuantity.jsx';
+import BagAndLiked from './BagAndLiked.jsx';
 
 const StyleSectionWrapper = styled.section`
   background: pink;
