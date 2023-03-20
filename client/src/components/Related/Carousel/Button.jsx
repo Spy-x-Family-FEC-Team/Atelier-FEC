@@ -1,15 +1,7 @@
 import React from "React";
 import styled from "styled-components";
 
-const Button = () => (
-
-  <div>
-    I am a product card
-  </div>
-
-);
-
-const StyledBtn = styled.button`
+const StyledLeftBtn = styled.button`
   background-color: blue;
   width: 100px;
   height: 100px;
@@ -20,8 +12,8 @@ const StyledBtn = styled.button`
   z-index: 1;
 `;
 
-const StyledRightBtn = styled(StyledBtn)`
+const StyledRightBtn = styled(StyledLeftBtn)`
   right: 0;
 `
 
-export { StyledBtn, StyledRightBtn };
+export { StyledLeftBtn, StyledRightBtn };

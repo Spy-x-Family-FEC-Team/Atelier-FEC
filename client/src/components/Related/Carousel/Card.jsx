@@ -14,6 +14,7 @@ const StyledCard = styled.div`
   width: 200px;
   height: 100%;
   grid-column: span 1;
+  scroll-snap-align: center;
 `;
 
 export default StyledCard;

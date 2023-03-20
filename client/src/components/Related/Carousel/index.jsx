@@ -1,7 +1,7 @@
 import React from "React";
 import styled from "styled-components";
 import StyledCard from "./Card.jsx";
-import { StyledBtn, StyledRightBtn } from "./Button.jsx";
+import { StyledLeftBtn, StyledRightBtn } from "./Button.jsx";
 
 const numbers = [0, 1, 2, 3, 4, 5, 6]
 
@@ -31,22 +31,39 @@ const CarouselList = styled.div`
 	grid-template-columns: repeat(${numbers.length}, 200px);
 	grid-column-gap: 10px;
 	overflow: scroll;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	scroll-snap-align: start;
 `
+const list = document.querySelector("#Carousel-List");
+
+const scrollRight = () => {
+	list.scrollBy(200, 0);
+};
+
+const scrollLeft = () => {
+	list.scrollBy(-200, 0);
+};
+
+const getScrollPosition = () => {
+	const position = list.scrollLeft;
+	console.log('position', position);
+}
 
 const Carousel = () => {
 
 	return (
 		<CarouselContainer>
-			<StyledBtn>Left</StyledBtn>
+			<StyledLeftBtn onClick={scrollLeft}>Left</StyledLeftBtn>
 			<CarouselTrack>
-				<CarouselList>
+				<CarouselList id="Carousel-List">
 					{numbers.map( num => {
 					return (
-					<StyledCard>I am card number {num}</StyledCard>
+					<StyledCard id={num}>I am card number {num}</StyledCard>
 					)})}
 				</CarouselList>
 			</CarouselTrack>
-			<StyledRightBtn>Right</StyledRightBtn>
+			<StyledRightBtn onClick={scrollRight}>Right</StyledRightBtn>
 		</CarouselContainer>
 	)
 
