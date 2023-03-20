@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import ImageGallery from './ImageGallery.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
+import ProductDetails from './ProductDetails.jsx';
 
 //dummy data to use for now. Changed filetype to .json
 import product from '/Users/jenessapeterson/hr/FEC/Atelier-FEC/server/exampleData/product.json';
@@ -29,6 +30,7 @@ const ProductDetailsWrapper = styled.section`
   background: thistle;
   margin: auto;
   width: 88.8888%;
+  height: 20vh;
 `;
 
 const Overview = () => {
@@ -36,8 +38,6 @@ const Overview = () => {
   const [currentId, setcurrentId] = useState(40344);
   const [currentImage, setCurrentImage] = useState("https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80");
   const [currentProduct, setCurrentProduct] =useState(product);
-
-
 
 
   return(
@@ -54,7 +54,9 @@ const Overview = () => {
         </SelectorSectionWrapper>
       </OverviewGrid>
       <ProductDetailsWrapper>
-        <div>3rd div</div>
+        <ProductDetails
+          description={product.description}
+          features={product.features}/>
       </ProductDetailsWrapper>
     </div>
   )

@@ -26,9 +26,6 @@ const App = () => (
   </FoldWrapper>
   <BelowFoldWrapper>
     <StarRating rawRating={3.7}/>
-  {/* <Overview/>
-<Related/>
-<QnA/> */}
   <Reviews/>
 </BelowFoldWrapper>
 </>

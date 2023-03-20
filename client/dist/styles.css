@@ -1,5 +1,4 @@
 .mainImage {
   max-height: 70vh;
-  /*Note that I couldn't get this working with %, but I'd like to figure it out to be responsive.*/
   width: auto;
 }
