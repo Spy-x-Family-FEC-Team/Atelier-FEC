@@ -1,5 +1,72 @@
 
-//HEllo wrorldsasdkfjhaklsjdfhjklahsdf
+import React, {useState} from 'react';
+import styled from 'styled-components';
+import ImageGallery from './ImageGallery.jsx';
+import TitleCatRev from './TitleCatRev.jsx';
+import ProductDetails from './ProductDetails.jsx';
+import StyleSection from './StyleSection.jsx';
+import Social from './Social.jsx';
+
+
+
+const OverviewGrid = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 35%;
+  height: 70vh;
+`;
+// 70vh is 70% of viewport.
+
+
+const SelectorSectionWrapper = styled.section`
+  background: azure;
+  display:grid;
+  grid-template-rows: 1fr 50% 1fr;
+`;
+
+const ProductDetailsWrapper = styled.section`
+  background: thistle;
+  margin: auto;
+  width: 88.8888%;
+  height: 20vh;
+`;
+
+const Overview = (props) => {
+  // Currently, useState is probably unnecessary, but I figure it might be needed later.
+  // Using dummy data for now.
+  const [currentImage, setCurrentImage] = useState("https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80");
+  const [currentProduct, setCurrentProduct] = useState(props.product);
+
+
+  return(
+    <div>
+      <OverviewGrid>
+        <ImageGallery
+          currentImage={currentImage}/>
+        <SelectorSectionWrapper>
+          <TitleCatRev
+            title={currentProduct.name}
+            category={currentProduct.category}/>
+          <StyleSection />
+          <Social />
+        </SelectorSectionWrapper>
+      </OverviewGrid>
+      <ProductDetailsWrapper>
+        <ProductDetails
+          description={currentProduct.description}
+          features={currentProduct.features}/>
+      </ProductDetailsWrapper>
+    </div>
+  )
+};
+
+export default Overview;
+
+
+
+
+
+
+
 
 
 /*
