@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const StyleSectionWrapper = styled.section`
   background: pink;
-  height: 35vh;
+  height:100%;
 `;
 
 const StyleSection = (props) => {
@@ -11,7 +11,9 @@ const StyleSection = (props) => {
   return(
     <div>
      <StyleSectionWrapper>
-      Style section will go here.
+      <StyleAndPrice />
+      <SizeAndQuantity />
+      <BagAndLiked />
      </StyleSectionWrapper>
     </div>
   )

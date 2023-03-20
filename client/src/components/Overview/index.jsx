@@ -25,7 +25,7 @@ const MainImageWrapper = styled.section`
 const SelectorSectionWrapper = styled.section`
   background: azure;
   display:grid;
-  grid-template-rows: 1fr 50% 1fr;
+  grid-template-rows: 15% 70% 15%;
 `;
 
 const ProductDetailsWrapper = styled.section`
