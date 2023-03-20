@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import ImageGallery from './ImageGallery.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
 import ProductDetails from './ProductDetails.jsx';
+import StyleSection from './StyleSection.jsx';
+import Social from './Social.jsx';
 
 
 
@@ -23,7 +25,7 @@ const MainImageWrapper = styled.section`
 const SelectorSectionWrapper = styled.section`
   background: azure;
   display:grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 50% 1fr;
 `;
 
 const ProductDetailsWrapper = styled.section`
@@ -51,13 +53,14 @@ const Overview = (props) => {
           <TitleCatRev
             title={currentProduct.name}
             category={currentProduct.category}/>
+          <StyleSection />
+          <Social />
         </SelectorSectionWrapper>
       </OverviewGrid>
       <ProductDetailsWrapper>
         <ProductDetails
           description={currentProduct.description}
           features={currentProduct.features}/>
-        <StyleSection />
       </ProductDetailsWrapper>
     </div>
   )

@@ -27,6 +27,7 @@ const ProductDetails = (props) => {
           <p>{props.description}</p>
         </DescriptionWrapper>
         <FeaturesWrapper>
+          <h3>Features</h3>
           <ul>
             {props.features.map((item, index) =>
               <OneFeature
