@@ -16,25 +16,25 @@ const StyleSection = (props) => {
   const makeThumbnailsList = function (stylesObj) {
     var thumbnails = [];
     stylesObj.results.forEach((style) =>{
-      var thisURL = style.photos[props.indexOfThisProdView].thumbnail_url;
-      console.log('thisURL: ',thisURL);
-      thumbnails.push(thisURL);
-      // TODO: Change this 0 to main image id later.
+      thumbnails.push(style.photos[0].thumbnail_url);
     });
-    console.log("thumbnails: ", thumbnails);
     return thumbnails;
   };
 
-  var styleThumbnails = makeThumbnailsList(props.stylesForThisProduct);
-  console.log('styleThumbnails: ', styleThumbnails);
-  // const [styleThumbnails, setStyleThumbnails] = useState(makeThumbnailsList(props.stylesForThisProduct));
+
 
   return(
     <div>
      <StyleSectionWrapper>
       <StyleAndPrice
-        styleThumbnails={styleThumbnails}
-        handleStyleSelection={props.handleStyleSelection}/>
+        styleThumbnails={makeThumbnailsList(props.stylesForThisProduct)}
+
+        handleStyleSelection={props.handleStyleSelection}
+
+        styleName={props.stylesForThisProduct.results[props.indexOfStyleOption].name}
+
+        originalPrice={props.stylesForThisProduct.results[props.indexOfStyleOption].original_price}
+        />
       <SizeAndQuantity />
       <BagAndLiked />
      </StyleSectionWrapper>

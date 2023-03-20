@@ -66,7 +66,8 @@ const Overview = (props) => {
           <StyleSection
             stylesForThisProduct={stylesForThisProduct}
             handleStyleSelection={handleStyleSelection}
-            indexOfThisProdView={indexOfThisProdView}/>
+            indexOfThisProdView={indexOfThisProdView}
+            indexOfStyleOption={indexOfStyleOption}/>
           <Social />
         </SelectorSectionWrapper>
       </OverviewGrid>

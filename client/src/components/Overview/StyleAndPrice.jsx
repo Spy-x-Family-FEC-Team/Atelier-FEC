@@ -20,8 +20,8 @@ const StyleAndPrice = (props) => {
 
   return(
     <div>
-      <div>Price will go here</div>
-      <div>STYLE > selected style name</div>
+      <div>${props.originalPrice}</div>
+      <div>STYLE > {props.styleName}</div>
       <StyleImageGridWrapper>
 
         {props.styleThumbnails.map((url, index) => {
