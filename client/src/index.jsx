@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { render } from "react-dom";
+import Related from "./components/Related";
 import Reviews from "./components/Reviews";
 import StarRating from "./components/assets/StarRating.jsx";
 
@@ -29,6 +30,7 @@ const App = () => (
   {/* <Overview/>
 <Related/>
 <QnA/> */}
+  <Related />
   <Reviews/>
 </BelowFoldWrapper>
 </>
