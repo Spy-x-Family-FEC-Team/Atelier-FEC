@@ -7,7 +7,8 @@ import ProductDetails from './ProductDetails.jsx';
 import StyleSection from './StyleSection.jsx';
 import Social from './Social.jsx';
 
-
+ // Dummy data to use for now.
+ import stylesForThisProduct from '/Users/jenessapeterson/hr/FEC/Atelier-FEC/server/exampleData/styles.json';
 
 const OverviewGrid = styled.section`
   display: grid;
@@ -33,8 +34,14 @@ const ProductDetailsWrapper = styled.section`
 const Overview = (props) => {
   // Currently, useState is probably unnecessary, but I figure it might be needed later.
   // Using dummy data for now.
-  const [currentImage, setCurrentImage] = useState("https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80");
+  const [indexOfMainImg, setIndexOfMainImg] = useState(0);
+  const [currentProdId, setCurrentProdId] = useState(40344);
+  const [currentImage, setCurrentImage] = useState(stylesForThisProduct.results[0].photos[indexOfMainImg].url);
   const [currentProduct, setCurrentProduct] = useState(props.product);
+
+  // const [currentStyles, setCurrentStyles] = useState(stylesForThisProduct);
+
+
 
 
   return(
@@ -46,7 +53,7 @@ const Overview = (props) => {
           <TitleCatRev
             title={currentProduct.name}
             category={currentProduct.category}/>
-          <StyleSection />
+          <StyleSection stylesForThisProduct={stylesForThisProduct}/>
           <Social />
         </SelectorSectionWrapper>
       </OverviewGrid>
