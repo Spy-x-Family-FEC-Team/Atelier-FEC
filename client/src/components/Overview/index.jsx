@@ -34,8 +34,8 @@ const ProductDetailsWrapper = styled.section`
 const Overview = (props) => {
   // Currently, useState is probably unnecessary, but I figure it might be needed later.
   // Using dummy data for now.
-  const [indexOfStyleOption, setIndexOfStyleOption] = useState(1);
-  const [indexOfThisProdView, setIndexOfThisProdView] = useState(1)
+  const [indexOfStyleOption, setIndexOfStyleOption] = useState(0);
+  const [indexOfThisProdView, setIndexOfThisProdView] = useState(0);
   // const [currentProdId, setCurrentProdId] = useState(40344);
   const [currentImage, setCurrentImage] = useState(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
   const [currentProduct, setCurrentProduct] = useState(props.product);
