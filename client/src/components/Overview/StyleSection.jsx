@@ -32,7 +32,9 @@ const StyleSection = (props) => {
   return(
     <div>
      <StyleSectionWrapper>
-      <StyleAndPrice styleThumbnails={styleThumbnails}/>
+      <StyleAndPrice
+        styleThumbnails={styleThumbnails}
+        handleStyleSelection={props.handleStyleSelection}/>
       <SizeAndQuantity />
       <BagAndLiked />
      </StyleSectionWrapper>

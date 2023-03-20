@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import ImageGallery from './ImageGallery.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
@@ -41,6 +41,15 @@ const Overview = (props) => {
 
   // const [currentStyles, setCurrentStyles] = useState(stylesForThisProduct);
 
+  const handleStyleSelection = (index) => {
+    setIndexOfMainImg(index);
+  }
+
+  useEffect (() => {
+    // Whenever someone clicks a style and handleStyleSelection fn is used, rerender the main image.
+    setCurrentImage(stylesForThisProduct.results[indexOfMainImg].photos[0].url);
+  }, [indexOfMainImg]);
+
 
 
 
@@ -53,7 +62,9 @@ const Overview = (props) => {
           <TitleCatRev
             title={currentProduct.name}
             category={currentProduct.category}/>
-          <StyleSection stylesForThisProduct={stylesForThisProduct}/>
+          <StyleSection
+            stylesForThisProduct={stylesForThisProduct}
+            handleStyleSelection={handleStyleSelection}/>
           <Social />
         </SelectorSectionWrapper>
       </OverviewGrid>

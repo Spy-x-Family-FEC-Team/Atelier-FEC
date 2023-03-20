@@ -27,8 +27,12 @@ const StyleAndPrice = (props) => {
         {props.styleThumbnails.map((url, index) => {
           return (
             <StyledStyleThumbnail
-            key={index}
-            src={url}/>
+              key={index.toString()}
+              src={url}
+              onClick={(event) => {
+                props.handleStyleSelection(index);
+              }}
+            />
           )
         })}
 
