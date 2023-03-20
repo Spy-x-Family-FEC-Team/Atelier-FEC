@@ -14,6 +14,14 @@ const StyledBtn = styled.button`
   width: 100px;
   height: 100px;
   cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 `;
 
-export default StyledBtn;
+const StyledRightBtn = styled(StyledBtn)`
+  right: 0;
+`
+
+export { StyledBtn, StyledRightBtn };

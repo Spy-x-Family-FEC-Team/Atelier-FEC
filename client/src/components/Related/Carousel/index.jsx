@@ -1,9 +1,9 @@
 import React from "React";
 import styled from "styled-components";
 import StyledCard from "./Card.jsx";
-import StyledBtn from "./Button.jsx";
+import { StyledBtn, StyledRightBtn } from "./Button.jsx";
 
-const numbers = [0, 1, 2, 3]
+const numbers = [0, 1, 2, 3, 4, 5, 6]
 
 const CarouselContainer = styled.div`
 	position: relative;
@@ -15,17 +15,22 @@ const CarouselContainer = styled.div`
 
 const CarouselTrack = styled.div`
 	background-color: grey;
-	position: relative;
+	position: absolute;
+	width: 100%;
 	padding: 0;
 	margin: 0;
 	height: 100%;
 `
-const CarouselList = styled.ul`
+const CarouselList = styled.div`
 	background-color: yellow;
 	padding: 0;
 	margin: 0;
 	height: 100%;
 	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(${numbers.length}, 200px);
+	grid-column-gap: 10px;
+	overflow: scroll;
 `
 
 const Carousel = () => {
@@ -41,7 +46,7 @@ const Carousel = () => {
 					)})}
 				</CarouselList>
 			</CarouselTrack>
-			<StyledBtn>Right</StyledBtn>
+			<StyledRightBtn>Right</StyledRightBtn>
 		</CarouselContainer>
 	)
 

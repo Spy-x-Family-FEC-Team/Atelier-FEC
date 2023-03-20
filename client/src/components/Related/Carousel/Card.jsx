@@ -9,13 +9,11 @@ const Card = () => (
 
 );
 
-const StyledCard = styled.li`
+const StyledCard = styled.div`
   background-color: green;
   width: 200px;
   height: 100%;
-  position: absolute;
-	top: 0;
-	left: 0;
+  grid-column: span 1;
 `;
 
 export default StyledCard;
