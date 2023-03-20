@@ -1,25 +1,55 @@
 import React from "react";
+import styled from "styled-components";
 
-const Ratings = () => (
-<div>
-  <div>Ratings and Reviews</div>
-  <div>Summary section
-    <div>Star Rating</div>
-    <div>Stars</div>
-  </div>
-  <div>Rating breakdown
-    <div>5 stars</div>
-    <div>4 stars</div>
-    <div>3 stars</div>
-    <div>2 stars</div>
-    <div>1 stars</div>
-  </div>
-  <div>Factor breakdown
-    <div>Factor 1</div>
-    <div>Factor 2</div>
-  </div>
-</div>
-);
+import StarRating from "../../assets/StarRating.jsx";
+
+
+const RatingsNumber = styled((props) => (
+  <div className={props.className}>{props.value}</div>
+))`
+font-size: 7vh;
+`;
+
+const EmptyBar = styled.div`
+  background-color: rgb(171, 157, 163);
+`;
+
+const PercentBar = styled.div`
+  background-color: rgb(32, 128, 0);
+  height: 15px;
+  width: ${props => props.percent || 0}%;
+`;
+
+const Ratings = (props) => {
+  console.log(Object.keys(props.data))
+  var sumOfScores = Object.keys(props.data).reduce((accumulate, current) => (accumulate + props.data[current]*parseInt(current) ), 0); //add all the scores together
+  var numberOfScores = Object.keys(props.data).reduce((accumulate, current) => (accumulate + props.data[current]), 0); //count the number of scores
+  var meanRating = Math.round(sumOfScores/numberOfScores*10)/10 // get the mean
+  meanRating = meanRating ? meanRating : 5;
+  console.log(meanRating)
+
+  return(
+  <div>
+    <div>Ratings and Reviews</div>
+    <div>Summary section
+      <RatingsNumber value={meanRating} />
+      <StarRating rawRating = {meanRating}/>
+    </div>
+    <div>Rating breakdown
+      {[5,4,3,2,1].map((value) => (
+        <div key={`${value}StarRatings`}> {value} Stars
+          <EmptyBar>
+            <PercentBar percent={75}/>
+          </EmptyBar>
+        </div>
+      ))}
+    </div>
+    <div>Factor breakdown
+      <div>Factor 1</div>
+      <div>Factor 2</div>
+    </div>
+  </div>)
+};
 
 export default Ratings;
 

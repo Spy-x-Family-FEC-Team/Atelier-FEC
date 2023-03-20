@@ -4,10 +4,10 @@ import { render } from "react-dom";
 import Related from "./components/Related";
 import Overview from "./components/Overview/index";
 import Reviews from "./components/Reviews";
-import StarRating from "./components/assets/StarRating.jsx";
 
 // Dummy data access. Figured out we needed to change the filetype to .json. Feel free to add the others if you want to use them.
 import product from '../../server/exampleData/product.json';
+import reviewData from '../../server/exampleData/reviews.json';
 
 const FoldWrapper = styled.section`
 margin: auto;
@@ -30,8 +30,7 @@ const App = () => (
   </FoldWrapper>
   <BelowFoldWrapper>
     <Related />
-    <StarRating rawRating={3.7}/>
-    <Reviews/>
+    <Reviews reviewData={reviewData.results}/>
 </BelowFoldWrapper>
 </>
 )

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import styled from "styled-components";
 import Ratings from "./Ratings"
 import ReviewList from "./ReviewList"
@@ -10,14 +10,33 @@ const ThirdsGrid = styled.section`
 
 `;
 
-const Reviews = () => (<>
-	<div>hello from reviews</div>
-	<ThirdsGrid>
-		<Ratings/>
-		<ReviewList/>
-		<WriteReview/>
-	</ThirdsGrid>
-</>);
+const Reviews = (props) => {
+	const [reviewDist, setReviewDist] = useState({0:0, 1:0, 2:0, 3:0, 4:0, 5:0})
+
+	const incrementCount = (value) => {
+		var reviewClone = {...reviewDist};
+		reviewClone[value] += 1;
+		setReviewDist(reviewClone);
+	}
+
+	useEffect(() => {
+		var draftDist = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0}
+		for (let review of props.reviewData) {
+			console.log(review)
+			draftDist[review.rating] += 1;
+		}
+		setReviewDist(draftDist)
+		console.log(draftDist)
+	},[])
+
+	return(
+		<ThirdsGrid>
+			<Ratings data={reviewDist}/>
+			<ReviewList/>
+			<WriteReview/>
+		</ThirdsGrid>
+	)
+};
 
 export default Reviews;
 
