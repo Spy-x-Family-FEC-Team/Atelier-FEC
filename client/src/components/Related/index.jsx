@@ -1,3 +1,19 @@
+import React from "React";
+import Carousel from "./Carousel";
+
+
+const Related = () => {
+
+	return (
+		<div>
+			<div>hello we are related</div>
+			<Carousel />
+		</div>
+	)
+
+};
+
+export default Related;
 
 /*
 Related Items & Comparison

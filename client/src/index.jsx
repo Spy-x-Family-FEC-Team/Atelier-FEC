@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { render } from "react-dom";
+import Related from "./components/Related";
 import Overview from "./components/Overview/index";
 import Reviews from "./components/Reviews";
 import StarRating from "./components/assets/StarRating.jsx";
@@ -29,6 +30,7 @@ const App = () => (
   </FoldWrapper>
   <BelowFoldWrapper>
     <StarRating rawRating={3.7}/>
+    <Related />
   <Reviews/>
 </BelowFoldWrapper>
 </>
