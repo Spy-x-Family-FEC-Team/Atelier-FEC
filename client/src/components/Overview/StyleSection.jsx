@@ -16,7 +16,7 @@ const StyleSection = (props) => {
   const makeThumbnailsList = function (stylesObj) {
     var thumbnails = [];
     stylesObj.results.forEach((style) =>{
-      var thisURL = style.photos[0].thumbnail_url;
+      var thisURL = style.photos[props.indexOfThisProdView].thumbnail_url;
       console.log('thisURL: ',thisURL);
       thumbnails.push(thisURL);
       // TODO: Change this 0 to main image id later.

@@ -34,21 +34,22 @@ const ProductDetailsWrapper = styled.section`
 const Overview = (props) => {
   // Currently, useState is probably unnecessary, but I figure it might be needed later.
   // Using dummy data for now.
-  const [indexOfMainImg, setIndexOfMainImg] = useState(0);
-  const [currentProdId, setCurrentProdId] = useState(40344);
-  const [currentImage, setCurrentImage] = useState(stylesForThisProduct.results[0].photos[indexOfMainImg].url);
+  const [indexOfStyleOption, setIndexOfStyleOption] = useState(1);
+  const [indexOfThisProdView, setIndexOfThisProdView] = useState(1)
+  // const [currentProdId, setCurrentProdId] = useState(40344);
+  const [currentImage, setCurrentImage] = useState(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
   const [currentProduct, setCurrentProduct] = useState(props.product);
 
   // const [currentStyles, setCurrentStyles] = useState(stylesForThisProduct);
 
   const handleStyleSelection = (index) => {
-    setIndexOfMainImg(index);
+    setIndexOfStyleOption(index);
   }
 
   useEffect (() => {
     // Whenever someone clicks a style and handleStyleSelection fn is used, rerender the main image.
-    setCurrentImage(stylesForThisProduct.results[indexOfMainImg].photos[0].url);
-  }, [indexOfMainImg]);
+    setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
+  }, [indexOfStyleOption]);
 
 
 
@@ -64,7 +65,8 @@ const Overview = (props) => {
             category={currentProduct.category}/>
           <StyleSection
             stylesForThisProduct={stylesForThisProduct}
-            handleStyleSelection={handleStyleSelection}/>
+            handleStyleSelection={handleStyleSelection}
+            indexOfThisProdView={indexOfThisProdView}/>
           <Social />
         </SelectorSectionWrapper>
       </OverviewGrid>
