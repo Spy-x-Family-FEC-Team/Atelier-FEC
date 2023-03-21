@@ -73,23 +73,27 @@ const Overview = (props) => {
           currentImage={currentImage}
           prodViewThumbnails={prodViewThumbnails}
           indexOfThisProdView={indexOfThisProdView}
-          handleViewSelection={handleViewSelection}/>
+          handleViewSelection={handleViewSelection}
+        />
         <SelectorSectionWrapper>
           <TitleCatRev
             title={currentProduct.name}
-            category={currentProduct.category}/>
+            category={currentProduct.category}
+          />
           <StyleSection
             stylesForThisProduct={stylesForThisProduct}
             handleStyleSelection={handleStyleSelection}
             indexOfThisProdView={indexOfThisProdView}
-            indexOfStyleOption={indexOfStyleOption}/>
+            indexOfStyleOption={indexOfStyleOption}
+          />
           <Social />
         </SelectorSectionWrapper>
       </OverviewGrid>
       <ProductDetailsWrapper>
         <ProductDetails
           description={currentProduct.description}
-          features={currentProduct.features}/>
+          features={currentProduct.features}
+        />
       </ProductDetailsWrapper>
     </div>
   )
