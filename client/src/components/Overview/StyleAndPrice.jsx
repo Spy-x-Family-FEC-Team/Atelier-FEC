@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const StyleImageGridWrapper = styled.section`
   display:grid;
@@ -17,7 +17,7 @@ const StyledSalePrice = styled.section`
 `;
 
 const StyledStyleThumbnail = styled.img`
-  height:64%;
+  height:62%;
   width:90%;
   margin: 5px;
   border-radius: 50%;
@@ -28,8 +28,10 @@ const StyledStyleThumbnailWrapper = styled.section`
   position: relative;
 `;
 
+// The look of this checkmark is just temporary until we make some aesthetic choices together.
 const StyledCheckmark = styled.section`
   color: white;
+  font-size: large;
   position: absolute;
   z-index: 2;
   margin-left:75%;
@@ -71,9 +73,7 @@ const StyleAndPrice = (props) => {
             </StyledStyleThumbnailWrapper>
           )
         })}
-
       </StyleImageGridWrapper>
-
     </div>
   )
 }
