@@ -11,27 +11,10 @@ const ThirdsGrid = styled.section`
 `;
 
 const Reviews = (props) => {
-	const [reviewDist, setReviewDist] = useState({0:0, 1:0, 2:0, 3:0, 4:0, 5:0})
-
-	const incrementCount = (value) => {
-		var reviewClone = {...reviewDist};
-		reviewClone[value] += 1;
-		setReviewDist(reviewClone);
-	}
-
-	useEffect(() => {
-		var draftDist = {0:0, 1:0, 2:0, 3:0, 4:0, 5:0}
-		for (let review of props.reviewData) {
-			console.log(review)
-			draftDist[review.rating] += 1;
-		}
-		setReviewDist(draftDist)
-		console.log(draftDist)
-	},[])
-
+	console.log(props.reviewData)
 	return(
 		<ThirdsGrid>
-			<Ratings data={reviewDist}/>
+			<Ratings data={props.reviewData}/>
 			<ReviewList/>
 			<WriteReview/>
 		</ThirdsGrid>

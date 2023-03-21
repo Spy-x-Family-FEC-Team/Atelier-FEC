@@ -7,7 +7,8 @@ import Reviews from "./components/Reviews";
 
 // Dummy data access. Figured out we needed to change the filetype to .json. Feel free to add the others if you want to use them.
 import product from '../../server/exampleData/product.json';
-import reviewData from '../../server/exampleData/reviews.json';
+import reviews from '../../server/exampleData/reviews.json';
+import reviewData from '../../server/exampleData/reviewData.json';
 
 const FoldWrapper = styled.section`
 margin: auto;
@@ -30,7 +31,7 @@ const App = () => (
   </FoldWrapper>
   <BelowFoldWrapper>
     <Related />
-    <Reviews reviewData={reviewData.results}/>
+    <Reviews reviewData={reviewData} reviews={reviews}/>
 </BelowFoldWrapper>
 </>
 )

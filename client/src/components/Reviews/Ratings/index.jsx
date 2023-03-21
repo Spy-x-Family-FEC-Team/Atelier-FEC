@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import StarRating from "../../assets/StarRating.jsx";
+import { getNumberOfRatings, getMeanRating } from "../../sharedComponents/ratingsObjectFunctions.js";
 
+// TODO: Break this apart into smaller bits when it gets chubby
 
 const RatingsNumber = styled((props) => (
   <div className={props.className}>{props.value}</div>
@@ -21,12 +23,13 @@ const PercentBar = styled.div`
 `;
 
 const Ratings = (props) => {
-  console.log(Object.keys(props.data))
-  var sumOfScores = Object.keys(props.data).reduce((accumulate, current) => (accumulate + props.data[current]*parseInt(current) ), 0); //add all the scores together
-  var numberOfScores = Object.keys(props.data).reduce((accumulate, current) => (accumulate + props.data[current]), 0); //count the number of scores
-  var meanRating = Math.round(sumOfScores/numberOfScores*10)/10 // get the mean
-  meanRating = meanRating ? meanRating : 5;
-  console.log(meanRating)
+  var numberOfRatings = getNumberOfRatings(props.data.ratings);
+  var meanRating = getMeanRating(props.data.ratings);
+  // var sumOfScores = Object.keys(props.data).reduce((accumulate, current) => (accumulate + props.data[current]*parseInt(current) ), 0); //add all the scores together
+  // var numberOfRatings = Object.keys(props.data).reduce((accumulate, current) => (accumulate + props.data[current]), 0); //count the number of scores
+  // var meanRating = Math.round(sumOfScores/numberOfRatings*10)/10 // get the mean
+  // meanRating = meanRating ? meanRating : 5;
+  // console.log(meanRating)
 
   return(
   <div>
@@ -39,14 +42,21 @@ const Ratings = (props) => {
       {[5,4,3,2,1].map((value) => (
         <div key={`${value}StarRatings`}> {value} Stars
           <EmptyBar>
-            <PercentBar percent={75}/>
+            <PercentBar percent={(props.data.ratings[value]/numberOfRatings)*100}/>
+            {/* number of ratings of N stars divided by total number of ratings times 100 */}
           </EmptyBar>
-        </div>
-      ))}
+        </div>)
+      )}
     </div>
     <div>Factor breakdown
-      <div>Factor 1</div>
-      <div>Factor 2</div>
+      {Object.keys(props.data.characteristics).map((key) => (
+        <>
+          <div>{key}</div>
+          <EmptyBar>
+            <PercentBar percent={(props.data.characteristics[key].value*20)}/>
+          </EmptyBar>
+        </>))
+      }
     </div>
   </div>)
 };

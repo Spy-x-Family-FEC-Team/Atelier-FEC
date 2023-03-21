@@ -1,4 +1,15 @@
+import React from "react";
 
+const ReviewListItem = (props) => (
+  // StarRating
+  // username and time
+  // title
+  // body paragraph
+  // helpfulbutton
+  // reportbutton
+)
+
+port default ReviewListItem;
 /* Individual Review Tile
 Each review will be displayed on a single tile within the list. The tile will display the following information:
 Star Rating - This will be the rating given to the product by this individual review.. The rating will be displayed in the format of solid or outlined stars, where the solid stars represent the review score. A total of 5 stars should always appear, and the amount filled in should correspond to the average score.
