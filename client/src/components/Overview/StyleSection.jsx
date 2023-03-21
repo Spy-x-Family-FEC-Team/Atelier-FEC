@@ -34,6 +34,8 @@ const StyleSection = (props) => {
         styleName={props.stylesForThisProduct.results[props.indexOfStyleOption].name}
 
         originalPrice={props.stylesForThisProduct.results[props.indexOfStyleOption].original_price}
+
+        salePrice={props.stylesForThisProduct.results[props.indexOfStyleOption].sale_price}
         />
       <SizeAndQuantity />
       <BagAndLiked />

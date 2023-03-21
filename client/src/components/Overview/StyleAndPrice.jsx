@@ -15,12 +15,25 @@ const StyledStyleThumbnail = styled.img`
   margin: 5px;
   border-radius:50%;
 `;
+const StyledSalePrice = styled.section`
+  color:red;
+  display:inline-block;
+`;
 
 const StyleAndPrice = (props) => {
 
   return(
     <div>
-      <div>${props.originalPrice}</div>
+      {props.salePrice ?
+        <StyledSalePrice>
+        ${props.salePrice}&nbsp;&nbsp;&nbsp;
+        </StyledSalePrice>
+      : null}
+      <span>$
+        {props.salePrice ?
+        <strike>{props.originalPrice}</strike>
+        : props.originalPrice}
+      </span>
       <div>STYLE > {props.styleName}</div>
       <StyleImageGridWrapper>
 
