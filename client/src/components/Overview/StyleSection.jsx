@@ -36,6 +36,8 @@ const StyleSection = (props) => {
         originalPrice={props.stylesForThisProduct.results[props.indexOfStyleOption].original_price}
 
         salePrice={props.stylesForThisProduct.results[props.indexOfStyleOption].sale_price}
+
+        indexOfStyleOption={props.indexOfStyleOption}
         />
       <SizeAndQuantity />
       <BagAndLiked />

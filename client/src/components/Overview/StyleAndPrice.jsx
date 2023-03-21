@@ -8,16 +8,29 @@ const StyleImageGridWrapper = styled.section`
   padding:5px;
 `;
 
-// TODO: Currently these images are being stretched in weird ways because of their varying aspect ratios. Rather than setting the height and width, I will want to instead do some form of masking here.
+// TODO: Currently these images are being stretched in weird ways because of their varying aspect ratios. Rather than setting the height and width, I will want to instead do some form of masking here later.
+const StyledSalePrice = styled.section`
+  color:red;
+  display:inline-block;
+`;
+
 const StyledStyleThumbnail = styled.img`
   height:64%;
   width:90%;
   margin: 5px;
-  border-radius:50%;
+  border-radius: 50%;
+  z-index: 1;
 `;
-const StyledSalePrice = styled.section`
-  color:red;
-  display:inline-block;
+
+const StyledStyleThumbnailWrapper = styled.section`
+  background: pink;
+`;
+
+const StyledCheckmark = styled.section`
+  color: green;
+  z-index: 2;
+  margin-top:2%;
+  margin-right:2%;
 `;
 
 const StyleAndPrice = (props) => {
@@ -36,16 +49,21 @@ const StyleAndPrice = (props) => {
       </span>
       <div>STYLE > {props.styleName}</div>
       <StyleImageGridWrapper>
-
         {props.styleThumbnails.map((url, index) => {
           return (
-            <StyledStyleThumbnail
-              key={index.toString()}
-              src={url}
-              onClick={(event) => {
-                props.handleStyleSelection(index);
-              }}
-            />
+            <StyledStyleThumbnailWrapper
+            key={index.toString()}>
+              {props.indexOfStyleOption === index ?
+                <StyledCheckmark>?</StyledCheckmark>
+                : null}
+              <StyledStyleThumbnail
+                key={index.toString()}
+                src={url}
+                onClick={(event) => {
+                  props.handleStyleSelection(index);
+                }}
+              />
+            </StyledStyleThumbnailWrapper>
           )
         })}
 
