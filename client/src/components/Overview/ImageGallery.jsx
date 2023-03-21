@@ -30,8 +30,9 @@ const StyledVerticalCarouselWrapper = styled.section`
   z-axis:2;
   margin-left:1%;
   margin-top: 5%;
+  margin-bottom: 5%;
   align-items: left;
-  height:90%;
+  height:60%;
 `;
 
 
@@ -41,7 +42,9 @@ const ImageGallery = (props) => {
     <div>
       <StyledImageGalleryWrapper>
         <StyledVerticalCarouselWrapper>
-          <VerticalCarousel />
+          <VerticalCarousel
+            prodViewThumbnails={props.prodViewThumbnails}
+          />
         </StyledVerticalCarouselWrapper>
         <StyledMainImageWrapper>
           <StyledMainImage src={props.currentImage}/>

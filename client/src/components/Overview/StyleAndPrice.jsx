@@ -10,7 +10,6 @@ const StyleImageGridWrapper = styled.section`
   padding:5px;
 `;
 
-// TODO: Currently these images are being stretched in weird ways because of their varying aspect ratios. Rather than setting the height and width, I will want to instead do some form of masking here later.
 const StyledSalePrice = styled.section`
   color:red;
   display:inline-block;
@@ -22,6 +21,7 @@ const StyledStyleThumbnail = styled.img`
   margin: 5px;
   border-radius: 50%;
   z-index: 1;
+  object-fit:cover;
 `;
 
 const StyledStyleThumbnailWrapper = styled.section`

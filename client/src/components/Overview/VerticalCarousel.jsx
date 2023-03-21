@@ -2,29 +2,46 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-// const StyledVerticalCarousel = styled.section`
+const StyledVerticalCarouselGrid = styled.section`
+  display:grid;
+  grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  width: 90px;
+  max-height: 300px;
+`;
 
-// `;
+const StyledUpArrow = styled.section`
+  background:white;
+  padding:1px;
+  text-align:center;
+`;
+const StyledDownArrow = styled.section`
+  background:white;
+  padding:1px;
+  text-align:center;
+`;
 
-// const StyledMainImage = styled.img`
-//   max-height: 70vh;
-//   max-width: 100%;
-//   z-axis:1;
-// `;
-
-// const StyledVerticalCarouselWrapper = styled.section`
-//   z-axis:2;
-//   margin-left:20px;
-//   margin-top:20px;
-// `;
+const StyledProdViewThumbnail = styled.img`
+  height:90px;
+  width: 100px;
+  object-fit:cover;
+`;
 
 
 const VerticalCarousel = (props) => {
 
   return(
-    <div>
-      Vertical Carousel will go here.
-    </div>
+    <StyledVerticalCarouselGrid>
+      <StyledUpArrow>Up</StyledUpArrow>
+      {props.prodViewThumbnails.map((url, index) => {
+        return (
+          <StyledProdViewThumbnail
+            key={index}
+            src={url}
+          />
+        )
+      })}
+      <StyledDownArrow>Down</StyledDownArrow>
+    </StyledVerticalCarouselGrid>
   )
 };
 
