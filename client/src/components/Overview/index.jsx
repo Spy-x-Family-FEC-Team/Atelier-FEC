@@ -62,6 +62,7 @@ const Overview = (props) => {
   useEffect (() => {
     // Whenever someone clicks a style and handleStyleSelection fn is used, rerender the main image.
     setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
+    setProdViewThumbnails(makeProdViewThumbnailsList());
   }, [indexOfStyleOption, indexOfThisProdView]);
 
 
