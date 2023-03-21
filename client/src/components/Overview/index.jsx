@@ -36,27 +36,43 @@ const Overview = (props) => {
   // Using dummy data for now.
   const [indexOfStyleOption, setIndexOfStyleOption] = useState(0);
   const [indexOfThisProdView, setIndexOfThisProdView] = useState(0);
-  // const [currentProdId, setCurrentProdId] = useState(40344);
+  // helper function
+  const makeProdViewThumbnailsList = () => {
+    var thumbnails = [];
+    stylesForThisProduct.results[indexOfStyleOption].photos.forEach((photo) => {
+      thumbnails.push(photo.thumbnail_url);
+    })
+    return thumbnails;
+  };
   const [currentImage, setCurrentImage] = useState(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
   const [currentProduct, setCurrentProduct] = useState(props.product);
+  const [prodViewThumbnails, setProdViewThumbnails] =useState(makeProdViewThumbnailsList());
 
   // const [currentStyles, setCurrentStyles] = useState(stylesForThisProduct);
 
+
   const handleStyleSelection = (index) => {
     setIndexOfStyleOption(index);
-  }
+  };
+
+  const handleViewSelection = (index) => {
+    setIndexOfThisProdView(index);
+  };
 
   useEffect (() => {
     // Whenever someone clicks a style and handleStyleSelection fn is used, rerender the main image.
     setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
-  }, [indexOfStyleOption]);
+  }, [indexOfStyleOption, indexOfThisProdView]);
 
 
   return(
     <div>
       <OverviewGrid>
         <ImageGallery
-          currentImage={currentImage}/>
+          currentImage={currentImage}
+          prodViewThumbnails={prodViewThumbnails}
+          indexOfThisProdView={indexOfThisProdView}
+          handleViewSelection={handleViewSelection}/>
         <SelectorSectionWrapper>
           <TitleCatRev
             title={currentProduct.name}
