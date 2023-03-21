@@ -1,15 +1,35 @@
-import React from "react";
+import React, {useState} from "react";
+import styled from "styled-components";
+import StarRating from "../../assets/StarRating.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
-const ReviewListItem = (props) => (
-  // StarRating
-  // username and time
-  // title
-  // body paragraph
-  // helpfulbutton
-  // reportbutton
-)
+const ReviewBody = styled.section`
+  overflow-wrap: break-word;
+`;
 
-port default ReviewListItem;
+const ReviewListItem = ({data}) => {
+  const [expanded, setExpanded] = useState(false)
+  const toggleExpanded = () => setExpanded((ex) => (!ex))
+
+  return(
+  <div>
+    <StarRating rawRating={data.rating}/>
+    {data.reviewer_name} {new Date(data.date).toDateString()}
+    <div>{data.summary}</div>
+    <ReviewBody>{data.body.slice(0,(expanded ? undefined : 250)) // kinda wanna find a nice split function to put here
+    }</ReviewBody>
+    {(data.body.length > 250 && !expanded) ? <button type="button" onClick={toggleExpanded}>Show More</button> : null // probably some logic and state to figure out here
+    }
+    {data.recommend ? <div><FontAwesomeIcon icon={solid("square-check")}/> I recommend this product.</div> : null}
+    <div> Was this review helpful?
+      <button type="button" onClick={() => {console.log('clicked a review list yes button')}}>Yes</button>
+      <button type="button" onClick={() => {console.log('clicked a review list report button')}}>Report Review</button>
+    </div>
+  </div>)
+}
+
+export default ReviewListItem;
 /* Individual Review Tile
 Each review will be displayed on a single tile within the list. The tile will display the following information:
 Star Rating - This will be the rating given to the product by this individual review.. The rating will be displayed in the format of solid or outlined stars, where the solid stars represent the review score. A total of 5 stars should always appear, and the amount filled in should correspond to the average score.

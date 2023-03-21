@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import StarRating from "../../assets/StarRating.jsx";
 import { getNumberOfRatings, getMeanRating } from "../../sharedComponents/ratingsObjectFunctions.js";
 
