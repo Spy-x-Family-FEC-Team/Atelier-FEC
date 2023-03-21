@@ -52,8 +52,6 @@ const Overview = (props) => {
   }, [indexOfStyleOption]);
 
 
-
-
   return(
     <div>
       <OverviewGrid>

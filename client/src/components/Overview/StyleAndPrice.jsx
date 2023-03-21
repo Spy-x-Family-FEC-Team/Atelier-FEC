@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, regular, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 const StyleImageGridWrapper = styled.section`
   display:grid;
@@ -23,14 +25,15 @@ const StyledStyleThumbnail = styled.img`
 `;
 
 const StyledStyleThumbnailWrapper = styled.section`
-  background: pink;
+  position: relative;
 `;
 
 const StyledCheckmark = styled.section`
-  color: green;
+  color: white;
+  position: absolute;
   z-index: 2;
-  margin-top:2%;
-  margin-right:2%;
+  margin-left:75%;
+  margin-top: 15%;
 `;
 
 const StyleAndPrice = (props) => {
@@ -54,7 +57,9 @@ const StyleAndPrice = (props) => {
             <StyledStyleThumbnailWrapper
             key={index.toString()}>
               {props.indexOfStyleOption === index ?
-                <StyledCheckmark>?</StyledCheckmark>
+                <StyledCheckmark>
+                  <FontAwesomeIcon icon={solid('circle-check')} />
+                </StyledCheckmark>
                 : null}
               <StyledStyleThumbnail
                 key={index.toString()}
