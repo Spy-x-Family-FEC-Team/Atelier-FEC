@@ -35,26 +35,32 @@ const CarouselList = styled.div`
 	scroll-behavior: smooth;
 	scroll-snap-align: start;
 `
-const list = document.querySelector("#Carousel-List");
 
 const scrollRight = () => {
+	const list = document.querySelector("#Carousel-List");
 	list.scrollBy(200, 0);
 };
 
-const scrollLeft = () => {
+const scrollLeft = (e) => {
+	const list = document.querySelector("#Carousel-List");
 	list.scrollBy(-200, 0);
+	const button = e.target;
+	console.log("position", list.scrollLeft);
+	if (list.scrollLeft === 0) {
+		button.style.display = "hidden";
+	}
 };
 
-const getScrollPosition = () => {
-	const position = list.scrollLeft;
-	console.log('position', position);
-}
+// const getScrollPosition = () => {
+// 	const position = list.scrollLeft;
+// 	console.log('position', position);
+// }
 
 const Carousel = () => {
 
 	return (
 		<CarouselContainer>
-			<StyledLeftBtn onClick={scrollLeft}>Left</StyledLeftBtn>
+			<StyledLeftBtn onClick={(e) => {scrollLeft(e)}}>Left</StyledLeftBtn>
 			<CarouselTrack>
 				<CarouselList id="Carousel-List">
 					{numbers.map( num => {
