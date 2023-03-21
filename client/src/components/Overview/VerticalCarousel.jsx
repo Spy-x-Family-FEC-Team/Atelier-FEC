@@ -11,13 +11,17 @@ const StyledVerticalCarouselGrid = styled.section`
 
 const StyledUpArrow = styled.section`
   background:white;
-  padding:1px;
+  padding:3px;
   text-align:center;
 `;
 const StyledDownArrow = styled.section`
   background:white;
-  padding:1px;
+  padding:3px;
   text-align:center;
+`;
+
+const StyledProdViewThumbnailWrapper = styled.section`
+  position:relative;
 `;
 
 const StyledProdViewThumbnail = styled.img`
@@ -26,18 +30,34 @@ const StyledProdViewThumbnail = styled.img`
   object-fit:cover;
 `;
 
+const StyledUnderline = styled.section`
+  color:white;
+  font-size:large;
+`;
+
 
 const VerticalCarousel = (props) => {
+
 
   return(
     <StyledVerticalCarouselGrid>
       <StyledUpArrow>Up</StyledUpArrow>
       {props.prodViewThumbnails.map((url, index) => {
         return (
-          <StyledProdViewThumbnail
+          <StyledProdViewThumbnailWrapper
             key={index}
-            src={url}
-          />
+            onClick={() => {
+              props.handleViewSelection(index);
+              }}>
+            <StyledProdViewThumbnail
+              src={url}
+            />
+            {props.indexOfThisProdView === index ?
+            <StyledUnderline>
+              <span>________</span>
+            </StyledUnderline>
+            :null}
+          </StyledProdViewThumbnailWrapper>
         )
       })}
       <StyledDownArrow>Down</StyledDownArrow>

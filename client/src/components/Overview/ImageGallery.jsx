@@ -25,7 +25,6 @@ const StyledMainImage = styled.img`
 `;
 
 const StyledVerticalCarouselWrapper = styled.section`
-  background:red;
   position:absolute;
   z-axis:2;
   margin-left:1%;
@@ -44,12 +43,13 @@ const ImageGallery = (props) => {
         <StyledVerticalCarouselWrapper>
           <VerticalCarousel
             prodViewThumbnails={props.prodViewThumbnails}
+            indexOfThisProdView={props.indexOfThisProdView}
+            handleViewSelection={props.handleViewSelection}
           />
         </StyledVerticalCarouselWrapper>
         <StyledMainImageWrapper>
           <StyledMainImage src={props.currentImage}/>
         </StyledMainImageWrapper>
-
       </StyledImageGalleryWrapper>
     </div>
   )

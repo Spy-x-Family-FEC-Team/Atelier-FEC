@@ -53,12 +53,16 @@ const Overview = (props) => {
 
   const handleStyleSelection = (index) => {
     setIndexOfStyleOption(index);
-  }
+  };
+
+  const handleViewSelection = (index) => {
+    setIndexOfThisProdView(index);
+  };
 
   useEffect (() => {
     // Whenever someone clicks a style and handleStyleSelection fn is used, rerender the main image.
     setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
-  }, [indexOfStyleOption]);
+  }, [indexOfStyleOption, indexOfThisProdView]);
 
 
   return(
@@ -66,7 +70,9 @@ const Overview = (props) => {
       <OverviewGrid>
         <ImageGallery
           currentImage={currentImage}
-          prodViewThumbnails={prodViewThumbnails}/>
+          prodViewThumbnails={prodViewThumbnails}
+          indexOfThisProdView={indexOfThisProdView}
+          handleViewSelection={handleViewSelection}/>
         <SelectorSectionWrapper>
           <TitleCatRev
             title={currentProduct.name}
