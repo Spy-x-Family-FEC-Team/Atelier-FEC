@@ -37,7 +37,7 @@ const CarouselList = styled.div`
 	scroll-snap-align: start;
 `
 
-const Carousel = () => {
+const Carousel = ({mode}) => {
 
 	/*
 	add event listener to carousel list
@@ -92,7 +92,9 @@ const Carousel = () => {
 	}
 
 	return (
-		<CarouselContainer>
+		<div>
+			{mode === 'related' ? (<h1>hello</h1>) : <h1>bye</h1>}
+			<CarouselContainer>
 			<StyledLeftBtn onClick={scrollLeft} display={displayLeft}>Left</StyledLeftBtn>
 			<CarouselTrack>
 				<CarouselList onScroll={(e) => {handleScroll(e)}} id="Carousel-List">
@@ -104,6 +106,7 @@ const Carousel = () => {
 			</CarouselTrack>
 			<StyledRightBtn onClick={scrollRight}  display={displayRight}>Right</StyledRightBtn>
 		</CarouselContainer>
+		</div>
 	)
 
 };

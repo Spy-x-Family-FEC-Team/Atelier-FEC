@@ -7,7 +7,7 @@ const Related = () => {
 	return (
 		<div>
 			<div>hello we are related</div>
-			<Carousel />
+			<Carousel mode={'related'}/>
 		</div>
 	)
 
