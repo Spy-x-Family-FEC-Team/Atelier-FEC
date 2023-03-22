@@ -1,12 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
+import OverlayWindow from "../../assets/OverlayWindow.jsx";
 
-
-const WriteReview = styled(({className}) => (
-  <div className={className}>Hello from the Write a Review modal window!</div>))`
-  color: navy;
-  font-weight: bold;
+const WriteGridStyling = styled.div`
+color: navy;
+font-weight: bold;
+grid-column-start: 2;
+grid-column-end: 3;
+grid-row-start: 2;
+grid-row-end: 3;
+max-height: 80vh;
+overflow-y: overlay;
+overflow-x: hidden;
+overflow-wrap: break-word;
 `;
+
+const WriteReview = () => {
+	const [modal, setModal] = useState(false);
+	const toggleModal = () => {setModal((value) => (!value))}
+
+	return(
+	<>
+		<WriteGridStyling>Hello from the Write a Review modal window!
+			<button type="button" onClick={toggleModal}>Write Your Own Review</button>
+		</WriteGridStyling>
+		{modal ?
+		<OverlayWindow onBgClick={toggleModal}><div>testing1234</div></OverlayWindow>
+		: null}
+	</>)
+	}
 
 export default WriteReview;
 

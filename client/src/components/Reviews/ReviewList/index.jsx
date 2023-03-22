@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import ReviewListItem from "./ReviewListItem"
+import styled from "styled-components";
 
-const ReviewList = () => (<div>Hello from the Review list!</div>);
+const ReviewListGridStyling = styled.div`
+grid-column-start: 2;
+grid-column-end: 3;
+grid-row-start: 1;
+grid-row-end: 2;
+max-height: 80vh;
+width: 100%
+overflow-y: overlay;
+overflow-x: hidden;
+overflow-wrap: break-word;
+`;
+
+const ReviewList = (props) => {
+  const [moreReviews, setMoreReviews] = useState(false); // flag for loading more reviews
+  const toggleMore = () => setMoreReviews((more) => (!more))
+
+  return (
+  <ReviewListGridStyling>
+    <h2>User Reviews</h2>
+    {props.reviews.results
+    .slice(0, (moreReviews ? undefined : 2)) // this slice should do nothing if we want more reviews, and should slice to 2 reviews otherwise
+    .map((rev) => <ReviewListItem key={rev.review_id} data={rev}/>) // turn those array items into react elements
+    }
+    <button type="button" onClick={toggleMore}>{moreReviews ? "Less Reviews" : "More Reviews"}</button>
+  </ReviewListGridStyling>);
+}
 
 export default ReviewList;
 
