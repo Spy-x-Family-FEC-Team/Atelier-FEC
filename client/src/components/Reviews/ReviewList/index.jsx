@@ -10,7 +10,7 @@ const ReviewList = styled((props) => {
   <div className={props.className}>
     {props.reviews.results
     .slice(0, (moreReviews ? undefined : 2)) // this slice should do nothing if we want more reviews, and should slice to 2 reviews otherwise
-    .map((rev) => <ReviewListItem data={rev}/>) // turn those array items into react elements
+    .map((rev) => <ReviewListItem key={rev.review_id} data={rev}/>) // turn those array items into react elements
     }
     <button type="button" onClick={toggleMore}>{moreReviews ? "Less Reviews" : "More Reviews"}</button>
   </div>);
@@ -22,6 +22,7 @@ const ReviewList = styled((props) => {
   max-height: 80vh;
   overflow-y: overlay;
   overflow-x: hidden;
+  overflow-wrap: break-word;
 `;
 
 export default ReviewList;

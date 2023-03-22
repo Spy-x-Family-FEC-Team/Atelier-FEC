@@ -2,10 +2,20 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import StarRating from "../../assets/StarRating.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+import { solid, } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
 const ReviewBody = styled.section`
-  overflow-wrap: break-word;
+`; //tbd on stiling, originally had this here for overflow elements, but probably gonna style it eventually
+
+const ThumbnailContainer = styled.section`
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const ThumbnailPic = styled.img`
+  height: 100%;
+  max-width: 100%;
 `;
 
 const ReviewListItem = ({data}) => {
@@ -21,6 +31,13 @@ const ReviewListItem = ({data}) => {
     }</ReviewBody>
     {(data.body.length > 250 && !expanded) ? <button type="button" onClick={toggleExpanded}>Show More</button> : null // probably some logic and state to figure out here
     }
+
+    {data.photos.length ?
+    <ThumbnailContainer>
+      {data.photos.map((photo) => (<ThumbnailPic key={photo.id} src={photo.url} title={`A user submitted photo with the id ${photo.id}`}/>))}
+    </ThumbnailContainer>
+    : null}
+    {data.response ? <div><h3>Store Response:</h3>{data.response}</div>: null}
     {data.recommend ? <div><FontAwesomeIcon icon={solid("square-check")}/> I recommend this product.</div> : null}
     <div> Was this review helpful?
       <button type="button" onClick={() => {console.log('clicked a review list yes button')}}>Yes</button>

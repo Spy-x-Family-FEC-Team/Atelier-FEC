@@ -49,12 +49,11 @@ const Ratings = (props) => {
     </div>
     <div>Factor breakdown
       {Object.keys(props.data.characteristics).map((key) => (
-        <>
-          <div>{key}</div>
+        <div key={key}>{key}
           <EmptyBar>
             <PercentBar percent={(props.data.characteristics[key].value*20)}/>
           </EmptyBar>
-        </>))
+        </div>))
       }
     </div>
   </div>)
