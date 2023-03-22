@@ -8,6 +8,7 @@ const Related = () => {
 		<div>
 			<div>hello we are related</div>
 			<Carousel mode={'related'}/>
+			<Carousel mode={'outfit'}/>
 		</div>
 	)
 

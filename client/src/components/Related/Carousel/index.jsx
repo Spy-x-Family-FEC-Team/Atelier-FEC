@@ -48,10 +48,11 @@ const Carousel = ({mode}) => {
 
 	const [displayLeft, setDisplayLeft] = useState(false);
 	const [displayRight, setDisplayRight] = useState(false);
+	const carouselID = `Carousel-List-${mode}`
 
 	useEffect( () => {
 
-		const list = document.querySelector("#Carousel-List");
+		const list = document.querySelector(`#${carouselID}`);
 
 		if (list.clientWidth < list.scrollWidth) {
 			setDisplayRight(true);
@@ -62,12 +63,12 @@ const Carousel = ({mode}) => {
 
 
 	const scrollRight = () => {
-		const list = document.querySelector("#Carousel-List");
+		const list = document.querySelector(`#${carouselID}`);
 		list.scrollBy(200, 0);
 	};
 
 	const scrollLeft = () => {
-		const list = document.querySelector("#Carousel-List");
+		const list = document.querySelector(`#${carouselID}`);
 		list.scrollBy(-200, 0);
 	};
 
@@ -79,7 +80,7 @@ const Carousel = ({mode}) => {
 		const divWidth = track.offsetWidth;
 		const scrollWidth = track.scrollWidth;
 
-		console.log('position', position, 'divWidth', divWidth, 'scrollWidth', scrollWidth);
+		// console.log('position', position, 'divWidth', divWidth, 'scrollWidth', scrollWidth);
 
 		if (scrollWidth - position <= divWidth) {
 			setDisplayRight(false);
@@ -93,11 +94,11 @@ const Carousel = ({mode}) => {
 
 	return (
 		<div>
-			{mode === 'related' ? (<h1>hello</h1>) : <h1>bye</h1>}
+			{mode === 'related' ? (<h1>RELATED PRODUCTS</h1>) : <h1>YOUR OUTFIT</h1>}
 			<CarouselContainer>
 			<StyledLeftBtn onClick={scrollLeft} display={displayLeft}>Left</StyledLeftBtn>
 			<CarouselTrack>
-				<CarouselList onScroll={(e) => {handleScroll(e)}} id="Carousel-List">
+				<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID}>
 					{numbers.map( num => {
 					return (
 					<StyledCard id={num}>I am card number {num}</StyledCard>
