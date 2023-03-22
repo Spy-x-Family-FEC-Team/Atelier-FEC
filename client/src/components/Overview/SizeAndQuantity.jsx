@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 const StyledSizeAndQuantityWrapper = styled.section`
@@ -8,22 +8,69 @@ const StyledSizeAndQuantityWrapper = styled.section`
 `;
 
 const SizeAndQuantity = (props) => {
+    // Variables:
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [availableSizes, setAvailableSizes] = useState([]);
+
+  // Helper Functions:
+  const getAvailableQuantityOfSize = (size) =>{
+    for (const sku in props.skusOfSelectedStyle) {
+      if (props.skusOfSelectedStyle[sku].size === size) {
+        return props.skusOfSelectedStyle[sku].quantity;
+      }
+    }
+  };
+
+  const atLeastOneThisSize = (size) => {
+    var quantity = getAvailableQuantityOfSize(size);
+    // console.log('quantity of ', size, ' available: ', quantity);
+    if (quantity >= 1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const makeAvailableSizesList = function() {
+    var sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+    var available = [];
+    sizes.forEach((size) => {
+      if(atLeastOneThisSize(size)) {
+        available.push(size);
+      }
+    });
+    setAvailableSizes(available);
+  };
+
+  // Update list of size options
+  useEffect (() => {
+    makeAvailableSizesList();
+  },[])
+
 
   return(
     <StyledSizeAndQuantityWrapper>
-        <select>
-        <option value="none" selected disabled hidden>Select Size</option>
-          <option value="XS">XS</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-          <option value="XXL">XXL</option>
+        <select
+        onChange={(event) => {
+          setSelectedSize(event.target.value);
+          console.log("event.target.value: ", event.target.value);
+        }}>
+        <option value="none" hidden>Select Size</option>
+        {availableSizes.map((size) => {
+          return(
+            <option
+              value={size}
+              key={size}
+            >
+                {size}
+            </option>
+          )
+        })}
         </select>
         <select>
-        <option value="none" selected disabled hidden>-</option>
+        <option value="none" hidden>-</option>
           <option value="1">1</option>
-          <option value="2">1</option>
+          <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>

@@ -39,7 +39,10 @@ const StyleSection = (props) => {
 
         indexOfStyleOption={props.indexOfStyleOption}
         />
-      <SizeAndQuantity />
+      <SizeAndQuantity
+      stylesForThisProduct={props.stylesForThisProduct}
+      skusOfSelectedStyle={props.stylesForThisProduct.results[props.indexOfStyleOption].skus}
+      />
       <BagAndLiked />
      </StyleSectionWrapper>
     </div>
