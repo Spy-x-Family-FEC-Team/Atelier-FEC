@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import StarRating from "../../assets/StarRating.jsx";
-import { getNumberOfRatings, getMeanRating } from "../../sharedComponents/ratingsObjectFunctions.js";
+import StarRating from "/client/src/components/assets/StarRating.jsx";
+import { getNumberOfRatings, getMeanRating } from "/client/src/components/sharedComponents/ratingsObjectFunctions.js";
 
 // TODO: Break this apart into smaller bits when it gets chubby
 

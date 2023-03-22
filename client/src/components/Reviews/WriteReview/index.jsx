@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import OverlayWindow from "../../assets/OverlayWindow.jsx";
+import OverlayWindow from "/client/src/components/assets/OverlayWindow.jsx";
 
 const WriteGridStyling = styled.div`
 color: navy;
