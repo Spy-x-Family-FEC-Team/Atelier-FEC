@@ -21,6 +21,15 @@ const PercentBar = styled.div`
   width: ${props => props.percent || 0}%;
 `;
 
+const RatingsGridbox = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  max-height: 80vh;
+  width: 100%;
+`;
+
 const Ratings = (props) => {
   var numberOfRatings = getNumberOfRatings(props.data.ratings);
   var meanRating = getMeanRating(props.data.ratings);

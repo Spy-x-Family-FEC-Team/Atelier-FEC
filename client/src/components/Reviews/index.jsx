@@ -6,7 +6,8 @@ import WriteReview from "./WriteReview"
 
 const ThirdsGrid = styled.section`
 	display:grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 5fr 11fr;
+	grid-template-rows: 9fr 1fr;
 `;
 
 const Reviews = (props) => {
@@ -15,6 +16,7 @@ const Reviews = (props) => {
 		<ThirdsGrid>
 			<Ratings data={props.reviewData}/>
 			<ReviewList reviews={props.reviews}/>
+			<WriteReview/>
 		</ThirdsGrid>
 	)
 };
