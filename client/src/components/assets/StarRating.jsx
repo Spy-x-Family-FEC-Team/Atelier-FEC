@@ -16,7 +16,7 @@ const QuarterStarStroke = () => (
   </span>)
 
 const ThreeQuarterStar = styled(Star)`
-  clip-path: polygon(0% 0%,50% 0%,50% 55%,100% 43%,100% 100%,0% 100%);
+  clip-path: polygon(0% 0%,50% 0%,50% 60%,100% 43%,100% 100%,0% 100%);
 `
 
 const ThreeQuarterStarStroke = () => (
@@ -27,7 +27,6 @@ const ThreeQuarterStarStroke = () => (
 
 const starSwitcher = (rawRating) => {
   var starArray = [null, <QuarterStarStroke/>, <FontAwesomeIcon icon={solid('star-half-stroke')}/>, <ThreeQuarterStarStroke/>, <Star/> ]
-  console.log(Math.round((rawRating-Math.floor(rawRating))*4))
   return(starArray[Math.round((rawRating-Math.floor(rawRating))*4)])
 }
 

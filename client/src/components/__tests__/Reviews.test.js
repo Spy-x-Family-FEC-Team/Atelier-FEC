@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
-import Reviews from '../Reviews/index.jsx';
-import reviews from '../../../../server/exampleData/reviews.json';
-import reviewData from '../../../../server/exampleData/reviewData.json';
+import Reviews from '/client/src/components/Reviews/index.jsx';
+import reviews from '/server/exampleData/reviews.json';
+import reviewData from '/server/exampleData/reviewData.json';
 
 afterEach(() => {
   cleanup();
