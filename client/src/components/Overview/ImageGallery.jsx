@@ -1,20 +1,56 @@
 import React from 'react';
 import styled from 'styled-components';
+import VerticalCarousel from './VerticalCarousel.jsx';
 
-const StyledMainImage = styled.img`
-  max-height: 70vh;
-  width: auto;
+const StyledImageGalleryWrapper = styled.section`
+  position: relative;
+`;
+
+const StyledMainImageWrapper = styled.section`
+  padding-left: 10px;
+  padding-right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-axis:1;
+  height:100%;
+  width:100%
+  position:absolute;
 `;
-// A lot of the style stuff above is redundant, but I just want to make sure this works and can refactor later.
+
+const StyledMainImage = styled.img`
+  max-height: 70vh;
+  max-width: 100%;
+  z-axis:1;
+`;
+
+const StyledVerticalCarouselWrapper = styled.section`
+  position:absolute;
+  z-axis:2;
+  margin-left:1%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  align-items: left;
+  height:60%;
+`;
+
 
 const ImageGallery = (props) => {
 
   return(
     <div>
-      <StyledMainImage src={props.currentImage}/>
+      <StyledImageGalleryWrapper>
+        <StyledVerticalCarouselWrapper>
+          <VerticalCarousel
+            prodViewThumbnails={props.prodViewThumbnails}
+            indexOfThisProdView={props.indexOfThisProdView}
+            handleViewSelection={props.handleViewSelection}
+          />
+        </StyledVerticalCarouselWrapper>
+        <StyledMainImageWrapper>
+          <StyledMainImage src={props.currentImage}/>
+        </StyledMainImageWrapper>
+      </StyledImageGalleryWrapper>
     </div>
   )
 };

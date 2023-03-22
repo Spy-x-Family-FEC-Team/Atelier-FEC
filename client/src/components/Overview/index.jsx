@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import ImageGallery from './ImageGallery.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
@@ -7,7 +7,8 @@ import ProductDetails from './ProductDetails.jsx';
 import StyleSection from './StyleSection.jsx';
 import Social from './Social.jsx';
 
-
+ // Dummy data to use for now.
+ import stylesForThisProduct from '/Users/jenessapeterson/hr/FEC/Atelier-FEC/server/exampleData/styles.json';
 
 const OverviewGrid = styled.section`
   display: grid;
@@ -20,7 +21,7 @@ const OverviewGrid = styled.section`
 const SelectorSectionWrapper = styled.section`
   background: azure;
   display:grid;
-  grid-template-rows: 1fr 50% 1fr;
+  grid-template-rows: 15% 70% 15%;
 `;
 
 const ProductDetailsWrapper = styled.section`
@@ -33,20 +34,54 @@ const ProductDetailsWrapper = styled.section`
 const Overview = (props) => {
   // Currently, useState is probably unnecessary, but I figure it might be needed later.
   // Using dummy data for now.
-  const [currentImage, setCurrentImage] = useState("https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80");
+  const [indexOfStyleOption, setIndexOfStyleOption] = useState(0);
+  const [indexOfThisProdView, setIndexOfThisProdView] = useState(0);
+  // helper function
+  const makeProdViewThumbnailsList = () => {
+    var thumbnails = [];
+    stylesForThisProduct.results[indexOfStyleOption].photos.forEach((photo) => {
+      thumbnails.push(photo.thumbnail_url);
+    })
+    return thumbnails;
+  };
+  const [currentImage, setCurrentImage] = useState(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
   const [currentProduct, setCurrentProduct] = useState(props.product);
+  const [prodViewThumbnails, setProdViewThumbnails] =useState(makeProdViewThumbnailsList());
+
+  // const [currentStyles, setCurrentStyles] = useState(stylesForThisProduct);
+
+
+  const handleStyleSelection = (index) => {
+    setIndexOfStyleOption(index);
+  };
+
+  const handleViewSelection = (index) => {
+    setIndexOfThisProdView(index);
+  };
+
+  useEffect (() => {
+    // Whenever someone clicks a style and handleStyleSelection fn is used, rerender the main image.
+    setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
+  }, [indexOfStyleOption, indexOfThisProdView]);
 
 
   return(
     <div>
       <OverviewGrid>
         <ImageGallery
-          currentImage={currentImage}/>
+          currentImage={currentImage}
+          prodViewThumbnails={prodViewThumbnails}
+          indexOfThisProdView={indexOfThisProdView}
+          handleViewSelection={handleViewSelection}/>
         <SelectorSectionWrapper>
           <TitleCatRev
             title={currentProduct.name}
             category={currentProduct.category}/>
-          <StyleSection />
+          <StyleSection
+            stylesForThisProduct={stylesForThisProduct}
+            handleStyleSelection={handleStyleSelection}
+            indexOfThisProdView={indexOfThisProdView}
+            indexOfStyleOption={indexOfStyleOption}/>
           <Social />
         </SelectorSectionWrapper>
       </OverviewGrid>
