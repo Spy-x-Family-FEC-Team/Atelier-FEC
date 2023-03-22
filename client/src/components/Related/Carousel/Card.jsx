@@ -1,5 +1,7 @@
 import React from "React";
 import styled from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const CardContainer = styled.div`
   background-color: green;
@@ -11,6 +13,18 @@ const CardContainer = styled.div`
   grid-template-rows: 2fr 1fr;
   position: relative;
 `;
+
+const ActionBtn = styled.div`
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const ProductImage = styled.div`
   background-color: pink;
@@ -37,6 +51,9 @@ const StyledCard = () => {
   return (
 
     <CardContainer>
+      <ActionBtn>
+        <FontAwesomeIcon icon={faStar} />
+      </ActionBtn>
       <ProductImage/>
       <ProductInfo>
         <ProductCategory>
