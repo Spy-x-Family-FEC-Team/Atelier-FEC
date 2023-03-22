@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import StarRating from "../../assets/StarRating.jsx";
+import StarRating from "/client/src/components/assets/StarRating.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
@@ -21,7 +21,6 @@ const ThumbnailPic = styled.img`
 const ReviewListItem = ({data}) => {
   const [expanded, setExpanded] = useState(false)
   const toggleExpanded = () => setExpanded((ex) => (!ex))
-
   return(
   <div>
     <StarRating rawRating={data.rating}/>

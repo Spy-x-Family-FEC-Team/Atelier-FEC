@@ -22,7 +22,8 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/client/src/components/__tests__",
-      "\\.(css|less)$": "<rootDir>/client/src/stylesheets/"
+      "\\.(css|less)$": "<rootDir>/client/src/stylesheets/",
+      "^/(.*)$": "<rootDir>/$1"
     },
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",
@@ -64,6 +65,7 @@
     "dotenv": "^16.0.3",
     "jsdom": "^21.1.1",
     "nodemon": "^2.0.21",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.9"
