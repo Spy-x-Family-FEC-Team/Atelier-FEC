@@ -4,6 +4,8 @@ import Carousel from "./Carousel";
 
 const Related = () => {
 
+	//takes in current item as prop
+
 	return (
 		<div>
 			<div>hello we are related</div>

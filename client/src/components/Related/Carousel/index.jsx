@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import StyledCard from "./Card.jsx";
 import { StyledLeftBtn, StyledRightBtn } from "./Button.jsx";
+import currentProduct from "../../../../../server/exampleData/product.json"
 
 const numbers = [0, 1, 2, 3, 4, 5, 6]
 
@@ -39,30 +40,22 @@ const CarouselList = styled.div`
 
 const Carousel = ({mode}) => {
 
-	/*
-	add event listener to carousel list
-		when scroll position changes
-		if scroll position is more than 0, set display left button
-		if scroll position is equal to width, set right button to hidden
-	*/
+	const currentID = currentProduct.id;
 
 	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
 	const [displayRight, setDisplayRight] = useState(false);
 	const carouselID = `Carousel-List-${mode}`
 
+	//if current div is scrollable, display right button
 	useEffect( () => {
-
 		const list = document.querySelector(`#${carouselID}`);
-
 		if (list.clientWidth < list.scrollWidth) {
 			setDisplayRight(true);
 		}
-
 	}, []);
 
-
-
+	//scroll left and right functions
 	const scrollRight = () => {
 		const list = document.querySelector(`#${carouselID}`);
 		list.scrollBy(200, 0);
@@ -73,15 +66,13 @@ const Carousel = ({mode}) => {
 		list.scrollBy(-200, 0);
 	};
 
+	//update right/left button visibility based on scroll position
 	const handleScroll = (e) => {
 
 		const track = e.target;
-
 		const position = track.scrollLeft;
 		const divWidth = track.offsetWidth;
 		const scrollWidth = track.scrollWidth;
-
-		// console.log('position', position, 'divWidth', divWidth, 'scrollWidth', scrollWidth);
 
 		if (scrollWidth - position <= divWidth) {
 			setDisplayRight(false);
