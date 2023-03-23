@@ -11,6 +11,7 @@ const SizeAndQuantity = (props) => {
     // Variables:
     const [selectedSize, setSelectedSize] = useState(null);
     const [availableSizes, setAvailableSizes] = useState([]);
+    const [quantAvailForSize, setQuantAvailForSize] = useState(null);
 
   // Helper Functions:
   const getAvailableQuantityOfSize = (size) =>{
@@ -42,10 +43,14 @@ const SizeAndQuantity = (props) => {
   };
 
 
-  // Update list of size options
+  // Update list of size options and quantity avail for size
   useEffect (() => {
     makeAvailableSizesList();
-  },[props.skusOfSelectedStyle])
+    if (selectedSize) {
+      setQuantAvailForSize(Math.min(getAvailableQuantityOfSize(selectedSize), 15))
+    }
+  },[props.skusOfSelectedStyle, selectedSize]);
+
 
 
   return(
@@ -68,7 +73,7 @@ const SizeAndQuantity = (props) => {
         </select>
         <select>
         {selectedSize ?
-            new Array(Math.min(getAvailableQuantityOfSize(selectedSize), 15)).fill(0).map((item, index) => {
+            new Array(quantAvailForSize).fill(0).map((item, index) => {
               return(
                 <option key={index +1} value={index + 1}>{index +1}</option>
               )
