@@ -1,31 +1,159 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import OverlayWindow from "/client/src/components/assets/OverlayWindow.jsx";
+import {Star, EmptyStar} from "/client/src/components/assets/StarRating.jsx";
 
 const WriteGridStyling = styled.div`
-color: navy;
-font-weight: bold;
-grid-column-start: 2;
-grid-column-end: 3;
-grid-row-start: 2;
-grid-row-end: 3;
-max-height: 80vh;
-overflow-y: overlay;
-overflow-x: hidden;
-overflow-wrap: break-word;
+	color: navy;
+	font-weight: bold;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	max-height: 80vh;
+	overflow-y: overlay;
+	overflow-x: hidden;
+	overflow-wrap: break-word;
 `;
 
-const WriteReview = () => {
+const InvisibleRadio = styled.input`
+	-webkit-appearance: none;
+	/* For iOS < 15 to remove gradient background */
+	background-color: #fff;
+	margin: 0;
+	`;
+
+const QuestionLabel = styled.label`
+	display:block;
+`;
+
+// const StatefulQuestion = (props) => (
+// 	<textarea
+// 		{props.cols? cols={props.cols} : null}
+// 		{props.rows? rows={props.rows} : null}
+// 		name="summary"
+// 		placeholder="Example: Best purchase ever!"
+// 		{props.required? required: null}
+// 		value={""}
+// 		onChange={""}
+// 	/>
+// )
+
+const StarRadio = (props) => (
+	<label>
+		{props.star}
+		<InvisibleRadio type="radio" name="starRating" onClick={props.click}/>
+	</label>
+)
+
+const WriteReview = (props) => {
+	/*~~~~~~State Definitions~~~~~~*/
 	const [modal, setModal] = useState(false);
 	const toggleModal = () => {setModal((value) => (!value))}
+	const [form, setForm] = useState(
+		{
+			starRating: 0,
+			recommended: null,
+			characteristics: [],
+			summary: "",
+			body: "",
+			nickname: "",
+			email: "",
+		})
 
+	/*~~~~~~State Update Functions~~~~~~*/
+	// spread the old form data state and spread your new info into it
+	const changeFormWithObject = (obj) => {setForm((originalForm) => ({...originalForm, ...obj}))}
+
+	const setStarRating = (val) => (
+		changeFormWithObject({starRating:val})
+	)
+	const handleRadioButton = (event, value) => {changeFormWithObject({[event.target.name]:value})};
+	const radioTrue = (event) => {handleRadioButton(event, true)};
+	const radioFalse = (event) => {handleRadioButton(event, false)};
+
+	const handleInputChange = (event) => {changeFormWithObject({[event.target.name]:event.target.value})}
+
+	/*~~~~~~The actual return~~~~~~*/
 	return(
 	<>
 		<WriteGridStyling>Hello from the Write a Review modal window!
 			<button type="button" onClick={toggleModal}>Write Your Own Review</button>
 		</WriteGridStyling>
 		{modal ?
-		<OverlayWindow onBgClick={toggleModal}><div>testing1234</div></OverlayWindow>
+		<OverlayWindow onBgClick={toggleModal}>
+			<div>Write your review </div>
+			<div>About the {props.name}</div>
+			<form>
+				<QuestionLabel>Overall Rating*
+					{[...Array(5)].map((e, i) => (
+						<StarRadio star={i+1<=form.starRating ? <Star/> : <EmptyStar/>} key={i+1} click={setStarRating.bind(this, i+1)}/>
+					))}
+					{[null, "Poor", "Fair", "Average", "Good", "Great" ][form.starRating]}
+				</QuestionLabel>
+				<QuestionLabel>Do you recommend this product?*
+					<label>Yes:
+						<input type="radio" name="recommended" checked={form.recommended === true} onChange={radioTrue}/>
+					</label>
+					<label>No:
+						<input type="radio" name="recommended" checked={form.recommended === false} onChange={radioFalse}/>
+					</label>
+				</QuestionLabel>
+				<QuestionLabel>Characteristics*:
+					<input/>
+				</QuestionLabel>
+				<QuestionLabel>Review Summary:
+					<textarea
+						cols="48"
+						rows="3"
+						name="summary"
+						placeholder="Example: Best purchase ever!"
+						autoComplete="off"
+						value={form.summary}
+						onChange={handleInputChange}
+					/>
+				</QuestionLabel>
+
+				<QuestionLabel>Review Body*:
+          <textarea
+            cols="48"
+            rows="3"
+            name="body"
+            placeholder="Why did you like or dislike this product?"
+            required
+            autoComplete="off"
+            value={form.body}
+            onChange={handleInputChange}
+
+          />
+				</QuestionLabel>
+				<QuestionLabel>Photos:
+					<input/>
+				</QuestionLabel>
+				<QuestionLabel>What is your nickname?*
+          <input
+            type="text"
+            name="nickname"
+            placeholder="Example: jackson11!"
+            required
+            autoComplete="off"
+            value={form.nickname}
+            onChange={handleInputChange}
+          />
+				</QuestionLabel>
+				<QuestionLabel>Email*
+          <input
+            type="text"
+            name="email"
+            placeholder="Example: jackson11@email.com"
+            required
+            autoComplete="off"
+            value={form.email}
+            onChange={handleInputChange}
+          />
+				</QuestionLabel>
+			</form>
+		</OverlayWindow>
 		: null}
 	</>)
 	}
@@ -104,14 +232,17 @@ A text input allowing up to 1000 characters.
 Placeholder text should read: “Why did you like the product or not?”.
 The review must be over 50 characters long in order to be submitted. If the user tries to submit a review shorter than 50 characters, then the submission should fail in the same manner as it would for a blank mandatory field.
 Below the input for the Review body, a counter should appear. This counter should let the user know how many characters are needed to reach the 50 character minimum. It should appear in the format “Minimum required characters left: [##]”. As the user types, the count of characters should update. After the user reaches 50 characters, the counter should be replaced by a message stating “Minimum reached”.
+
 1.2.6.6. Upload your photos
 A button will appear allowing users to upload their photos to the form.
 Clicking the button should open a separate window where the photo to be can be selected.
 After the first image is uploaded, a thumbnail showing the image should appear. A user should be able to add up to five images before the button to add disappears, preventing further additions.
+
 1.2.6.7. What is your nickname (mandatory)
 A text input allowing up to 60 characters for the user’s display name.
 Placeholder text should read: “Example: jackson11!”.
 Below this field, the text “For privacy reasons, do not use your full name or email address” will appear.
+
 1.2.6.8. Your email (mandatory)
 A text input allowing up to 60 characters.
 Placeholder text should read: “Example: jackson11@email.com”.

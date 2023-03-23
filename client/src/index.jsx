@@ -31,7 +31,7 @@ const App = () => (
   </FoldWrapper>
   <BelowFoldWrapper>
     <Related />
-    <Reviews reviewData={reviewData} reviews={reviews}/>
+    <Reviews reviewData={reviewData} reviews={reviews} name={product.name}/>
 </BelowFoldWrapper>
 </>
 )
