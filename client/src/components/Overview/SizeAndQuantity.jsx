@@ -23,7 +23,6 @@ const SizeAndQuantity = (props) => {
 
   const atLeastOneThisSize = (size) => {
     var quantity = getAvailableQuantityOfSize(size);
-    // console.log('quantity of ', size, ' available: ', quantity);
     if (quantity >= 1) {
       return true;
     } else {
@@ -46,7 +45,7 @@ const SizeAndQuantity = (props) => {
   // Update list of size options
   useEffect (() => {
     makeAvailableSizesList();
-  },[])
+  },[props.skusOfSelectedStyle])
 
 
   return(
@@ -54,7 +53,6 @@ const SizeAndQuantity = (props) => {
         <select
         onChange={(event) => {
           setSelectedSize(event.target.value);
-          console.log("event.target.value: ", event.target.value);
         }}>
         <option value="none" hidden>Select Size</option>
         {availableSizes.map((size) => {
@@ -69,27 +67,14 @@ const SizeAndQuantity = (props) => {
         })}
         </select>
         <select>
-
         {selectedSize ?
-            <option value="none" hidden disabled>-</option>
-            :{}
-          }
-
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="15">15</option>
+            new Array(Math.min(getAvailableQuantityOfSize(selectedSize), 15)).fill(0).map((item, index) => {
+              return(
+                <option key={index +1} value={index + 1}>{index +1}</option>
+              )
+            })
+            : <option value="none">-</option>
+        }
         </select>
     </StyledSizeAndQuantityWrapper>
   )

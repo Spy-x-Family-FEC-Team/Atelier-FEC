@@ -22,7 +22,6 @@ const StyleSection = (props) => {
   };
 
 
-
   return(
     <div>
      <StyleSectionWrapper>
@@ -40,8 +39,8 @@ const StyleSection = (props) => {
         indexOfStyleOption={props.indexOfStyleOption}
         />
       <SizeAndQuantity
-      stylesForThisProduct={props.stylesForThisProduct}
-      skusOfSelectedStyle={props.stylesForThisProduct.results[props.indexOfStyleOption].skus}
+        stylesForThisProduct={props.stylesForThisProduct}
+        skusOfSelectedStyle={props.stylesForThisProduct.results[props.indexOfStyleOption].skus}
       />
       <BagAndLiked />
      </StyleSectionWrapper>
