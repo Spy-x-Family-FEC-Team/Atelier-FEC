@@ -10,7 +10,7 @@ const StyledSizeAndQuantityWrapper = styled.section`
 const SizeAndQuantity = (props) => {
     // Variables:
     const [selectedSize, setSelectedSize] = useState(null);
-    const [availableSizes, setAvailableSizes] = useState([]);
+    const [availableSizes, setAvailableSizes] = useState([null]);
 
   // Helper Functions:
   const getAvailableQuantityOfSize = (size) =>{
@@ -23,7 +23,6 @@ const SizeAndQuantity = (props) => {
 
   const atLeastOneThisSize = (size) => {
     var quantity = getAvailableQuantityOfSize(size);
-    // console.log('quantity of ', size, ' available: ', quantity);
     if (quantity >= 1) {
       return true;
     } else {
@@ -45,7 +44,7 @@ const SizeAndQuantity = (props) => {
   // Update list of size options
   useEffect (() => {
     makeAvailableSizesList();
-  },[])
+  },[props.skusOfSelectedStyle]);
 
 
   return(
@@ -53,9 +52,13 @@ const SizeAndQuantity = (props) => {
         <select
         onChange={(event) => {
           setSelectedSize(event.target.value);
-          console.log("event.target.value: ", event.target.value);
         }}>
-        <option value="none" hidden>Select Size</option>
+        <option value="none" hidden>
+          {availableSizes[0] ?
+            "Select Size"
+            :"OUT OF STOCK"
+          }
+        </option>
         {availableSizes.map((size) => {
           return(
             <option
