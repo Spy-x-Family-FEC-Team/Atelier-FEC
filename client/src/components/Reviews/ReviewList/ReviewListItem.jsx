@@ -1,15 +1,51 @@
-import React from "react";
+import React, {useState} from "react";
+import styled from "styled-components";
+import StarRating from "/client/src/components/assets/StarRating.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
-const ReviewListItem = (props) => (
-  // StarRating
-  // username and time
-  // title
-  // body paragraph
-  // helpfulbutton
-  // reportbutton
-)
+const ReviewBody = styled.section`
+`; //tbd on stiling, originally had this here for overflow elements, but probably gonna style it eventually
 
-port default ReviewListItem;
+const ThumbnailContainer = styled.section`
+  height: 10vh;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const ThumbnailPic = styled.img`
+  height: 100%;
+  max-width: 100%;
+`;
+
+const ReviewListItem = ({data}) => {
+  const [expanded, setExpanded] = useState(false)
+  const toggleExpanded = () => setExpanded((ex) => (!ex))
+  return(
+  <div>
+    <StarRating rawRating={data.rating}/>
+    {data.reviewer_name} {new Date(data.date).toDateString()}
+    <div>{data.summary}</div>
+    <ReviewBody>{data.body.slice(0,(expanded ? undefined : 250)) // kinda wanna find a nice split function to put here
+    }</ReviewBody>
+    {(data.body.length > 250 && !expanded) ? <button type="button" onClick={toggleExpanded}>Show More</button> : null // probably some logic and state to figure out here
+    }
+
+    {data.photos.length ?
+    <ThumbnailContainer>
+      {data.photos.map((photo) => (<ThumbnailPic key={photo.id} src={photo.url} title={`A user submitted photo with the id ${photo.id}`}/>))}
+    </ThumbnailContainer>
+    : null}
+    {data.response ? <div><h3>Store Response:</h3>{data.response}</div>: null}
+    {data.recommend ? <div><FontAwesomeIcon icon={solid("square-check")}/> I recommend this product.</div> : null}
+    <div> Was this review helpful?
+      <button type="button" onClick={() => {console.log('clicked a review list yes button')}}>Yes</button>
+      <button type="button" onClick={() => {console.log('clicked a review list report button')}}>Report Review</button>
+    </div>
+  </div>)
+}
+
+export default ReviewListItem;
 /* Individual Review Tile
 Each review will be displayed on a single tile within the list. The tile will display the following information:
 Star Rating - This will be the rating given to the product by this individual review.. The rating will be displayed in the format of solid or outlined stars, where the solid stars represent the review score. A total of 5 stars should always appear, and the amount filled in should correspond to the average score.

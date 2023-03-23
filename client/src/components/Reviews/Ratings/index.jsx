@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-
-import StarRating from "../../assets/StarRating.jsx";
-import { getNumberOfRatings, getMeanRating } from "../../sharedComponents/ratingsObjectFunctions.js";
+import StarRating from "/client/src/components/assets/StarRating.jsx";
+import { getNumberOfRatings, getMeanRating } from "/client/src/components/sharedComponents/ratingsObjectFunctions.js";
 
 // TODO: Break this apart into smaller bits when it gets chubby
 
@@ -20,6 +19,15 @@ const PercentBar = styled.div`
   background-color: rgb(32, 128, 0);
   height: 15px;
   width: ${props => props.percent || 0}%;
+`;
+
+const RatingsGridbox = styled.div`
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  max-height: 80vh;
+  width: 100%;
 `;
 
 const Ratings = (props) => {
@@ -50,12 +58,11 @@ const Ratings = (props) => {
     </div>
     <div>Factor breakdown
       {Object.keys(props.data.characteristics).map((key) => (
-        <>
-          <div>{key}</div>
+        <div key={key}>{key}
           <EmptyBar>
             <PercentBar percent={(props.data.characteristics[key].value*20)}/>
           </EmptyBar>
-        </>))
+        </div>))
       }
     </div>
   </div>)
