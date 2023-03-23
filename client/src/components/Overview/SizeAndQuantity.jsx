@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import AddToBag from './AddToBag.jsx';
+import Liked from './Liked.jsx';
 
 const StyledSizeAndQuantityWrapper = styled.section`
   display:grid;
@@ -52,36 +54,39 @@ const SizeAndQuantity = (props) => {
   },[props.skusOfSelectedStyle, selectedSize]);
 
 
-
   return(
-    <StyledSizeAndQuantityWrapper>
-        <select
-        onChange={(event) => {
-          setSelectedSize(event.target.value);
-        }}>
-        <option value="none" hidden>Select Size</option>
-        {availableSizes.map((size) => {
-          return(
-            <option
-              value={size}
-              key={size}
-            >
-                {size}
-            </option>
-          )
-        })}
-        </select>
-        <select>
-        {selectedSize ?
-            new Array(quantAvailForSize).fill(0).map((item, index) => {
-              return(
-                <option key={index +1} value={index + 1}>{index +1}</option>
-              )
-            })
-            : <option value="none">-</option>
-        }
-        </select>
-    </StyledSizeAndQuantityWrapper>
+    <div>
+      <StyledSizeAndQuantityWrapper>
+          <select
+          onChange={(event) => {
+            setSelectedSize(event.target.value);
+          }}>
+          <option value="none" hidden>Select Size</option>
+          {availableSizes.map((size) => {
+            return(
+              <option
+                value={size}
+                key={size}
+              >
+                  {size}
+              </option>
+            )
+          })}
+          </select>
+          <select>
+          {selectedSize ?
+              new Array(quantAvailForSize).fill(0).map((item, index) => {
+                return(
+                  <option key={index +1} value={index + 1}>{index +1}</option>
+                )
+              })
+              : <option value="none">-</option>
+          }
+          </select>
+      </StyledSizeAndQuantityWrapper>
+      <AddToBag/>
+      <Liked />
+    </div>
   )
 }
 
