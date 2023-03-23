@@ -46,6 +46,7 @@ const Carousel = ({mode}) => {
 		if scroll position is equal to width, set right button to hidden
 	*/
 
+	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
 	const [displayRight, setDisplayRight] = useState(false);
 	const carouselID = `Carousel-List-${mode}`
@@ -94,7 +95,7 @@ const Carousel = ({mode}) => {
 
 	return (
 		<div>
-			{mode === 'related' ? (<h1>RELATED PRODUCTS</h1>) : <h1>YOUR OUTFIT</h1>}
+			{mode === 'related' ? (<h3>RELATED PRODUCTS</h3>) : <h3>YOUR OUTFIT</h3>}
 			<CarouselContainer>
 			<StyledLeftBtn onClick={scrollLeft} display={displayLeft}>Left</StyledLeftBtn>
 			<CarouselTrack>
