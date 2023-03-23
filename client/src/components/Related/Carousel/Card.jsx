@@ -13,7 +13,7 @@ const CardContainer = styled.div`
   width: 200px;
   height: 300px;
   display: grid;
-  grid-template-rows: 2fr 1fr;
+  grid-template-rows: 200px 1fr;
   position: relative;
 `;
 
@@ -31,13 +31,15 @@ const ActionBtn = styled.div`
 
 const ProductImage = styled.img`
   background-color: pink;
-  height: 200px;
+  grid-rows-start: 1;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 `
 const ProductInfo = styled.div`
   background-color: white;
-  height: 100px;
+  grid-rows-start: 2;
+  height: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
 `
