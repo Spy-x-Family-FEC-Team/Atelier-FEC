@@ -3,16 +3,18 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import StyledCard from "./Card.jsx";
 import { StyledLeftBtn, StyledRightBtn } from "./Button.jsx";
-import currentProduct from "../../../../../server/exampleData/product.json"
+import relatedList from "../../../../../server/exampleData/related.json"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-const numbers = [0, 1, 2, 3, 4, 5, 6]
-
+//might have to fix height offset
 const CarouselContainer = styled.div`
 	position: relative;
 	background-color: violet;
 	padding: 0;
 	margin: 0;
-	height: 300px;
+	height: 308px;
 `
 
 const CarouselTrack = styled.div`
@@ -30,17 +32,16 @@ const CarouselList = styled.div`
 	height: 100%;
 	list-style: none;
 	display: grid;
-	grid-template-columns: repeat(${numbers.length}, 200px);
+	grid-template-columns: repeat(${relatedList.length}, fit-content(200px));
 	grid-column-gap: 10px;
-	overflow: scroll;
+	overflow-x: scroll;
+	overflow-y: hidden;
 	scroll-snap-type: x mandatory;
 	scroll-behavior: smooth;
 	scroll-snap-align: start;
 `
 
 const Carousel = ({mode}) => {
-
-	const currentID = currentProduct.id;
 
 	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
@@ -88,16 +89,21 @@ const Carousel = ({mode}) => {
 		<div>
 			{mode === 'related' ? (<h3>RELATED PRODUCTS</h3>) : <h3>YOUR OUTFIT</h3>}
 			<CarouselContainer>
-			<StyledLeftBtn onClick={scrollLeft} display={displayLeft}>Left</StyledLeftBtn>
-			<CarouselTrack>
-				<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID}>
-					{numbers.map( num => {
-					return (
-					<StyledCard id={num}>I am card number {num}</StyledCard>
-					)})}
-				</CarouselList>
-			</CarouselTrack>
-			<StyledRightBtn onClick={scrollRight}  display={displayRight}>Right</StyledRightBtn>
+				<StyledLeftBtn onClick={scrollLeft} display={displayLeft}>
+					<FontAwesomeIcon icon={solid('chevron-left')} />
+				</StyledLeftBtn>
+				<CarouselTrack>
+					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID}>
+						{relatedList.map( item => {
+						return (
+						<StyledCard item={item}/>
+						)})}
+					</CarouselList>
+				</CarouselTrack>
+				<StyledRightBtn onClick={scrollRight}  display={displayRight}>
+				{/* <FontAwesomeIcon icon={regular('chevron-right')} /> */}
+				Right
+				</StyledRightBtn>
 		</CarouselContainer>
 		</div>
 	)
