@@ -212,27 +212,27 @@
           ],
           "skus": {
               "1394787": {
-                  "quantity": 8,
+                  "quantity": 0,
                   "size": "XS"
               },
               "1394788": {
-                  "quantity": 16,
+                  "quantity": 0,
                   "size": "S"
               },
               "1394789": {
-                  "quantity": 17,
+                  "quantity": 0,
                   "size": "M"
               },
               "1394790": {
-                  "quantity": 10,
+                  "quantity": 0,
                   "size": "L"
               },
               "1394791": {
-                  "quantity": 15,
+                  "quantity": 0,
                   "size": "XL"
               },
               "1394792": {
-                  "quantity": 6,
+                  "quantity": 0,
                   "size": "XXL"
               }
           }

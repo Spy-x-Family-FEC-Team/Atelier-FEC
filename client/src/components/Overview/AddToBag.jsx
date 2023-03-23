@@ -18,7 +18,11 @@ const AddToBag = (props) => {
   return(
     <StyledBagWrapper>
       <StyledBagButton>
-        <button>
+        <button
+          onClick={() => {
+            props.handleClick()
+          }}
+        >
           Add to bag +
         </button>
         </StyledBagButton>
