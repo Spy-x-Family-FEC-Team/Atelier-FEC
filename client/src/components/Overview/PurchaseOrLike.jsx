@@ -9,7 +9,7 @@ const StyledSizeAndQuantityWrapper = styled.section`
   padding:40px;
 `;
 
-const SizeAndQuantity = (props) => {
+const PurchaseOrLike = (props) => {
     // Variables:
     const [selectedSize, setSelectedSize] = useState(null);
     const [availableSizes, setAvailableSizes] = useState([]);
@@ -90,4 +90,4 @@ const SizeAndQuantity = (props) => {
   )
 }
 
-export default SizeAndQuantity;
+export default PurchaseOrLike;

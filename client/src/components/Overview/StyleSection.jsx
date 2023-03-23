@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import StyleAndPrice from './StyleAndPrice.jsx';
-import SizeAndQuantity from './SizeAndQuantity.jsx';
+import PurchaseOrLike from './PurchaseOrLike.jsx';
 
 const StyleSectionWrapper = styled.section`
   background: pink;
@@ -37,7 +37,7 @@ const StyleSection = (props) => {
 
         indexOfStyleOption={props.indexOfStyleOption}
       />
-      <SizeAndQuantity
+      <PurchaseOrLike
         stylesForThisProduct={props.stylesForThisProduct}
         skusOfSelectedStyle={props.stylesForThisProduct.results[props.indexOfStyleOption].skus}
       />
