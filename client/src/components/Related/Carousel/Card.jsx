@@ -2,15 +2,18 @@ import React from "React";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import product from "../../../../../server/exampleData/product.json"
+import productStyles from "../../../../../server/exampleData/styles.json"
 
 const CardContainer = styled.div`
   background-color: green;
-  width: 200px;
-  height: 100%;
   grid-column: span 1;
   scroll-snap-align: center;
+  width: 200px;
+  height: 300px;
   display: grid;
-  grid-template-rows: 2fr 1fr;
+  grid-template-rows: 200px 1fr;
   position: relative;
 `;
 
@@ -26,11 +29,17 @@ const ActionBtn = styled.div`
   justify-content: center;
 `
 
-const ProductImage = styled.div`
+const ProductImage = styled.img`
   background-color: pink;
+  grid-rows-start: 1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 `
 const ProductInfo = styled.div`
   background-color: white;
+  grid-rows-start: 2;
+  height: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
 `
@@ -46,7 +55,13 @@ const ProductPrice = styled.div`
 const Stars = styled.div`
 `
 
-const StyledCard = () => {
+const StyledCard = ({item}) => {
+
+  //takes in item code, gets product info
+  //NEED TO CALCULATE RATING AND RENDER STARS; GET REQUEST FOR REVIEWS?
+
+  const image = productStyles.results[0].photos[0].url
+  console.log('image url', image);
 
   return (
 
@@ -54,16 +69,16 @@ const StyledCard = () => {
       <ActionBtn>
         <FontAwesomeIcon icon={faStar} />
       </ActionBtn>
-      <ProductImage/>
+      <ProductImage src={image} alt={item.name}/>
       <ProductInfo>
         <ProductCategory>
-          Category
+          {product.category}
         </ProductCategory>
         <ProductName>
-          Product Name
+          {product.name}
         </ProductName>
         <ProductPrice>
-          $123
+          {product.default_price}
         </ProductPrice>
         <Stars>
         &#9733; &#9733; &#9733; &#9733; &#9733;

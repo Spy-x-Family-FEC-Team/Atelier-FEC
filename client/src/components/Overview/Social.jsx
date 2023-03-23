@@ -5,7 +5,7 @@ import { faFacebook, faTwitter, faInstagram, faPinterest } from '@fortawesome/fr
 
 const SocialSectionWrapper = styled.section`
   padding: 15px;
-  display:grid;
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 `;
 
