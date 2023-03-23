@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import styled from 'styled-components';
 
 const StyledLikedWrapper = styled.section`
@@ -14,18 +14,22 @@ const StyledLikeButton = styled.section`
 `;
 
 const Liked = (props) => {
-  const [liked, setLiked] = useState(false);
-
+  // All this does is toggle between solid and regular.
   return(
     <StyledLikedWrapper>
       <StyledLikeButton>
-      <button>
-        <FontAwesomeIcon icon={regular('star')}/>
+      <button
+        onClick = {props.handleClick}
+      >
+        {props.likedStatus ?
+          <FontAwesomeIcon icon={solid('star')}/>
+          :<FontAwesomeIcon icon={regular('star')}/>
+      }
       </button>
         </StyledLikeButton>
     </StyledLikedWrapper>
   )
-}
+};
 
 export default Liked;
 

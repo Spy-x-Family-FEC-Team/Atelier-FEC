@@ -13,8 +13,10 @@ const StyledPurchaseOrLikeWrapper = styled.section`
 const PurchaseOrLike = (props) => {
     // Variables:
     const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedQuantity, setSelectedQuantity] = useState(1);
     const [availableSizes, setAvailableSizes] = useState([]);
     const [quantAvailForSize, setQuantAvailForSize] = useState(null);
+    const [likedStatus, setLikedStatus] = useState(false);
 
   // Helper Functions:
   const getAvailableQuantityOfSize = (size) =>{
@@ -52,6 +54,19 @@ const PurchaseOrLike = (props) => {
         return sku;
       }
   }
+  };
+
+  const handleBagClick = () => {
+    // TODO: Change these to meaningful actions rather than console.logs.
+    if (!selectedSize) {
+      console.log("Select a size.")
+    } else {
+      console.log(`You're buying ${selectedQuantity} of sku number ${findSkuForCurrentStyleThisSize()} which is size ${selectedSize}`);
+    }
+  };
+
+  const handleLikeClick = () => {
+    setLikedStatus(!likedStatus);
   }
 
   // Update list of size options and quantity avail for size
@@ -67,9 +82,10 @@ const PurchaseOrLike = (props) => {
     <div>
       <StyledPurchaseOrLikeWrapper>
         <select
-        onChange={(event) => {
-          setSelectedSize(event.target.value);
-        }}>
+          onChange={(event) => {
+            setSelectedSize(event.target.value);
+          }}
+        >
         <option value="none" hidden>Select Size</option>
         {availableSizes.map((size) => {
           return(
@@ -82,25 +98,32 @@ const PurchaseOrLike = (props) => {
           )
         })}
         </select>
-        <select>
-        {selectedSize ?
-            new Array(quantAvailForSize).fill(0).map((item, index) => {
-              return(
-                <option key={index +1} value={index + 1}>{index +1}</option>
-              )
-            })
-            : <option value="none">-</option>
-        }
+        <select
+          onChange={(event) => {
+            setSelectedQuantity(event.target.value);
+          }}
+        >
+          {selectedSize ?
+              new Array(quantAvailForSize).fill(0).map((item, index) => {
+                return(
+                  <option key={index +1} value={index + 1}>{index +1}</option>
+                )
+              })
+              : <option value="none">-</option>
+          }
         </select>
         <div>
           { (availableSizes.length >= 1) ?
             <AddToBag
-              handleClick = {findSkuForCurrentStyleThisSize}
+              handleClick = {handleBagClick}
             />
             :null
           }
         </div>
-        <Liked />
+        <Liked
+          handleClick = {handleLikeClick}
+          likedStatus = {likedStatus}
+        />
       </StyledPurchaseOrLikeWrapper>
     </div>
   )
