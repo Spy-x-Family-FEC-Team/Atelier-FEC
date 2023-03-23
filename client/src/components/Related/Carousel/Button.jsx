@@ -10,6 +10,7 @@ const StyledLeftBtn = styled.button`
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
+  display: ${props => props.display ? "unset" : "none"};
 `;
 
 const StyledRightBtn = styled(StyledLeftBtn)`

@@ -8,7 +8,7 @@ import StyleSection from './StyleSection.jsx';
 import Social from './Social.jsx';
 
  // Dummy data to use for now.
- import stylesForThisProduct from '/Users/jenessapeterson/hr/FEC/Atelier-FEC/server/exampleData/styles.json';
+ import stylesForThisProduct from '../../../../server/exampleData/styles.json';
 
 const OverviewGrid = styled.section`
   display: grid;
