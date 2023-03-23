@@ -11,13 +11,14 @@ const SizeAndQuantity = (props) => {
     // Variables:
     const [selectedSize, setSelectedSize] = useState(null);
     const [availableSizes, setAvailableSizes] = useState([null]);
+    const [maxQuantityForSize, maxQuantityForSize] = useState(getAvailableQuantityOfSize(selectedSize));
 
   // Helper Functions:
   const getAvailableQuantityOfSize = (size) =>{
     for (const sku in props.skusOfSelectedStyle) {
-      if (props.skusOfSelectedStyle[sku].size === size) {
-        return props.skusOfSelectedStyle[sku].quantity;
-      }
+        if (props.skusOfSelectedStyle[sku].size === size) {
+          return props.skusOfSelectedStyle[sku].quantity;
+        }
     }
   };
 
@@ -40,6 +41,7 @@ const SizeAndQuantity = (props) => {
     });
     setAvailableSizes(available);
   };
+
 
   // Update list of size options
   useEffect (() => {
@@ -71,7 +73,12 @@ const SizeAndQuantity = (props) => {
         })}
         </select>
         <select>
-        <option value="none" hidden>-</option>
+
+        {selectedSize ?
+            <option value="none" hidden disabled>-</option>
+            :{}
+          }
+
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
