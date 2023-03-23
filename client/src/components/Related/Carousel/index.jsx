@@ -1,4 +1,5 @@
 import React from "React";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import StyledCard from "./Card.jsx";
 import { StyledLeftBtn, StyledRightBtn } from "./Button.jsx";
@@ -36,41 +37,78 @@ const CarouselList = styled.div`
 	scroll-snap-align: start;
 `
 
-const scrollRight = () => {
-	const list = document.querySelector("#Carousel-List");
-	list.scrollBy(200, 0);
-};
+const Carousel = ({mode}) => {
 
-const scrollLeft = (e) => {
-	const list = document.querySelector("#Carousel-List");
-	list.scrollBy(-200, 0);
-	const button = e.target;
-	console.log("position", list.scrollLeft);
-	if (list.scrollLeft === 0) {
-		button.style.display = "hidden";
+	/*
+	add event listener to carousel list
+		when scroll position changes
+		if scroll position is more than 0, set display left button
+		if scroll position is equal to width, set right button to hidden
+	*/
+
+	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
+	const [displayLeft, setDisplayLeft] = useState(false);
+	const [displayRight, setDisplayRight] = useState(false);
+	const carouselID = `Carousel-List-${mode}`
+
+	useEffect( () => {
+
+		const list = document.querySelector(`#${carouselID}`);
+
+		if (list.clientWidth < list.scrollWidth) {
+			setDisplayRight(true);
+		}
+
+	}, []);
+
+
+
+	const scrollRight = () => {
+		const list = document.querySelector(`#${carouselID}`);
+		list.scrollBy(200, 0);
+	};
+
+	const scrollLeft = () => {
+		const list = document.querySelector(`#${carouselID}`);
+		list.scrollBy(-200, 0);
+	};
+
+	const handleScroll = (e) => {
+
+		const track = e.target;
+
+		const position = track.scrollLeft;
+		const divWidth = track.offsetWidth;
+		const scrollWidth = track.scrollWidth;
+
+		// console.log('position', position, 'divWidth', divWidth, 'scrollWidth', scrollWidth);
+
+		if (scrollWidth - position <= divWidth) {
+			setDisplayRight(false);
+		} else if (position === 0) {
+			setDisplayLeft(false);
+		} else {
+			setDisplayLeft(true);
+			setDisplayRight(true);
+		}
 	}
-};
-
-// const getScrollPosition = () => {
-// 	const position = list.scrollLeft;
-// 	console.log('position', position);
-// }
-
-const Carousel = () => {
 
 	return (
-		<CarouselContainer>
-			<StyledLeftBtn onClick={(e) => {scrollLeft(e)}}>Left</StyledLeftBtn>
+		<div>
+			{mode === 'related' ? (<h3>RELATED PRODUCTS</h3>) : <h3>YOUR OUTFIT</h3>}
+			<CarouselContainer>
+			<StyledLeftBtn onClick={scrollLeft} display={displayLeft}>Left</StyledLeftBtn>
 			<CarouselTrack>
-				<CarouselList id="Carousel-List">
+				<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID}>
 					{numbers.map( num => {
 					return (
 					<StyledCard id={num}>I am card number {num}</StyledCard>
 					)})}
 				</CarouselList>
 			</CarouselTrack>
-			<StyledRightBtn onClick={scrollRight}>Right</StyledRightBtn>
+			<StyledRightBtn onClick={scrollRight}  display={displayRight}>Right</StyledRightBtn>
 		</CarouselContainer>
+		</div>
 	)
 
 };
