@@ -50,6 +50,19 @@ const OneStyledIconWrapper = styled.section`
   font-size:x-large;
 `;
 
+const StyledLeftButton = styled.section`
+  position:absolute;
+  left:5%;
+  top:40%;
+  font-size:x-large;
+`;
+
+const StyledRightButton = styled.section`
+  position:absolute;
+  right:5%;
+  top:40%;
+  font-size:x-large;
+`;
 
 const Expanded = (props) => {
 
@@ -66,25 +79,43 @@ const Expanded = (props) => {
         <StyledExpandedImage
           src={props.currentImage}
         />
+        {props.indexOfThisProdView > 0 ?
+            <StyledLeftButton
+            onClick={() => {
+              props.handleViewSelection(props.indexOfThisProdView -1);
+              }}
+          >
+            <FontAwesomeIcon icon={solid('chevron-left')} />
+          </StyledLeftButton>
+        :null}
+        {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
+          <StyledRightButton
+            onClick={() => {
+              props.handleViewSelection(props.indexOfThisProdView +1);
+              }}
+          >
+            <FontAwesomeIcon icon={solid('chevron-right')} />
+          </StyledRightButton>
+        :null}
       </StyledMainImageWrapper>
       <StyledIconsGridWrapper>
         <StyledIconsGrid>
-        {props.prodViewThumbnails.map((url, index) => {
-            return (
-              <OneStyledIconWrapper
-                key={index}
-                onClick={() => {
-                  props.handleViewSelection(index);
-                  }}
-              >
-                {props.indexOfThisProdView === index ?
-                  <FontAwesomeIcon icon={solid('square')} />
-                  :<FontAwesomeIcon icon={regular('square')} />
-                }
-              </OneStyledIconWrapper>
-            )
-          })
-        }
+          {props.prodViewThumbnails.map((url, index) => {
+              return (
+                <OneStyledIconWrapper
+                  key={index}
+                  onClick={() => {
+                    props.handleViewSelection(index);
+                    }}
+                >
+                  {props.indexOfThisProdView === index ?
+                    <FontAwesomeIcon icon={solid('square')} />
+                    :<FontAwesomeIcon icon={regular('square')} />
+                  }
+                </OneStyledIconWrapper>
+              )
+            })
+          }
         </StyledIconsGrid>
       </StyledIconsGridWrapper>
       </StyledExpandedWrapper>
