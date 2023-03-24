@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -50,14 +50,6 @@ const OneStyledIconWrapper = styled.section`
   font-size:x-large;
 `;
 
-const StyledIcon = styled.section`
-  background:pink;
-  position:absolute;
-  z-index:2;
-  margin:2px;
-  width:50px;
-  height:50px;
-`;
 
 const Expanded = (props) => {
 
@@ -75,7 +67,6 @@ const Expanded = (props) => {
           src={props.currentImage}
         />
       </StyledMainImageWrapper>
-
       <StyledIconsGridWrapper>
         <StyledIconsGrid>
         {props.prodViewThumbnails.map((url, index) => {
@@ -95,7 +86,6 @@ const Expanded = (props) => {
           })
         }
         </StyledIconsGrid>
-
       </StyledIconsGridWrapper>
       </StyledExpandedWrapper>
   );

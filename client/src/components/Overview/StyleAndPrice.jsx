@@ -8,7 +8,6 @@ const StyleImageGridWrapper = styled.section`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   padding:5px;
-  background:gray;
 `;
 
 const StyledSalePrice = styled.section`
@@ -40,8 +39,6 @@ const StyledCheckmark = styled.section`
 `;
 
 const StyleAndPrice = (props) => {
-
-
 
   return(
     <div>
@@ -79,6 +76,6 @@ const StyleAndPrice = (props) => {
       </StyleImageGridWrapper>
     </div>
   )
-}
+};
 
 export default StyleAndPrice;
