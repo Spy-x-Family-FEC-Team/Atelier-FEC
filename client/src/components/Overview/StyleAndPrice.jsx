@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const StyleImageGridWrapper = styled.section`
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   padding:5px;
+  background:gray;
 `;
 
 const StyledSalePrice = styled.section`

@@ -69,6 +69,9 @@ const ImageGallery = (props) => {
           <Expanded
             toggleExpanded={toggleExpanded}
             currentImage={props.currentImage}
+            indexOfThisProdView={props.indexOfThisProdView}
+            handleViewSelection={props.handleViewSelection}
+            prodViewThumbnails={props.prodViewThumbnails}
           />
         </OverlayWindow>
       :null}
