@@ -68,6 +68,7 @@ const ImageGallery = (props) => {
         >
           <Expanded
             toggleExpanded={toggleExpanded}
+            currentImage={props.currentImage}
           />
         </OverlayWindow>
       :null}

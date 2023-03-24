@@ -11,6 +11,23 @@ const StyledCloseButton = styled.section`
   right:3px;
 `;
 
+const StyledMainImageWrapper = styled.section`
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-axis:1;
+  height:100%;
+  width:100%
+  position:absolute;
+`;
+
+const StyledExpandedImage = styled.img`
+  max-height: 90vh;
+  max-width: 100%;
+  z-axis:1;
+`;
+
 const Expanded = (props) => {
 
 
@@ -24,7 +41,11 @@ const Expanded = (props) => {
           X
         </button>
       </StyledCloseButton>
-
+      <StyledMainImageWrapper>
+        <StyledExpandedImage
+          src={props.currentImage}
+        />
+      </StyledMainImageWrapper>
     </StyledExpandedWrapper>
   );
 };
