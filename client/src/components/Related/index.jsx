@@ -1,7 +1,9 @@
 import React from "react";
 import Carousel from "./Carousel";
 // import currentProduct from "../../../server/exampleData/related.json"
-//get request for related items to current item, pass down as prop
+// get request for related items to current item, pass down as prop
+// retrieve user outfit from cache
+// array of product ids
 
 
 const Related = () => {

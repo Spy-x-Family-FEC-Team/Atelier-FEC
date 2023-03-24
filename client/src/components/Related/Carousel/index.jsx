@@ -6,8 +6,20 @@ import { StyledLeftBtn, StyledRightBtn } from "./Button.jsx";
 import relatedList from "../../../../../server/exampleData/related.json"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import localForage from "localforage";
 
+// localForage.setItem('outfits', [40345, 40346, 40347])
+// 	.then((data)=> {
+// 		return localForage.getItem('outfits');
+// 	})
+// 	.then((data) => {
+// 		console.log('outfits', data);
+// 	})
+// 	.catch((err) => {
+// 		console.log('error');
+// 	});
+// import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+// localForage.getItem('outfits')
 //might have to fix height offset
 const CarouselContainer = styled.div`
 	position: relative;
@@ -46,6 +58,7 @@ const Carousel = ({mode}) => {
 	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
 	const [displayRight, setDisplayRight] = useState(false);
+	const [outfit, setOutfit] = useState(relatedList);
 	const carouselID = `Carousel-List-${mode}`
 
 	//if current div is scrollable, display right button
@@ -94,15 +107,20 @@ const Carousel = ({mode}) => {
 				</StyledLeftBtn>
 				<CarouselTrack>
 					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID}>
-						{relatedList.map( item => {
-						return (
-						<StyledCard item={item}/>
-						)})}
+						{mode === 'related' ? null : <StyledCard item={'outfitAdd'}/>}
+						{mode === 'related' ? relatedList.map( item => {
+							return (
+							<StyledCard item={item} mode={mode}/>
+						)}) : (
+							outfit.map( item => {
+								return (
+								<StyledCard item={item} mode={mode} setOutfit={setOutfit}/>
+						)})
+					)}
 					</CarouselList>
 				</CarouselTrack>
 				<StyledRightBtn onClick={scrollRight}  display={displayRight}>
-				{/* <FontAwesomeIcon icon={regular('chevron-right')} /> */}
-				Right
+					<FontAwesomeIcon icon={solid('chevron-right')} />
 				</StyledRightBtn>
 		</CarouselContainer>
 		</div>
