@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import VerticalCarousel from './VerticalCarousel.jsx';
+import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
 
 const StyledImageGalleryWrapper = styled.section`
   position: relative;
@@ -37,6 +38,12 @@ const StyledVerticalCarouselWrapper = styled.section`
 
 const ImageGallery = (props) => {
 
+  const [expandedView, setExpandedView] = useState(false);
+
+  const toggleExpanded = () => {
+    setExpandedView(!expandedView);
+  }
+
   return(
     <div>
       <StyledImageGalleryWrapper>
@@ -48,9 +55,19 @@ const ImageGallery = (props) => {
           />
         </StyledVerticalCarouselWrapper>
         <StyledMainImageWrapper>
-          <StyledMainImage src={props.currentImage}/>
+          <StyledMainImage
+          src={props.currentImage}
+          onClick={toggleExpanded}
+          />
         </StyledMainImageWrapper>
       </StyledImageGalleryWrapper>
+      {expandedView ?
+        <OverlayWindow
+          onBgClick={toggleExpanded}
+        >
+          <div>here</div>
+        </OverlayWindow>
+      :null}
     </div>
   )
 };
