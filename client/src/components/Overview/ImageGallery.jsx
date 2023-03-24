@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import VerticalCarousel from './VerticalCarousel.jsx';
 import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
+import Expanded from './Expanded.jsx';
 
 const StyledImageGalleryWrapper = styled.section`
   position: relative;
@@ -65,7 +66,9 @@ const ImageGallery = (props) => {
         <OverlayWindow
           onBgClick={toggleExpanded}
         >
-          <div>here</div>
+          <Expanded
+            toggleExpanded={toggleExpanded}
+          />
         </OverlayWindow>
       :null}
     </div>
