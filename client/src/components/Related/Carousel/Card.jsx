@@ -99,6 +99,7 @@ const StyledCard = ({item, mode, list, setList}) => {
       .catch( err => { console.log('error removing from outfit', err)});
   };
 
+  //display add button as first card if on outfit carousel
   if (item === 'outfitAdd') {
     return (
       <CardContainer>
@@ -110,6 +111,7 @@ const StyledCard = ({item, mode, list, setList}) => {
   return (
 
     <CardContainer>
+      {/*if mode is related, display comparison button, otherwise display remove from outfit button*/}
       {mode === 'related' ? (
         <ActionBtn>
           <FontAwesomeIcon icon={faStar} />
@@ -118,6 +120,7 @@ const StyledCard = ({item, mode, list, setList}) => {
         <ActionBtn onClick={() => {rmvFromOutfit(item)}}>
           <FontAwesomeIcon icon={solid("circle-xmark")} />
         </ActionBtn>)}
+      {/*all cards product info format is the same*/}
       <ProductImage src={image} alt={item.name}/>
       <ProductInfo>
         <ProductCategory>
