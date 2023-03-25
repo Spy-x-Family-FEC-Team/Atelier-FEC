@@ -3,10 +3,9 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import StyledCard from "./Card.jsx";
 import { StyledLeftBtn, StyledRightBtn } from "./Button.jsx";
-import relatedList from "../../../../../server/exampleData/related.json"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import localForage from "localforage";
 
 //might have to fix height offset
 const CarouselContainer = styled.div`
@@ -32,7 +31,7 @@ const CarouselList = styled.div`
 	height: 100%;
 	list-style: none;
 	display: grid;
-	grid-template-columns: repeat(${relatedList.length}, fit-content(200px));
+	grid-template-columns: repeat(${props => props ? props.list.length + 1 : 1}, fit-content(200px));
 	grid-column-gap: 10px;
 	overflow-x: scroll;
 	overflow-y: hidden;
@@ -41,12 +40,13 @@ const CarouselList = styled.div`
 	scroll-snap-align: start;
 `
 
-const Carousel = ({mode}) => {
+const Carousel = ({mode, list, setList}) => {
 
 	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
 	const [displayRight, setDisplayRight] = useState(false);
 	const carouselID = `Carousel-List-${mode}`
+	console.log('list inside carousel', list);
 
 	//if current div is scrollable, display right button
 	useEffect( () => {
@@ -93,16 +93,16 @@ const Carousel = ({mode}) => {
 					<FontAwesomeIcon icon={solid('chevron-left')} />
 				</StyledLeftBtn>
 				<CarouselTrack>
-					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID}>
-						{relatedList.map( item => {
-						return (
-						<StyledCard item={item}/>
+					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID} list={list}>
+						{mode === 'related' ? null : <StyledCard item={'outfitAdd'} mode={mode} list={list} setList={setList}/>}
+						{list.map( item => {
+							return (
+							<StyledCard item={item} mode={mode} list={list} setList={setList}/>
 						)})}
 					</CarouselList>
 				</CarouselTrack>
 				<StyledRightBtn onClick={scrollRight}  display={displayRight}>
-				{/* <FontAwesomeIcon icon={regular('chevron-right')} /> */}
-				Right
+					<FontAwesomeIcon icon={solid('chevron-right')} />
 				</StyledRightBtn>
 		</CarouselContainer>
 		</div>
