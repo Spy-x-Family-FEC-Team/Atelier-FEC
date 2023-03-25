@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const StyleImageGridWrapper = styled.section`
   display:grid;
@@ -40,8 +40,6 @@ const StyledCheckmark = styled.section`
 
 const StyleAndPrice = (props) => {
 
-
-
   return(
     <div>
       {props.salePrice ?
@@ -78,6 +76,6 @@ const StyleAndPrice = (props) => {
       </StyleImageGridWrapper>
     </div>
   )
-}
+};
 
 export default StyleAndPrice;

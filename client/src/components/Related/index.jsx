@@ -1,18 +1,55 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import Carousel from "./Carousel";
+import relatedList from "../../../../server/exampleData/related.json"
+import localForage from "localforage";
 // import currentProduct from "../../../server/exampleData/related.json"
-//get request for related items to current item, pass down as prop
+// get request for related items to current item, pass down as prop
+// retrieve user outfit from cache
+// array of product ids
 
+// let cachedOutfit;
+
+// localForage.getItem('outfits')
+// 			.then((data) => {
+// 				if (!data) {
+// 					cachedOutfit = [];
+// 				} else {
+// 					cachedOutfit = data;
+// 				}
+// 				console.log('cached outfit', cachedOutfit);
+// 			})
+// 			.catch(err => {
+// 				console.log('error retrieving cached outfit', err);
+// 			});
 
 const Related = () => {
 
 	//takes in current item as prop
 
+	const [outfit, setOutfit] = useState([]);
+	const [related, setRelated] = useState(relatedList);
+
+	useEffect( () => {
+		localForage.getItem('outfits')
+			.then((data) => {
+				if (!data) {
+					setOutfit([]);
+				} else {
+					setOutfit(data);
+				}
+				console.log('outfit', outfit);
+			})
+			.catch(err => {
+				console.log('error retrieving outfit', err);
+			});
+	}, [])
+
 	return (
 		<div>
 			<div>hello we are related</div>
-			<Carousel mode={'related'}/>
-			<Carousel mode={'outfit'}/>
+			<Carousel mode={'related'} list={related} setList={setRelated}/>
+			<Carousel mode={'outfit'} list={outfit} setList={setOutfit}/>
 		</div>
 	)
 
