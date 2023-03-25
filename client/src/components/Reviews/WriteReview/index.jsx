@@ -23,7 +23,7 @@ const InvisibleRadio = styled.input`
 	margin: 0;
 	`;
 
-const QuestionLabel = styled.label`
+const QuestionLabel = styled.fieldset`
 	display:block;
 `;
 
@@ -46,6 +46,53 @@ const StarRadio = (props) => (
 	</label>
 )
 
+// It may be wise to break this out into something shared others can use for reference.
+const traitMessageDictionary = {
+	Size: {
+		1: "A size too small",
+		2: "Half a size too small",
+		3: "Perfect",
+		4: "Half a size too big",
+		5: "A size too big"
+	},
+	Width: {
+		1: "Too narrow",
+		2: "Slightly narrow",
+		3: "Perfect",
+		4: "Slightly wide",
+		5: "Too wide"
+	},
+	Comfort: {
+		1: "Uncomfortable",
+		2: "Slightly uncomfortable",
+		3: "Ok",
+		4: "Comfortable",
+		5: "Perfect"
+	},
+	Quality: {
+		1: "Poor",
+		2: "Below average",
+		3: "What I expected",
+		4: "Pretty great",
+		5: "Perfect"
+	},
+	Length: {
+		1: "Runs Short",
+		2: "Runs slightly short",
+		3: "Perfect",
+		4: "Runs slightly long",
+		5: "Runs long"
+	},
+	Fit: {
+		1: "Runs tight",
+		2: "Runs slightly tight",
+		3: "Perfect",
+		4: "Runs slightly long",
+		5: "Runs long"
+	}
+}
+
+
 const WriteReview = (props) => {
 	/*~~~~~~State Definitions~~~~~~*/
 	const [modal, setModal] = useState(false);
@@ -54,12 +101,12 @@ const WriteReview = (props) => {
 		{
 			starRating: 0,
 			recommended: null,
-			characteristics: [],
+			characteristics: {},
 			summary: "",
 			body: "",
 			nickname: "",
 			email: "",
-		})
+		}) //Characteristics aren't checked on API call, so I'm just gonna add them to the state as the form is filled out
 
 	/*~~~~~~State Update Functions~~~~~~*/
 	// spread the old form data state and spread your new info into it
@@ -69,8 +116,20 @@ const WriteReview = (props) => {
 		changeFormWithObject({starRating:val})
 	)
 	const handleRadioButton = (event, value) => {changeFormWithObject({[event.target.name]:value})};
-	const radioTrue = (event) => {handleRadioButton(event, true)};
-	const radioFalse = (event) => {handleRadioButton(event, false)};
+
+	// this one's gonna be kinda gross looking cause of nested objects =T
+	// So it's 'reset the original form such that the only thing that's changed is the characteristics[section] = buttonvalue
+	const radioCharacteristics = (event) => {
+		setForm((originalForm) => (
+			{...originalForm, characteristics:
+				{...originalForm.characteristics, [event.target.name]:parseInt(event.target.value)}
+			}))
+		}
+	const radioBool = (event) => {handleRadioButton(event, (event.target.value === 'true'))}
+
+	//slightly legacy function, may prove useful later:
+	const radioInt = (event) => {handleRadioButton(event, parseInt(event.target.value))}
+
 
 	const handleInputChange = (event) => {changeFormWithObject({[event.target.name]:event.target.value})}
 
@@ -92,15 +151,23 @@ const WriteReview = (props) => {
 					{[null, "Poor", "Fair", "Average", "Good", "Great" ][form.starRating]}
 				</QuestionLabel>
 				<QuestionLabel>Do you recommend this product?*
-					<label>Yes:
-						<input type="radio" name="recommended" checked={form.recommended === true} onChange={radioTrue}/>
+					<label>Yes
+						<input type="radio" name="recommended" value="true" checked={form.recommended === true} onChange={radioBool}/>
 					</label>
-					<label>No:
-						<input type="radio" name="recommended" checked={form.recommended === false} onChange={radioFalse}/>
+					<label>No
+						<input type="radio" name="recommended" value="false" checked={form.recommended === false} onChange={radioBool}/>
 					</label>
 				</QuestionLabel>
 				<QuestionLabel>Characteristics*:
-					<input/>
+					{Object.keys(props.data.characteristics).map((trait) => (
+						<QuestionLabel key={trait}> {trait}
+							{[...Array(5)].map(((e, i) => (
+
+									<input key={trait + (i+1)} type="radio" name={trait} value={i+1} checked={form.characteristics[trait] === i+1} onChange={radioCharacteristics}/>
+							)))}
+							<p>{form.characteristics[trait]? traitMessageDictionary[trait][form.characteristics[trait]] : null}</p>
+						</QuestionLabel>)
+					)}
 				</QuestionLabel>
 				<QuestionLabel>Review Summary:
 					<textarea

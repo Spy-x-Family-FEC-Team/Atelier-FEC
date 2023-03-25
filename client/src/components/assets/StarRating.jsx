@@ -35,7 +35,7 @@ const StarRating = ({rawRating}) => (
   <>
     {[...Array(Math.floor(rawRating))].map((e,i) => (<FontAwesomeIcon key={i + "filled"} icon={solid('star')}/>)) /*This is one star per integer value of the rating */}
     {starSwitcher(rawRating)}
-    {[...Array(5-Math.floor(rawRating)-(rawRating-Math.floor(rawRating) >= .125))].map((e,i) => (<EmptyStar/>))}
+    {[...Array(5-Math.floor(rawRating)-(rawRating-Math.floor(rawRating) >= .125))].map((e,i) => (<EmptyStar key={i + "empty"}/>))}
   </>
 );
 
