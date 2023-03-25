@@ -48,11 +48,18 @@ const ItemPage = () => {
   return(
   <>
     <FoldWrapper>
-      <Overview product={product}/>
+      <Overview
+        product={product}
+        reviewData={reviewData}
+      />
     </FoldWrapper>
     <BelowFoldWrapper>
       <Related />
-      <Reviews reviewData={reviewData} reviews={reviews} name={product.name}/>
+      <Reviews
+        reviewData={reviewData}
+        reviews={reviews}
+        name={product.name}
+      />
     </BelowFoldWrapper>
   </>)}
 

@@ -79,6 +79,7 @@ const Overview = (props) => {
           <TitleCatRev
             title={currentProduct.name}
             category={currentProduct.category}
+            data={props.reviewData}
           />
           <StyleSection
             stylesForThisProduct={stylesForThisProduct}

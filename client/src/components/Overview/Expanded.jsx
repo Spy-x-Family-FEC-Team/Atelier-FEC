@@ -133,11 +133,10 @@ const Expanded = (props) => {
         <OverlayWindow
           onBgClick={toggleMagnified}
         >
-          <div>testing</div>
-          {/* <Magnified
+          <Magnified
             toggleMagnified={toggleMagnified}
             currentImage={props.currentImage}
-          /> */}
+          />
         </OverlayWindow>
       :null}
     </div>
