@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import StarRating from "/client/src/components/assets/StarRating.jsx";
+import OverlayWindow from "/client/src/components/assets/OverlayWindow.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
@@ -18,9 +19,18 @@ const ThumbnailPic = styled.img`
   max-width: 100%;
 `;
 
+const OverlayPic = styled.img`
+  max-height: 80vh;
+  max-width: 80vw;
+`;
+
 const ReviewListItem = ({data}) => {
-  const [expanded, setExpanded] = useState(false)
-  const toggleExpanded = () => setExpanded((ex) => (!ex))
+  const [expanded, setExpanded] = useState(false);
+  const [imageOverlay, setImageOverlay] = useState(null);
+  const clearImageOverlay = () => {setImageOverlay(null)}
+  const toggleExpanded = () => {setExpanded((ex) => (!ex))};
+  const imageClick = (event) => {setImageOverlay(event.target.getAttribute('src'))}
+
   return(
   <div>
     <StarRating rawRating={data.rating}/>
@@ -33,7 +43,12 @@ const ReviewListItem = ({data}) => {
 
     {data.photos.length ?
     <ThumbnailContainer>
-      {data.photos.map((photo) => (<ThumbnailPic key={photo.id} src={photo.url} title={`A user submitted photo with the id ${photo.id}`}/>))}
+      {data.photos.map((photo) => (
+        <ThumbnailPic
+          key={photo.id}
+          src={photo.url}
+          title={`A user submitted photo with the id ${photo.id}`}
+          onClick={imageClick}/>))}
     </ThumbnailContainer>
     : null}
     {data.response ? <div><h3>Store Response:</h3>{data.response}</div>: null}
@@ -42,6 +57,11 @@ const ReviewListItem = ({data}) => {
       <button type="button" onClick={() => {console.log('clicked a review list yes button')}}>Yes</button>
       <button type="button" onClick={() => {console.log('clicked a review list report button')}}>Report Review</button>
     </div>
+    {imageOverlay ?
+    <OverlayWindow onBgClick={clearImageOverlay}>
+      <OverlayPic src={imageOverlay}/>
+    </OverlayWindow>
+    : null}
   </div>)
 }
 

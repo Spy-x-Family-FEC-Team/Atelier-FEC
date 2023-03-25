@@ -5,7 +5,6 @@
   // var numberOfRatings = Object.keys(props.data).reduce((accumulate, current) => (accumulate + props.data[current]), 0); //count the number of scores
   // var meanRating = Math.round(sumOfScores/numberOfRatings*10)/10 // get the mean
   // meanRating = meanRating ? meanRating : 5;
-  // console.log(meanRating)
 
 const getNumberOfRatings = (ratingsObject) => (
   // sum up the number of ratings at each value

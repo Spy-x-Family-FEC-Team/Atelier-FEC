@@ -33,11 +33,6 @@ const RatingsGridbox = styled.div`
 const Ratings = (props) => {
   var numberOfRatings = getNumberOfRatings(props.data.ratings);
   var meanRating = getMeanRating(props.data.ratings);
-  // var sumOfScores = Object.keys(props.data).reduce((accumulate, current) => (accumulate + props.data[current]*parseInt(current) ), 0); //add all the scores together
-  // var numberOfRatings = Object.keys(props.data).reduce((accumulate, current) => (accumulate + props.data[current]), 0); //count the number of scores
-  // var meanRating = Math.round(sumOfScores/numberOfRatings*10)/10 // get the mean
-  // meanRating = meanRating ? meanRating : 5;
-  // console.log(meanRating)
 
   return(
   <div>
