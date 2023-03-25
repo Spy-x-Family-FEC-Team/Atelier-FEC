@@ -15,8 +15,11 @@ z-index: 10;
 
 const OverlayContentFrame = styled.div`
 position: fixed;
-max-width: 90%;
-max-height: 90%;
+padding: 5vh 5vw;
+width: max-content;
+max-width: 85vw;
+height: max-content;
+max-height: 85vh;
 margin: auto;
 top: 0;
 left: 0;
