@@ -33,26 +33,33 @@ const ItemPage = () => {
   // const [reviewData, updateReviewData] = useState(null)
 
   // These are the axios requests that will eventually be used in the useState stuff above
-  const _id = useParams()['id'];
-  console.log(_id)
-  axios.get(`/api/products/${_id}`)
-    .then((results) => {
-      console.log(results)})
-  axios.get(`/api/reviews/${_id}`)
-    .then((results) => {
-      console.log(results)})
-  axios.get(`/api/reviews/meta/${_id}`)
-    .then((results) => {
-      console.log(results)})
+  // const _id = useParams()['id'];
+  // console.log(_id)
+  // axios.get(`/api/products/${_id}`)
+  //   .then((results) => {
+  //     console.log(results)})
+  // axios.get(`/api/reviews/${_id}`)
+  //   .then((results) => {
+  //     console.log(results)})
+  // axios.get(`/api/reviews/meta/${_id}`)
+  //   .then((results) => {
+  //     console.log(results)})
 
   return(
   <>
     <FoldWrapper>
-      <Overview product={product}/>
+      <Overview
+        product={product}
+        reviewData={reviewData}
+      />
     </FoldWrapper>
     <BelowFoldWrapper>
       <Related />
-      <Reviews reviewData={reviewData} reviews={reviews} name={product.name}/>
+      <Reviews
+        reviewData={reviewData}
+        reviews={reviews}
+        name={product.name}
+      />
     </BelowFoldWrapper>
   </>)}
 

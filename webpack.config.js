@@ -21,6 +21,21 @@ module.exports = {
           loader: "babel-loader", //do we need a preset?
         },
       },
+      {
+        // I added this rule in order include our white background image and any other images with our bundle. (Jenessa)
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            // Installed url-loader and file-loader to make this work. (see package.json devDependencies.)
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            }
+          },
+        ],
+       //This part keeps you from creating a new file each time you reload.
+       type: 'javascript/auto'
+      },
     ],
   },
   resolve: {

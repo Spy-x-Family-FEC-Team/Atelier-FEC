@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
+import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
+import Magnified from './Magnified.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -65,60 +67,79 @@ const StyledRightButton = styled.section`
 `;
 
 const Expanded = (props) => {
+  const [magnifiedView, setMagnifiedView] = useState(false);
+
+  const toggleMagnified = () => {
+    setMagnifiedView(!magnifiedView);
+  }
 
   return(
-    <StyledExpandedWrapper>
-      <StyledCloseButton>
-        <button
-          onClick={props.toggleExpanded}
-        >
-          X
-        </button>
-      </StyledCloseButton>
-      <StyledMainImageWrapper>
-        <StyledExpandedImage
-          src={props.currentImage}
-        />
-        {props.indexOfThisProdView > 0 ?
-            <StyledLeftButton
-            onClick={() => {
-              props.handleViewSelection(props.indexOfThisProdView -1);
-              }}
+    <div>
+      <StyledExpandedWrapper>
+        <StyledCloseButton>
+          <button
+            onClick={props.toggleExpanded}
           >
-            <FontAwesomeIcon icon={solid('chevron-left')} />
-          </StyledLeftButton>
-        :null}
-        {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
-          <StyledRightButton
-            onClick={() => {
-              props.handleViewSelection(props.indexOfThisProdView +1);
-              }}
-          >
-            <FontAwesomeIcon icon={solid('chevron-right')} />
-          </StyledRightButton>
-        :null}
-      </StyledMainImageWrapper>
-      <StyledIconsGridWrapper>
-        <StyledIconsGrid>
-          {props.prodViewThumbnails.map((url, index) => {
-              return (
-                <OneStyledIconWrapper
-                  key={index}
-                  onClick={() => {
-                    props.handleViewSelection(index);
-                    }}
-                >
-                  {props.indexOfThisProdView === index ?
-                    <FontAwesomeIcon icon={solid('square')} />
-                    :<FontAwesomeIcon icon={regular('square')} />
-                  }
-                </OneStyledIconWrapper>
-              )
-            })
-          }
-        </StyledIconsGrid>
-      </StyledIconsGridWrapper>
+            X
+          </button>
+        </StyledCloseButton>
+        <StyledMainImageWrapper>
+          <StyledExpandedImage
+            src={props.currentImage}
+            onClick={toggleMagnified}
+          />
+          {props.indexOfThisProdView > 0 ?
+              <StyledLeftButton
+              onClick={() => {
+                props.handleViewSelection(props.indexOfThisProdView -1);
+                }}
+            >
+              <FontAwesomeIcon icon={solid('chevron-left')} />
+            </StyledLeftButton>
+          :null}
+          {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
+            <StyledRightButton
+              onClick={() => {
+                props.handleViewSelection(props.indexOfThisProdView +1);
+                }}
+            >
+              <FontAwesomeIcon icon={solid('chevron-right')} />
+            </StyledRightButton>
+          :null}
+        </StyledMainImageWrapper>
+        <StyledIconsGridWrapper>
+          <StyledIconsGrid>
+            {props.prodViewThumbnails.map((url, index) => {
+                return (
+                  <OneStyledIconWrapper
+                    key={index}
+                    onClick={() => {
+                      props.handleViewSelection(index);
+                      }}
+                  >
+                    {props.indexOfThisProdView === index ?
+                      <FontAwesomeIcon icon={solid('square')} />
+                      :<FontAwesomeIcon icon={regular('square')} />
+                    }
+                  </OneStyledIconWrapper>
+                )
+              })
+            }
+          </StyledIconsGrid>
+        </StyledIconsGridWrapper>
       </StyledExpandedWrapper>
+
+      {magnifiedView ?
+        <OverlayWindow
+          onBgClick={toggleMagnified}
+        >
+          <Magnified
+            toggleMagnified={toggleMagnified}
+            currentImage={props.currentImage}
+          />
+        </OverlayWindow>
+      :null}
+    </div>
   );
 };
 
