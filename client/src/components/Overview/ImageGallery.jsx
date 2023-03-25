@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import VerticalCarousel from './VerticalCarousel.jsx';
+import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
+import Expanded from './Expanded.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const StyledImageGalleryWrapper = styled.section`
   position: relative;
@@ -34,8 +38,28 @@ const StyledVerticalCarouselWrapper = styled.section`
   height:60%;
 `;
 
+const StyledRightButton = styled.section`
+  position:absolute;
+  right:5%;
+  top:40%;
+  font-size:x-large;
+`;
+
+const StyledLeftButton = styled.section`
+  position:absolute;
+  left:120px;
+  top:40%;
+  font-size:x-large;
+`;
+
 
 const ImageGallery = (props) => {
+
+  const [expandedView, setExpandedView] = useState(false);
+
+  const toggleExpanded = () => {
+    setExpandedView(!expandedView);
+  }
 
   return(
     <div>
@@ -48,9 +72,44 @@ const ImageGallery = (props) => {
           />
         </StyledVerticalCarouselWrapper>
         <StyledMainImageWrapper>
-          <StyledMainImage src={props.currentImage}/>
+          <StyledMainImage
+          src={props.currentImage}
+          onClick={toggleExpanded}
+          />
+          {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
+            <StyledRightButton
+              onClick={() => {
+                props.handleViewSelection(props.indexOfThisProdView +1);
+                }}
+            >
+              <FontAwesomeIcon icon={solid('chevron-right')} />
+            </StyledRightButton>
+          :null}
+          {props.indexOfThisProdView > 0 ?
+            <StyledLeftButton
+            onClick={() => {
+              props.handleViewSelection(props.indexOfThisProdView -1);
+              }}
+            >
+              <FontAwesomeIcon icon={solid('chevron-left')} />
+            </StyledLeftButton>
+          :null}
         </StyledMainImageWrapper>
       </StyledImageGalleryWrapper>
+
+      {expandedView ?
+        <OverlayWindow
+          onBgClick={toggleExpanded}
+        >
+          <Expanded
+            toggleExpanded={toggleExpanded}
+            currentImage={props.currentImage}
+            indexOfThisProdView={props.indexOfThisProdView}
+            handleViewSelection={props.handleViewSelection}
+            prodViewThumbnails={props.prodViewThumbnails}
+          />
+        </OverlayWindow>
+      :null}
     </div>
   )
 };
