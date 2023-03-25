@@ -47,7 +47,7 @@ const Overview = (props) => {
   };
   const [currentImage, setCurrentImage] = useState(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
   const [currentProduct, setCurrentProduct] = useState(props.product);
-  const [prodViewThumbnails, setProdViewThumbnails] =useState([whiteBackground, whiteBackground, whiteBackground]);
+  const [prodViewThumbnails, setProdViewThumbnails]=useState([whiteBackground, whiteBackground, whiteBackground]);
 
   // const [currentStyles, setCurrentStyles] = useState(stylesForThisProduct);
 
@@ -61,10 +61,9 @@ const Overview = (props) => {
   };
 
   useEffect (() => {
-    // Whenever someone clicks a style and handleStyleSelection fn is used, rerender the main image.
+    // Whenever someone clicks a style or view thumbnail, rerender the main image and style thumbnails.
     setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
-    // Temporarity changed this (below) from setProdViewThumbnails(makeProdViewThumbnailsList());
-    setProdViewThumbnails([whiteBackground, whiteBackground, whiteBackground]);
+    setProdViewThumbnails(makeProdViewThumbnailsList());
   }, [indexOfStyleOption, indexOfThisProdView]);
 
 
