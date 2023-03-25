@@ -8,7 +8,20 @@ import localForage from "localforage";
 // retrieve user outfit from cache
 // array of product ids
 
+// let cachedOutfit;
 
+// localForage.getItem('outfits')
+// 			.then((data) => {
+// 				if (!data) {
+// 					cachedOutfit = [];
+// 				} else {
+// 					cachedOutfit = data;
+// 				}
+// 				console.log('cached outfit', cachedOutfit);
+// 			})
+// 			.catch(err => {
+// 				console.log('error retrieving cached outfit', err);
+// 			});
 
 const Related = () => {
 
@@ -21,16 +34,16 @@ const Related = () => {
 		localForage.getItem('outfits')
 			.then((data) => {
 				if (!data) {
-					outfit = [];
+					setOutfit([]);
 				} else {
-					outfit = data;
+					setOutfit(data);
 				}
 				console.log('outfit', outfit);
 			})
 			.catch(err => {
 				console.log('error retrieving outfit', err);
 			});
-	})
+	}, [])
 
 	return (
 		<div>

@@ -80,7 +80,7 @@ const StyledCard = ({item, mode, list, setList}) => {
     const outfits = list.slice();
     outfits.push(40344);
     localForage.clear();
-    localForage.setItem('outfits updated', outfits)
+    localForage.setItem('outfits', outfits)
       .then( () => {
         setList(outfits);
       })
@@ -92,7 +92,7 @@ const StyledCard = ({item, mode, list, setList}) => {
     const index = outfits.indexOf(item);
     outfits.splice(index, 1);
     localForage.clear();
-    localForage.setItem('outfits updated', outfits)
+    localForage.setItem('outfits', outfits)
       .then( () => {
         setList(outfits);
       })

@@ -31,7 +31,7 @@ const CarouselList = styled.div`
 	height: 100%;
 	list-style: none;
 	display: grid;
-	grid-template-columns: repeat(${props => props ? props.list.length : 1}, fit-content(200px));
+	grid-template-columns: repeat(${props => props ? props.list.length + 1 : 1}, fit-content(200px));
 	grid-column-gap: 10px;
 	overflow-x: scroll;
 	overflow-y: hidden;
@@ -95,10 +95,6 @@ const Carousel = ({mode, list, setList}) => {
 				<CarouselTrack>
 					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID} list={list}>
 						{mode === 'related' ? null : <StyledCard item={'outfitAdd'} mode={mode} list={list} setList={setList}/>}
-						{/* {mode === 'related' ? list.map( item => {
-							return (
-							<StyledCard item={item} mode={mode}/>
-						)}) : ( */}
 						{list.map( item => {
 							return (
 							<StyledCard item={item} mode={mode} list={list} setList={setList}/>
