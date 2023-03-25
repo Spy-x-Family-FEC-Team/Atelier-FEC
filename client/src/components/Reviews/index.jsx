@@ -13,9 +13,9 @@ const ThirdsGrid = styled.section`
 const Reviews = (props) => {
 	return(
 		<ThirdsGrid>
-			<Ratings data={props.reviewData}/>
-			<ReviewList reviews={props.reviews}/>
-			<WriteReview data={props.reviewData} name={props.name}/>
+			{props.reviewData ? <Ratings data={props.reviewData}/> : null}
+			{/* <ReviewList reviews={props.reviews}/>
+			<WriteReview data={props.reviewData} name={props.name}/> */}
 		</ThirdsGrid>
 	)
 };

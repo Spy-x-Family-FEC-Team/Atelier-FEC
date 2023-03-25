@@ -9,9 +9,9 @@ import Reviews from "/client/src/components/Reviews";
 import axios from 'axios';
 
 // Dummy data access. Figured out we needed to change the filetype to .json. Feel free to add the others if you want to use them. COMMENT THIS OUT WHEN YOU BEGIN TESTING NETWORKED STUFF
-import product from '/server/exampleData/product.json';
-import reviews from '/server/exampleData/reviews.json';
-import reviewData from '/server/exampleData/reviewData.json';
+// import product from '/server/exampleData/product.json';
+// import reviews from '/server/exampleData/reviews.json';
+// import reviewData from '/server/exampleData/reviewData.json';
 
 
 const FoldWrapper = styled.section`
@@ -28,9 +28,9 @@ background: lightgrey;
 
 
 const ItemPage = () => {
-  // const [product, updateProduct] = useState(null)
-  // const [reviews, updateReviews] = useState(null)
-  // const [reviewData, updateReviewData] = useState(null)
+  const [product, updateProduct] = useState(null)
+  const [reviews, updateReviews] = useState(null)
+  const [reviewData, updateReviewData] = useState(null)
 
   // These are the axios requests that will eventually be used in the useState stuff above
   const _id = useParams()['id'];
@@ -47,12 +47,12 @@ const ItemPage = () => {
 
   return(
   <>
-    <FoldWrapper>
+    {/* <FoldWrapper>
       <Overview product={product}/>
-    </FoldWrapper>
+    </FoldWrapper> */}
     <BelowFoldWrapper>
-      <Related />
-      <Reviews reviewData={reviewData} reviews={reviews} name={product.name}/>
+      {/* <Related /> */}
+      <Reviews reviewData={reviewData} reviews={reviews} product={product}/>
     </BelowFoldWrapper>
   </>)}
 
@@ -62,6 +62,7 @@ const App = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/items/:id" element={<ItemPage/>}/>
+      <Route path="/items*" element={<div>Use the format /items/item_id instead</div>}/>
     </Routes>
   </BrowserRouter>
 )

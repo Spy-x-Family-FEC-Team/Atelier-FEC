@@ -142,7 +142,7 @@ const WriteReview = (props) => {
 		{modal ?
 		<OverlayWindow onBgClick={toggleModal}>
 			<div>Write your review </div>
-			<div>About the {props.name}</div>
+			<div>About the {props.product.name}</div>
 			<form>
 				<QuestionLabel>Overall Rating*
 					{[...Array(5)].map((e, i) => (

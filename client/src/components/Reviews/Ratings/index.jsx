@@ -30,9 +30,9 @@ const RatingsGridbox = styled.div`
   width: 100%;
 `;
 
-const Ratings = (props) => {
-  var numberOfRatings = getNumberOfRatings(props.data.ratings);
-  var meanRating = getMeanRating(props.data.ratings);
+const Ratings = ({data}) => {
+  var numberOfRatings = getNumberOfRatings(data.ratings)
+  var meanRating = getMeanRating(data.ratings)
 
   return(
   <div>
@@ -45,14 +45,14 @@ const Ratings = (props) => {
       {[5,4,3,2,1].map((value) => (
         <div key={`${value}StarRatings`}> {value} Stars
           <EmptyBar>
-            <PercentBar percent={(props.data.ratings[value]/numberOfRatings)*100}/>
+            <PercentBar percent={(data.ratings[value]/numberOfRatings)*100}/>
             {/* number of ratings of N stars divided by total number of ratings times 100 */}
           </EmptyBar>
         </div>)
       )}
     </div>
     <div>Factor breakdown
-      {Object.keys(props.data.characteristics).map((key) => (
+      {Object.keys(data.characteristics).map((key) => (
         <div key={key}>{key}
           <EmptyBar>
             <PercentBar percent={(props.data.characteristics[key].value*20)}/>

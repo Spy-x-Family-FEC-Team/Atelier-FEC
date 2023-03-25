@@ -10,7 +10,6 @@ console.log(staticPath)
 
 /*~~~~~~~THIS IS WHERE API CALLS TO OUR API TO PASS ALONG TO THE HR API GO~~~~~~~*/
 app.use(morgan('tiny'))
-//app.get('/api/blah',);
 
 app.use('/items*', (req, res) => {
   res.sendFile(path.join(path.resolve('.'), '/client/dist/'));
