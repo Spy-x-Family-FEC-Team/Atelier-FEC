@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 const StyledVerticalCarouselGrid = styled.section`
@@ -9,12 +11,12 @@ const StyledVerticalCarouselGrid = styled.section`
   max-height: 300px;
 `;
 
-const StyledUpArrow = styled.section`
+const StyledUpButton = styled.section`
   background:white;
   padding:3px;
   text-align:center;
 `;
-const StyledDownArrow = styled.section`
+const StyledDownButton = styled.section`
   background:white;
   padding:3px;
   text-align:center;
@@ -41,7 +43,16 @@ const VerticalCarousel = (props) => {
 
   return(
     <StyledVerticalCarouselGrid>
-      <StyledUpArrow>Up</StyledUpArrow>
+      {props.indexOfThisProdView > 0 ?
+        <StyledUpButton
+        onClick={() => {
+          props.handleViewSelection(props.indexOfThisProdView -1);
+          }}
+        >
+          <FontAwesomeIcon icon={solid('chevron-up')} />
+        </StyledUpButton>
+      :null}
+
       {props.prodViewThumbnails.map((url, index) => {
         return (
           <StyledProdViewThumbnailWrapper
@@ -60,7 +71,16 @@ const VerticalCarousel = (props) => {
           </StyledProdViewThumbnailWrapper>
         )
       })}
-      <StyledDownArrow>Down</StyledDownArrow>
+
+      {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
+        <StyledDownButton
+          onClick={() => {
+            props.handleViewSelection(props.indexOfThisProdView +1);
+            }}
+        >
+          <FontAwesomeIcon icon={solid('chevron-down')} />
+        </StyledDownButton>
+      :null}
     </StyledVerticalCarouselGrid>
   )
 };

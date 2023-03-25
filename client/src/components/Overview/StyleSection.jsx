@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import StyleAndPrice from './StyleAndPrice.jsx';
-import SizeAndQuantity from './SizeAndQuantity.jsx';
-import BagAndLiked from './BagAndLiked.jsx';
+import PurchaseOrLike from './PurchaseOrLike.jsx';
 
 const StyleSectionWrapper = styled.section`
   background: pink;
   height:100%;
   display: grid;
-  grid-template-rows: 50% 25% 25%;
+  grid-template-rows: 60% 40%;
 `;
 
 const StyleSection = (props) => {
@@ -20,7 +19,6 @@ const StyleSection = (props) => {
     });
     return thumbnails;
   };
-
 
 
   return(
@@ -38,9 +36,11 @@ const StyleSection = (props) => {
         salePrice={props.stylesForThisProduct.results[props.indexOfStyleOption].sale_price}
 
         indexOfStyleOption={props.indexOfStyleOption}
-        />
-      <SizeAndQuantity />
-      <BagAndLiked />
+      />
+      <PurchaseOrLike
+        stylesForThisProduct={props.stylesForThisProduct}
+        skusOfSelectedStyle={props.stylesForThisProduct.results[props.indexOfStyleOption].skus}
+      />
      </StyleSectionWrapper>
     </div>
   )

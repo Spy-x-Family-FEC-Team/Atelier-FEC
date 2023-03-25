@@ -11,12 +11,11 @@ const ThirdsGrid = styled.section`
 `;
 
 const Reviews = (props) => {
-	console.log(props.reviewData)
 	return(
 		<ThirdsGrid>
 			<Ratings data={props.reviewData}/>
 			<ReviewList reviews={props.reviews}/>
-			<WriteReview/>
+			<WriteReview data={props.reviewData} name={props.name}/>
 		</ThirdsGrid>
 	)
 };
