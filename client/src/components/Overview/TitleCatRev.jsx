@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 // import styled from 'styled-components';
 import StarRating from "../assets/StarRating.jsx";
 import { getNumberOfRatings, getMeanRating } from "/client/src/components/sharedComponents/ratingsObjectFunctions.js";
@@ -10,13 +10,23 @@ import { getNumberOfRatings, getMeanRating } from "/client/src/components/shared
 
 const TitleCatRev = (props) => {
 
-  var numberOfRatings = getNumberOfRatings(props.data.ratings);
-  var meanRating = getMeanRating(props.data.ratings);
+  const [numberOfRatings, setNumberOfRatings] = useState(null);
+  const [meanRating, setMeanRating] = useState(null);
+
+  // useEffect (() => {
+  //   setNumberOfRatings(getNumberOfRatings(props.data.ratings));
+  //   setMeanRatings(getMeanRating(props.data.ratings));
+  // }, [props.data])
 
   return(
     <div>
-      <StarRating rawRating = {meanRating}/>
-      <span>&nbsp;&nbsp;<a href= "#ReviewList">Read all {numberOfRatings} reviews...</a></span>
+      {numberOfRatings ?
+        <div>
+          <StarRating rawRating = {meanRating}/>
+          <span>&nbsp;&nbsp;<a href= "#ReviewList">Read all {numberOfRatings} reviews...</a></span>
+        </div>
+        :null
+      }
       <p>{props.category}</p>
       <h2>{props.title}</h2>
     </div>
