@@ -11,6 +11,10 @@ import whiteBackground from '/client/src/components/assets/images/whiteBackgroun
  // Dummy data to use for now.
  import stylesForThisProduct from '/server/exampleData/styles.json';
 
+ //Default data
+ import defaultProduct from '/server/exampleData/defaultProduct.json';
+ import defaultStyles from '/server/exampleData/defaultStyles.json';
+
 const OverviewGrid = styled.section`
   display: grid;
   grid-template-columns: 1fr 35%;
@@ -45,8 +49,8 @@ const Overview = (props) => {
     })
     return thumbnails;
   };
-  const [currentImage, setCurrentImage] = useState(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
-  const [currentProduct, setCurrentProduct] = useState(props.product);
+  const [currentImage, setCurrentImage] = useState(whiteBackground);
+  const [currentProduct, setCurrentProduct] = useState(defaultProduct);
   const [prodViewThumbnails, setProdViewThumbnails]=useState([whiteBackground, whiteBackground, whiteBackground]);
 
   // const [currentStyles, setCurrentStyles] = useState(stylesForThisProduct);
@@ -60,11 +64,17 @@ const Overview = (props) => {
     setIndexOfThisProdView(index);
   };
 
-  useEffect (() => {
-    // Whenever someone clicks a style or view thumbnail, rerender the main image and style thumbnails.
-    setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
-    setProdViewThumbnails(makeProdViewThumbnailsList());
-  }, [indexOfStyleOption, indexOfThisProdView]);
+  // useEffect (() => {
+  //   // Whenever someone clicks a style or view thumbnail, rerender the main image and style thumbnails.
+  //   setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
+  //   setProdViewThumbnails(makeProdViewThumbnailsList());
+  // }, [indexOfStyleOption, indexOfThisProdView]);
+
+  // useEffect (() => {
+  //   // Get product info on page load.
+  //   setCurrentProduct(props.product);
+  //   setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
+  // }, [props.product]);
 
 
   return(
@@ -83,7 +93,8 @@ const Overview = (props) => {
             data={props.reviewData}
           />
           <StyleSection
-            stylesForThisProduct={stylesForThisProduct}
+            stylesForThisProduct={defaultStyles
+              /* change this back to: stylesForThisProduct*/}
             handleStyleSelection={handleStyleSelection}
             indexOfThisProdView={indexOfThisProdView}
             indexOfStyleOption={indexOfStyleOption}
