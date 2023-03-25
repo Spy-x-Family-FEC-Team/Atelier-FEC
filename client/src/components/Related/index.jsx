@@ -1,13 +1,18 @@
 import React from "react";
 import Carousel from "./Carousel";
+// import currentProduct from "../../../server/exampleData/related.json"
+//get request for related items to current item, pass down as prop
 
 
 const Related = () => {
 
+	//takes in current item as prop
+
 	return (
 		<div>
 			<div>hello we are related</div>
-			<Carousel />
+			<Carousel mode={'related'}/>
+			<Carousel mode={'outfit'}/>
 		</div>
 	)
 

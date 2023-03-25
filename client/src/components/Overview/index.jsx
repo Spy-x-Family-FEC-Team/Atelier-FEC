@@ -62,6 +62,7 @@ const Overview = (props) => {
   useEffect (() => {
     // Whenever someone clicks a style and handleStyleSelection fn is used, rerender the main image.
     setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
+    setProdViewThumbnails(makeProdViewThumbnailsList());
   }, [indexOfStyleOption, indexOfThisProdView]);
 
 
@@ -72,23 +73,27 @@ const Overview = (props) => {
           currentImage={currentImage}
           prodViewThumbnails={prodViewThumbnails}
           indexOfThisProdView={indexOfThisProdView}
-          handleViewSelection={handleViewSelection}/>
+          handleViewSelection={handleViewSelection}
+        />
         <SelectorSectionWrapper>
           <TitleCatRev
             title={currentProduct.name}
-            category={currentProduct.category}/>
+            category={currentProduct.category}
+          />
           <StyleSection
             stylesForThisProduct={stylesForThisProduct}
             handleStyleSelection={handleStyleSelection}
             indexOfThisProdView={indexOfThisProdView}
-            indexOfStyleOption={indexOfStyleOption}/>
+            indexOfStyleOption={indexOfStyleOption}
+          />
           <Social />
         </SelectorSectionWrapper>
       </OverviewGrid>
       <ProductDetailsWrapper>
         <ProductDetails
           description={currentProduct.description}
-          features={currentProduct.features}/>
+          features={currentProduct.features}
+        />
       </ProductDetailsWrapper>
     </div>
   )

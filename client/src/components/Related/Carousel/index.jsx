@@ -1,16 +1,20 @@
 import React from "React";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import StyledCard from "./Card.jsx";
 import { StyledLeftBtn, StyledRightBtn } from "./Button.jsx";
+import relatedList from "../../../../../server/exampleData/related.json"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-const numbers = [0, 1, 2, 3, 4, 5, 6]
-
+//might have to fix height offset
 const CarouselContainer = styled.div`
 	position: relative;
 	background-color: violet;
 	padding: 0;
 	margin: 0;
-	height: 300px;
+	height: 308px;
 `
 
 const CarouselTrack = styled.div`
@@ -28,49 +32,80 @@ const CarouselList = styled.div`
 	height: 100%;
 	list-style: none;
 	display: grid;
-	grid-template-columns: repeat(${numbers.length}, 200px);
+	grid-template-columns: repeat(${relatedList.length}, fit-content(200px));
 	grid-column-gap: 10px;
-	overflow: scroll;
+	overflow-x: scroll;
+	overflow-y: hidden;
 	scroll-snap-type: x mandatory;
 	scroll-behavior: smooth;
 	scroll-snap-align: start;
 `
 
-const scrollRight = () => {
-	const list = document.querySelector("#Carousel-List");
-	list.scrollBy(200, 0);
-};
+const Carousel = ({mode}) => {
 
-const scrollLeft = (e) => {
-	const list = document.querySelector("#Carousel-List");
-	list.scrollBy(-200, 0);
-	const button = e.target;
-	console.log("position", list.scrollLeft);
-	if (list.scrollLeft === 0) {
-		button.style.display = "hidden";
+	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
+	const [displayLeft, setDisplayLeft] = useState(false);
+	const [displayRight, setDisplayRight] = useState(false);
+	const carouselID = `Carousel-List-${mode}`
+
+	//if current div is scrollable, display right button
+	useEffect( () => {
+		const list = document.querySelector(`#${carouselID}`);
+		if (list.clientWidth < list.scrollWidth) {
+			setDisplayRight(true);
+		}
+	}, []);
+
+	//scroll left and right functions
+	const scrollRight = () => {
+		const list = document.querySelector(`#${carouselID}`);
+		list.scrollBy(200, 0);
+	};
+
+	const scrollLeft = () => {
+		const list = document.querySelector(`#${carouselID}`);
+		list.scrollBy(-200, 0);
+	};
+
+	//update right/left button visibility based on scroll position
+	const handleScroll = (e) => {
+
+		const track = e.target;
+		const position = track.scrollLeft;
+		const divWidth = track.offsetWidth;
+		const scrollWidth = track.scrollWidth;
+
+		if (scrollWidth - position <= divWidth) {
+			setDisplayRight(false);
+		} else if (position === 0) {
+			setDisplayLeft(false);
+		} else {
+			setDisplayLeft(true);
+			setDisplayRight(true);
+		}
 	}
-};
-
-// const getScrollPosition = () => {
-// 	const position = list.scrollLeft;
-// 	console.log('position', position);
-// }
-
-const Carousel = () => {
 
 	return (
-		<CarouselContainer>
-			<StyledLeftBtn onClick={(e) => {scrollLeft(e)}}>Left</StyledLeftBtn>
-			<CarouselTrack>
-				<CarouselList id="Carousel-List">
-					{numbers.map( num => {
-					return (
-					<StyledCard id={num}>I am card number {num}</StyledCard>
-					)})}
-				</CarouselList>
-			</CarouselTrack>
-			<StyledRightBtn onClick={scrollRight}>Right</StyledRightBtn>
+		<div>
+			{mode === 'related' ? (<h3>RELATED PRODUCTS</h3>) : <h3>YOUR OUTFIT</h3>}
+			<CarouselContainer>
+				<StyledLeftBtn onClick={scrollLeft} display={displayLeft}>
+					<FontAwesomeIcon icon={solid('chevron-left')} />
+				</StyledLeftBtn>
+				<CarouselTrack>
+					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID}>
+						{relatedList.map( item => {
+						return (
+						<StyledCard item={item}/>
+						)})}
+					</CarouselList>
+				</CarouselTrack>
+				<StyledRightBtn onClick={scrollRight}  display={displayRight}>
+				{/* <FontAwesomeIcon icon={regular('chevron-right')} /> */}
+				Right
+				</StyledRightBtn>
 		</CarouselContainer>
+		</div>
 	)
 
 };

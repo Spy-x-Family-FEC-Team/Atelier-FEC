@@ -40,6 +40,8 @@ const StyledCheckmark = styled.section`
 
 const StyleAndPrice = (props) => {
 
+
+
   return(
     <div>
       {props.salePrice ?
