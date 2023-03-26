@@ -3,34 +3,62 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import Carousel from "./Carousel";
 import localForage from "localforage";
-// import relatedList from "../../../../server/exampleData/related.json"
 
-// import currentProduct from "../../../server/exampleData/related.json"
-// get request for related items to current item, pass down as prop
-// retrieve user outfit from cache
-// array of product ids
+const Related = ({product, related}) => {
 
-const Related = ({product}) => {
-
-	//takes in current item as prop
-	console.log('product id', product.id)
-
+	//takes in current item and related item ids as prop
+	const [relatedData, setRelatedData] = useState([]);
 	const [outfit, setOutfit] = useState([]);
-	const [related, setRelated] = useState([]);
+	const [itemsList, setItemsList] = useState([]);
 
 	useEffect( () => {
 
 		//get related prodcuts
-		const id = product.id
-		axios.get(`/api/products/${id}/related`)
-			.then((results) => {
-				setRelated(results.data);
-			console.log(results.data, 'related results after retrieving promise')})
-			.catch(err => {
-				console.log('error retrieving related items', err);
+		const allItemPromises = related.map( item => {
+			console.log('item inside carousel promise', item);
+			const id = item;
+			console.log(id, 'item id inside promise req')
+
+			const promise1 = axios.get(`/api/products/${id}`)
+				.then((results) => {
+					console.log('results from a related prod id', results);
+					return results;
+				})
+				.catch(err => err);
+
+			const promise2 = axios.get(`/api/reviews/meta/${id}`)
+				.then((results) => {
+					console.log('reviews from a related prod', results);
+					return results;
+				})
+				.catch(err => err);
+
+			const promise3 = axios.get(`/api/products/${id}/styles`)
+				.then((results) => {
+					console.log('styles from a related prod', results);
+					return results;
+				})
+				.catch(err => err);
+
+			Promise.all([promise1, promise2, promise3])
+				.then((results) => {
+					console.log('results from all promises', results);
+					return results;
+				})
+				.catch( err => {
+					console.log('error retrieving individual item info promise');
+			})});
+
+		Promise.all(allItemPromises)
+			.then( results => {
+				console.log(results, 'all item info promise');
+				setItemsList(results);
+			})
+			.catch( err => {
+				console.log('error retrieving all product info')
 			});
 
-		//get outfit
+		//get outfit data objects
 		localForage.getItem('outfits')
 			.then((data) => {
 				if (!data) {
@@ -43,13 +71,13 @@ const Related = ({product}) => {
 			.catch(err => {
 				console.log('error retrieving outfit', err);
 			});
-	}, [])
+	}, []);
 
 	return (
 		<div>
 			<div>hello we are related</div>
-			<Carousel product={product} mode={'related'} list={related} setList={setRelated}/>
-			<Carousel product={product}mode={'outfit'} list={outfit} setList={setOutfit}/>
+			<Carousel product={product} mode={'related'} list={relatedData} setList={setRelatedData}/>
+			<Carousel product={product} mode={'outfit'} list={outfit} setList={setOutfit}/>
 		</div>
 	)
 

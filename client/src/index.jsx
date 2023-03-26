@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {useState, useEffect} from 'react';
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
 
@@ -33,26 +34,47 @@ const ItemPage = () => {
   // const [reviewData, updateReviewData] = useState(null)
 
   // These are the axios requests that will eventually be used in the useState stuff above
-  const _id = useParams()['id'];
-  console.log(_id)
-  axios.get(`/api/products/${_id}`)
-    .then((results) => {
-      console.log(results)})
-  axios.get(`/api/reviews/${_id}`)
-    .then((results) => {
-      console.log(results)})
-  axios.get(`/api/reviews/meta/${_id}`)
-    .then((results) => {
-      console.log(results)})
+  // const _id = useParams()['id'];
+  // console.log(_id)
+  // axios.get(`/api/products/${_id}`)
+  //   .then((results) => {
+  //     console.log(results)})
+  // axios.get(`/api/reviews/${_id}`)
+  //   .then((results) => {
+  //     console.log(results)})
+  // axios.get(`/api/reviews/meta/${_id}`)
+  //   .then((results) => {
+  //     console.log(results)})
+
+  // get related items id array
+  const [related, setRelated] = useState([]);
+  useEffect( () => {
+    const id = 40344;
+    axios.get(`/api/products/${id}/related`)
+			.then((results) => {
+				setRelated(results.data);
+			console.log(results.data, 'related results after retrieving promise')})
+			.catch(err => {
+				console.log('error retrieving related items', err);
+			});
+  }, [])
+
 
   return(
   <>
     <FoldWrapper>
-      <Overview product={product}/>
+      <Overview
+        product={product}
+        reviewData={reviewData}
+      />
     </FoldWrapper>
     <BelowFoldWrapper>
-      <Related product={product}/>
-      <Reviews reviewData={reviewData} reviews={reviews} name={product.name}/>
+      <Related product={product} related={related}/>
+      <Reviews
+        reviewData={reviewData}
+        reviews={reviews}
+        name={product.name}
+      />
     </BelowFoldWrapper>
   </>)}
 
