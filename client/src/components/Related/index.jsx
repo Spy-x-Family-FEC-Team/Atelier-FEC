@@ -1,36 +1,36 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import axios from 'axios';
 import Carousel from "./Carousel";
-import relatedList from "../../../../server/exampleData/related.json"
 import localForage from "localforage";
+// import relatedList from "../../../../server/exampleData/related.json"
+
 // import currentProduct from "../../../server/exampleData/related.json"
 // get request for related items to current item, pass down as prop
 // retrieve user outfit from cache
 // array of product ids
 
-// let cachedOutfit;
-
-// localForage.getItem('outfits')
-// 			.then((data) => {
-// 				if (!data) {
-// 					cachedOutfit = [];
-// 				} else {
-// 					cachedOutfit = data;
-// 				}
-// 				console.log('cached outfit', cachedOutfit);
-// 			})
-// 			.catch(err => {
-// 				console.log('error retrieving cached outfit', err);
-// 			});
-
-const Related = () => {
+const Related = ({product}) => {
 
 	//takes in current item as prop
+	console.log('product id', product.id)
 
 	const [outfit, setOutfit] = useState([]);
-	const [related, setRelated] = useState(relatedList);
+	const [related, setRelated] = useState([]);
 
 	useEffect( () => {
+
+		//get related prodcuts
+		const id = product.id
+		axios.get(`/api/products/${id}/related`)
+			.then((results) => {
+				setRelated(results.data);
+			console.log(results.data, 'related results after retrieving promise')})
+			.catch(err => {
+				console.log('error retrieving related items', err);
+			});
+
+		//get outfit
 		localForage.getItem('outfits')
 			.then((data) => {
 				if (!data) {
@@ -48,8 +48,8 @@ const Related = () => {
 	return (
 		<div>
 			<div>hello we are related</div>
-			<Carousel mode={'related'} list={related} setList={setRelated}/>
-			<Carousel mode={'outfit'} list={outfit} setList={setOutfit}/>
+			<Carousel product={product} mode={'related'} list={related} setList={setRelated}/>
+			<Carousel product={product}mode={'outfit'} list={outfit} setList={setOutfit}/>
 		</div>
 	)
 

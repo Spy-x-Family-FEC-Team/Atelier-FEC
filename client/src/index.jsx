@@ -51,7 +51,7 @@ const ItemPage = () => {
       <Overview product={product}/>
     </FoldWrapper>
     <BelowFoldWrapper>
-      <Related />
+      <Related product={product}/>
       <Reviews reviewData={reviewData} reviews={reviews} name={product.name}/>
     </BelowFoldWrapper>
   </>)}

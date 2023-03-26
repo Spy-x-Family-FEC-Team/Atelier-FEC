@@ -65,9 +65,10 @@ const ProductPrice = styled.div`
 `;
 const Stars = styled.div`
 `;
-const StyledCard = ({item, mode, list, setList}) => {
+const StyledCard = ({item, mode, list, setList, product}) => {
 
   //takes in item code, gets product info
+  console.log('card item', item);
   //NEED TO CALCULATE RATING AND RENDER STARS; GET REQUEST FOR REVIEWS?
 
   console.log('list inside card', list);

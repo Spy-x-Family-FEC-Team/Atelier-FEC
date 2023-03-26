@@ -1,5 +1,6 @@
 import React from "React";
 import { useState, useEffect } from "react";
+import axios from 'axios';
 import styled from "styled-components";
 import StyledCard from "./Card.jsx";
 import { StyledLeftBtn, StyledRightBtn } from "./Button.jsx";
@@ -40,13 +41,52 @@ const CarouselList = styled.div`
 	scroll-snap-align: start;
 `
 
-const Carousel = ({mode, list, setList}) => {
+const Carousel = ({product, mode, list, setList}) => {
 
 	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
 	const [displayRight, setDisplayRight] = useState(false);
+	const [itemsList, setItemsList] = useState([]);
 	const carouselID = `Carousel-List-${mode}`
-	console.log('list inside carousel', list);
+
+	//get request for all item info
+	console.log('list inside carousel', list, mode);
+	useEffect( () => {
+
+		const allItemPromises = list.map( item => {
+			console.log('item inside carousel promise', item);
+			const id = item;
+			console.log(id, 'item id inside promise req')
+
+			const promise1 = axios.get(`/api/products/${id}`)
+				.then(results => results.data)
+				.catch(err => err);
+
+			const promise2 = axios.get(`/api/reviews/meta/${id}`)
+				.then(results => results.data)
+				.catch(err => err);
+
+			const promise3 = axios.get(`/api/products/${id}/styles`)
+				.then(results => results.data)
+				.catch(err => err);
+
+			Promise.all([promise1, promise2, promise3])
+				.then((results) => {
+					return results;
+				})
+				.catch( err => {
+					console.log('error retrieving individual item info promise');
+			})});
+
+		Promise.all(allItemPromises)
+			.then( results => {
+				console.log(results, 'all item info promise');
+				setItemsList(results);
+			})
+			.catch( err => {
+				console.log('error retrieving all product info')
+			});
+	}, [])
 
 	//if current div is scrollable, display right button
 	useEffect( () => {
@@ -94,10 +134,10 @@ const Carousel = ({mode, list, setList}) => {
 				</StyledLeftBtn>
 				<CarouselTrack>
 					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID} list={list}>
-						{mode === 'related' ? null : <StyledCard item={'outfitAdd'} mode={mode} list={list} setList={setList}/>}
-						{list.map( item => {
+						{mode === 'related' ? null : <StyledCard item={'outfitAdd'} mode={mode} list={list} setList={setList} product={product}/>}
+						{itemsList.map( item => {
 							return (
-							<StyledCard item={item} mode={mode} list={list} setList={setList}/>
+							<StyledCard item={item} mode={mode} list={list} setList={setList} product={product}/>
 						)})}
 					</CarouselList>
 				</CarouselTrack>
