@@ -6,6 +6,7 @@ import TitleCatRev from './TitleCatRev.jsx';
 import ProductDetails from './ProductDetails.jsx';
 import StyleSection from './StyleSection.jsx';
 import Social from './Social.jsx';
+import whiteBackground from '/client/src/components/assets/images/whiteBackground.jpg';
 
  // Dummy data to use for now.
  import stylesForThisProduct from '/server/exampleData/styles.json';
@@ -46,7 +47,7 @@ const Overview = (props) => {
   };
   const [currentImage, setCurrentImage] = useState(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
   const [currentProduct, setCurrentProduct] = useState(props.product);
-  const [prodViewThumbnails, setProdViewThumbnails] =useState(makeProdViewThumbnailsList());
+  const [prodViewThumbnails, setProdViewThumbnails]=useState([whiteBackground, whiteBackground, whiteBackground]);
 
   // const [currentStyles, setCurrentStyles] = useState(stylesForThisProduct);
 
@@ -60,7 +61,7 @@ const Overview = (props) => {
   };
 
   useEffect (() => {
-    // Whenever someone clicks a style and handleStyleSelection fn is used, rerender the main image.
+    // Whenever someone clicks a style or view thumbnail, rerender the main image and style thumbnails.
     setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
     setProdViewThumbnails(makeProdViewThumbnailsList());
   }, [indexOfStyleOption, indexOfThisProdView]);
@@ -79,6 +80,7 @@ const Overview = (props) => {
           <TitleCatRev
             title={currentProduct.name}
             category={currentProduct.category}
+            data={props.reviewData}
           />
           <StyleSection
             stylesForThisProduct={stylesForThisProduct}

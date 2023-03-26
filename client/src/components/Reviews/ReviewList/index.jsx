@@ -19,7 +19,9 @@ const ReviewList = (props) => {
   const toggleMore = () => setMoreReviews((more) => (!more))
 
   return (
-  <ReviewListGridStyling>
+  <ReviewListGridStyling
+    id="ReviewList"
+  >
     <h2>User Reviews</h2>
     {props.reviews.results
     .slice(0, (moreReviews ? undefined : 2)) // this slice should do nothing if we want more reviews, and should slice to 2 reviews otherwise
