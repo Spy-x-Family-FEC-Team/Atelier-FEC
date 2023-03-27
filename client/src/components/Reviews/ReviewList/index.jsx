@@ -27,7 +27,7 @@ const ReviewList = (props) => {
     .slice(0, (moreReviews ? undefined : 2)) // this slice should do nothing if we want more reviews, and should slice to 2 reviews otherwise
     .map((rev) => <ReviewListItem key={rev.review_id} data={rev}/>) // turn those array items into react elements
     }
-    <button type="button" onClick={toggleMore}>{moreReviews ? "Less Reviews" : "More Reviews"}</button>
+    {props.reviews.results.length > 2 ? <button type="button" onClick={toggleMore}>{moreReviews ? "Less Reviews" : "More Reviews"}</button> : null }
   </ReviewListGridStyling>);
 }
 
