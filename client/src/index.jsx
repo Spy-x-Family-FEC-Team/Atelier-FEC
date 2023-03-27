@@ -29,39 +29,55 @@ background: lightgrey;
 
 
 const ItemPage = () => {
-  // const [product, updateProduct] = useState(null)
-  // const [reviews, updateReviews] = useState(null)
-  // const [reviewData, updateReviewData] = useState(null)
+  /**~~~~~Default Values are blanked or filled with placeholders in order to load in the skeleton before API response~~~~*/
+  const [product, updateProduct] = useState({name:""})
+  const [reviews, updateReviews] = useState({
+    "product": "40344",
+    "page": 0,
+    "count": 1000,
+    "results": []})
+  const [reviewData, updateReviewData] = useState({
+  "product_id": "None",
+  "ratings": {
+      "1": "0",
+      "2": "0",
+      "3": "0",
+      "4": "0",
+      "5": "0"
+  },
+  "recommended": {
+      "false": "0",
+      "true": "0"
+  },
+  "characteristics": {}
+})
 
-  // These are the axios requests that will eventually be used in the useState stuff above
-  // const _id = useParams()['id'];
-  // console.log(_id)
-  // axios.get(`/api/products/${_id}`)
-  //   .then((results) => {
-  //     console.log(results)})
-  // axios.get(`/api/reviews/${_id}`)
-  //   .then((results) => {
-  //     console.log(results)})
-  // axios.get(`/api/reviews/meta/${_id}`)
-  //   .then((results) => {
-  //     console.log(results)})=
+const _id = useParams()['id'];
 
+useEffect(() => {
+  console.log(_id)
+  axios.get(`/api/products/${_id}`)
+    .then((results) => {
+      console.log(results.data)
+      updateProduct(results.data)})
+  axios.get(`/api/reviews/${_id}`)
+    .then((results) => {
+      console.log(results.data)
+      updateReviews(results.data)})
+  axios.get(`/api/reviews/meta/${_id}`)
+    .then((results) => {
+      console.log(results.data)
+      updateReviewData(results.data)})
+},[])
 
   return(
   <>
-    <FoldWrapper>
-      <Overview
-        product={product}
-        reviewData={reviewData}
-      />
-    </FoldWrapper>
+    {/* <FoldWrapper>
+      <Overview product={product}/>
+    </FoldWrapper> */}
     <BelowFoldWrapper>
-      <Related product={product}/>
-      <Reviews
-        reviewData={reviewData}
-        reviews={reviews}
-        name={product.name}
-      />
+      {/* <Related /> */}
+      <Reviews reviewData={reviewData} reviews={reviews} product={product}/>
     </BelowFoldWrapper>
   </>)}
 
@@ -71,6 +87,7 @@ const App = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/items/:id" element={<ItemPage/>}/>
+      <Route path="/items*" element={<div>Use the format /items/item_id instead</div>}/>
     </Routes>
   </BrowserRouter>
 )
