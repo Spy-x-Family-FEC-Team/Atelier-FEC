@@ -76,7 +76,7 @@ useEffect(() => {
       <Overview product={product}/>
     </FoldWrapper> */}
     <BelowFoldWrapper>
-      {/* <Related /> */}
+      <Related />
       <Reviews reviewData={reviewData} reviews={reviews} product={product}/>
     </BelowFoldWrapper>
   </>)}
