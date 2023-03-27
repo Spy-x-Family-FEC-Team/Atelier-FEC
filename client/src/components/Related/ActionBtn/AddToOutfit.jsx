@@ -14,36 +14,27 @@ const AddOutfit = styled.button`
 
 const AddToOutfit = ({item, list, setList}) => {
 
-  const addToOutfit = (item, list) => {
+  const addToOutfit = () => {
 
     const outfits = list.slice();
-    outfits.push(outfit);
-    localForage.clear();
-    localForage.setItem('outfits', outfits)
-      .then( () => {
-        setList(outfits);
-      })
-      .catch( err => { console.log('error adding outfit', err)});
-  };
-
-  const rmvFromOutfit = (item) => {
-    const outfits = list.slice();
-    outfits.forEach( (prod, index) => {
-      if (prod[0].id === item[0].id) {
-        outfits.splice(index, 1);
-      }
+    console.log('outfits in addtoOutfit', outfits, );
+    const filteredOutfits = outfits.filter( prod => {
+      return prod[0][0].id === item[0].id;
     });
-    localForage.clear();
-    localForage.setItem('outfits', outfits)
-      .then( () => {
-        setList(outfits);
-      })
-      .catch( err => { console.log('error removing from outfit', err)});
+    if (!filteredOutfits.length) {
+      outfits.push(outfit);
+      localForage.clear();
+      localForage.setItem('outfits', outfits)
+        .then( () => {
+          setList(outfits);
+        })
+        .catch( err => { console.log('error adding outfit', err)});
+      }
   };
 
   return (
     <>
-      <AddOutfit onClick={() => {addToOutfit(item, list)}}>Add to Outfit</AddOutfit>
+      <AddOutfit onClick={addToOutfit}>Add to Outfit</AddOutfit>
     </>
   )
 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AddToOutfit from "../ActionBtn/AddToOutfit.jsx";
 import RmvFromOutfit from "../ActionBtn/RmvFromOutfit.jsx";
 import ActionBtn from "../ActionBtn/ActionBtn.jsx";
+import CompareItems from "../CompareWindow";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { solid, thin, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -75,11 +76,7 @@ const StyledCard = ({item, mode, list, setList, product}) => {
 
     <CardContainer>
       {/*if mode is related, display comparison button, otherwise display remove from outfit button*/}
-      {mode === 'related' ? (
-        <ActionBtn>
-          <FontAwesomeIcon icon={faStar} />
-        </ActionBtn>
-        ) : (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
+      {mode === 'related' ? (<CompareItems />) : (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
       {/*all cards product info format is the same*/}
       <ProductImage src={image} alt={'product image'}/>
       <ProductInfo>

@@ -10,15 +10,13 @@ const RmvFromOutfit = ({item, list, setList}) => {
 
   const rmvFromOutfit = () => {
     const outfits = list.slice();
-    outfits.forEach( (prod, index) => {
-      if (prod[0].id === item[0].id) {
-        outfits.splice(index, 1);
-      }
+    const filteredOutfits = outfits.filter( prod => {
+      return prod[0].id !== item[0].id;
     });
     localForage.clear();
-    localForage.setItem('outfits', outfits)
+    localForage.setItem('outfits', filteredOutfits)
       .then( () => {
-        setList(outfits);
+        setList(filteredOutfits);
       })
       .catch( err => { console.log('error removing from outfit', err)});
   };
