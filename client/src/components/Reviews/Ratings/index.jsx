@@ -55,7 +55,7 @@ const Ratings = ({data}) => {
       {Object.keys(data.characteristics).map((key) => (
         <div key={key}>{key}
           <EmptyBar>
-            <PercentBar percent={(props.data.characteristics[key].value*20)}/>
+            <PercentBar percent={(data.characteristics[key].value*20)}/>
           </EmptyBar>
         </div>))
       }

@@ -136,7 +136,7 @@ const WriteReview = (props) => {
 	/*~~~~~~The actual return~~~~~~*/
 	return(
 	<>
-		<WriteGridStyling>Hello from the Write a Review modal window!
+		<WriteGridStyling>
 			<button type="button" onClick={toggleModal}>Write Your Own Review</button>
 		</WriteGridStyling>
 		{modal ?

@@ -14,8 +14,8 @@ const Reviews = (props) => {
 	return(
 		<ThirdsGrid>
 			{props.reviewData ? <Ratings data={props.reviewData}/> : null}
-			{/* <ReviewList reviews={props.reviews}/>
-			<WriteReview data={props.reviewData} name={props.name}/> */}
+			<ReviewList reviews={props.reviews}/>
+			<WriteReview data={props.reviewData} product={props.product}/>
 		</ThirdsGrid>
 	)
 };

@@ -18,7 +18,7 @@ const getMeanRating = (ratingsObject) => {
   // get the mean rounded to one digit
   var meanRating = Math.round(sumOfRatings/numberOfRatings*10)/10
   // return 0 if division by 0 happened, otherwise return the mean.
-  return meanRating ? meanRating : 0;
+  return meanRating ? meanRating : " ";
 }
 
 export {getNumberOfRatings, getMeanRating}
