@@ -38,3 +38,25 @@ exports.getReviewsMeta = (req, res) => {
     res.sendStatus(500);
   })
 }
+
+exports.getRelated = (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.id}/related`, {headers:{Authorization:process.env.AUTH_KEY}}).then((results) => {
+    console.log(results.data)
+    console.log(`Successfully found product: ${req.params.id}`)
+    res.send(results.data)
+  }).catch((err) => {
+    console.log(`  Error encountered during request ${err.message}`);
+    res.sendStatus(500);
+  })
+}
+
+exports.getStyles = (req, res) => {
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${req.params.id}/styles`, {headers:{Authorization:process.env.AUTH_KEY}}).then((results) => {
+    console.log(results.data)
+    console.log(`Successfully found product: ${req.params.id}`)
+    res.send(results.data)
+  }).catch((err) => {
+    console.log(`  Error encountered during request ${err.message}`);
+    res.sendStatus(500);
+  })
+}

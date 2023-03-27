@@ -15,9 +15,12 @@ app.use('/items*', (req, res) => {
 })
 
 // route API requests paths here, we may want to break this out into its own file eventually.
-app.get('/api/products/:id', controllers.getProduct);
-app.get('/api/reviews/:id', controllers.getReviews);
-app.get('/api/reviews/meta/:id', controllers.getReviewsMeta);
+app.get('/api/products/:id', controllers.getProduct)
+app.get('/api/reviews/:id', controllers.getReviews)
+app.get('/api/reviews/meta/:id', controllers.getReviewsMeta)
+app.get('/api/products/:id/related', controllers.getRelated)
+app.get('/api/products/:id/styles', controllers.getStyles)
+
 
 // final fallback
 app.use(express.static(staticPath));
