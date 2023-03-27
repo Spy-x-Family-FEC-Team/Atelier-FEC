@@ -22,7 +22,7 @@ const CompareItems = ({item, list, setList}) => {
       </ActionBtn>
       {modal ?
         <OverlayWindow onBgClick={toggleModal}>
-
+          <h5>Comparing</h5>
         </OverlayWindow> : null}
     </>
   )
