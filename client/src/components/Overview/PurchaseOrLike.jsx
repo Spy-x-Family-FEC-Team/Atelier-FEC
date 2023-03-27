@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import AddToBag from './AddToBag.jsx';
 import Liked from './Liked.jsx';
@@ -53,25 +51,23 @@ const PurchaseOrLike = (props) => {
   const findSkuForCurrentStyleThisSize = () => {
     for (const sku in props.skusOfSelectedStyle) {
       if (props.skusOfSelectedStyle[sku].size === selectedSize) {
-        console.log("sku", sku);
         return sku;
       }
   }
   };
 
   const handleBagClick = () => {
-    // TODO: Change these to meaningful actions rather than console.logs.
     if (!selectedSize) {
+      // TODO: Make this a modal window instead of a console.log.
       console.log("Select a size.")
     } else {
-      // console.log(`You're buying ${selectedQuantity} of sku number ${findSkuForCurrentStyleThisSize()} which is size ${selectedSize}`);
       axios.post('/api/cart', {
-        product_id: 40344,
-        sku_id: 1394797,
-        count:3
+        product_id: props._id,
+        sku_id: findSkuForCurrentStyleThisSize(),
+        count: selectedQuantity
     })
       .then(()=> {
-        console.log("did it.")
+        console.log(`Your purchase of sku # ${findSkuForCurrentStyleThisSize()} has been successful.`)
       })
       .catch((err) => {
         console.log(err);
@@ -114,7 +110,7 @@ const PurchaseOrLike = (props) => {
         </select>
         <select
           onChange={(event) => {
-            setSelectedQuantity(event.target.value);
+            setSelectedQuantity(parseInt(event.target.value));
           }}
         >
           {selectedSize ?

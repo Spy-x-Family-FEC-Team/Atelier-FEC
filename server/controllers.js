@@ -62,8 +62,7 @@ exports.getStyles = (req, res) => {
 };
 
 exports.addToCart = (req, res) => {
-  console.log("------------------------Got to addToCart with this req.body: ", req.body);
-  // TODO: Finish building this.
+  // console.log("------------------------Got to addToCart with this req.body: ", req.body);
   axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart`, req.body,
   {
     headers:{
@@ -72,8 +71,8 @@ exports.addToCart = (req, res) => {
     }
   }
     )
-    .then((results) => {
-      console.log("Successful post to bag!", results);
+    .then(() => {
+      console.log("Successful post to bag!");
       res.sendStatus(201);
     })
     .catch ((err) => {

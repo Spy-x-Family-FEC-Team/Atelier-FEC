@@ -105,6 +105,7 @@ const Overview = (props) => {
             handleStyleSelection={handleStyleSelection}
             indexOfThisProdView={indexOfThisProdView}
             indexOfStyleOption={indexOfStyleOption}
+            _id={_id}
           />
           <Social />
         </SelectorSectionWrapper>
