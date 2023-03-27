@@ -1,5 +1,7 @@
 import React from "React";
 import styled from "styled-components";
+import localForage from "localforage";
+import outfit from '/client/src/components/assets/outfit.jsx'
 
 const AddOutfit = styled.button`
   background-color: grey;
@@ -10,31 +12,41 @@ const AddOutfit = styled.button`
   transform: translateX(50%);
 `;
 
-const addToOutfit = (item, list) => {
+const AddToOutfit = ({item, list, setList}) => {
 
-  const outfits = list.slice();
-  outfits.push(outfit);
-  localForage.clear();
-  localForage.setItem('outfits', outfits)
-    .then( () => {
-      setList(outfits);
-    })
-    .catch( err => { console.log('error adding outfit', err)});
-};
+  const addToOutfit = (item, list) => {
 
-const rmvFromOutfit = (item) => {
-  const outfits = list.slice();
-  outfits.forEach( (prod, index) => {
-    if (prod[0].id === item[0].id) {
-      outfits.splice(index, 1);
-    }
-  });
-  localForage.clear();
-  localForage.setItem('outfits', outfits)
-    .then( () => {
-      setList(outfits);
-    })
-    .catch( err => { console.log('error removing from outfit', err)});
-};
+    const outfits = list.slice();
+    outfits.push(outfit);
+    localForage.clear();
+    localForage.setItem('outfits', outfits)
+      .then( () => {
+        setList(outfits);
+      })
+      .catch( err => { console.log('error adding outfit', err)});
+  };
 
-export default addToOutfit;
+  const rmvFromOutfit = (item) => {
+    const outfits = list.slice();
+    outfits.forEach( (prod, index) => {
+      if (prod[0].id === item[0].id) {
+        outfits.splice(index, 1);
+      }
+    });
+    localForage.clear();
+    localForage.setItem('outfits', outfits)
+      .then( () => {
+        setList(outfits);
+      })
+      .catch( err => { console.log('error removing from outfit', err)});
+  };
+
+  return (
+    <>
+      <AddOutfit onClick={() => {addToOutfit(item, list)}}>Add to Outfit</AddOutfit>
+    </>
+  )
+
+}
+
+export default AddToOutfit;

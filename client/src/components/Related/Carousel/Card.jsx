@@ -1,6 +1,8 @@
 import React from "React";
 import styled from "styled-components";
 import AddToOutfit from "../ActionBtn/AddToOutfit.jsx";
+import RmvFromOutfit from "../ActionBtn/RmvFromOutfit.jsx";
+import ActionBtn from "../ActionBtn/ActionBtn.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { solid, thin, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -19,27 +21,6 @@ const CardContainer = styled.div`
   display: grid;
   grid-template-rows: 200px 1fr;
   position: relative;
-`;
-
-const AddOutfit = styled.button`
-  background-color: grey;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  transform: translateY(-50%);
-  transform: translateX(50%);
-`;
-
-const ActionBtn = styled.div`
-  height: 40px;
-  width: 40px;
-  padding: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const ProductImage = styled.img`
@@ -70,38 +51,11 @@ const Stars = styled.div`
 `;
 const StyledCard = ({item, mode, list, setList, product}) => {
 
-  const addToOutfit = (item, list) => {
-
-    const outfits = list.slice();
-    outfits.push(outfit);
-    localForage.clear();
-    localForage.setItem('outfits', outfits)
-      .then( () => {
-        setList(outfits);
-      })
-      .catch( err => { console.log('error adding outfit', err)});
-  };
-
-  const rmvFromOutfit = (item) => {
-    const outfits = list.slice();
-    outfits.forEach( (prod, index) => {
-      if (prod[0].id === item[0].id) {
-        outfits.splice(index, 1);
-      }
-    });
-    localForage.clear();
-    localForage.setItem('outfits', outfits)
-      .then( () => {
-        setList(outfits);
-      })
-      .catch( err => { console.log('error removing from outfit', err)});
-  };
-
   //display add button as first card if on outfit carousel
   if (item === 'outfitAdd') {
     return (
       <CardContainer>
-        <AddOutfit onClick={() => {addToOutfit(item, list)}}>Add to Outfit</AddOutfit>
+        <AddToOutfit item={item} list={list} setList={setList}/>
       </CardContainer>
     )
   }
@@ -125,10 +79,7 @@ const StyledCard = ({item, mode, list, setList, product}) => {
         <ActionBtn>
           <FontAwesomeIcon icon={faStar} />
         </ActionBtn>
-        ) : (
-        <ActionBtn onClick={() => {rmvFromOutfit(item)}}>
-          <FontAwesomeIcon icon={solid("circle-xmark")} />
-        </ActionBtn>)}
+        ) : (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
       {/*all cards product info format is the same*/}
       <ProductImage src={image} alt={'product image'}/>
       <ProductInfo>
