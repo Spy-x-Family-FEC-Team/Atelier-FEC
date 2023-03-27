@@ -66,15 +66,12 @@ const Related = ({product}) => {
 							// 	console.log('error retrieving individual item info promise');
 						});
 
-					Promise.all(allItemPromises)
-						.then( results => {
-							console.log(results, 'all item info promise');
-							setRelated(results);
-							setStatus(true);
-						})
-						.catch( err => {
-							console.log('error retrieving all product info')
-						});
+					return Promise.all(allItemPromises)
+				})
+				.then( results => {
+					console.log(results, 'all item info promise');
+					setRelated(results);
+					setStatus(true);
 				})
 				.catch(err => {
 					console.log('error retrieving related items', err);
