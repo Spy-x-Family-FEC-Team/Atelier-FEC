@@ -57,18 +57,18 @@ const ItemPage = () => {
 const _id = useParams()['id'];
 
 useEffect(() => {
-  console.log(_id)
+  // console.log(_id)
   axios.get(`/api/products/${_id}`)
     .then((results) => {
-      console.log(`----------------------get request for /api/products/${_id}  :  `, results.data)
+      // console.log(`----------------------get request for /api/products/${_id}  :  `, results.data)
       updateProduct(results.data)})
   axios.get(`/api/reviews/${_id}`)
     .then((results) => {
-      console.log(results.data)
+      // console.log(results.data)
       updateReviews(results.data)})
   axios.get(`/api/reviews/meta/${_id}`)
     .then((results) => {
-      console.log(results.data)
+      // console.log(results.data)
       updateReviewData(results.data)})
 },[])
 
