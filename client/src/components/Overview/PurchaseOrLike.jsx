@@ -1,4 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import AddToBag from './AddToBag.jsx';
 import Liked from './Liked.jsx';
@@ -61,7 +64,18 @@ const PurchaseOrLike = (props) => {
     if (!selectedSize) {
       console.log("Select a size.")
     } else {
-      console.log(`You're buying ${selectedQuantity} of sku number ${findSkuForCurrentStyleThisSize()} which is size ${selectedSize}`);
+      // console.log(`You're buying ${selectedQuantity} of sku number ${findSkuForCurrentStyleThisSize()} which is size ${selectedSize}`);
+      axios.post('/api/cart', {
+        product_id: 40344,
+        sku_id: 1394797,
+        count:3
+    })
+      .then(()=> {
+        console.log("did it.")
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     }
   };
 
