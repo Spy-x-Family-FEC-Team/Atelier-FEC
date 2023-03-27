@@ -13,10 +13,10 @@ const TitleCatRev = (props) => {
   const [numberOfRatings, setNumberOfRatings] = useState(null);
   const [meanRating, setMeanRating] = useState(null);
 
-  // useEffect (() => {
-  //   setNumberOfRatings(getNumberOfRatings(props.data.ratings));
-  //   setMeanRatings(getMeanRating(props.data.ratings));
-  // }, [props.data])
+  useEffect (() => {
+    setNumberOfRatings(getNumberOfRatings(props.data.ratings));
+    setMeanRating(getMeanRating(props.data.ratings));
+  }, [props.data])
 
   return(
     <div>
