@@ -1,0 +1,359 @@
+{
+  "product_id": "1",
+  "results": [
+    {
+        "style_id": 1,
+        "name": "",
+        "original_price": "",
+        "sale_price": null,
+        "default?": true,
+        "photos": [
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            }
+        ],
+        "skus": {
+            "sampleSku1": {
+                "quantity": 0,
+                "size": "XS"
+            },
+            "sampleSku2": {
+                "quantity": 0,
+                "size": "S"
+            },
+            "sampleSku3": {
+                "quantity": 0,
+                "size": "M"
+            },
+            "sampleSku4": {
+                "quantity": 0,
+                "size": "L"
+            },
+            "sampleSku5": {
+                "quantity": 0,
+                "size": "XL"
+            },
+            "sampleSku6": {
+                "quantity": 0,
+                "size": "XXL"
+            }
+        }
+    },
+    {
+    "style_id": 2,
+    "name": "",
+    "original_price": "",
+    "sale_price": null,
+    "default?": true,
+    "photos": [
+        {
+            "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+            "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+        },
+        {
+            "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+            "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+        },
+        {
+            "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+            "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+        },
+        {
+            "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+            "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+        },
+        {
+            "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+            "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+        },
+        {
+            "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+            "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+        }
+    ],
+    "skus": {
+        "sampleSku1": {
+            "quantity": 0,
+            "size": "XS"
+        },
+        "sampleSku2": {
+            "quantity": 0,
+            "size": "S"
+        },
+        "sampleSku3": {
+            "quantity": 0,
+            "size": "M"
+        },
+        "sampleSku4": {
+            "quantity": 0,
+            "size": "L"
+        },
+        "sampleSku5": {
+            "quantity": 0,
+            "size": "XL"
+        },
+        "sampleSku6": {
+            "quantity": 0,
+            "size": "XXL"
+        }
+    }
+    },
+    {
+        "style_id": 3,
+        "name": "",
+        "original_price": "",
+        "sale_price": null,
+        "default?": true,
+        "photos": [
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            }
+        ],
+        "skus": {
+            "sampleSku1": {
+                "quantity": 0,
+                "size": "XS"
+            },
+            "sampleSku2": {
+                "quantity": 0,
+                "size": "S"
+            },
+            "sampleSku3": {
+                "quantity": 0,
+                "size": "M"
+            },
+            "sampleSku4": {
+                "quantity": 0,
+                "size": "L"
+            },
+            "sampleSku5": {
+                "quantity": 0,
+                "size": "XL"
+            },
+            "sampleSku6": {
+                "quantity": 0,
+                "size": "XXL"
+            }
+        }
+    },
+    {
+        "style_id": 4,
+        "name": "",
+        "original_price": "",
+        "sale_price": null,
+        "default?": true,
+        "photos": [
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            }
+        ],
+        "skus": {
+            "sampleSku1": {
+                "quantity": 0,
+                "size": "XS"
+            },
+            "sampleSku2": {
+                "quantity": 0,
+                "size": "S"
+            },
+            "sampleSku3": {
+                "quantity": 0,
+                "size": "M"
+            },
+            "sampleSku4": {
+                "quantity": 0,
+                "size": "L"
+            },
+            "sampleSku5": {
+                "quantity": 0,
+                "size": "XL"
+            },
+            "sampleSku6": {
+                "quantity": 0,
+                "size": "XXL"
+            }
+        }
+    },
+    {
+        "style_id": 5,
+        "name": "",
+        "original_price": "",
+        "sale_price": null,
+        "default?": true,
+        "photos": [
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            }
+        ],
+        "skus": {
+            "sampleSku1": {
+                "quantity": 0,
+                "size": "XS"
+            },
+            "sampleSku2": {
+                "quantity": 0,
+                "size": "S"
+            },
+            "sampleSku3": {
+                "quantity": 0,
+                "size": "M"
+            },
+            "sampleSku4": {
+                "quantity": 0,
+                "size": "L"
+            },
+            "sampleSku5": {
+                "quantity": 0,
+                "size": "XL"
+            },
+            "sampleSku6": {
+                "quantity": 0,
+                "size": "XXL"
+            }
+        }
+    },
+    {
+        "style_id": 6,
+        "name": "",
+        "original_price": "",
+        "sale_price": null,
+        "default?": true,
+        "photos": [
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            },
+            {
+                "thumbnail_url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg",
+                "url": "/d8c4f6afa555886af4f61b59ab09fd83.jpg"
+            }
+        ],
+        "skus": {
+            "sampleSku1": {
+                "quantity": 0,
+                "size": "XS"
+            },
+            "sampleSku2": {
+                "quantity": 0,
+                "size": "S"
+            },
+            "sampleSku3": {
+                "quantity": 0,
+                "size": "M"
+            },
+            "sampleSku4": {
+                "quantity": 0,
+                "size": "L"
+            },
+            "sampleSku5": {
+                "quantity": 0,
+                "size": "XL"
+            },
+            "sampleSku6": {
+                "quantity": 0,
+                "size": "XXL"
+            }
+        }
+    }
+  ]
+}
