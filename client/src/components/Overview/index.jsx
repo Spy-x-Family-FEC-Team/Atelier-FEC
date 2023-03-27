@@ -101,8 +101,7 @@ const Overview = (props) => {
             data={props.reviewData}
           />
           <StyleSection
-            stylesForThisProduct={defaultStyles
-              /* change this back to: stylesForThisProduct*/}
+            stylesForThisProduct={currentStyles}
             handleStyleSelection={handleStyleSelection}
             indexOfThisProdView={indexOfThisProdView}
             indexOfStyleOption={indexOfStyleOption}
