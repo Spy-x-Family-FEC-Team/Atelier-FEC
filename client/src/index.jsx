@@ -62,14 +62,14 @@ useEffect(() => {
     .then((results) => {
       console.log(`----------------------get request for /api/products/${_id}  :  `, results.data)
       updateProduct(results.data)})
-  // axios.get(`/api/reviews/${_id}`)
-  //   .then((results) => {
-  //     console.log(results.data)
-  //     updateReviews(results.data)})
-  // axios.get(`/api/reviews/meta/${_id}`)
-  //   .then((results) => {
-  //     console.log(results.data)
-  //     updateReviewData(results.data)})
+  axios.get(`/api/reviews/${_id}`)
+    .then((results) => {
+      console.log(results.data)
+      updateReviews(results.data)})
+  axios.get(`/api/reviews/meta/${_id}`)
+    .then((results) => {
+      console.log(results.data)
+      updateReviewData(results.data)})
 },[])
 
   return(
@@ -80,10 +80,10 @@ useEffect(() => {
         reviewData={reviewData}
       />
     </FoldWrapper>
-    {/* <BelowFoldWrapper>
+    <BelowFoldWrapper>
       <Related />
       <Reviews reviewData={reviewData} reviews={reviews} product={product}/>
-    </BelowFoldWrapper> */}
+    </BelowFoldWrapper>
   </>)}
 
 

@@ -1,5 +1,8 @@
 
 import React, {useState, useEffect} from 'react';
+import ReactDOM from "react-dom";
+import axios from 'axios';
+import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import ImageGallery from './ImageGallery.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
@@ -37,8 +40,7 @@ const ProductDetailsWrapper = styled.section`
 `;
 
 const Overview = (props) => {
-  // Currently, useState is probably unnecessary, but I figure it might be needed later.
-  // Using dummy data for now.
+  const _id = useParams()['id'];
   const [indexOfStyleOption, setIndexOfStyleOption] = useState(0);
   const [indexOfThisProdView, setIndexOfThisProdView] = useState(0);
   const [currentStyles, setCurrentStyles] = useState(defaultStyles);
@@ -67,13 +69,20 @@ const Overview = (props) => {
     // Whenever someone clicks a style or view thumbnail, rerender the main image and style thumbnails.
     setCurrentImage(currentStyles.results[indexOfStyleOption].photos[indexOfThisProdView].url);
     setProdViewThumbnails(makeProdViewThumbnailsList());
-  }, [indexOfStyleOption, indexOfThisProdView]);
+  }, [indexOfStyleOption, indexOfThisProdView, currentStyles]);
 
   useEffect (() => {
     // Get product info on page load.
     setCurrentProduct(props.product);
     setCurrentImage(currentStyles.results[indexOfStyleOption].photos[indexOfThisProdView].url);
   }, [props.product]);
+
+  useEffect (() => {
+    axios.get(`/api/products/${_id}/styles`)
+      .then((results) => {
+        setCurrentStyles(results.data);
+      })
+  },[]);
 
 
   return(
