@@ -41,7 +41,7 @@ const CarouselList = styled.div`
 	scroll-snap-align: start;
 `
 
-const Carousel = ({product, mode, list, setList}) => {
+const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 
 	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
@@ -98,10 +98,10 @@ const Carousel = ({product, mode, list, setList}) => {
 				<CarouselTrack>
 					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID} list={list}>
 						{mode === 'related' ? null : <StyledCard item={'outfitAdd'} mode={mode} list={list} setList={setList} product={product}/>}
-						{list.map( item => {
+						{status ? list.map( item => {
 							return (
 							<StyledCard item={item} mode={mode} list={list} setList={setList} product={product}/>
-						)})}
+						)}) : null}
 					</CarouselList>
 				</CarouselTrack>
 				<StyledRightBtn onClick={scrollRight}  display={displayRight}>

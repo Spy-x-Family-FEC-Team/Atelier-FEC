@@ -44,20 +44,7 @@ const ItemPage = () => {
   //     console.log(results)})
   // axios.get(`/api/reviews/meta/${_id}`)
   //   .then((results) => {
-  //     console.log(results)})
-
-  // get related items id array
-  const [related, setRelated] = useState([]);
-  useEffect( () => {
-    const id = 40344;
-    axios.get(`/api/products/${id}/related`)
-			.then((results) => {
-				setRelated(results.data);
-			console.log(results.data, 'related results after retrieving promise')})
-			.catch(err => {
-				console.log('error retrieving related items', err);
-			});
-  }, [])
+  //     console.log(results)})=
 
 
   return(
@@ -69,7 +56,7 @@ const ItemPage = () => {
       />
     </FoldWrapper>
     <BelowFoldWrapper>
-      <Related product={product} related={related}/>
+      <Related product={product}/>
       <Reviews
         reviewData={reviewData}
         reviews={reviews}

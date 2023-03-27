@@ -19,6 +19,7 @@ app.get('/api/products/:id', controllers.getProduct)
 app.get('/api/reviews/:id', controllers.getReviews)
 app.get('/api/reviews/meta/:id', controllers.getReviewsMeta)
 app.get('/api/products/:id/related', controllers.getRelated)
+app.get('/api/products/:id/styles', controllers.getStyles)
 
 
 // final fallback
