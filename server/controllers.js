@@ -26,7 +26,7 @@ exports.getReviews = (req, res) => {
 }
 
 exports.getReviewsMeta = (req, res) => {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${req.params.id}`,
     {headers:{Authorization:process.env.AUTH_KEY}}
   ).then((results) => {
@@ -80,4 +80,15 @@ exports.addToCart = (req, res) => {
       console.log("Nope!")
       res.sendStatus(500);
     })
+}
+
+exports.postReview = (req, res) => {
+  console.log(req.body)
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews`, req.body ,{headers:{Authorization:process.env.AUTH_KEY}}).then((results) => {
+    console.log(`Successfully sent review.`)
+    res.sendStatus(201);
+  }).catch((err) => {
+    console.log(`  Error encountered during request ${err.message}`);
+    res.sendStatus(500);
+  })
 }

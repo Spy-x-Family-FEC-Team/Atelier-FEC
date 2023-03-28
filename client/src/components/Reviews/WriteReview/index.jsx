@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import axios from "axios";
 import styled from "styled-components";
 import OverlayWindow from "/client/src/components/assets/OverlayWindow.jsx";
 import {Star, EmptyStar} from "/client/src/components/assets/StarRating.jsx";
@@ -11,8 +12,7 @@ const WriteGridStyling = styled.div`
 	grid-row-start: 2;
 	grid-row-end: 3;
 	max-height: 80vh;
-	overflow-y: overlay;
-	overflow-x: hidden;
+	overflow-y: scroll;
 	overflow-wrap: break-word;
 `;
 
@@ -99,8 +99,8 @@ const WriteReview = (props) => {
 	const toggleModal = () => {setModal((value) => (!value))}
 	const [form, setForm] = useState(
 		{
-			starRating: 0,
-			recommended: null,
+			rating: 0,
+			recommend: null,
 			characteristics: {},
 			summary: "",
 			body: "",
@@ -113,7 +113,7 @@ const WriteReview = (props) => {
 	const changeFormWithObject = (obj) => {setForm((originalForm) => ({...originalForm, ...obj}))}
 
 	const setStarRating = (val) => (
-		changeFormWithObject({starRating:val})
+		changeFormWithObject({rating:val})
 	)
 	const handleRadioButton = (event, value) => {changeFormWithObject({[event.target.name]:value})};
 
@@ -133,6 +133,40 @@ const WriteReview = (props) => {
 
 	const handleInputChange = (event) => {changeFormWithObject({[event.target.name]:event.target.value})}
 
+
+	const handleFormSubmit = (event) => {
+		event.preventDefault();
+		// submit the form
+		axios.post(`/api/reviews`, {
+			"product_id": props.product.id,
+			"rating": form.rating,
+			"summary": form.summary,
+			"body": form.body,
+			"recommend": form.recommend,
+			"name": form.nickname,
+			"email": form.email,
+			"photos": [],
+			"characteristics": {}
+		}).then((results) => {
+			// blank the form
+			setForm({
+				rating: 0,
+				recommend: null,
+				characteristics: {},
+				summary: "",
+				body: "",
+				nickname: "",
+				email: "",
+			})
+			setModal(false)
+			props.refresh()
+			// reload relevant data
+		}).catch((err) => {
+			console.log(err)
+		})
+		// use the callback that the
+		//
+	}
 	/*~~~~~~The actual return~~~~~~*/
 	return(
 	<>
@@ -143,19 +177,19 @@ const WriteReview = (props) => {
 		<OverlayWindow onBgClick={toggleModal}>
 			<div>Write your review </div>
 			<div>About the {props.product.name}</div>
-			<form>
+			<form onSubmit={handleFormSubmit}>
 				<QuestionLabel>Overall Rating*
 					{[...Array(5)].map((e, i) => (
-						<StarRadio star={i+1<=form.starRating ? <Star/> : <EmptyStar/>} key={i+1} click={setStarRating.bind(this, i+1)}/>
+						<StarRadio star={i+1<=form.rating ? <Star/> : <EmptyStar/>} key={i+1} click={setStarRating.bind(this, i+1)}/>
 					))}
 					{[null, "Poor", "Fair", "Average", "Good", "Great" ][form.starRating]}
 				</QuestionLabel>
 				<QuestionLabel>Do you recommend this product?*
 					<label>Yes
-						<input type="radio" name="recommended" value="true" checked={form.recommended === true} onChange={radioBool}/>
+						<input type="radio" name="recommend" value="true" checked={form.recommend === true} onChange={radioBool}/>
 					</label>
 					<label>No
-						<input type="radio" name="recommended" value="false" checked={form.recommended === false} onChange={radioBool}/>
+						<input type="radio" name="recommend" value="false" checked={form.recommend === false} onChange={radioBool}/>
 					</label>
 				</QuestionLabel>
 				<QuestionLabel>Characteristics*:
@@ -193,6 +227,7 @@ const WriteReview = (props) => {
             onChange={handleInputChange}
 
           />
+					<p>{form.body.length < 60 ? `Minimum required characters left: ${60-form.body.length}`:  `Minimum reached`}</p>
 				</QuestionLabel>
 				<QuestionLabel>Photos:
 					<input/>
@@ -219,6 +254,7 @@ const WriteReview = (props) => {
             onChange={handleInputChange}
           />
 				</QuestionLabel>
+				< input type="submit" value="Submit" />
 			</form>
 		</OverlayWindow>
 		: null}

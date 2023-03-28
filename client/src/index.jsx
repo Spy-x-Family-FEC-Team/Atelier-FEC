@@ -19,13 +19,13 @@ import defaultProduct from '/server/exampleData/defaultProduct.json';
 
 const FoldWrapper = styled.section`
 margin: auto;
-width: 90%;
+width: 90vw;
 background: papayawhip;
 `;
 
 const BelowFoldWrapper = styled.section`
 margin: auto;
-width: 80%;
+width: 80vw;
 background: lightgrey;
 `;
 
@@ -39,22 +39,22 @@ const ItemPage = () => {
     "count": 1000,
     "results": []})
   const [reviewData, updateReviewData] = useState({
-  "product_id": "None",
-  "ratings": {
-      "1": "0",
-      "2": "0",
-      "3": "0",
-      "4": "0",
-      "5": "0"
-  },
-  "recommended": {
-      "false": "0",
-      "true": "0"
-  },
-  "characteristics": {}
-})
+    "product_id": "None",
+    "ratings": {
+        "1": "0",
+        "2": "0",
+        "3": "0",
+        "4": "0",
+        "5": "0"
+    },
+    "recommended": {
+        "false": "0",
+        "true": "0"
+    },
+    "characteristics": {}
+  })
 
-const _id = useParams()['id'];
+  const _id = useParams()['id'];
 
 useEffect(() => {
   // console.log(_id)
@@ -82,9 +82,15 @@ useEffect(() => {
     </FoldWrapper>
     <BelowFoldWrapper>
       <Related />
-      <Reviews reviewData={reviewData} reviews={reviews} product={product}/>
+      <Reviews
+        reviewData={reviewData}
+        reviews={reviews}
+        product={product}
+        refresh={refreshProducts}
+        />
     </BelowFoldWrapper>
-  </>)}
+  </>)
+}
 
 
 

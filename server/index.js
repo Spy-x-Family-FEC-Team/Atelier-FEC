@@ -22,6 +22,7 @@ app.get('/api/reviews/meta/:id', controllers.getReviewsMeta);
 app.get('/api/products/:id/related', controllers.getRelated);
 app.get('/api/products/:id/styles', controllers.getStyles);
 app.post('/api/cart', controllers.addToCart);
+app.post('/api/reviews', controllers.postReview)
 
 
 // final fallback

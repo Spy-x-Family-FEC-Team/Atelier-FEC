@@ -27,6 +27,7 @@ right: 0;
 bottom: 0;
 background-color: white;
 z-index: 20;
+overflow-y: scroll;
 `;
 
 const OverlayWindow = ({children, onBgClick}) => (
