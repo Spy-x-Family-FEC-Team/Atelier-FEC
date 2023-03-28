@@ -25,6 +25,7 @@ const StyledMainImageWrapper = styled.section`
 const StyledMainImage = styled.img`
   max-height: 70vh;
   max-width: 100%;
+  object-position: 50% 50%;
   z-axis:1;
 `;
 
