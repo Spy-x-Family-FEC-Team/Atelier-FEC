@@ -1,5 +1,8 @@
 
 import React, {useState, useEffect} from 'react';
+import ReactDOM from "react-dom";
+import axios from 'axios';
+import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import ImageGallery from './ImageGallery.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
@@ -37,24 +40,22 @@ const ProductDetailsWrapper = styled.section`
 `;
 
 const Overview = (props) => {
-  // Currently, useState is probably unnecessary, but I figure it might be needed later.
-  // Using dummy data for now.
+  const _id = useParams()['id'];
   const [indexOfStyleOption, setIndexOfStyleOption] = useState(0);
   const [indexOfThisProdView, setIndexOfThisProdView] = useState(0);
-  // helper function
-  const makeProdViewThumbnailsList = () => {
-    var thumbnails = [];
-    stylesForThisProduct.results[indexOfStyleOption].photos.forEach((photo) => {
-      thumbnails.push(photo.thumbnail_url);
-    })
-    return thumbnails;
-  };
+  const [currentStyles, setCurrentStyles] = useState(defaultStyles);
   const [currentImage, setCurrentImage] = useState(whiteBackground);
   const [currentProduct, setCurrentProduct] = useState(defaultProduct);
   const [prodViewThumbnails, setProdViewThumbnails]=useState([whiteBackground, whiteBackground, whiteBackground]);
 
-  // const [currentStyles, setCurrentStyles] = useState(stylesForThisProduct);
-
+  // helper function
+  const makeProdViewThumbnailsList = () => {
+    var thumbnails = [];
+    currentStyles.results[indexOfStyleOption].photos.forEach((photo) => {
+      thumbnails.push(photo.thumbnail_url);
+    })
+    return thumbnails;
+  };
 
   const handleStyleSelection = (index) => {
     setIndexOfStyleOption(index);
@@ -64,17 +65,24 @@ const Overview = (props) => {
     setIndexOfThisProdView(index);
   };
 
-  // useEffect (() => {
-  //   // Whenever someone clicks a style or view thumbnail, rerender the main image and style thumbnails.
-  //   setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
-  //   setProdViewThumbnails(makeProdViewThumbnailsList());
-  // }, [indexOfStyleOption, indexOfThisProdView]);
+  useEffect (() => {
+    // Whenever someone clicks a style or view thumbnail, rerender the main image and style thumbnails.
+    setCurrentImage(currentStyles.results[indexOfStyleOption].photos[indexOfThisProdView].url);
+    setProdViewThumbnails(makeProdViewThumbnailsList());
+  }, [indexOfStyleOption, indexOfThisProdView, currentStyles]);
 
-  // useEffect (() => {
-  //   // Get product info on page load.
-  //   setCurrentProduct(props.product);
-  //   setCurrentImage(stylesForThisProduct.results[indexOfStyleOption].photos[indexOfThisProdView].url);
-  // }, [props.product]);
+  useEffect (() => {
+    // Get product info on page load.
+    setCurrentProduct(props.product);
+    setCurrentImage(currentStyles.results[indexOfStyleOption].photos[indexOfThisProdView].url);
+  }, [props.product]);
+
+  useEffect (() => {
+    axios.get(`/api/products/${_id}/styles`)
+      .then((results) => {
+        setCurrentStyles(results.data);
+      })
+  },[]);
 
 
   return(
@@ -93,11 +101,11 @@ const Overview = (props) => {
             data={props.reviewData}
           />
           <StyleSection
-            stylesForThisProduct={defaultStyles
-              /* change this back to: stylesForThisProduct*/}
+            stylesForThisProduct={currentStyles}
             handleStyleSelection={handleStyleSelection}
             indexOfThisProdView={indexOfThisProdView}
             indexOfStyleOption={indexOfStyleOption}
+            _id={_id}
           />
           <Social />
         </SelectorSectionWrapper>

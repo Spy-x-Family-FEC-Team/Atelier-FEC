@@ -10,9 +10,11 @@ import Reviews from "/client/src/components/Reviews";
 import axios from 'axios';
 
 // Dummy data access. Figured out we needed to change the filetype to .json. Feel free to add the others if you want to use them. COMMENT THIS OUT WHEN YOU BEGIN TESTING NETWORKED STUFF
-// import product from '/server/exampleData/product.json';
-// import reviews from '/server/exampleData/reviews.json';
+import exampleProduct from '/server/exampleData/product.json';
+import reviews from '/server/exampleData/reviews.json';
 // import reviewData from '/server/exampleData/reviewData.json';
+
+import defaultProduct from '/server/exampleData/defaultProduct.json';
 
 
 const FoldWrapper = styled.section`
@@ -30,7 +32,7 @@ background: lightgrey;
 
 const ItemPage = () => {
   /**~~~~~Default Values are blanked or filled with placeholders in order to load in the skeleton before API response~~~~*/
-  const [product, updateProduct] = useState({name:""})
+  const [product, updateProduct] = useState(defaultProduct)
   const [reviews, updateReviews] = useState({
     "product": "40344",
     "page": 0,
@@ -55,26 +57,29 @@ const ItemPage = () => {
 const _id = useParams()['id'];
 
 useEffect(() => {
-  console.log(_id)
+  // console.log(_id)
   axios.get(`/api/products/${_id}`)
     .then((results) => {
-      console.log(results.data)
+      // console.log(`----------------------get request for /api/products/${_id}  :  `, results.data)
       updateProduct(results.data)})
   axios.get(`/api/reviews/${_id}`)
     .then((results) => {
-      console.log(results.data)
+      // console.log(results.data)
       updateReviews(results.data)})
   axios.get(`/api/reviews/meta/${_id}`)
     .then((results) => {
-      console.log(results.data)
+      // console.log(results.data)
       updateReviewData(results.data)})
 },[])
 
   return(
   <>
-    {/* <FoldWrapper>
-      <Overview product={product}/>
-    </FoldWrapper> */}
+    <FoldWrapper>
+      <Overview
+        product={product}
+        reviewData={reviewData}
+      />
+    </FoldWrapper>
     <BelowFoldWrapper>
       <Related product={product}/>
       <Reviews reviewData={reviewData} reviews={reviews} product={product}/>

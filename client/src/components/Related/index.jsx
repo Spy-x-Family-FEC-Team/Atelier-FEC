@@ -22,38 +22,38 @@ const Related = ({product}) => {
 				} else {
 					setOutfit(data);
 				}
-				console.log('outfit', outfit);
+				// console.log('outfit', outfit);
 			})
 			.catch(err => {
-				console.log('error retrieving outfit', err);
+				// console.log('error retrieving outfit', err);
 			});
 
 		// get related items id array then get related prodcuts
 			const id = 40344;
 			axios.get(`/api/products/${id}/related`)
 				.then((results) => {
-					console.log(results.data, 'related results after retrieving promise')
+					// console.log(results.data, 'related results after retrieving promise')
 					const allItemPromises = results.data.map( item => {
-						console.log('item inside carousel promise', item);
+						// console.log('item inside carousel promise', item);
 						const id = item;
 
 						const promise1 = axios.get(`/api/products/${id}`)
 							.then((results) => {
-								console.log('related prod info from promise', results.data);
+								// console.log('related prod info from promise', results.data);
 								return results.data;
 							})
 							.catch(err => err);
 
 						const promise2 = axios.get(`/api/reviews/meta/${id}`)
 							.then((results) => {
-								console.log('review prod info from promise', results.data);
+								// console.log('review prod info from promise', results.data);
 								return results.data;
 							})
 							.catch(err => err);
 
 						const promise3 = axios.get(`/api/products/${id}/styles`)
 							.then((results) => {
-								console.log('styles prod info from promise', results.data);
+								// console.log('styles prod info from promise', results.data);
 								return results.data;
 							})
 							.catch(err => err);
@@ -63,16 +63,16 @@ const Related = ({product}) => {
 
 					Promise.all(allItemPromises)
 						.then( results => {
-							console.log(results, 'all item info promise');
+							// console.log(results, 'all item info promise');
 							setRelated(results);
 							setStatus(true);
 						})
 						.catch( err => {
-							console.log('error retrieving all product info')
+							// console.log('error retrieving all product info')
 						});
 				})
 				.catch(err => {
-					console.log('error retrieving related items', err);
+					// console.log('error retrieving related items', err);
 				})
 	}, []);
 

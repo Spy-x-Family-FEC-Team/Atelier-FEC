@@ -49,7 +49,7 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 	const carouselID = `Carousel-List-${mode}`
 
 	//get request for all item info
-	console.log('list inside carousel', list, mode);
+	// console.log('list inside carousel', list, mode);
 
 	//if current div is scrollable, display right button
 	useEffect( () => {

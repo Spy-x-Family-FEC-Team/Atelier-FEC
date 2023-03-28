@@ -40,6 +40,7 @@ const StyleSection = (props) => {
       <PurchaseOrLike
         stylesForThisProduct={props.stylesForThisProduct}
         skusOfSelectedStyle={props.stylesForThisProduct.results[props.indexOfStyleOption].skus}
+        _id={props._id}
       />
      </StyleSectionWrapper>
     </div>

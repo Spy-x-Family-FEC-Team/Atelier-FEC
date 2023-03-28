@@ -62,15 +62,15 @@ const StyledCard = ({item, mode, list, setList, product}) => {
   }
 
   //takes in item code, gets product info
-  console.log('card item', item);
+  // console.log('card item', item);
   //NEED TO CALCULATE RATING AND RENDER STARS; GET REQUEST FOR REVIEWS?
-  console.log('list inside card', list);
-  console.log('itemlength', item.length);
+  // console.log('list inside card', list);
+  // console.log('itemlength', item.length);
   //example product upon first load
   const merch = item.length ? item[0] : outfit[0];
   // const image = productStyles.results[0].photos[0].url
   const image = item.length ? item[2].results[0].photos[0].url : whiteBackground;
-  console.log('image url', image);
+  // console.log('image url', image);
 
   return (
 
