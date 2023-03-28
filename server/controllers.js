@@ -6,13 +6,13 @@ exports.getProduct = (req, res) => {
     console.log(`Successfully found product: ${req.params.id}`)
     res.send(results.data)
   }).catch((err) => {
-    console.log(`  Error encountered during request ${err.message}`);
+    // console.log(`  Error encountered during request ${err.message}`);
     res.sendStatus(500);
   })
 }
 
 exports.getReviews = (req, res) => {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${req.params.id}&count=1000`,
     {headers:{Authorization:process.env.AUTH_KEY}}
   ).then((results) => {
@@ -20,7 +20,7 @@ exports.getReviews = (req, res) => {
     console.log(`Successfully found reviews for product: ${req.params.id}`)
     res.send(results.data)
   }).catch((err) => {
-    console.log(`  Error encountered during request ${err.message}`);
+    // console.log(`  Error encountered during request ${err.message}`);
     res.sendStatus(500);
   })
 }
@@ -34,7 +34,7 @@ exports.getReviewsMeta = (req, res) => {
     console.log(`Successfully found reviews metadata for product: ${req.params.id}`)
     res.send(results.data)
   }).catch((err) => {
-    console.log(`  Error encountered during request ${err.message}`);
+    // console.log(`  Error encountered during request ${err.message}`);
     res.sendStatus(500);
   })
 }
@@ -45,7 +45,7 @@ exports.getRelated = (req, res) => {
     console.log(`Successfully found product: ${req.params.id}`)
     res.send(results.data)
   }).catch((err) => {
-    console.log(`  Error encountered during request ${err.message}`);
+    // console.log(`  Error encountered during request ${err.message}`);
     res.sendStatus(500);
   })
 }
@@ -56,10 +56,10 @@ exports.getStyles = (req, res) => {
     console.log(`Successfully found product: ${req.params.id}`)
     res.send(results.data)
   }).catch((err) => {
-    console.log(`  Error encountered during request ${err.message}`);
+    // console.log(`  Error encountered during request ${err.message}`);
     res.sendStatus(500);
   })
-}
+};
 
 exports.postReview = (req, res) => {
   console.log(req.body)
@@ -70,4 +70,25 @@ exports.postReview = (req, res) => {
     console.log(`  Error encountered during request ${err.message}`);
     res.sendStatus(500);
   })
+};
+
+exports.addToCart = (req, res) => {
+  // console.log("------------------------Got to addToCart with this req.body: ", req.body);
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart`, req.body,
+  {
+    headers:{
+      'Authorization': process.env.AUTH_KEY,
+      'Content-Type': 'application/json'
+    }
+  }
+    )
+    .then(() => {
+      console.log("Successful post to bag!");
+      res.sendStatus(201);
+    })
+    .catch ((err) => {
+      console.log(err);
+      console.log("Nope!")
+      res.sendStatus(500);
+    })
 }

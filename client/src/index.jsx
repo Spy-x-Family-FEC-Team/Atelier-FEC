@@ -10,9 +10,11 @@ import Reviews from "/client/src/components/Reviews";
 import axios from 'axios';
 
 // Dummy data access. Figured out we needed to change the filetype to .json. Feel free to add the others if you want to use them. COMMENT THIS OUT WHEN YOU BEGIN TESTING NETWORKED STUFF
-import product from '/server/exampleData/product.json';
+import exampleProduct from '/server/exampleData/product.json';
 import reviews from '/server/exampleData/reviews.json';
-import reviewData from '/server/exampleData/reviewData.json';
+// import reviewData from '/server/exampleData/reviewData.json';
+
+import defaultProduct from '/server/exampleData/defaultProduct.json';
 
 
 const FoldWrapper = styled.section`
@@ -30,13 +32,14 @@ background: lightgrey;
 
 const ItemPage = () => {
   /**~~~~~Default Values are blanked or filled with placeholders in order to load in the skeleton before API response~~~~*/
-  const [product, updateProduct] = useState({name:""})
+  const [product, updateProduct] = useState(defaultProduct)
   const [reviews, updateReviews] = useState({
     "product": "40344",
     "page": 0,
     "count": 1000,
     "results": []})
   const [reviewData, updateReviewData] = useState({
+  
     "product_id": "None",
     "ratings": {
         "1": "0",
