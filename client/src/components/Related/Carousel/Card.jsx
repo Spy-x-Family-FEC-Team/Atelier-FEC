@@ -9,8 +9,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { solid, thin, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import whiteBackground from '/client/src/components/assets/images/whiteBackground.jpg';
 import outfit from '/client/src/components/assets/outfit.jsx'
-// import product from "../../../../../server/exampleData/product.json"
-// import productStyles from "../../../../../server/exampleData/styles.json"
 import localForage from "localforage";
 
 const CardContainer = styled.div`
@@ -68,7 +66,6 @@ const StyledCard = ({item, mode, list, setList, product}) => {
   // console.log('itemlength', item.length);
   //example product upon first load
   const merch = item.length ? item[0] : outfit[0];
-  // const image = productStyles.results[0].photos[0].url
   const image = item.length ? item[2].results[0].photos[0].url : whiteBackground;
   // console.log('image url', image);
 

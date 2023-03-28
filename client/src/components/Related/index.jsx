@@ -8,6 +8,9 @@ const Related = ({product}) => {
 
 	//takes in current item and related item ids as prop
 	// const [relatedData, setRelatedData] = useState([]);
+
+	console.log(product, 'related component');
+
 	const [outfit, setOutfit] = useState([]);
 	const [related, setRelated] = useState([]);
 	const [status, setStatus] = useState(false);
@@ -63,16 +66,16 @@ const Related = ({product}) => {
 
 					Promise.all(allItemPromises)
 						.then( results => {
-							// console.log(results, 'all item info promise');
+							console.log(results, 'all item info promise');
 							setRelated(results);
 							setStatus(true);
 						})
 						.catch( err => {
-							// console.log('error retrieving all product info')
+							console.log('error retrieving all product info')
 						});
 				})
 				.catch(err => {
-					// console.log('error retrieving related items', err);
+					console.log('error retrieving related items', err);
 				})
 	}, []);
 

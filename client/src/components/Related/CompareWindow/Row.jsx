@@ -7,9 +7,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const Row = ({feature, feat}) => {
 
-  // console.log(char, 'char', feat, 'feat');
-  //console.log('prod1', prod1, 'prod2', prod2);
-  console.log(feature, 'feature', feat, 'feat');
+  //console.log(feature, 'feature', feat, 'feat');
 
   return (
     <tr>
