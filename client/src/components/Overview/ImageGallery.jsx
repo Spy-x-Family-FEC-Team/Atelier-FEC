@@ -23,7 +23,7 @@ const StyledMainImageWrapper = styled.section`
 `;
 
 const StyledMainImage = styled.img`
-  max-height: 70vh;
+  max-height: 65vh;
   max-width: 100%;
   object-position: 50% 50%;
   z-axis:1;
@@ -44,6 +44,8 @@ const StyledRightButton = styled.section`
   right:5%;
   top:40%;
   font-size:x-large;
+  color:#571147;
+  filter: drop-shadow(0 0 1.75rem white));
 `;
 
 const StyledLeftButton = styled.section`
@@ -51,6 +53,7 @@ const StyledLeftButton = styled.section`
   left:120px;
   top:40%;
   font-size:x-large;
+  color:#571147;
 `;
 
 

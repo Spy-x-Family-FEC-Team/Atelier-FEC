@@ -30,7 +30,7 @@ const StyledStyleThumbnailWrapper = styled.section`
 
 // The look of this checkmark is just temporary until we make some aesthetic choices together.
 const StyledCheckmark = styled.section`
-  color: white;
+  color: #571147;
   font-size: large;
   position: absolute;
   z-index: 2;

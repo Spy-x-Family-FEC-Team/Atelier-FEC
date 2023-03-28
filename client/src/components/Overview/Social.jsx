@@ -7,13 +7,21 @@ const SocialSectionWrapper = styled.section`
   padding: 15px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  color: #571147;
+`;
+
+const StyledCallToAction = styled.section`
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  font-size:small;
 `;
 
 const Social = () => {
 
   return(
     <div>
-      <h4>Share on Social Media:</h4>
+      <StyledCallToAction>
+        Share on Social Media:
+      </StyledCallToAction>
       <SocialSectionWrapper>
         <a
           href="https://www.facebook.com/"

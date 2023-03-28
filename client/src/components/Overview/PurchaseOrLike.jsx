@@ -10,6 +10,8 @@ const StyledPurchaseOrLikeWrapper = styled.section`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   padding: 40px;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  padding:15px;
 `;
 
 const PurchaseOrLike = (props) => {

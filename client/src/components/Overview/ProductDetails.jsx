@@ -9,11 +9,26 @@ const ProductDetailsGrid = styled.section`
 `;
 
 const DescriptionWrapper = styled.section`
-  background: white;
+  background: #fcfbf7;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  padding:5px;
 `;
 
 const FeaturesWrapper = styled.section`
-  background: grainsbro;
+  background: #fcfbf7;
+  font-family: 'Helvetica', 'Arial', sans-serif;
+`;
+
+const FeaturesTitle = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const FeaturesListWrapper = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 
@@ -23,11 +38,12 @@ const ProductDetails = (props) => {
     <div>
       <ProductDetailsGrid>
         <DescriptionWrapper>
-          <h3>Description</h3>
+          <h3>&nbsp;&nbsp;&nbsp;Description</h3>
           <p>{props.description}</p>
         </DescriptionWrapper>
         <FeaturesWrapper>
-          <h3>Features</h3>
+          <FeaturesTitle><h3>Features</h3></FeaturesTitle>
+          <FeaturesListWrapper>
           <ul>
             {props.features.map((item, index) =>
               <OneFeature
@@ -36,6 +52,7 @@ const ProductDetails = (props) => {
                 value={item.value} />
             )}
           </ul>
+          </FeaturesListWrapper>
         </FeaturesWrapper>
       </ProductDetailsGrid>
     </div>

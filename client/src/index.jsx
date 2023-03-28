@@ -17,7 +17,7 @@ import defaultReviewData from '/server/exampleData/defaultReviewData.json';
 const FoldWrapper = styled.section`
 margin: auto;
 width: 90vw;
-background: papayawhip;
+background: #fcfbf7;
 `;
 
 const BelowFoldWrapper = styled.section`
