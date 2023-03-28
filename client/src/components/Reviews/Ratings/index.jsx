@@ -30,7 +30,7 @@ const RatingsGridbox = styled.div`
   width: 100%;
 `;
 
-const Ratings = ({data}) => {
+const Ratings = ({data, updateFilter}) => {
   var numberOfRatings = getNumberOfRatings(data.ratings)
   var meanRating = getMeanRating(data.ratings)
 
@@ -43,7 +43,7 @@ const Ratings = ({data}) => {
     </div>
     <div>Rating breakdown
       {[5,4,3,2,1].map((value) => (
-        <div key={`${value}StarRatings`}> {value} Stars
+        <div key={`${value}StarRatings`} onClick={updateFilter.bind(this, value)}> {value} Stars
           <EmptyBar>
             <PercentBar percent={(data.ratings[value]/numberOfRatings)*100}/>
             {/* number of ratings of N stars divided by total number of ratings times 100 */}

@@ -9,6 +9,7 @@ const staticPath = path.join(path.resolve('.'), '/client/dist/');
 
 /*~~~~~~~THIS IS WHERE API CALLS TO OUR API TO PASS ALONG TO THE HR API GO~~~~~~~*/
 app.use(morgan('tiny'))
+app.use(express.json())
 
 app.use('/items*', (req, res) => {
   res.sendFile(path.join(path.resolve('.'), '/client/dist/'));
@@ -20,6 +21,7 @@ app.get('/api/reviews/:id', controllers.getReviews)
 app.get('/api/reviews/meta/:id', controllers.getReviewsMeta)
 app.get('/api/products/:id/related', controllers.getRelated)
 app.get('/api/products/:id/styles', controllers.getStyles)
+app.post('/api/reviews', controllers.postReview)
 
 
 // final fallback
