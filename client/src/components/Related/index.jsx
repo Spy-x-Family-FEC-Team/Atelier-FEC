@@ -59,11 +59,6 @@ const Related = ({product}) => {
 							.catch(err => err);
 
 						return Promise.all([promise1, promise2, promise3])
-							// .then((results) => {
-							// 	return results;
-							// })
-							// .catch( err => {
-							// 	console.log('error retrieving individual item info promise');
 						});
 
 					Promise.all(allItemPromises)

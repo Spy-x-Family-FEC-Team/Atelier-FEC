@@ -10,9 +10,9 @@ import Reviews from "/client/src/components/Reviews";
 import axios from 'axios';
 
 // Dummy data access. Figured out we needed to change the filetype to .json. Feel free to add the others if you want to use them. COMMENT THIS OUT WHEN YOU BEGIN TESTING NETWORKED STUFF
-import product from '/server/exampleData/product.json';
-import reviews from '/server/exampleData/reviews.json';
-import reviewData from '/server/exampleData/reviewData.json';
+// import product from '/server/exampleData/product.json';
+// import reviews from '/server/exampleData/reviews.json';
+// import reviewData from '/server/exampleData/reviewData.json';
 
 
 const FoldWrapper = styled.section`
@@ -76,7 +76,7 @@ useEffect(() => {
       <Overview product={product}/>
     </FoldWrapper> */}
     <BelowFoldWrapper>
-      {/* <Related /> */}
+      <Related product={product}/>
       <Reviews reviewData={reviewData} reviews={reviews} product={product}/>
     </BelowFoldWrapper>
   </>)}

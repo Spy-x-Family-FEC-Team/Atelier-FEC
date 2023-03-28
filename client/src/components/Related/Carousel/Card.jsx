@@ -76,7 +76,9 @@ const StyledCard = ({item, mode, list, setList, product}) => {
 
     <CardContainer>
       {/*if mode is related, display comparison button, otherwise display remove from outfit button*/}
-      {mode === 'related' ? (<CompareItems />) : (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
+      {mode === 'related' ?
+      (<CompareItems item={item} product={product}/>) :
+      (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
       {/*all cards product info format is the same*/}
       <ProductImage src={image} alt={'product image'}/>
       <ProductInfo>

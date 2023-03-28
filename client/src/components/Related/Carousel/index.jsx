@@ -97,7 +97,8 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 				</StyledLeftBtn>
 				<CarouselTrack>
 					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID} list={list}>
-						{mode === 'related' ? null : <StyledCard item={'outfitAdd'} mode={mode} list={list} setList={setList} product={product}/>}
+						{mode === 'related' ? null :
+						<StyledCard item={'outfitAdd'} mode={mode} list={list} setList={setList} product={product}/>}
 						{status ? list.map( item => {
 							return (
 							<StyledCard item={item} mode={mode} list={list} setList={setList} product={product}/>
