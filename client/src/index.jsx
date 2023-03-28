@@ -19,13 +19,13 @@ import defaultProduct from '/server/exampleData/defaultProduct.json';
 
 const FoldWrapper = styled.section`
 margin: auto;
-width: 90%;
+width: 90vw;
 background: papayawhip;
 `;
 
 const BelowFoldWrapper = styled.section`
 margin: auto;
-width: 80%;
+width: 80vw;
 background: lightgrey;
 `;
 
@@ -39,52 +39,66 @@ const ItemPage = () => {
     "count": 1000,
     "results": []})
   const [reviewData, updateReviewData] = useState({
-  "product_id": "None",
-  "ratings": {
-      "1": "0",
-      "2": "0",
-      "3": "0",
-      "4": "0",
-      "5": "0"
-  },
-  "recommended": {
-      "false": "0",
-      "true": "0"
-  },
-  "characteristics": {}
-})
+  
+    "product_id": "None",
+    "ratings": {
+        "1": "0",
+        "2": "0",
+        "3": "0",
+        "4": "0",
+        "5": "0"
+    },
+    "recommended": {
+        "false": "0",
+        "true": "0"
+    },
+    "characteristics": {}
+  })
 
-const _id = useParams()['id'];
+  const _id = useParams()['id'];
 
-useEffect(() => {
-  // console.log(_id)
-  axios.get(`/api/products/${_id}`)
-    .then((results) => {
-      // console.log(`----------------------get request for /api/products/${_id}  :  `, results.data)
-      updateProduct(results.data)})
-  axios.get(`/api/reviews/${_id}`)
-    .then((results) => {
-      // console.log(results.data)
-      updateReviews(results.data)})
-  axios.get(`/api/reviews/meta/${_id}`)
-    .then((results) => {
-      // console.log(results.data)
-      updateReviewData(results.data)})
-},[])
+  // this is functinoalized to be able to pass it as a prop
+  const refreshProducts = () => {
+    console.log(_id)
+    axios.get(`/api/products/${_id}`)
+      .then((results) => {
+        console.log(results.data)
+        updateProduct(results.data)})
+      .catch((err) => {
+        console.log(err)
+      })
+    axios.get(`/api/reviews/${_id}`)
+      .then((results) => {
+        console.log(results.data)
+        updateReviews(results.data)})
+      .catch((err) => {
+        console.log(err)
+      })
+    axios.get(`/api/reviews/meta/${_id}`)
+      .then((results) => {
+        console.log(results.data)
+        updateReviewData(results.data)})
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
-  return(
-  <>
-    <FoldWrapper>
-      <Overview
-        product={product}
-        reviewData={reviewData}
-      />
-    </FoldWrapper>
-    <BelowFoldWrapper>
-      <Related />
-      <Reviews reviewData={reviewData} reviews={reviews} product={product}/>
-    </BelowFoldWrapper>
-  </>)}
+  useEffect(refreshProducts,[])
+
+
+
+
+    return(
+    <>
+      {/* <FoldWrapper>
+        <Overview product={product}/>
+      </FoldWrapper> */}
+      <BelowFoldWrapper>
+        {/* <Related /> */}
+        <Reviews reviewData={reviewData} reviews={reviews} product={product} refresh={refreshProducts}/>
+      </BelowFoldWrapper>
+    </>)
+}
 
 
 
