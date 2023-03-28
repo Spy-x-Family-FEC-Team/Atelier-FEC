@@ -99,9 +99,27 @@ const PurchaseOrLike = (props) => {
         <OverlayWindow
           onBgClick={toggleSelectSizeWarning}
         >
-         <div>Select a size.</div>
+        <select
+          onChange={(event) => {
+            setSelectedSize(event.target.value);
+            toggleSelectSizeWarning();
+          }}
+        >
+        <option value="none" hidden>Select Size</option>
+        {availableSizes.map((size) => {
+          return(
+            <option
+              value={size}
+              key={size}
+            >
+                {size}
+            </option>
+          )
+        })}
+        </select>
         </OverlayWindow>
       :null}
+
       <StyledPurchaseOrLikeWrapper>
         <select
           onChange={(event) => {
