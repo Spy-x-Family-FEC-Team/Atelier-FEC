@@ -6,8 +6,6 @@ import localForage from "localforage";
 
 const Related = ({product}) => {
 
-	//takes in current item and related item ids as prop
-	// const [relatedData, setRelatedData] = useState([]);
 	const [outfit, setOutfit] = useState([]);
 	const [related, setRelated] = useState([]);
 	const [status, setStatus] = useState(false);
@@ -29,10 +27,12 @@ const Related = ({product}) => {
 			});
 
 		// get related items id array then get related prodcuts
-			const id = 40344;
-			axios.get(`/api/products/${id}/related`)
+			console.log(product, 'product when first loading related');
+			const _id = product.id;
+			console.log('_id', _id);
+			axios.get(`/api/products/${_id}/related`)
 				.then((results) => {
-					// console.log(results.data, 'related results after retrieving promise')
+					console.log('related results after getting related id array', results);
 					const allItemPromises = results.data.map( item => {
 						// console.log('item inside carousel promise', item);
 						const id = item;
@@ -59,27 +59,20 @@ const Related = ({product}) => {
 							.catch(err => err);
 
 						return Promise.all([promise1, promise2, promise3])
-							// .then((results) => {
-							// 	return results;
-							// })
-							// .catch( err => {
-							// 	console.log('error retrieving individual item info promise');
 						});
 
-					Promise.all(allItemPromises)
+					return Promise.all(allItemPromises)
+
+					})
 						.then( results => {
-							// console.log(results, 'all item info promise');
+							console.log(results, 'all item info promise');
 							setRelated(results);
 							setStatus(true);
 						})
-						.catch( err => {
-							// console.log('error retrieving all product info')
-						});
-				})
 				.catch(err => {
-					// console.log('error retrieving related items', err);
+					console.log('error retrieving related items', err);
 				})
-	}, []);
+	}, [product]);
 
 	return (
 		<div>
