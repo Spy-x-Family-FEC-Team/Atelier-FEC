@@ -2,33 +2,42 @@ import React, { useState } from "react";
 import ReviewListItem from "./ReviewListItem"
 import styled from "styled-components";
 
-const ReviewListGridStyling = styled.div`
+const ReviewSectionGridStyling = styled.div`
 grid-column-start: 2;
 grid-column-end: 3;
 grid-row-start: 1;
 grid-row-end: 2;
 max-height: 80vh;
-width: 100%
-overflow-y: overlay;
+width: 100%;
+display: grid;
+grid-template-rows: 40 px 40 px;
+`;
+
+const ReviewsStyling = styled.div`
+overflow-y: scroll;
 overflow-x: hidden;
 overflow-wrap: break-word;
-`;
+`
+
 
 const ReviewList = (props) => {
   const [moreReviews, setMoreReviews] = useState(false); // flag for loading more reviews
+  const [sort, setSort] = useState('')
   const toggleMore = () => setMoreReviews((more) => (!more))
 
   return (
-  <ReviewListGridStyling
-    id="ReviewList"
-  >
+  <ReviewSectionGridStyling id="ReviewList" >
     <h2>User Reviews</h2>
-    {props.reviews.results
-    .slice(0, (moreReviews ? undefined : 2)) // this slice should do nothing if we want more reviews, and should slice to 2 reviews otherwise
-    .map((rev) => <ReviewListItem key={rev.review_id} data={rev}/>) // turn those array items into react elements
-    }
-    {props.reviews.results.length > 2 ? <button type="button" onClick={toggleMore}>{moreReviews ? "Less Reviews" : "More Reviews"}</button> : null }
-  </ReviewListGridStyling>);
+    <button>asdfasdfasdfasdf</button>
+    <ReviewsStyling>
+      {props.reviews.results
+      .filter((rev) => (props.starFilter? rev.rating === props.starFilter: true))
+      .slice(0, (moreReviews ? undefined : 2)) // this slice should do nothing if we want more reviews, and should slice to 2 reviews otherwise
+      .map((rev) => <ReviewListItem key={rev.review_id} data={rev}/>) // turn those array items into react elements
+      }
+      {props.reviews.results.length > 2 ? <button type="button" onClick={toggleMore}>{moreReviews ? "Less Reviews" : "More Reviews"}</button> : null }
+    </ReviewsStyling>
+  </ReviewSectionGridStyling>);
 }
 
 export default ReviewList;
@@ -45,4 +54,15 @@ After several loads, the length of the list will become very long. In order to k
 The order in which the reviews appear, as well as whether all or a filtered subset of the reviews appear will be changeable.
 If no reviews have been submitted for this product, then the list will collapse, and the button to submit a new review (section 1.2.7) will appear near the top of the module.
 Future Enhancement - Instead of incrementally loading 2 reviews at a time, clicking the “More Reviews” button should immediately expand the list to its maximum height. The reviews appearing within should no longer need to be explicitly loaded. Instead, the list should load in an ‘infinite scroll’, where as the user nears the end of the list, additional questions tack on to the bottom.
+
+Sort Options
+Users will be able to change this ordering. A dropdown labeled “Sort on'' will contain options on sort order.
+The options within the sort drop down should include
+Helpful - This sort order will prioritize reviews that have been found helpful. The order can be found by subtracting “No” responses from “Yes” responses and sorting such that the highest score appears at the top.
+Newest - This is a straightforward sort based on the date the review was submitted. The most recent reviews should appear first.
+Relevant - Relevance will be determined by a combination of both the date that the review was submitted as well as ‘helpfulness’ feedback received. This combination should weigh the two characteristics such that recent reviews appear near the top, but do not outweigh reviews that have been found helpful. Similarly, reviews that have been helpful should appear near the top, but should yield to more recent reviews if they are older.
+By default, the reviews in the list should appear in order of relevance. The dropdown should display “Relevant” as the currently selected option.
+Upon selecting any of the other options, the dropdown should update to display the current selection, and the list should refresh to show the first results for that sort order.
+Changing the sort order will always refresh the reviews list.
+The sort selected should persist even when filters are added or removed.
 */

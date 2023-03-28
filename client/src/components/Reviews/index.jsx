@@ -5,17 +5,22 @@ import ReviewList from "./ReviewList"
 import WriteReview from "./WriteReview"
 
 const ThirdsGrid = styled.section`
+	margin-left: auto;
+	margin-right: auto;
 	display:grid;
-	grid-template-columns: 5fr 11fr;
-	grid-template-rows: 9fr 1fr;
+	column-gap: 10px;
+	grid-template-columns: 35% 65%;
+	grid-template-rows: 80vh 10vh;
+	max-width: 100%;
 `;
 
 const Reviews = (props) => {
+	const [starFilter, updateStarFilter] = useState(null);
 	return(
 		<ThirdsGrid>
-			{props.reviewData ? <Ratings data={props.reviewData}/> : null}
-			<ReviewList reviews={props.reviews}/>
-			<WriteReview data={props.reviewData} product={props.product}/>
+			<Ratings data={props.reviewData} updateFilter={updateStarFilter}/>
+			<ReviewList reviews={props.reviews} starFilter={starFilter}/>
+			<WriteReview data={props.reviewData} product={props.product} refresh={props.refresh}/>
 		</ThirdsGrid>
 	)
 };

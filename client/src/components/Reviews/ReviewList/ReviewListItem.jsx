@@ -83,14 +83,5 @@ Response to Review - Our internal sales team has the ability to respond to any r
 Rating Helpfulness - Any user on the site will have the ability to provide feedback on whether reviews are helpful. At the bottom of the review the text “Was this review helpful?” will precede two links “Yes (#)” and “No (#)”. Following “Yes” and “No” will be the count of users that have selected that button. Clicking either link should cast a vote for that selection.
 A user on the site does not need to be logged in to provide feedback on helpfulness.
 A user can provide feedback on any review. However, they can only make one submission for each review. If the user selects either “Yes” or “No” for a review, they should not be able to select another option again for that review.
-Sort Options
-Users will be able to change this ordering. A dropdown labeled “Sort on'' will contain options on sort order.
-The options within the sort drop down should include
-Helpful - This sort order will prioritize reviews that have been found helpful. The order can be found by subtracting “No” responses from “Yes” responses and sorting such that the highest score appears at the top.
-Newest - This is a straightforward sort based on the date the review was submitted. The most recent reviews should appear first.
-Relevant - Relevance will be determined by a combination of both the date that the review was submitted as well as ‘helpfulness’ feedback received. This combination should weigh the two characteristics such that recent reviews appear near the top, but do not outweigh reviews that have been found helpful. Similarly, reviews that have been helpful should appear near the top, but should yield to more recent reviews if they are older.
-By default, the reviews in the list should appear in order of relevance. The dropdown should display “Relevant” as the currently selected option.
-Upon selecting any of the other options, the dropdown should update to display the current selection, and the list should refresh to show the first results for that sort order.
-Changing the sort order will always refresh the reviews list.
-The sort selected should persist even when filters are added or removed.
+
 */
