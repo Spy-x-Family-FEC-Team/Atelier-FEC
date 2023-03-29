@@ -1,15 +1,15 @@
 import { createGlobalStyle } from "styled-components";
-import Fredoka from "./fonts/fredoka-v9-latin-regular.woff";
-import Fredoka2 from "./fonts/fredoka-v9-latin-regular.woff2";
+import Biryani from "./fonts/biryani-v13-latin-regular.woff";
+import Biryani2 from "./fonts/biryani-v13-latin-regular.woff2";
 
 export default createGlobalStyle`
 @font-face {
-  font-family: 'Fredoka';
-  src: url(${Fredoka2}) format('woff2'),
-       url(${Fredoka}) format('woff');
+  font-family: 'Biryani';
+  src: url(${Biryani2}) format('woff2'),
+       url(${Biryani}) format('woff');
 }
 
 body {
-  font-family: 'Fredoka', sans-serif;
+  font-family: Biryani, sans-serif;
 }
 `;

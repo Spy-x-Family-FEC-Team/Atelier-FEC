@@ -51,7 +51,7 @@ const Ratings = ({data, updateFilter}) => {
         </div>)
       )}
     </div>
-    <div>Factor breakdown
+    <div>Factor Breakdown
       {Object.keys(data.characteristics).map((key) => (
         <div key={key}>{key}
           <EmptyBar>

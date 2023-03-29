@@ -24,15 +24,11 @@ afterEach(() => {
 test("should correctly render Reviews given dummy data", () => {
   const page = render(<Reviews reviewData={dummyReviewData} reviews={dummyReviews} product={dummyProduct}/>);
 
-  screen.debug();
-
   staticSubtests(page)
 })
 
 test("should correctly render Reviews given blank data", () => {
   const page = render(<Reviews reviewData={blankReviewData} reviews={blankReviews} product={blankProduct}/>);
-
-  screen.debug();
 
   staticSubtests(page)
 })
