@@ -23,7 +23,7 @@ module.exports = {
       },
       {
         // I added this rule in order include our white background image and any other images with our bundle. (Jenessa)
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|woff2?)$/i,
         use: [
           {
             // Installed url-loader and file-loader to make this work. (see package.json devDependencies.)
