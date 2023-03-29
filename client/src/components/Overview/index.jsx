@@ -1,8 +1,8 @@
 
 import React, {useState, useEffect} from 'react';
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import axios from 'axios';
-import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import ImageGallery from './ImageGallery.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
@@ -18,25 +18,30 @@ import whiteBackground from '/client/src/components/assets/images/whiteBackgroun
  import defaultProduct from '/server/exampleData/defaultProduct.json';
  import defaultStyles from '/server/exampleData/defaultStyles.json';
 
+const NavBarPlaceHolder = styled.section`
+  height:7vh;
+  width:100%;
+  background:#571147;
+  margin-bottom: 1%;
+`;
 const OverviewGrid = styled.section`
   display: grid;
   grid-template-columns: 1fr 35%;
-  height: 70vh;
+  height: 65vh;
 `;
 // 70vh is 70% of viewport.
 
 
 const SelectorSectionWrapper = styled.section`
-  background: azure;
   display:grid;
-  grid-template-rows: 15% 70% 15%;
+  grid-template-rows: 20% 60% 20%;
+  height:65vh;
 `;
 
 const ProductDetailsWrapper = styled.section`
-  background: thistle;
   margin: auto;
   width: 88.8888%;
-  height: 20vh;
+  height: 15vh;
 `;
 
 const Overview = (props) => {
@@ -89,6 +94,8 @@ const Overview = (props) => {
 
   return(
     <div>
+      <NavBarPlaceHolder>
+      </NavBarPlaceHolder>
       <OverviewGrid>
         <ImageGallery
           currentImage={currentImage}

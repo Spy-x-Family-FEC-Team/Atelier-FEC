@@ -5,15 +5,30 @@ import OneFeature from './OneFeature.jsx';
 const ProductDetailsGrid = styled.section`
   display: grid;
   grid-template-columns: 2fr 1fr;
-  height: 20vh;
+  height: 18vh;
+  padding-top: 2vh;
+  padding-bottom:5vh;
+
 `;
 
 const DescriptionWrapper = styled.section`
-  background: white;
+  padding:20px;
+  padding-left:30px;
+  padding-right:30px;
+  border-right: solid;
+  border-right-width: thin;
+  border-right-color: #e3d1de;
 `;
 
 const FeaturesWrapper = styled.section`
-  background: grainsbro;
+`;
+
+
+const FeaturesListWrapper = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
 `;
 
 
@@ -23,11 +38,11 @@ const ProductDetails = (props) => {
     <div>
       <ProductDetailsGrid>
         <DescriptionWrapper>
-          <h3>Description</h3>
           <p>{props.description}</p>
         </DescriptionWrapper>
         <FeaturesWrapper>
-          <h3>Features</h3>
+          {/* <FeaturesTitle><h3>Features</h3></FeaturesTitle> */}
+          <FeaturesListWrapper>
           <ul>
             {props.features.map((item, index) =>
               <OneFeature
@@ -36,6 +51,7 @@ const ProductDetails = (props) => {
                 value={item.value} />
             )}
           </ul>
+          </FeaturesListWrapper>
         </FeaturesWrapper>
       </ProductDetailsGrid>
     </div>

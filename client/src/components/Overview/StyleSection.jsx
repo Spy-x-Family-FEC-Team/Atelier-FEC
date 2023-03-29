@@ -4,10 +4,9 @@ import StyleAndPrice from './StyleAndPrice.jsx';
 import PurchaseOrLike from './PurchaseOrLike.jsx';
 
 const StyleSectionWrapper = styled.section`
-  background: pink;
   height:100%;
   display: grid;
-  grid-template-rows: 60% 40%;
+  grid-template-rows: 85% 15%;
 `;
 
 const StyleSection = (props) => {
