@@ -45,8 +45,8 @@ const StyledRightButton = styled.section`
   top:40%;
   font-size:x-large;
   color:#571147;
-  filter: drop-shadow(0 0 1.75rem white));
 `;
+// background: rgba(255, 122, 89, .5);
 
 const StyledLeftButton = styled.section`
   position:absolute;
