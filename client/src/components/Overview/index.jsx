@@ -21,8 +21,10 @@ import whiteBackground from '/client/src/components/assets/images/whiteBackgroun
 const NavBarPlaceHolder = styled.section`
   height:7vh;
   width:100%;
-  background:#571147;
-  margin-bottom: 1%;
+  background:rgb(227 209 222);
+  margin-bottom: 24px;
+  margin-top: 20px;
+  border-radius: 11px;
 `;
 const OverviewGrid = styled.section`
   display: grid;
@@ -34,7 +36,7 @@ const OverviewGrid = styled.section`
 
 const SelectorSectionWrapper = styled.section`
   display:grid;
-  grid-template-rows: 20% 60% 20%;
+  grid-template-rows: 20% 62% 18%;
   height:65vh;
 `;
 

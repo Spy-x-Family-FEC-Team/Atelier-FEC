@@ -11,20 +11,25 @@ const StyledBagWrapper = styled.section`
 
 const StyledBagButton = styled.section`
   margin:4px;
+  font-size: 1.3rem;
+    padding: 8px 25px;
+    border-radius: 6px;
+    background-color: #551a8b;
+    color: white;
+    font-weight: bold;
+    border:none;
 `;
 
 const AddToBag = (props) => {
 
   return(
     <StyledBagWrapper>
-      <StyledBagButton>
-        <button
+      <StyledBagButton
           onClick={() => {
             props.handleClick()
           }}
         >
-          Add to bag +
-        </button>
+          Add to bag
         </StyledBagButton>
     </StyledBagWrapper>
   )

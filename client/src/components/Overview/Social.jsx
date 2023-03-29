@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
 
 const SocialSectionWrapper = styled.section`
-  padding: 15px;
+  padding-top: 50px;
   display: grid;
   font-size:x-large;
   display: flex;
   justify-content: space-around;
-  margin-top:10px;
+  margin-top:20px;
 `;
 
 const IconWrapper = styled.section`
@@ -20,7 +20,7 @@ const IconWrapper = styled.section`
   border-radius:50%;
   display: flex;
   justify-content: space-around;
-  margin:5%;
+  margin-top:20px;
 `;
 
 

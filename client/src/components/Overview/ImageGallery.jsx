@@ -27,6 +27,8 @@ const StyledMainImage = styled.img`
   max-width: 100%;
   object-position: 50% 50%;
   z-axis:1;
+  border-radius: 24px;
+
 `;
 
 const StyledVerticalCarouselWrapper = styled.section`

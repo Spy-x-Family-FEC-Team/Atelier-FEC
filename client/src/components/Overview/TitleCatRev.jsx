@@ -10,7 +10,11 @@ const TitleCatRevWrapper = styled.section`
 `;
 
 const TitleWrapper = styled.section`
-  border-radius: 2px;
+  font-family:Georgia;
+  font-size:2.8rem;
+  font-weight:bold;
+  padding-bottom:15px;
+  margin-bottom:15px;
 `;
 
 
@@ -35,7 +39,7 @@ const TitleCatRev = (props) => {
       }
       <div>{props.category}</div>
       <TitleWrapper>
-        <h2>{props.title}</h2>
+        {props.title}
       </TitleWrapper>
     </TitleCatRevWrapper>
   )

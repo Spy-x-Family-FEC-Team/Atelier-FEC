@@ -101,6 +101,7 @@ const PurchaseOrLike = (props) => {
           onBgClick={toggleSelectSizeWarning}
         >
         <select
+          className="dropdown"
           onChange={(event) => {
             setSelectedSize(event.target.value);
             toggleSelectSizeWarning();
@@ -123,6 +124,7 @@ const PurchaseOrLike = (props) => {
 
       <StyledPurchaseOrLikeWrapper>
         <select
+          className="dropdown"
           onChange={(event) => {
             setSelectedSize(event.target.value);
           }}
@@ -140,6 +142,7 @@ const PurchaseOrLike = (props) => {
         })}
         </select>
         <select
+          className="dropdown"
           onChange={(event) => {
             setSelectedQuantity(parseInt(event.target.value));
           }}
