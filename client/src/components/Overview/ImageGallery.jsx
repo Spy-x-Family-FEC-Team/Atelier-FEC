@@ -23,8 +23,9 @@ const StyledMainImageWrapper = styled.section`
 `;
 
 const StyledMainImage = styled.img`
-  max-height: 70vh;
+  max-height: 65vh;
   max-width: 100%;
+  object-position: 50% 50%;
   z-axis:1;
 `;
 
@@ -42,14 +43,27 @@ const StyledRightButton = styled.section`
   position:absolute;
   right:5%;
   top:40%;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transform: translateY(-50%);
   font-size:x-large;
+  background: rgba(255, 255, 255, .8);
+  border-radius:50%;
 `;
+
 
 const StyledLeftButton = styled.section`
   position:absolute;
   left:120px;
   top:40%;
   font-size:x-large;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, .8);
+  border-radius:50%;
 `;
 
 
@@ -82,7 +96,7 @@ const ImageGallery = (props) => {
                 props.handleViewSelection(props.indexOfThisProdView +1);
                 }}
             >
-              <FontAwesomeIcon icon={solid('chevron-right')} />
+              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-right')} />
             </StyledRightButton>
           :null}
           {props.indexOfThisProdView > 0 ?
@@ -91,7 +105,7 @@ const ImageGallery = (props) => {
               props.handleViewSelection(props.indexOfThisProdView -1);
               }}
             >
-              <FontAwesomeIcon icon={solid('chevron-left')} />
+              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-left')} />
             </StyledLeftButton>
           :null}
         </StyledMainImageWrapper>

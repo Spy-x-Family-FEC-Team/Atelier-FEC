@@ -76,7 +76,7 @@ const Related = ({product}) => {
 
 	return (
 		<div>
-			<div>hello we are related</div>
+			{/* <div>hello we are related</div> */}
 			<Carousel product={product} mode={'related'} list={related} setList={setRelated} status={status} setStatus={setStatus}/>
 			<Carousel product={product} mode={'outfit'} list={outfit} setList={setOutfit} status={status} setStatus={setStatus}/>
 		</div>

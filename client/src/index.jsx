@@ -18,7 +18,6 @@ import Global from '/client/src/components/assets/GlobalStyles.js'
 const FoldWrapper = styled.section`
 margin: auto;
 width: 90vw;
-background: papayawhip;
 `;
 
 const BelowFoldWrapper = styled.section`

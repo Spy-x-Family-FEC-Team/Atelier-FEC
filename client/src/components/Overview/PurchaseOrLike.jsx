@@ -3,12 +3,14 @@ import axios from 'axios';
 import styled from 'styled-components';
 import AddToBag from './AddToBag.jsx';
 import Liked from './Liked.jsx';
+import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
 
 const StyledPurchaseOrLikeWrapper = styled.section`
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   padding: 40px;
+  padding:15px;
 `;
 
 const PurchaseOrLike = (props) => {
@@ -18,6 +20,7 @@ const PurchaseOrLike = (props) => {
     const [availableSizes, setAvailableSizes] = useState([]);
     const [quantAvailForSize, setQuantAvailForSize] = useState(null);
     const [likedStatus, setLikedStatus] = useState(false);
+    const [selectSizeWarning, setSelectSizeWarning] = useState(false);
 
   // Helper Functions:
   const getAvailableQuantityOfSize = (size) =>{
@@ -58,8 +61,7 @@ const PurchaseOrLike = (props) => {
 
   const handleBagClick = () => {
     if (!selectedSize) {
-      // TODO: Make this a modal window instead of a console.log.
-      console.log("Select a size.")
+      setSelectSizeWarning(true);
     } else {
       axios.post('/api/cart', {
         product_id: props._id,
@@ -74,6 +76,10 @@ const PurchaseOrLike = (props) => {
       })
     }
   };
+
+  const toggleSelectSizeWarning = () => {
+    setSelectSizeWarning(!selectSizeWarning);
+  }
 
   const handleLikeClick = () => {
     setLikedStatus(!likedStatus);
@@ -90,6 +96,31 @@ const PurchaseOrLike = (props) => {
 
   return(
     <div>
+      {selectSizeWarning ?
+        <OverlayWindow
+          onBgClick={toggleSelectSizeWarning}
+        >
+        <select
+          onChange={(event) => {
+            setSelectedSize(event.target.value);
+            toggleSelectSizeWarning();
+          }}
+        >
+        <option value="none" hidden>Select Size</option>
+        {availableSizes.map((size) => {
+          return(
+            <option
+              value={size}
+              key={size}
+            >
+                {size}
+            </option>
+          )
+        })}
+        </select>
+        </OverlayWindow>
+      :null}
+
       <StyledPurchaseOrLikeWrapper>
         <select
           onChange={(event) => {

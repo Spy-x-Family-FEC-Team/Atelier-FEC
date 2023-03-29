@@ -1,11 +1,17 @@
 import React, {useState, useEffect} from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import StarRating from "../assets/StarRating.jsx";
 import { getNumberOfRatings, getMeanRating } from "/client/src/components/sharedComponents/ratingsObjectFunctions.js";
 
-// const TitleCatRevWrapper = styled.section`
+const TitleCatRevWrapper = styled.section`
+  display:grid;
+  grid-template-rows: 1fr 1fr 2fr;
+  z-index:5;
+`;
 
-// `;
+const TitleWrapper = styled.section`
+  border-radius: 2px;
+`;
 
 
 const TitleCatRev = (props) => {
@@ -19,7 +25,7 @@ const TitleCatRev = (props) => {
   }, [props.data])
 
   return(
-    <div>
+    <TitleCatRevWrapper>
       {numberOfRatings ?
         <div>
           <StarRating rawRating = {meanRating}/>
@@ -27,9 +33,11 @@ const TitleCatRev = (props) => {
         </div>
         :null
       }
-      <p>{props.category}</p>
-      <h2>{props.title}</h2>
-    </div>
+      <div>{props.category}</div>
+      <TitleWrapper>
+        <h2>{props.title}</h2>
+      </TitleWrapper>
+    </TitleCatRevWrapper>
   )
 };
 
