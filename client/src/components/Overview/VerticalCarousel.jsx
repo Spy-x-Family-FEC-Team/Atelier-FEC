@@ -16,7 +16,9 @@ const StyledUpButton = styled.section`
   padding:3px;
   text-align:center;
   width: 7.5vw;
+  border-radius:10px;
   margin-bottom:6px;
+  color:#23493F;
 `;
 
 const StyledDownButton = styled.section`
@@ -24,6 +26,8 @@ const StyledDownButton = styled.section`
   padding:3px;
   text-align:center;
   width: 7.5vw;
+  border-radius:10px;
+  color:#23493F;
 `;
 
 const StyledProdViewThumbnailWrapper = styled.section`

@@ -32,8 +32,8 @@ const TitleCatRev = (props) => {
     <TitleCatRevWrapper>
       {numberOfRatings ?
         <div>
-          <StarRating rawRating = {meanRating}/>
-          <span>&nbsp;&nbsp;<a href= "#ReviewList">Read all {numberOfRatings} reviews...</a></span>
+          <StarRating style={{color:"#329FA9"}} rawRating = {meanRating}/>
+          <span>&nbsp;&nbsp;<a href= "#ReviewList" style={{color:"#23493F"}}>Read all {numberOfRatings} reviews...</a></span>
         </div>
         :null
       }

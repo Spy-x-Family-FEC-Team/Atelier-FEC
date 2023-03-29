@@ -11,13 +11,14 @@ const StyledBagWrapper = styled.section`
 
 const StyledBagButton = styled.section`
   margin:4px;
-  font-size: 1.3rem;
-    padding: 8px 25px;
+  font-size: 1.2rem;
+    padding: 8px 12px;
     border-radius: 6px;
-    background-color: #551a8b;
+    background-color: #23493F;
     color: white;
     font-weight: bold;
     border:none;
+    height:28px;
 `;
 
 const AddToBag = (props) => {

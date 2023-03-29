@@ -11,7 +11,18 @@ const StyledPurchaseOrLikeWrapper = styled.section`
   grid-template-rows: 1fr 1fr;
   padding: 40px;
   padding:15px;
+  z-index:100;
 `;
+
+const StyledDrop = styled.select`
+  font-size: 1.1rem;
+  padding: 2px 5px;
+  border-color: #d1abc6;
+  color: #551a8b;
+  border-radius: 6px;
+  margin:5px;
+  height:30px;
+  `;
 
 const PurchaseOrLike = (props) => {
     // Variables:
@@ -124,7 +135,7 @@ const PurchaseOrLike = (props) => {
 
       <StyledPurchaseOrLikeWrapper>
         <select
-          className="dropdown"
+          className="JenessasDropdown"
           onChange={(event) => {
             setSelectedSize(event.target.value);
           }}
@@ -141,8 +152,8 @@ const PurchaseOrLike = (props) => {
           )
         })}
         </select>
-        <select
-          className="dropdown"
+        <StyledDrop
+          className="JenessasDropdown"
           onChange={(event) => {
             setSelectedQuantity(parseInt(event.target.value));
           }}
@@ -155,7 +166,7 @@ const PurchaseOrLike = (props) => {
               })
               : <option value="none">-</option>
           }
-        </select>
+        </StyledDrop>
         <div>
           { (availableSizes.length >= 1) ?
             <AddToBag

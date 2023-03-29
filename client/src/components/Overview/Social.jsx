@@ -16,7 +16,7 @@ const IconWrapper = styled.section`
   display:inline-block;
   width:35px;
   height:35px;
-  background:#e3d1de;
+  background:white;
   border-radius:50%;
   display: flex;
   justify-content: space-around;
@@ -31,6 +31,7 @@ const Social = () => {
       <SocialSectionWrapper>
       <IconWrapper>
           <a
+            className="Jlink"
             href="https://www.facebook.com/"
             target="_blank"
             rel="noreferrer">
@@ -39,6 +40,7 @@ const Social = () => {
         </IconWrapper>
         <IconWrapper>
           <a
+            className="Jlink"
             href="https://twitter.com/?lang=en"
             target="_blank"
             rel="noreferrer">
@@ -47,6 +49,7 @@ const Social = () => {
         </IconWrapper>
         <IconWrapper>
           <a
+            className="Jlink"
             href="https://www.instagram.com/"
             target="_blank"
             rel="noreferrer">
@@ -55,6 +58,7 @@ const Social = () => {
         </IconWrapper>
         <IconWrapper>
           <a
+            className="Jlink"
             href="https://www.pinterest.com/"
             target="_blank"
             rel="noreferrer">

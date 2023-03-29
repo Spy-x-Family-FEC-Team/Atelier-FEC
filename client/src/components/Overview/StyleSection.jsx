@@ -2,11 +2,12 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import StyleAndPrice from './StyleAndPrice.jsx';
 import PurchaseOrLike from './PurchaseOrLike.jsx';
+import Social from './Social.jsx';
 
 const StyleSectionWrapper = styled.section`
   height:100%;
   display: grid;
-  grid-template-rows: 85% 15%;
+  grid-template-rows: 60% 15% 15%;
 `;
 
 const StyleSection = (props) => {
@@ -41,6 +42,7 @@ const StyleSection = (props) => {
         skusOfSelectedStyle={props.stylesForThisProduct.results[props.indexOfStyleOption].skus}
         _id={props._id}
       />
+      <Social />
      </StyleSectionWrapper>
     </div>
   )

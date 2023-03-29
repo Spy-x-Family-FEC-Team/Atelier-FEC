@@ -17,7 +17,7 @@ const DescriptionWrapper = styled.section`
   padding-right:30px;
   border-right: solid;
   border-right-width: thin;
-  border-right-color: #e3d1de;
+  border-right-color: #A7D4D9;
 `;
 
 const FeaturesWrapper = styled.section`

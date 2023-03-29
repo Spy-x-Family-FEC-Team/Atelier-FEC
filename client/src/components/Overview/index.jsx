@@ -21,10 +21,16 @@ import whiteBackground from '/client/src/components/assets/images/whiteBackgroun
 const NavBarPlaceHolder = styled.section`
   height:7vh;
   width:100%;
-  background:rgb(227 209 222);
+  background:#A7D4D9;
   margin-bottom: 24px;
-  margin-top: 20px;
+  margin-top: 25px;
   border-radius: 11px;
+  padding-top:25px;
+  padding-left:50px;
+  color:#329FA9;
+  font-family:Georgia;
+  font-size:1.8rem;
+  font-weight:bold;
 `;
 const OverviewGrid = styled.section`
   display: grid;
@@ -36,7 +42,7 @@ const OverviewGrid = styled.section`
 
 const SelectorSectionWrapper = styled.section`
   display:grid;
-  grid-template-rows: 20% 62% 18%;
+  grid-template-rows: 20% 80%;
   height:65vh;
 `;
 
@@ -95,6 +101,7 @@ const Overview = (props) => {
   return(
     <div>
       <NavBarPlaceHolder>
+       <div>Spy x Family</div>
       </NavBarPlaceHolder>
       <OverviewGrid>
         <ImageGallery
@@ -116,7 +123,7 @@ const Overview = (props) => {
             indexOfStyleOption={indexOfStyleOption}
             _id={_id}
           />
-          <Social />
+          {/* <Social /> */}
         </SelectorSectionWrapper>
       </OverviewGrid>
       <ProductDetailsWrapper>

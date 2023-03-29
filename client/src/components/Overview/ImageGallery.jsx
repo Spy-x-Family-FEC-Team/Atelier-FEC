@@ -50,8 +50,9 @@ const StyledRightButton = styled.section`
   align-items: center;
   transform: translateY(-50%);
   font-size:x-large;
-  background: rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, .5);
   border-radius:50%;
+  color:#23493F;
 `;
 
 
@@ -64,8 +65,9 @@ const StyledLeftButton = styled.section`
   height: 40px;
   align-items: center;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, .8);
+  background: rgba(255, 255, 255, .5);
   border-radius:50%;
+  color:#23493F;
 `;
 
 
