@@ -81,6 +81,8 @@ const Overview = (props) => {
     axios.get(`/api/products/${_id}/styles`)
       .then((results) => {
         setCurrentStyles(results.data);
+      }).catch((err) => {
+        console.log(err)
       })
   },[]);
 
