@@ -43,17 +43,27 @@ const StyledRightButton = styled.section`
   position:absolute;
   right:5%;
   top:40%;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transform: translateY(-50%);
   font-size:x-large;
-  color:#571147;
+  background: rgba(255, 255, 255, .8);
+  border-radius:50%;
 `;
-// background: rgba(255, 122, 89, .5);
+
 
 const StyledLeftButton = styled.section`
   position:absolute;
   left:120px;
   top:40%;
   font-size:x-large;
-  color:#571147;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, .8);
+  border-radius:50%;
 `;
 
 
@@ -86,7 +96,7 @@ const ImageGallery = (props) => {
                 props.handleViewSelection(props.indexOfThisProdView +1);
                 }}
             >
-              <FontAwesomeIcon icon={solid('chevron-right')} />
+              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-right')} />
             </StyledRightButton>
           :null}
           {props.indexOfThisProdView > 0 ?
@@ -95,7 +105,7 @@ const ImageGallery = (props) => {
               props.handleViewSelection(props.indexOfThisProdView -1);
               }}
             >
-              <FontAwesomeIcon icon={solid('chevron-left')} />
+              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-left')} />
             </StyledLeftButton>
           :null}
         </StyledMainImageWrapper>

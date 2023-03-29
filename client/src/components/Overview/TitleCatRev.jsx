@@ -4,8 +4,13 @@ import StarRating from "../assets/StarRating.jsx";
 import { getNumberOfRatings, getMeanRating } from "/client/src/components/sharedComponents/ratingsObjectFunctions.js";
 
 const TitleCatRevWrapper = styled.section`
-  font-family: 'Helvetica', 'Arial', sans-serif;
-  padding:2px;
+  display:grid;
+  grid-template-rows: 1fr 1fr 2fr;
+  z-index:5;
+`;
+
+const TitleWrapper = styled.section`
+  border-radius: 2px;
 `;
 
 
@@ -28,8 +33,10 @@ const TitleCatRev = (props) => {
         </div>
         :null
       }
-      <p>{props.category}</p>
-      <h2>{props.title}</h2>
+      <div>{props.category}</div>
+      <TitleWrapper>
+        <h2>{props.title}</h2>
+      </TitleWrapper>
     </TitleCatRevWrapper>
   )
 };

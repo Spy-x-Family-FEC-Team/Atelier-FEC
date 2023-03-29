@@ -3,11 +3,16 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
+const StyleSectionWrapper = styled.section`
+  max-height:40vh;
+  overflow: hidden;
+`;
+
 const StyleImageGridWrapper = styled.section`
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  padding:5px;
+  overflow: hidden;
 `;
 
 const StyledSalePrice = styled.section`
@@ -22,6 +27,8 @@ const StyledStyleThumbnail = styled.img`
   border-radius: 50%;
   z-index: 1;
   object-fit:cover;
+  max-height:100px;
+  max-width:80px;
 `;
 
 const StyledStyleThumbnailWrapper = styled.section`
@@ -38,21 +45,27 @@ const StyledCheckmark = styled.section`
   margin-top: 15%;
 `;
 
+const PriceAndText = styled.section`
+  margin:4px;
+`;
+
 const StyleAndPrice = (props) => {
 
   return(
-    <div>
-      {props.salePrice ?
-        <StyledSalePrice>
-        ${props.salePrice}&nbsp;&nbsp;&nbsp;
-        </StyledSalePrice>
-      : null}
-      <span>$
+    <StyleSectionWrapper>
+      <PriceAndText>
         {props.salePrice ?
-        <strike>{props.originalPrice}</strike>
-        : props.originalPrice}
-      </span>
-      <div>STYLE > {props.styleName}</div>
+          <StyledSalePrice>
+          ${props.salePrice}&nbsp;&nbsp;&nbsp;
+          </StyledSalePrice>
+        : null}
+        <span>$
+          {props.salePrice ?
+          <strike>{props.originalPrice}</strike>
+          : props.originalPrice}
+        </span>
+        <div><span style={{color:"#91768a"}}>STYLE >&nbsp;</span>{props.styleName}</div>
+      </PriceAndText>
       <StyleImageGridWrapper>
         {props.styleThumbnails.map((url, index) => {
           return (
@@ -74,7 +87,7 @@ const StyleAndPrice = (props) => {
           )
         })}
       </StyleImageGridWrapper>
-    </div>
+    </StyleSectionWrapper>
   )
 };
 

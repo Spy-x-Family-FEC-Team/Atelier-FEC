@@ -6,47 +6,61 @@ import { faFacebook, faTwitter, faInstagram, faPinterest } from '@fortawesome/fr
 const SocialSectionWrapper = styled.section`
   padding: 15px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  color: #571147;
+  font-size:x-large;
+  display: flex;
+  justify-content: space-around;
+  margin-top:10px;
 `;
 
-const StyledCallToAction = styled.section`
-  font-family: 'Helvetica', 'Arial', sans-serif;
-  font-size:small;
+const IconWrapper = styled.section`
+  display:inline-block;
+  width:35px;
+  height:35px;
+  background:#e3d1de;
+  border-radius:50%;
+  display: flex;
+  justify-content: space-around;
+  margin:5%;
 `;
+
 
 const Social = () => {
 
   return(
     <div>
-      <StyledCallToAction>
-        Share on Social Media:
-      </StyledCallToAction>
       <SocialSectionWrapper>
-        <a
-          href="https://www.facebook.com/"
-          target="_blank"
-          rel="noreferrer">
-          <FontAwesomeIcon icon={faFacebook} />
-        </a>
-        <a
-          href="https://twitter.com/?lang=en"
-          target="_blank"
-          rel="noreferrer">
-          <FontAwesomeIcon icon={faTwitter} />
-        </a>
-        <a
-          href="https://www.instagram.com/"
-          target="_blank"
-          rel="noreferrer">
-          <FontAwesomeIcon icon={faInstagram} />
-        </a>
-        <a
-          href="https://www.pinterest.com/"
-          target="_blank"
-          rel="noreferrer">
-          <FontAwesomeIcon icon={faPinterest} />
+      <IconWrapper>
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noreferrer">
+            <FontAwesomeIcon icon={faFacebook} />
           </a>
+        </IconWrapper>
+        <IconWrapper>
+          <a
+            href="https://twitter.com/?lang=en"
+            target="_blank"
+            rel="noreferrer">
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+        </IconWrapper>
+        <IconWrapper>
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noreferrer">
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+        </IconWrapper>
+        <IconWrapper>
+          <a
+            href="https://www.pinterest.com/"
+            target="_blank"
+            rel="noreferrer">
+            <FontAwesomeIcon icon={faPinterest} />
+          </a>
+        </IconWrapper>
       </SocialSectionWrapper>
     </div>
   )

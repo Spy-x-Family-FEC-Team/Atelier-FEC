@@ -18,7 +18,6 @@ import GlobalFonts from '/client/src/components/assets/fontStyles.js'
 const FoldWrapper = styled.section`
 margin: auto;
 width: 90vw;
-background: #fcfbf7;
 `;
 
 const BelowFoldWrapper = styled.section`

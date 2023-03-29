@@ -4,11 +4,9 @@ import StyleAndPrice from './StyleAndPrice.jsx';
 import PurchaseOrLike from './PurchaseOrLike.jsx';
 
 const StyleSectionWrapper = styled.section`
-  background: #fcfbf7;
   height:100%;
   display: grid;
-  grid-template-rows: 70% 30%;
-  font-family: 'Helvetica', 'Arial', sans-serif;
+  grid-template-rows: 85% 15%;
 `;
 
 const StyleSection = (props) => {

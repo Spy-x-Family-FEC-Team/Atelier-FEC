@@ -33,14 +33,12 @@ const OverviewGrid = styled.section`
 
 
 const SelectorSectionWrapper = styled.section`
-  background: #fcfbf7;
   display:grid;
   grid-template-rows: 20% 60% 20%;
   height:65vh;
 `;
 
 const ProductDetailsWrapper = styled.section`
-  background: #fcfbf7;
   margin: auto;
   width: 88.8888%;
   height: 15vh;
@@ -95,7 +93,6 @@ const Overview = (props) => {
   return(
     <div>
       <NavBarPlaceHolder>
-        This is the Nav Bar.
       </NavBarPlaceHolder>
       <OverviewGrid>
         <ImageGallery
