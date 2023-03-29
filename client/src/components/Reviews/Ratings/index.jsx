@@ -37,11 +37,11 @@ const Ratings = ({data, updateFilter}) => {
   return(
   <div>
     <div>Ratings and Reviews</div>
-    <div>Summary section
+    <div>Summary Section
       <RatingsNumber value={meanRating} />
       <StarRating rawRating = {meanRating}/>
     </div>
-    <div>Rating breakdown
+    <div>Rating Breakdown
       {[5,4,3,2,1].map((value) => (
         <div key={`${value}StarRatings`} onClick={updateFilter.bind(this, value)}> {value} Stars
           <EmptyBar>
@@ -51,7 +51,7 @@ const Ratings = ({data, updateFilter}) => {
         </div>)
       )}
     </div>
-    <div>Factor breakdown
+    <div>Factor Breakdown
       {Object.keys(data.characteristics).map((key) => (
         <div key={key}>{key}
           <EmptyBar>
