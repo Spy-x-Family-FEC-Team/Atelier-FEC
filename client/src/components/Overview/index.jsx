@@ -108,6 +108,9 @@ const Overview = (props) => {
       .then((results) => {
         setCurrentStyles(results.data);
         setStyleThumbnails(makeStylesThumbnailsList(results.data));
+        })
+      .catch((err) => {
+        console.log(err);
       })
   },[]);
 
