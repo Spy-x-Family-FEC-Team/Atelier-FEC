@@ -14,6 +14,20 @@ const Related = ({product}) => {
 
 	useEffect( () => {
 
+		//get outfit data objects
+		localForage.getItem('outfits')
+			.then((data) => {
+				if (!data) {
+					setOutfit([]);
+				} else {
+					setOutfit(data);
+				}
+				// console.log('outfit', outfit);
+			})
+			.catch(err => {
+				// console.log('error retrieving outfit', err);
+			});
+
 		// get related items id array then get related prodcuts as well as data in correct structure for current product
 			console.log(product, 'product when first loading related', product.id, 'product id');
 			let _id = product ? product.id : 40344;
@@ -21,7 +35,7 @@ const Related = ({product}) => {
 			axios.get(`/api/products/${_id}/related`)
 				.then((results) => {
 					console.log('related results after getting related id array', results);
-					results.data.push(_id);
+					results.data.unshift(_id);
 					const allItemPromises = results.data.map( item => {
 						// console.log('item inside carousel promise', item);
 						const id = item;
