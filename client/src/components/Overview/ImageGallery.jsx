@@ -24,12 +24,13 @@ const StyledMainImageWrapper = styled.section`
   min-height:0px;
   min-width:0px;
   // margin:20px;
+  position:relative;
 `;
 
 const StyledMainImage = styled.img`
   max-height: 65vh;
-  max-width: 100%;
-  object-position: 50% 50%;
+  max-width: 90%;
+  // object-position: 50% 50%;
   border-radius: 24px;
   // margin:10px;
 `;
