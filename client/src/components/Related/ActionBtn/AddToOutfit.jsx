@@ -16,12 +16,9 @@ const AddToOutfit = ({item, list, setList, product}) => {
 
   const addToOutfit = () => {
 
-    console.log('item in addbutton', item, 'list', list, 'product', product);
-
     const outfits = list.slice();
-    console.log('outfits in addtoOutfit', outfits);
     const filteredOutfits = outfits.filter( prod => {
-      console.log('prod', prod, 'prodID', prod[0].id, 'product', product, 'product.id', product[0].id)
+
       return prod[0].id === product[0].id;
     });
     if (!filteredOutfits.length) {

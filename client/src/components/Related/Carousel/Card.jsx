@@ -83,7 +83,7 @@ const StyledCard = ({item, mode, list, setList, product}) => {
   const image = item.length ? item[2].results[0].photos[0].url : whiteBackground;
   const id = item[0].id;
   const url = `/items/${id}`
-// as="a" href={url}
+
   return (
 
     <CardContainer>

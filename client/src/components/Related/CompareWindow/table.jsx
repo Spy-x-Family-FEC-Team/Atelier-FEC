@@ -29,7 +29,6 @@ const Table = ({item, product}) => {
   });
 
   const compareFeatures = Object.keys(combFeats);
-  console.log(combFeats, 'combFeats', compareFeatures, 'compareFeatures');
 
   return (
     <>
