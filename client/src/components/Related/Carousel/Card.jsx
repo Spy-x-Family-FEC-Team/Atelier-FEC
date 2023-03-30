@@ -61,8 +61,6 @@ const Stars = styled.div`
 `;
 const StyledCard = ({item, mode, list, setList, product}) => {
 
-  console.log('item inside styled card', item, 'product inside styled card', product);
-
   if (item === 'outfitAdd') {
     return (
       <CardContainer>
