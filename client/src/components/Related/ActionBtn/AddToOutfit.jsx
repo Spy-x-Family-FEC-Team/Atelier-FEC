@@ -12,17 +12,17 @@ const AddOutfit = styled.button`
   transform: translateX(50%);
 `;
 
-const AddToOutfit = ({item, list, setList}) => {
+const AddToOutfit = ({item, list, setList, product}) => {
 
   const addToOutfit = () => {
 
     const outfits = list.slice();
-    console.log('outfits in addtoOutfit', outfits, );
     const filteredOutfits = outfits.filter( prod => {
-      return prod[0][0].id === item[0].id;
+
+      return prod[0].id === product[0].id;
     });
     if (!filteredOutfits.length) {
-      outfits.push(outfit);
+      outfits.push(product);
       localForage.clear();
       localForage.setItem('outfits', outfits)
         .then( () => {

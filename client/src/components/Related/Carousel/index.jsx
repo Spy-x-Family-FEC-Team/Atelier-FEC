@@ -26,7 +26,7 @@ const CarouselTrack = styled.div`
 	height: 100%;
 `
 const CarouselList = styled.div`
-	background-color: yellow;
+	background-color: white;
 	padding: 0;
 	margin: 0;
 	height: 100%;
@@ -89,7 +89,7 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 		<div>
 			{mode === 'related' ? (<h3>RELATED PRODUCTS</h3>) : <h3>YOUR OUTFIT</h3>}
 			<CarouselContainer>
-				<StyledLeftBtn onClick={scrollLeft} display={displayLeft}>
+				<StyledLeftBtn onClick={scrollLeft} disp={displayLeft}>
 					<FontAwesomeIcon icon={solid('chevron-left')} />
 				</StyledLeftBtn>
 				<CarouselTrack>
@@ -102,7 +102,7 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 						)}) : null}
 					</CarouselList>
 				</CarouselTrack>
-				<StyledRightBtn onClick={scrollRight}  display={displayRight}>
+				<StyledRightBtn onClick={scrollRight}  disp={displayRight}>
 					<FontAwesomeIcon icon={solid('chevron-right')} />
 				</StyledRightBtn>
 		</CarouselContainer>
