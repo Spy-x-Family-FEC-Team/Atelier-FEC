@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import styled from "styled-components";
 import AddToOutfit from "../ActionBtn/AddToOutfit.jsx";
 import RmvFromOutfit from "../ActionBtn/RmvFromOutfit.jsx";
