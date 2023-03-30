@@ -64,8 +64,8 @@ const Related = ({product}) => {
 //passing down product as data object
 	return (
 		<div>
-			<Carousel product={product} mode={'related'} list={related} setList={setRelated} status={status} setStatus={setStatus}/>
-			<Carousel product={product} mode={'outfit'} list={outfit} setList={setOutfit} status={status} setStatus={setStatus}/>
+			<Carousel product={productData} mode={'related'} list={related} setList={setRelated} status={status} setStatus={setStatus}/>
+			<Carousel product={productData} mode={'outfit'} list={outfit} setList={setOutfit} status={status} setStatus={setStatus}/>
 		</div>
 	)
 

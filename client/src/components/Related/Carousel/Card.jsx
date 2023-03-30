@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
+import {useState, useEffect} from "react";
 import styled from "styled-components";
 import AddToOutfit from "../ActionBtn/AddToOutfit.jsx";
 import RmvFromOutfit from "../ActionBtn/RmvFromOutfit.jsx";
@@ -59,6 +60,8 @@ const ProductPrice = styled.div`
 const Stars = styled.div`
 `;
 const StyledCard = ({item, mode, list, setList, product}) => {
+
+  console.log('item inside styled card', item, 'product inside styled card', product);
 
   if (item === 'outfitAdd') {
     return (
