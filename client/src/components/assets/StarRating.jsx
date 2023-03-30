@@ -7,7 +7,7 @@ const BasicStar = (props) => (<FontAwesomeIcon className={props.className} icon=
 const EmptyStar = (props) => (<FontAwesomeIcon className={props.className} icon={regular('star')}/>)
 const HalfStar = (props) => ( <FontAwesomeIcon icon={solid('star-half-stroke')}/> )
 const Star = styled(BasicStar)`
-  color: ${props => props.starColor || "black"};
+  ${props => "color: " + props.starColor || ""};
 `;
 const QuarterStar = styled(Star)`
   clip-path: polygon(0% 40%, 0% 100%, 50% 100%, 50% 55%);
