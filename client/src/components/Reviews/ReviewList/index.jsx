@@ -20,58 +20,81 @@ overflow-x: hidden;
 overflow-wrap: break-word;
 `
 
-const newSort = (a, b) => {
-  console.log(`${new Date(a.date)} - ${new Date(b.date)}`)
-  if ((new Date(a.date) - new Date(b.date)) > 0){
-    return -1;
-  }
-  if ((new Date(a.date) - new Date(b.date)) < 0){
-    return 1;
-  }
-  return 0;
-}
+const sortFunctions = {
+  newSort: (a, b) => {
+    if ((new Date(a.date) - new Date(b.date)) > 0){
+      return -1;
+    }
+    if ((new Date(a.date) - new Date(b.date)) < 0){
+      return 1;
+    }
+    return 0;
+  },
 
-const oldSort = (a, b) => {
-  return -1*newSort(a, b);
-}
+  oldSort: (a, b) => {
+    return -1*sortFunctions.newSort(a, b);
+  },
 
-const helpfulSort = (a, b) => {
-  if (a.helpfulness > b.helpfulness){
-    return -1;
+  helpfulSort: (a, b) => {
+    if (a.helpfulness > b.helpfulness){
+      return -1;
+    }
+    if (a.helpfulness < b.helpfulness){
+      return 1;
+    }
+    return 0;
+  },
+
+  unhelpfulSort: (a, b) => {
+    return -1*sortFunctions.helpfulSort(a, b);
+  },
+
+  relevantSort: (a, b) => {
+    // gradually decay the relevance of a thing such that by about 2 months out it's roughly 50% as relevant
+    var daysSinceA = (Date.now() -new Date(a.date))/1000/60/60/24
+    var relevantMultiplierA = 5-(5*(daysSinceA/(daysSinceA+56)))
+
+    var daysSinceB = (Date.now() -new Date(b.date))/1000/60/60/24
+    var relevantMultiplierB = 5-(5*(daysSinceB/(daysSinceB+56))) //56 = 2 months at 28 days per month
+
+    var aRelevance = relevantMultiplierA*(a.helpfulness+1)
+    var bRelevance = relevantMultiplierB*(b.helpfulness+1)
+    if (aRelevance > bRelevance){
+      return -1;
+    }
+    if (aRelevance < bRelevance){
+      return 1;
+    }
+    return 0;
+  },
+
+  irrelevantSort: (a, b) => {
+    return -1*sortFunctions.relevantSort(a, b)
   }
-  if (a.helpfulness < b.helpfulness){
-    return 1;
-  }
-  return 0;
-}
-
-const unhelpfulSort = (a, b) => {
-  return -1*helpfulSort(a, b);
-}
-
-const relevantSort = (a, b) => {
-  console.log(Date.now() -new Date(a.date))
-  return 0;
 }
 
 
 const ReviewList = (props) => {
   const [moreReviews, setMoreReviews] = useState(false); // flag for loading more reviews
-  const [sort, setSort] = useState(() => (relevantSort));
+  const [sortKey, setSortKey] = useState(() => ("relevantSort"))
   const toggleMore = () => setMoreReviews((more) => (!more));
+
+  const handleSortDropdown = (event) => {setSortKey(event.target.value)}
 
   return (
   <ReviewSectionGridStyling id="ReviewList" >
     <h2>User Reviews</h2>
-    <div></div>
-    {/* <select onChange={(event) => {console.log(event)}}>
-      <option value="" >Relevant</option>
-      <option >Helpful</option>
-      <option >Newest</option>
-    </select> */}
+    <select name="sortSelect" value={sortKey} onChange={handleSortDropdown}>
+      <option value="relevantSort">Relevant</option>
+      <option value="helpfulSort">Helpful</option>
+      <option value="newSort">New</option>
+      <option value="irrelevantSort">Irrelevent</option>
+      <option value="unhelpfulSort">Unhelpful</option>
+      <option value="oldSort">Old</option>
+    </select>
     <ReviewsStyling>
       {props.reviews.results
-      .sort(sort)
+      .sort(sortFunctions[sortKey])
       .filter((rev) => (props.starFilter? rev.rating === props.starFilter: true))
       .slice(0, (moreReviews ? undefined : 2)) // this slice should do nothing if we want more reviews, and should slice to 2 reviews otherwise
       .map((rev) => <ReviewListItem key={rev.review_id} data={rev}/>) // turn those array items into react elements
