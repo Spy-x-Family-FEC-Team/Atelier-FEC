@@ -27,7 +27,7 @@ const NavBarPlaceHolder = styled.section`
   border-radius: 11px;
   padding-top:25px;
   padding-left:50px;
-  color:#329FA9;
+  color:#4EAEB6;
   font-family:Georgia;
   font-size:1.8rem;
   font-weight:bold;
