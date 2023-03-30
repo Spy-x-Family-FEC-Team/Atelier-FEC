@@ -39,7 +39,7 @@ const TitleCatRev = (props) => {
       }
       <div>{props.category}</div>
       <TitleWrapper>
-        {props.title}
+        <h1>{props.title}</h1>
       </TitleWrapper>
     </TitleCatRevWrapper>
   )
