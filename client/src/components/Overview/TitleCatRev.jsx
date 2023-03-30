@@ -10,7 +10,11 @@ const TitleCatRevWrapper = styled.section`
 `;
 
 const TitleWrapper = styled.section`
-  border-radius: 2px;
+  font-family:Georgia;
+  font-size:2.8rem;
+  font-weight:bold;
+  padding-bottom:15px;
+  margin-bottom:15px;
 `;
 
 
@@ -28,14 +32,14 @@ const TitleCatRev = (props) => {
     <TitleCatRevWrapper>
       {numberOfRatings ?
         <div>
-          <StarRating rawRating = {meanRating}/>
-          <span>&nbsp;&nbsp;<a href= "#ReviewList">Read all {numberOfRatings} reviews...</a></span>
+          <StarRating style={{color:"#329FA9"}} rawRating = {meanRating}/>
+          <span>&nbsp;&nbsp;<a href= "#ReviewList" style={{color:"#23493F"}}>Read all {numberOfRatings} reviews...</a></span>
         </div>
         :null
       }
       <div>{props.category}</div>
       <TitleWrapper>
-        <h2>{props.title}</h2>
+        {props.title}
       </TitleWrapper>
     </TitleCatRevWrapper>
   )

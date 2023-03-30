@@ -12,4 +12,14 @@ export default createGlobalStyle`
 body {
   font-family: Biryani, sans-serif;
 }
+
+.JenessaSocial {
+  color:#329FA9;
+}
+
+.JenessaAddToBag:hover, .JenessaAddToBag:focus  {
+  background-color: #A7D4D9;
+  color:#171615;
+}
+
 `;

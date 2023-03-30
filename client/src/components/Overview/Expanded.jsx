@@ -35,6 +35,7 @@ const StyledIconsGridWrapper = styled.section`
   position:absolute;
   bottom: 1%;
   align-item:center;
+  background: rgba(255, 255, 255, .5);
 `;
 
 const StyledIconsGrid = styled.section`
@@ -57,6 +58,12 @@ const StyledLeftButton = styled.section`
   left:5%;
   top:40%;
   font-size:x-large;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, .5);
+  border-radius:50%;
 `;
 
 const StyledRightButton = styled.section`
@@ -64,6 +71,12 @@ const StyledRightButton = styled.section`
   right:5%;
   top:40%;
   font-size:x-large;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, .5);
+  border-radius:50%;
 `;
 
 const Expanded = (props) => {
@@ -94,7 +107,7 @@ const Expanded = (props) => {
                 props.handleViewSelection(props.indexOfThisProdView -1);
                 }}
             >
-              <FontAwesomeIcon icon={solid('chevron-left')} />
+              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-left')} />
             </StyledLeftButton>
           :null}
           {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
@@ -103,7 +116,7 @@ const Expanded = (props) => {
                 props.handleViewSelection(props.indexOfThisProdView +1);
                 }}
             >
-              <FontAwesomeIcon icon={solid('chevron-right')} />
+              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-right')} />
             </StyledRightButton>
           :null}
         </StyledMainImageWrapper>
