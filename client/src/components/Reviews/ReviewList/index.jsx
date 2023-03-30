@@ -32,7 +32,7 @@ const newSort = (a, b) => {
 }
 
 const oldSort = (a, b) => {
-  return -1*new(a, b);
+  return -1*newSort(a, b);
 }
 
 const helpfulSort = (a, b) => {
@@ -45,10 +45,19 @@ const helpfulSort = (a, b) => {
   return 0;
 }
 
+const unhelpfulSort = (a, b) => {
+  return -1*helpfulSort(a, b);
+}
+
+const relevantSort = (a, b) => {
+  console.log(Date.now() -new Date(a.date))
+  return 0;
+}
+
 
 const ReviewList = (props) => {
   const [moreReviews, setMoreReviews] = useState(false); // flag for loading more reviews
-  const [sort, setSort] = useState(() => (helpfulSort));
+  const [sort, setSort] = useState(() => (relevantSort));
   const toggleMore = () => setMoreReviews((more) => (!more));
 
   return (
