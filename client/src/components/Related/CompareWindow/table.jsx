@@ -12,7 +12,7 @@ const CompareTable = styled.table`
 const Table = ({item, product}) => {
 
   const product1 = item[0].features;
-  const product2 = product.features;
+  const product2 = product[0].features;
 
   let combFeats = {};
 
