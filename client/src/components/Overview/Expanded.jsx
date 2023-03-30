@@ -13,6 +13,7 @@ const StyledCloseButton = styled.section`
   position:absolute;
   top:3px;
   right:3px;
+  cursor:pointer;
 `;
 
 const StyledMainImageWrapper = styled.section`
@@ -22,6 +23,7 @@ const StyledMainImageWrapper = styled.section`
   height:100%;
   width:100%
   position:absolute;
+  cursor:zoom-in;
 `;
 
 const StyledExpandedImage = styled.img`
@@ -51,6 +53,7 @@ const OneStyledIconWrapper = styled.section`
   display:inline-block;
   margin:12px;
   font-size:x-large;
+  cursor:pointer;
 `;
 
 const StyledLeftButton = styled.section`
@@ -64,6 +67,7 @@ const StyledLeftButton = styled.section`
   transform: translateY(-50%);
   background: rgba(255, 255, 255, .5);
   border-radius:50%;
+  cursor:pointer;
 `;
 
 const StyledRightButton = styled.section`
@@ -77,6 +81,7 @@ const StyledRightButton = styled.section`
   transform: translateY(-50%);
   background: rgba(255, 255, 255, .5);
   border-radius:50%;
+  cursor:pointer;
 `;
 
 const Expanded = (props) => {

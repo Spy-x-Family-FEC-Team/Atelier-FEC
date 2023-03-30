@@ -29,6 +29,7 @@ const StyledStyleThumbnail = styled.img`
   object-fit:cover;
   max-height:100px;
   max-width:80px;
+  cursor:pointer;
 `;
 
 const StyledStyleThumbnailWrapper = styled.section`

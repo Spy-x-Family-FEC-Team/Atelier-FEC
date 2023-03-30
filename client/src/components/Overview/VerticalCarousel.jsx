@@ -19,6 +19,7 @@ const StyledUpButton = styled.section`
   border-radius:10px;
   margin-bottom:6px;
   color:#23493F;
+  cursor:pointer;
 `;
 
 const StyledDownButton = styled.section`
@@ -28,6 +29,7 @@ const StyledDownButton = styled.section`
   width: 7.5vw;
   border-radius:10px;
   color:#23493F;
+  cursor:pointer;
 `;
 
 const StyledProdViewThumbnailWrapper = styled.section`
@@ -41,6 +43,7 @@ const StyledProdViewThumbnail = styled.img`
   width: 90%;
   object-fit:cover;
   border-radius: 12px;
+  cursor:pointer;
 `;
 
 const StyledUnderline = styled.section`

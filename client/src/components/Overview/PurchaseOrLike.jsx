@@ -22,6 +22,7 @@ const StyledDrop = styled.select`
   border-radius: 6px;
   margin:5px;
   height:30px;
+  cursor: pointer;
   `;
 
 const PurchaseOrLike = (props) => {
