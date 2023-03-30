@@ -12,14 +12,17 @@ const AddOutfit = styled.button`
   transform: translateX(50%);
 `;
 
-const AddToOutfit = ({item, list, setList}) => {
+const AddToOutfit = ({item, list, setList, product}) => {
 
   const addToOutfit = () => {
 
+    console.log('item in addbutton', item, 'list', list, 'product', product);
+
     const outfits = list.slice();
-    console.log('outfits in addtoOutfit', outfits, );
+    console.log('outfits in addtoOutfit', outfits);
     const filteredOutfits = outfits.filter( prod => {
-      return prod[0][0].id === item[0].id;
+      console.log('prod', prod)
+      return prod[0].id === product.id;
     });
     if (!filteredOutfits.length) {
       outfits.push(outfit);

@@ -20,15 +20,14 @@ const Related = ({product}) => {
 				} else {
 					setOutfit(data);
 				}
-				// console.log('outfit', outfit);
 			})
 			.catch(err => {
-				// console.log('error retrieving outfit', err);
+				console.log(err);
 			});
 
 		// get related items id array then get related prodcuts
 			console.log(product, 'product when first loading related');
-			const _id = product.id;
+			const _id = product ? product.id : 40344;
 			console.log('_id', _id);
 			axios.get(`/api/products/${_id}/related`)
 				.then((results) => {

@@ -1,9 +1,12 @@
 import React from "React";
+import {useState, useEffect} from 'react';
 import styled from "styled-components";
 import AddToOutfit from "../ActionBtn/AddToOutfit.jsx";
 import RmvFromOutfit from "../ActionBtn/RmvFromOutfit.jsx";
 import ActionBtn from "../ActionBtn/ActionBtn.jsx";
 import CompareItems from "../CompareWindow";
+import StarRating from "/client/src/components/assets/StarRating.jsx";
+import { getNumberOfRatings, getMeanRating } from "/client/src/components/sharedComponents/ratingsObjectFunctions.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { solid, thin, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -12,7 +15,6 @@ import outfit from '/client/src/components/assets/outfit.jsx'
 import localForage from "localforage";
 
 const CardContainer = styled.div`
-  background-color: green;
   grid-column: span 1;
   scroll-snap-align: center;
   width: 200px;
@@ -21,6 +23,15 @@ const CardContainer = styled.div`
   grid-template-rows: 200px 1fr;
   position: relative;
 `;
+
+const ProductContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 200px 1fr;
+  position: relative;
+  z-index: 1
+`
 
 const ProductImage = styled.img`
   background-color: pink;
@@ -50,25 +61,29 @@ const Stars = styled.div`
 `;
 const StyledCard = ({item, mode, list, setList, product}) => {
 
-  //display add button as first card if on outfit carousel
   if (item === 'outfitAdd') {
     return (
       <CardContainer>
-        <AddToOutfit item={item} list={list} setList={setList}/>
+        <AddToOutfit item={item} list={list} setList={setList} product={product}/>
       </CardContainer>
     )
   }
 
-  //takes in item code, gets product info
-  // console.log('card item', item);
-  //NEED TO CALCULATE RATING AND RENDER STARS; GET REQUEST FOR REVIEWS?
-  // console.log('list inside card', list);
-  // console.log('itemlength', item.length);
-  //example product upon first load
+  const [numberOfRatings, setNumberOfRatings] = useState(null);
+  const [meanRating, setMeanRating] = useState(null);
+
+  useEffect (() => {
+    if(item) {
+      setNumberOfRatings(getNumberOfRatings(item[1].ratings));
+      setMeanRating(getMeanRating(item[1].ratings));
+    }
+  }, [])
+
   const merch = item.length ? item[0] : outfit[0];
   const image = item.length ? item[2].results[0].photos[0].url : whiteBackground;
-  // console.log('image url', image);
-
+  const id = item[0].id;
+  const url = `/items/${id}`
+// as="a" href={url}
   return (
 
     <CardContainer>
@@ -77,21 +92,28 @@ const StyledCard = ({item, mode, list, setList, product}) => {
       (<CompareItems item={item} product={product}/>) :
       (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
       {/*all cards product info format is the same*/}
-      <ProductImage src={image} alt={'product image'}/>
-      <ProductInfo>
-        <ProductCategory>
-          {merch.category}
-        </ProductCategory>
-        <ProductName>
-          {merch.name}
-        </ProductName>
-        <ProductPrice>
-          {merch.default_price}
-        </ProductPrice>
-        <Stars>
-        &#9733; &#9733; &#9733; &#9733; &#9733;
-        </Stars>
-      </ProductInfo>
+      <ProductContainer as="a" href={url}>
+        <ProductImage src={image} alt={'product image'}/>
+        <ProductInfo>
+          <ProductCategory>
+            {merch.category}
+          </ProductCategory>
+          <ProductName>
+            {merch.name}
+          </ProductName>
+          <ProductPrice>
+            {merch.default_price}
+          </ProductPrice>
+          <Stars>
+            {numberOfRatings ?
+            <div>
+              <StarRating rawRating = {meanRating}/>
+            </div>
+            :null
+            }
+          </Stars>
+        </ProductInfo>
+      </ProductContainer>
     </CardContainer>
 
   )

@@ -7,8 +7,6 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const Row = ({feature, feat}) => {
 
-  //console.log(feature, 'feature', feat, 'feat');
-
   return (
     <tr>
       {feature.a ? (<td><FontAwesomeIcon icon={faCheck}/></td>) : (<td>{null}</td>)}
