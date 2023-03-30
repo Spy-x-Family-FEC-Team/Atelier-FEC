@@ -4,41 +4,66 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
 
 const SocialSectionWrapper = styled.section`
-  padding: 15px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  font-size:x-large;
+  display: flex;
+  justify-content: space-around;
+  margin-top:3px;
 `;
+
+const IconWrapper = styled.section`
+  display:inline-block;
+  width:35px;
+  height:35px;
+  background:white;
+  border-radius:50%;
+  display: flex;
+  justify-content: space-around;
+  // Reviewer note that placing a color property here didn't work. Class was needed.
+`;
+
 
 const Social = () => {
 
   return(
     <div>
-      <h4>Share on Social Media:</h4>
       <SocialSectionWrapper>
-        <a
-          href="https://www.facebook.com/"
-          target="_blank"
-          rel="noreferrer">
-          <FontAwesomeIcon icon={faFacebook} />
-        </a>
-        <a
-          href="https://twitter.com/?lang=en"
-          target="_blank"
-          rel="noreferrer">
-          <FontAwesomeIcon icon={faTwitter} />
-        </a>
-        <a
-          href="https://www.instagram.com/"
-          target="_blank"
-          rel="noreferrer">
-          <FontAwesomeIcon icon={faInstagram} />
-        </a>
-        <a
-          href="https://www.pinterest.com/"
-          target="_blank"
-          rel="noreferrer">
-          <FontAwesomeIcon icon={faPinterest} />
+      <IconWrapper>
+          <a
+            className="JenessaSocial"
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noreferrer">
+            <FontAwesomeIcon icon={faFacebook} />
           </a>
+        </IconWrapper>
+        <IconWrapper>
+          <a
+            className="JenessaSocial"
+            href="https://twitter.com/?lang=en"
+            target="_blank"
+            rel="noreferrer">
+            <FontAwesomeIcon icon={faTwitter} />
+          </a>
+        </IconWrapper>
+        <IconWrapper>
+          <a
+            className="JenessaSocial"
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noreferrer">
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+        </IconWrapper>
+        <IconWrapper>
+          <a
+            className="JenessaSocial"
+            href="https://www.pinterest.com/"
+            target="_blank"
+            rel="noreferrer">
+            <FontAwesomeIcon icon={faPinterest} />
+          </a>
+        </IconWrapper>
       </SocialSectionWrapper>
     </div>
   )

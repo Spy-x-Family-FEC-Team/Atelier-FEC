@@ -7,30 +7,35 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const StyledImageGalleryWrapper = styled.section`
-  position: relative;
+  height:65vh;
+  display:grid;
+  grid-template-columns: 20%  80%;
+  grid-template-rows: 1fr;
 `;
 
 const StyledMainImageWrapper = styled.section`
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-axis:1;
-  height:100%;
-  width:100%
-  position:absolute;
+  padding-left: 5%;
+  padding-right: 5%;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // height:90%;
+  // width:90%
+  min-height:0px;
+  min-width:0px;
+  // margin:20px;
+  position:relative;
 `;
 
 const StyledMainImage = styled.img`
-  max-height: 70vh;
-  max-width: 100%;
-  z-axis:1;
+  max-height: 65vh;
+  max-width: 90%;
+  // object-position: 50% 50%;
+  border-radius: 18px;
+  // margin:10px;
 `;
 
 const StyledVerticalCarouselWrapper = styled.section`
-  position:absolute;
-  z-axis:2;
   margin-left:1%;
   margin-top: 5%;
   margin-bottom: 5%;
@@ -42,14 +47,29 @@ const StyledRightButton = styled.section`
   position:absolute;
   right:5%;
   top:40%;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transform: translateY(-50%);
   font-size:x-large;
+  background: rgba(255, 255, 255, .5);
+  border-radius:50%;
+  color:#23493F;
 `;
+
 
 const StyledLeftButton = styled.section`
   position:absolute;
   left:120px;
   top:40%;
   font-size:x-large;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, .5);
+  border-radius:50%;
+  color:#23493F;
 `;
 
 
@@ -82,7 +102,7 @@ const ImageGallery = (props) => {
                 props.handleViewSelection(props.indexOfThisProdView +1);
                 }}
             >
-              <FontAwesomeIcon icon={solid('chevron-right')} />
+              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-right')} />
             </StyledRightButton>
           :null}
           {props.indexOfThisProdView > 0 ?
@@ -91,7 +111,7 @@ const ImageGallery = (props) => {
               props.handleViewSelection(props.indexOfThisProdView -1);
               }}
             >
-              <FontAwesomeIcon icon={solid('chevron-left')} />
+              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-left')} />
             </StyledLeftButton>
           :null}
         </StyledMainImageWrapper>

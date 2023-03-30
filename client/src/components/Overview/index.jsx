@@ -1,14 +1,14 @@
 
 import React, {useState, useEffect} from 'react';
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import axios from 'axios';
-import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import styled from 'styled-components';
 import ImageGallery from './ImageGallery.jsx';
-import TitleCatRev from './TitleCatRev.jsx';
+// import TitleCatRev from './TitleCatRev.jsx';
 import ProductDetails from './ProductDetails.jsx';
 import StyleSection from './StyleSection.jsx';
-import Social from './Social.jsx';
+// import Social from './Social.jsx';
 import whiteBackground from '/client/src/components/assets/images/whiteBackground.jpg';
 
  // Dummy data to use for now.
@@ -18,25 +18,42 @@ import whiteBackground from '/client/src/components/assets/images/whiteBackgroun
  import defaultProduct from '/server/exampleData/defaultProduct.json';
  import defaultStyles from '/server/exampleData/defaultStyles.json';
 
+const NavBarPlaceHolder = styled.section`
+  height:7vh;
+  width:100%;
+  background:#A7D4D9;
+  margin-bottom: 24px;
+  margin-top: 25px;
+  border-radius: 11px;
+  padding-top:25px;
+  padding-left:50px;
+  color:#4EAEB6;
+  font-family:Georgia;
+  font-size:1.8rem;
+  font-weight:bold;
+`;
 const OverviewGrid = styled.section`
   display: grid;
-  grid-template-columns: 1fr 35%;
-  height: 70vh;
+  grid-template-columns: 65% 35%;
+  height: 80vh;
 `;
 // 70vh is 70% of viewport.
 
 
 const SelectorSectionWrapper = styled.section`
-  background: azure;
-  display:grid;
-  grid-template-rows: 15% 70% 15%;
+  height:80vh;
+  margin-bottom:20px;
 `;
 
 const ProductDetailsWrapper = styled.section`
-  background: thistle;
   margin: auto;
   width: 88.8888%;
-  height: 20vh;
+  height: 15vh;
+`;
+
+const ImageAndDetailsWrapper = styled.section`
+  height:80vh;
+  margin-bottom:20px;
 `;
 
 const Overview = (props) => {
@@ -47,13 +64,23 @@ const Overview = (props) => {
   const [currentImage, setCurrentImage] = useState(whiteBackground);
   const [currentProduct, setCurrentProduct] = useState(defaultProduct);
   const [prodViewThumbnails, setProdViewThumbnails]=useState([whiteBackground, whiteBackground, whiteBackground]);
+  const [styleThumbnails, setStyleThumbnails]=useState(["https://unsplash.com/photos/x-cSp1AR9i0","https://unsplash.com/photos/x-cSp1AR9i0", "https://unsplash.com/photos/x-cSp1AR9i0"]);
 
   // helper function
   const makeProdViewThumbnailsList = () => {
     var thumbnails = [];
+    //TODO: Remove the slice here when I fix this.
     currentStyles.results[indexOfStyleOption].photos.forEach((photo) => {
       thumbnails.push(photo.thumbnail_url);
     })
+    return thumbnails;
+  };
+
+  const makeStylesThumbnailsList = (stylesObj) => {
+    var thumbnails = [];
+    stylesObj.results.forEach((style) =>{
+      thumbnails.push(style.photos[0].thumbnail_url);
+    });
     return thumbnails;
   };
 
@@ -81,41 +108,49 @@ const Overview = (props) => {
     axios.get(`/api/products/${_id}/styles`)
       .then((results) => {
         setCurrentStyles(results.data);
+        setStyleThumbnails(makeStylesThumbnailsList(results.data));
+        })
+      .catch((err) => {
+        console.log(err);
       })
   },[]);
 
 
   return(
     <div>
+      <NavBarPlaceHolder>
+       <div>Spy x Family</div>
+      </NavBarPlaceHolder>
       <OverviewGrid>
-        <ImageGallery
-          currentImage={currentImage}
-          prodViewThumbnails={prodViewThumbnails}
-          indexOfThisProdView={indexOfThisProdView}
-          handleViewSelection={handleViewSelection}
-        />
-        <SelectorSectionWrapper>
-          <TitleCatRev
-            title={currentProduct.name}
-            category={currentProduct.category}
-            data={props.reviewData}
+        <ImageAndDetailsWrapper>
+          <ImageGallery
+            currentImage={currentImage}
+            prodViewThumbnails={prodViewThumbnails}
+            indexOfThisProdView={indexOfThisProdView}
+            handleViewSelection={handleViewSelection}
           />
+          <ProductDetailsWrapper>
+            <ProductDetails
+              description={currentProduct.description}
+            />
+          </ProductDetailsWrapper>
+        </ImageAndDetailsWrapper>
+        <SelectorSectionWrapper>
           <StyleSection
+            styleThumbnails={styleThumbnails}
             stylesForThisProduct={currentStyles}
             handleStyleSelection={handleStyleSelection}
             indexOfThisProdView={indexOfThisProdView}
             indexOfStyleOption={indexOfStyleOption}
             _id={_id}
+            title={currentProduct.name}
+            category={currentProduct.category}
+            data={props.reviewData}
+            features={currentProduct.features}
           />
-          <Social />
         </SelectorSectionWrapper>
       </OverviewGrid>
-      <ProductDetailsWrapper>
-        <ProductDetails
-          description={currentProduct.description}
-          features={currentProduct.features}
-        />
-      </ProductDetailsWrapper>
+
     </div>
   )
 };

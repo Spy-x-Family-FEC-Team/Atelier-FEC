@@ -3,13 +3,26 @@ import axios from 'axios';
 import styled from 'styled-components';
 import AddToBag from './AddToBag.jsx';
 import Liked from './Liked.jsx';
+import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
 
 const StyledPurchaseOrLikeWrapper = styled.section`
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   padding: 40px;
+  padding:15px;
+  z-index:100;
 `;
+
+const StyledDrop = styled.select`
+  font-size: 1.1rem;
+  padding: 2px 5px;
+  border-color: #A7D4D9;
+  color: #23493F;
+  border-radius: 6px;
+  margin:5px;
+  height:30px;
+  `;
 
 const PurchaseOrLike = (props) => {
     // Variables:
@@ -18,6 +31,7 @@ const PurchaseOrLike = (props) => {
     const [availableSizes, setAvailableSizes] = useState([]);
     const [quantAvailForSize, setQuantAvailForSize] = useState(null);
     const [likedStatus, setLikedStatus] = useState(false);
+    const [selectSizeWarning, setSelectSizeWarning] = useState(false);
 
   // Helper Functions:
   const getAvailableQuantityOfSize = (size) =>{
@@ -58,8 +72,7 @@ const PurchaseOrLike = (props) => {
 
   const handleBagClick = () => {
     if (!selectedSize) {
-      // TODO: Make this a modal window instead of a console.log.
-      console.log("Select a size.")
+      setSelectSizeWarning(true);
     } else {
       axios.post('/api/cart', {
         product_id: props._id,
@@ -74,6 +87,10 @@ const PurchaseOrLike = (props) => {
       })
     }
   };
+
+  const toggleSelectSizeWarning = () => {
+    setSelectSizeWarning(!selectSizeWarning);
+  }
 
   const handleLikeClick = () => {
     setLikedStatus(!likedStatus);
@@ -90,8 +107,17 @@ const PurchaseOrLike = (props) => {
 
   return(
     <div>
+      {selectSizeWarning ?
+        <OverlayWindow
+          onBgClick={toggleSelectSizeWarning}
+        >
+         Select a size.
+        </OverlayWindow>
+      :null}
+
       <StyledPurchaseOrLikeWrapper>
-        <select
+        <StyledDrop
+          className="JenessasDropdown"
           onChange={(event) => {
             setSelectedSize(event.target.value);
           }}
@@ -107,8 +133,9 @@ const PurchaseOrLike = (props) => {
             </option>
           )
         })}
-        </select>
-        <select
+        </StyledDrop>
+        <StyledDrop
+          className="JenessasDropdown"
           onChange={(event) => {
             setSelectedQuantity(parseInt(event.target.value));
           }}
@@ -121,7 +148,7 @@ const PurchaseOrLike = (props) => {
               })
               : <option value="none">-</option>
           }
-        </select>
+        </StyledDrop>
         <div>
           { (availableSizes.length >= 1) ?
             <AddToBag

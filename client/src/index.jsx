@@ -12,12 +12,12 @@ import axios from 'axios';
 import defaultProduct from '/server/exampleData/defaultProduct.json';
 import defaultReviews from '/server/exampleData/defaultReviews.json';
 import defaultReviewData from '/server/exampleData/defaultReviewData.json';
+import Global from '/client/src/components/assets/GlobalStyles.js'
 
 
 const FoldWrapper = styled.section`
 margin: auto;
 width: 90vw;
-background: papayawhip;
 `;
 
 const BelowFoldWrapper = styled.section`
@@ -68,6 +68,7 @@ const ItemPage = () => {
 
     return(
     <>
+      <Global/>
       <FoldWrapper>
         <Overview product={product} reviewData={reviewData} />
       </FoldWrapper>
@@ -77,6 +78,8 @@ const ItemPage = () => {
       </BelowFoldWrapper>
     </>)
 }
+
+
 
 
 

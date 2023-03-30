@@ -186,10 +186,10 @@ const WriteReview = (props) => {
 				</QuestionLabel>
 				<QuestionLabel>Do you recommend this product?*
 					<label>Yes
-						<input type="radio" name="recommend" value="true" checked={form.recommend === true} onChange={radioBool}/>
+						<input type="radio" name="recommend" aria-label="recommend" value="true" checked={form.recommend === true} onChange={radioBool}/>
 					</label>
 					<label>No
-						<input type="radio" name="recommend" value="false" checked={form.recommend === false} onChange={radioBool}/>
+						<input type="radio" name="recommend" aria-label="recommend"  value="false" checked={form.recommend === false} onChange={radioBool}/>
 					</label>
 				</QuestionLabel>
 				<QuestionLabel>Characteristics*:
@@ -197,7 +197,7 @@ const WriteReview = (props) => {
 						<QuestionLabel key={trait}> {trait}
 							{[...Array(5)].map(((e, i) => (
 
-									<input key={trait + (i+1)} type="radio" name={trait} value={i+1} checked={form.characteristics[trait] === i+1} onChange={radioCharacteristics}/>
+									<input key={trait + (i+1)} type="radio" name={trait} aria-label={trait} value={i+1} checked={form.characteristics[trait] === i+1} onChange={radioCharacteristics}/>
 							)))}
 							<p>{form.characteristics[trait]? traitMessageDictionary[trait][form.characteristics[trait]] : null}</p>
 						</QuestionLabel>)
@@ -208,6 +208,7 @@ const WriteReview = (props) => {
 						cols="48"
 						rows="3"
 						name="summary"
+						aria-label="summary"
 						placeholder="Example: Best purchase ever!"
 						autoComplete="off"
 						value={form.summary}
@@ -220,6 +221,7 @@ const WriteReview = (props) => {
             cols="48"
             rows="3"
             name="body"
+						aria-label="body"
             placeholder="Why did you like or dislike this product?"
             required
             autoComplete="off"
@@ -236,6 +238,7 @@ const WriteReview = (props) => {
           <input
             type="text"
             name="nickname"
+						aria-label="nickname"
             placeholder="Example: jackson11!"
             required
             autoComplete="off"
@@ -247,6 +250,7 @@ const WriteReview = (props) => {
           <input
             type="text"
             name="email"
+						aria-label="email"
             placeholder="Example: jackson11@email.com"
             required
             autoComplete="off"
@@ -254,7 +258,7 @@ const WriteReview = (props) => {
             onChange={handleInputChange}
           />
 				</QuestionLabel>
-				< input type="submit" value="Submit" />
+				< input type="submit" value="Submit" aria-label="submit"/>
 			</form>
 		</OverlayWindow>
 		: null}

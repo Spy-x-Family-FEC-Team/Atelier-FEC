@@ -1,19 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import OneFeature from './OneFeature.jsx';
+
 
 const ProductDetailsGrid = styled.section`
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  height: 20vh;
+  height: 18vh;
+  padding-top: 2vh;
+  padding-bottom:5vh;
+
 `;
 
 const DescriptionWrapper = styled.section`
-  background: white;
-`;
-
-const FeaturesWrapper = styled.section`
-  background: grainsbro;
+  padding:20px;
+  padding-left:30px;
+  padding-right:30px;
+  border-right: solid;
+  border-right-width: thin;
+  border-right-color: #A7D4D9;
 `;
 
 
@@ -23,20 +25,8 @@ const ProductDetails = (props) => {
     <div>
       <ProductDetailsGrid>
         <DescriptionWrapper>
-          <h3>Description</h3>
           <p>{props.description}</p>
         </DescriptionWrapper>
-        <FeaturesWrapper>
-          <h3>Features</h3>
-          <ul>
-            {props.features.map((item, index) =>
-              <OneFeature
-                key={index}
-                featureName={item.feature}
-                value={item.value} />
-            )}
-          </ul>
-        </FeaturesWrapper>
       </ProductDetailsGrid>
     </div>
   )

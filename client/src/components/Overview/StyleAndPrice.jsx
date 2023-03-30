@@ -3,11 +3,16 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
+const StyleSectionWrapper = styled.section`
+  max-height:40vh;
+  overflow: hidden;
+`;
+
 const StyleImageGridWrapper = styled.section`
   display:grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  padding:5px;
+  overflow: hidden;
 `;
 
 const StyledSalePrice = styled.section`
@@ -22,6 +27,8 @@ const StyledStyleThumbnail = styled.img`
   border-radius: 50%;
   z-index: 1;
   object-fit:cover;
+  max-height:100px;
+  max-width:80px;
 `;
 
 const StyledStyleThumbnailWrapper = styled.section`
@@ -30,29 +37,42 @@ const StyledStyleThumbnailWrapper = styled.section`
 
 // The look of this checkmark is just temporary until we make some aesthetic choices together.
 const StyledCheckmark = styled.section`
-  color: white;
-  font-size: large;
+  color: #329FA9;
+  font-size: 1.4rem;
   position: absolute;
   z-index: 2;
   margin-left:75%;
   margin-top: 15%;
+  background-color:white;
+  // border-radius:50%;
+  align-items: center;
+  transform: translateY(-30%);
+  height:20px;
+  width:20px;
+  padding-top:13px;
+`;
+
+const PriceAndText = styled.section`
+  margin:4px;
 `;
 
 const StyleAndPrice = (props) => {
 
   return(
-    <div>
-      {props.salePrice ?
-        <StyledSalePrice>
-        ${props.salePrice}&nbsp;&nbsp;&nbsp;
-        </StyledSalePrice>
-      : null}
-      <span>$
+    <StyleSectionWrapper>
+      <PriceAndText>
         {props.salePrice ?
-        <strike>{props.originalPrice}</strike>
-        : props.originalPrice}
-      </span>
-      <div>STYLE > {props.styleName}</div>
+          <StyledSalePrice>
+          ${props.salePrice}&nbsp;&nbsp;&nbsp;
+          </StyledSalePrice>
+        : null}
+        <span>$
+          {props.salePrice ?
+          <strike>{props.originalPrice}</strike>
+          : props.originalPrice}
+        </span>
+        <div><span style={{color:"#23493F"}}>STYLE >&nbsp;</span>{props.styleName}</div>
+      </PriceAndText>
       <StyleImageGridWrapper>
         {props.styleThumbnails.map((url, index) => {
           return (
@@ -74,7 +94,7 @@ const StyleAndPrice = (props) => {
           )
         })}
       </StyleImageGridWrapper>
-    </div>
+    </StyleSectionWrapper>
   )
 };
 

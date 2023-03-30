@@ -1,5 +1,4 @@
-import React from "React";
-import {useState, useEffect} from 'react';
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import AddToOutfit from "../ActionBtn/AddToOutfit.jsx";
 import RmvFromOutfit from "../ActionBtn/RmvFromOutfit.jsx";

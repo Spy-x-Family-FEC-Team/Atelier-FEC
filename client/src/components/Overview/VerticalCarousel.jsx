@@ -7,34 +7,46 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 const StyledVerticalCarouselGrid = styled.section`
   display:grid;
   grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  width: 90px;
-  max-height: 300px;
+  width: 12vw;
+  max-height: 50vh;
 `;
 
 const StyledUpButton = styled.section`
   background:white;
   padding:3px;
   text-align:center;
+  width: 7.5vw;
+  border-radius:10px;
+  margin-bottom:6px;
+  color:#23493F;
 `;
+
 const StyledDownButton = styled.section`
   background:white;
   padding:3px;
   text-align:center;
+  width: 7.5vw;
+  border-radius:10px;
+  color:#23493F;
 `;
 
 const StyledProdViewThumbnailWrapper = styled.section`
   position:relative;
+  height:9vh;
+  width:9vw;
 `;
 
 const StyledProdViewThumbnail = styled.img`
-  height:90px;
-  width: 100px;
+  height:90%;
+  width: 90%;
   object-fit:cover;
+  border-radius: 12px;
 `;
 
 const StyledUnderline = styled.section`
   color:white;
   font-size:large;
+  width: 10vw;
 `;
 
 

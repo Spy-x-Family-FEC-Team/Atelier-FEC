@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import styled from "styled-components";
 import localForage from "localforage";
 import outfit from '/client/src/components/assets/outfit.jsx'
