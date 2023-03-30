@@ -7,30 +7,62 @@ grid-column-start: 2;
 grid-column-end: 3;
 grid-row-start: 1;
 grid-row-end: 2;
-max-height: 80vh;
+height: 80vh;
 width: 100%;
 display: grid;
-grid-template-rows: 40 px 40 px;
+grid-template-rows: 10% 10% 80%;
 `;
 
 const ReviewsStyling = styled.div`
+height: 100%;
 overflow-y: scroll;
 overflow-x: hidden;
 overflow-wrap: break-word;
 `
 
+const newSort = (a, b) => {
+  console.log(`${new Date(a.date)} - ${new Date(b.date)}`)
+  if ((new Date(a.date) - new Date(b.date)) > 0){
+    return -1;
+  }
+  if ((new Date(a.date) - new Date(b.date)) < 0){
+    return 1;
+  }
+  return 0;
+}
+
+const oldSort = (a, b) => {
+  return -1*new(a, b);
+}
+
+const helpfulSort = (a, b) => {
+  if (a.helpfulness > b.helpfulness){
+    return -1;
+  }
+  if (a.helpfulness < b.helpfulness){
+    return 1;
+  }
+  return 0;
+}
+
 
 const ReviewList = (props) => {
   const [moreReviews, setMoreReviews] = useState(false); // flag for loading more reviews
-  const [sort, setSort] = useState('')
-  const toggleMore = () => setMoreReviews((more) => (!more))
+  const [sort, setSort] = useState(() => (helpfulSort));
+  const toggleMore = () => setMoreReviews((more) => (!more));
 
   return (
   <ReviewSectionGridStyling id="ReviewList" >
     <h2>User Reviews</h2>
-    <button>asdfasdfasdfasdf</button>
+    <div></div>
+    {/* <select onChange={(event) => {console.log(event)}}>
+      <option value="" >Relevant</option>
+      <option >Helpful</option>
+      <option >Newest</option>
+    </select> */}
     <ReviewsStyling>
       {props.reviews.results
+      .sort(sort)
       .filter((rev) => (props.starFilter? rev.rating === props.starFilter: true))
       .slice(0, (moreReviews ? undefined : 2)) // this slice should do nothing if we want more reviews, and should slice to 2 reviews otherwise
       .map((rev) => <ReviewListItem key={rev.review_id} data={rev}/>) // turn those array items into react elements

@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import OverlayWindow from "/client/src/components/assets/OverlayWindow.jsx";
@@ -14,11 +14,11 @@ const CompareItems = ({item, product}) => {
 
     return (
     <>
-      <ActionBtn onClick={toggleModal}>
+      <ActionBtn onClick={toggleModal} data-testid="compare">
         <FontAwesomeIcon icon={regular("star")} />
       </ActionBtn>
       {modal ?
-        <OverlayWindow onBgClick={toggleModal}>
+        <OverlayWindow onBgClick={toggleModal} data-testid="overlay">
           <h5>Comparing</h5>
           <Table item={item} product={product}></Table>
         </OverlayWindow> : null}

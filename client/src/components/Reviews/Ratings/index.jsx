@@ -36,8 +36,8 @@ const Ratings = ({data, updateFilter}) => {
 
   return(
   <div>
-    <div>Ratings and Reviews</div>
-    <div>Summary Section
+    <h2>Summary</h2>
+    <div>
       <RatingsNumber value={meanRating} />
       <StarRating rawRating = {meanRating}/>
     </div>

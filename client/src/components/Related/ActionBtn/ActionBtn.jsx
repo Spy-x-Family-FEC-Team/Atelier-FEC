@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import styled from "styled-components";
 
 const ActionBtn = styled.div`
@@ -11,6 +11,7 @@ const ActionBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 `;
 
 export default ActionBtn;

@@ -12,7 +12,7 @@ import axios from 'axios';
 import defaultProduct from '/server/exampleData/defaultProduct.json';
 import defaultReviews from '/server/exampleData/defaultReviews.json';
 import defaultReviewData from '/server/exampleData/defaultReviewData.json';
-import GlobalFonts from '/client/src/components/assets/fontStyles.js'
+import Global from '/client/src/components/assets/GlobalStyles.js'
 
 
 const FoldWrapper = styled.section`
@@ -68,7 +68,7 @@ const ItemPage = () => {
 
     return(
     <>
-      <GlobalFonts/>
+      <Global/>
       <FoldWrapper>
         <Overview product={product} reviewData={reviewData} />
       </FoldWrapper>
