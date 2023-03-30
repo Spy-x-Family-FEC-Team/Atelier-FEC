@@ -43,6 +43,8 @@ const CarouselList = styled.div`
 
 const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 
+	console.log('product in carousel', product);
+
 	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
 	const [displayRight, setDisplayRight] = useState(false);

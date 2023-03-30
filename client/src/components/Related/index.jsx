@@ -3,35 +3,25 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import Carousel from "./Carousel";
 import localForage from "localforage";
+import exampleOutfit from '/client/src/components/assets/outfit.jsx';
 
 const Related = ({product}) => {
 
 	const [outfit, setOutfit] = useState([]);
 	const [related, setRelated] = useState([]);
 	const [status, setStatus] = useState(false);
+	const [productData, setProductData] = useState(exampleOutfit);
 
 	useEffect( () => {
 
-		//get outfit data objects
-		localForage.getItem('outfits')
-			.then((data) => {
-				if (!data) {
-					setOutfit([]);
-				} else {
-					setOutfit(data);
-				}
-			})
-			.catch(err => {
-				console.log(err);
-			});
-
-		// get related items id array then get related prodcuts
-			console.log(product, 'product when first loading related');
-			const _id = product ? product.id : 40344;
+		// get related items id array then get related prodcuts as well as data in correct structure for current product
+			console.log(product, 'product when first loading related', product.id, 'product id');
+			let _id = product ? product.id : 40344;
 			console.log('_id', _id);
 			axios.get(`/api/products/${_id}/related`)
 				.then((results) => {
 					console.log('related results after getting related id array', results);
+					results.data.push(_id);
 					const allItemPromises = results.data.map( item => {
 						// console.log('item inside carousel promise', item);
 						const id = item;
@@ -65,7 +55,8 @@ const Related = ({product}) => {
 					})
 						.then( results => {
 							console.log(results, 'all item info promise');
-							setRelated(results);
+							setProductData(results[0]);
+							setRelated(results.slice(1));
 							setStatus(true);
 						})
 				.catch(err => {
@@ -73,11 +64,12 @@ const Related = ({product}) => {
 				})
 	}, [product]);
 
+//passing down product as data object
 	return (
 		<div>
 			<div>hello we are related</div>
-			<Carousel product={product} mode={'related'} list={related} setList={setRelated} status={status} setStatus={setStatus}/>
-			<Carousel product={product} mode={'outfit'} list={outfit} setList={setOutfit} status={status} setStatus={setStatus}/>
+			<Carousel product={productData} mode={'related'} list={related} setList={setRelated} status={status} setStatus={setStatus}/>
+			<Carousel product={productData} mode={'outfit'} list={outfit} setList={setOutfit} status={status} setStatus={setStatus}/>
 		</div>
 	)
 

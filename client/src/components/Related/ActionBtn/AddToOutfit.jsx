@@ -21,11 +21,11 @@ const AddToOutfit = ({item, list, setList, product}) => {
     const outfits = list.slice();
     console.log('outfits in addtoOutfit', outfits);
     const filteredOutfits = outfits.filter( prod => {
-      console.log('prod', prod)
-      return prod[0].id === product.id;
+      console.log('prod', prod, 'prodID', prod[0].id, 'product', product, 'product.id', product[0].id)
+      return prod[0].id === product[0].id;
     });
     if (!filteredOutfits.length) {
-      outfits.push(outfit);
+      outfits.push(product);
       localForage.clear();
       localForage.setItem('outfits', outfits)
         .then( () => {
