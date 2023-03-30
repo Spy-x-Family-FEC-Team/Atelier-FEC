@@ -40,7 +40,7 @@ const StyledProdViewThumbnail = styled.img`
   height:90%;
   width: 90%;
   object-fit:cover;
-  border-radius: 17px;
+  border-radius: 12px;
 `;
 
 const StyledUnderline = styled.section`

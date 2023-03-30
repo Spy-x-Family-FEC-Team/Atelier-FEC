@@ -31,7 +31,7 @@ const StyledMainImage = styled.img`
   max-height: 65vh;
   max-width: 90%;
   // object-position: 50% 50%;
-  border-radius: 24px;
+  border-radius: 18px;
   // margin:10px;
 `;
 
