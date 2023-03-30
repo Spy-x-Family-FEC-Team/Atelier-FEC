@@ -17,8 +17,8 @@ const StyledPurchaseOrLikeWrapper = styled.section`
 const StyledDrop = styled.select`
   font-size: 1.1rem;
   padding: 2px 5px;
-  border-color: #d1abc6;
-  color: #551a8b;
+  border-color: #A7D4D9;
+  color: #23493F;
   border-radius: 6px;
   margin:5px;
   height:30px;
@@ -111,30 +111,12 @@ const PurchaseOrLike = (props) => {
         <OverlayWindow
           onBgClick={toggleSelectSizeWarning}
         >
-        <select
-          className="dropdown"
-          onChange={(event) => {
-            setSelectedSize(event.target.value);
-            toggleSelectSizeWarning();
-          }}
-        >
-        <option value="none" hidden>Select Size</option>
-        {availableSizes.map((size) => {
-          return(
-            <option
-              value={size}
-              key={size}
-            >
-                {size}
-            </option>
-          )
-        })}
-        </select>
+         Select a size.
         </OverlayWindow>
       :null}
 
       <StyledPurchaseOrLikeWrapper>
-        <select
+        <StyledDrop
           className="JenessasDropdown"
           onChange={(event) => {
             setSelectedSize(event.target.value);
@@ -151,7 +133,7 @@ const PurchaseOrLike = (props) => {
             </option>
           )
         })}
-        </select>
+        </StyledDrop>
         <StyledDrop
           className="JenessasDropdown"
           onChange={(event) => {

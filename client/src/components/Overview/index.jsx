@@ -69,6 +69,7 @@ const Overview = (props) => {
   // helper function
   const makeProdViewThumbnailsList = () => {
     var thumbnails = [];
+    //TODO: Remove the slice here when I fix this.
     currentStyles.results[indexOfStyleOption].photos.forEach((photo) => {
       thumbnails.push(photo.thumbnail_url);
     })

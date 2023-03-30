@@ -19,6 +19,7 @@ const IconWrapper = styled.section`
   border-radius:50%;
   display: flex;
   justify-content: space-around;
+  // Reviewer note that placing a color property here didn't work. Class was needed.
 `;
 
 
@@ -29,7 +30,7 @@ const Social = () => {
       <SocialSectionWrapper>
       <IconWrapper>
           <a
-            className="Jlink"
+            className="JenessaSocial"
             href="https://www.facebook.com/"
             target="_blank"
             rel="noreferrer">
@@ -38,7 +39,7 @@ const Social = () => {
         </IconWrapper>
         <IconWrapper>
           <a
-            className="Jlink"
+            className="JenessaSocial"
             href="https://twitter.com/?lang=en"
             target="_blank"
             rel="noreferrer">
@@ -47,7 +48,7 @@ const Social = () => {
         </IconWrapper>
         <IconWrapper>
           <a
-            className="Jlink"
+            className="JenessaSocial"
             href="https://www.instagram.com/"
             target="_blank"
             rel="noreferrer">
@@ -56,7 +57,7 @@ const Social = () => {
         </IconWrapper>
         <IconWrapper>
           <a
-            className="Jlink"
+            className="JenessaSocial"
             href="https://www.pinterest.com/"
             target="_blank"
             rel="noreferrer">
