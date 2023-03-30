@@ -3,29 +3,39 @@ import styled from 'styled-components';
 import StyleAndPrice from './StyleAndPrice.jsx';
 import PurchaseOrLike from './PurchaseOrLike.jsx';
 import Social from './Social.jsx';
+import OneFeature from './OneFeature.jsx';
+import TitleCatRev from './TitleCatRev.jsx';
 
 const StyleSectionWrapper = styled.section`
   height:100%;
   display: grid;
-  grid-template-rows: 60% 15% 15%;
+  grid-template-rows:20% 40% 20% 10% 10%;
+`;
+
+const FeaturesWrapper = styled.section`
+`;
+
+
+const FeaturesListWrapper = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
 `;
 
 const StyleSection = (props) => {
-
-  const makeThumbnailsList = function (stylesObj) {
-    var thumbnails = [];
-    stylesObj.results.forEach((style) =>{
-      thumbnails.push(style.photos[0].thumbnail_url);
-    });
-    return thumbnails;
-  };
 
 
   return(
     <div>
      <StyleSectionWrapper>
+      <TitleCatRev
+          title={props.title}
+          category={props.category}
+          data={props.data}
+      />
       <StyleAndPrice
-        styleThumbnails={makeThumbnailsList(props.stylesForThisProduct)}
+        styleThumbnails={props.styleThumbnails}
 
         handleStyleSelection={props.handleStyleSelection}
 
@@ -43,6 +53,18 @@ const StyleSection = (props) => {
         _id={props._id}
       />
       <Social />
+      <FeaturesWrapper>
+        <FeaturesListWrapper>
+        <ul>
+          {props.features.map((item, index) =>
+            <OneFeature
+              key={index}
+              featureName={item.feature}
+              value={item.value} />
+          )}
+        </ul>
+        </FeaturesListWrapper>
+      </FeaturesWrapper>
      </StyleSectionWrapper>
     </div>
   )

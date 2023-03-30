@@ -7,33 +7,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const StyledImageGalleryWrapper = styled.section`
-  position: relative;
+  height:65vh;
+  display:grid;
+  grid-template-columns: 20%  80%;
+  grid-template-rows: 1fr;
 `;
 
 const StyledMainImageWrapper = styled.section`
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-axis:1;
-  height:100%;
-  width:100%
-  position:absolute;
+  padding-left: 5%;
+  padding-right: 5%;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // height:90%;
+  // width:90%
+  min-height:0px;
+  min-width:0px;
+  // margin:20px;
 `;
 
 const StyledMainImage = styled.img`
   max-height: 65vh;
   max-width: 100%;
   object-position: 50% 50%;
-  z-axis:1;
   border-radius: 24px;
-
+  // margin:10px;
 `;
 
 const StyledVerticalCarouselWrapper = styled.section`
-  position:absolute;
-  z-axis:2;
   margin-left:1%;
   margin-top: 5%;
   margin-bottom: 5%;
