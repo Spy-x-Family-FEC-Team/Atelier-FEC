@@ -11,7 +11,18 @@ const StyledPurchaseOrLikeWrapper = styled.section`
   grid-template-rows: 1fr 1fr;
   padding: 40px;
   padding:15px;
+  z-index:100;
 `;
+
+const StyledDrop = styled.select`
+  font-size: 1.1rem;
+  padding: 2px 5px;
+  border-color: #A7D4D9;
+  color: #23493F;
+  border-radius: 6px;
+  margin:5px;
+  height:30px;
+  `;
 
 const PurchaseOrLike = (props) => {
     // Variables:
@@ -100,29 +111,13 @@ const PurchaseOrLike = (props) => {
         <OverlayWindow
           onBgClick={toggleSelectSizeWarning}
         >
-        <select
-          onChange={(event) => {
-            setSelectedSize(event.target.value);
-            toggleSelectSizeWarning();
-          }}
-        >
-        <option value="none" hidden>Select Size</option>
-        {availableSizes.map((size) => {
-          return(
-            <option
-              value={size}
-              key={size}
-            >
-                {size}
-            </option>
-          )
-        })}
-        </select>
+         Select a size.
         </OverlayWindow>
       :null}
 
       <StyledPurchaseOrLikeWrapper>
-        <select
+        <StyledDrop
+          className="JenessasDropdown"
           onChange={(event) => {
             setSelectedSize(event.target.value);
           }}
@@ -138,8 +133,9 @@ const PurchaseOrLike = (props) => {
             </option>
           )
         })}
-        </select>
-        <select
+        </StyledDrop>
+        <StyledDrop
+          className="JenessasDropdown"
           onChange={(event) => {
             setSelectedQuantity(parseInt(event.target.value));
           }}
@@ -152,7 +148,7 @@ const PurchaseOrLike = (props) => {
               })
               : <option value="none">-</option>
           }
-        </select>
+        </StyledDrop>
         <div>
           { (availableSizes.length >= 1) ?
             <AddToBag

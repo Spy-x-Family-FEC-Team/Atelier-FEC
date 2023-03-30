@@ -37,12 +37,19 @@ const StyledStyleThumbnailWrapper = styled.section`
 
 // The look of this checkmark is just temporary until we make some aesthetic choices together.
 const StyledCheckmark = styled.section`
-  color: #571147;
-  font-size: large;
+  color: #329FA9;
+  font-size: 1.4rem;
   position: absolute;
   z-index: 2;
   margin-left:75%;
   margin-top: 15%;
+  background-color:white;
+  // border-radius:50%;
+  align-items: center;
+  transform: translateY(-30%);
+  height:20px;
+  width:20px;
+  padding-top:13px;
 `;
 
 const PriceAndText = styled.section`
@@ -64,7 +71,7 @@ const StyleAndPrice = (props) => {
           <strike>{props.originalPrice}</strike>
           : props.originalPrice}
         </span>
-        <div><span style={{color:"#91768a"}}>STYLE >&nbsp;</span>{props.styleName}</div>
+        <div><span style={{color:"#23493F"}}>STYLE >&nbsp;</span>{props.styleName}</div>
       </PriceAndText>
       <StyleImageGridWrapper>
         {props.styleThumbnails.map((url, index) => {

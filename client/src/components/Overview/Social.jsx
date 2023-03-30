@@ -4,23 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
 
 const SocialSectionWrapper = styled.section`
-  padding: 15px;
   display: grid;
   font-size:x-large;
   display: flex;
   justify-content: space-around;
-  margin-top:10px;
+  margin-top:3px;
 `;
 
 const IconWrapper = styled.section`
   display:inline-block;
   width:35px;
   height:35px;
-  background:#e3d1de;
+  background:white;
   border-radius:50%;
   display: flex;
   justify-content: space-around;
-  margin:5%;
+  // Reviewer note that placing a color property here didn't work. Class was needed.
 `;
 
 
@@ -31,6 +30,7 @@ const Social = () => {
       <SocialSectionWrapper>
       <IconWrapper>
           <a
+            className="JenessaSocial"
             href="https://www.facebook.com/"
             target="_blank"
             rel="noreferrer">
@@ -39,6 +39,7 @@ const Social = () => {
         </IconWrapper>
         <IconWrapper>
           <a
+            className="JenessaSocial"
             href="https://twitter.com/?lang=en"
             target="_blank"
             rel="noreferrer">
@@ -47,6 +48,7 @@ const Social = () => {
         </IconWrapper>
         <IconWrapper>
           <a
+            className="JenessaSocial"
             href="https://www.instagram.com/"
             target="_blank"
             rel="noreferrer">
@@ -55,6 +57,7 @@ const Social = () => {
         </IconWrapper>
         <IconWrapper>
           <a
+            className="JenessaSocial"
             href="https://www.pinterest.com/"
             target="_blank"
             rel="noreferrer">
