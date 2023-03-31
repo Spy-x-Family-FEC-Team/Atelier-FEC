@@ -16,10 +16,6 @@ const StyledCloseButton = styled.section`
   cursor:pointer;
 `;
 
-
-// height:82vh;
-// width:80vw; both from 100%
-
 const StyledExpandedImage = styled.img`
   max-height: 82vh;
   max-width: 80vw;
@@ -88,17 +84,20 @@ const StyledMainImageWrapper = styled.section`
   // position:absolute;
   cursor:cell;
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  // background-size: contain;
+  // background-position: center;
   ${(props) => (css`
     background-image:url("${props.currentImage}");
+    background-size:${props.backgroundSize};
+    background-position: ${props => props.backgroundPosition}};
   `)}
 `;
 
-    // background-position: ${props.position[0]}% ${props.position[1]};
+
 const Expanded = (props) => {
   const [magnifiedView, setMagnifiedView] = useState(false);
   const [position, setPosition] = useState([50, 50]);
+  const [backgroundPosition, setBackgroundPosition] = useState([50, 50]);
 
   const toggleMagnified = () => {
     setMagnifiedView(!magnifiedView);
@@ -106,6 +105,7 @@ const Expanded = (props) => {
 
   useEffect(() => {
     console.log(position);
+    setBackgroundPosition(position);
   },[position]);
 
   return(
@@ -127,6 +127,14 @@ const Expanded = (props) => {
             var positionY = ((event.clientY - clientRect.top)/clientRect.height) * 100;
             setPosition([positionX, positionY]);
           }}
+          backgroundSize = {magnifiedView ?
+              "250%"
+              : "contain"
+            }
+          backgroundPosition = {magnifiedView ?
+             `${backgroundPosition[0]} ${backgroundPosition[1]}`
+             :"center"
+            }
         >
           {!magnifiedView ?
               <>

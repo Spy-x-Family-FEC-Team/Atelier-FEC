@@ -60,7 +60,6 @@ const StyledRightButton = styled.section`
 
 const StyledLeftButton = styled.section`
   position:absolute;
-  left:120px;
   top:40%;
   font-size:x-large;
   width: 40px;

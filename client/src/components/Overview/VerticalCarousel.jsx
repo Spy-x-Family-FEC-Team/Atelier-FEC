@@ -47,9 +47,12 @@ const StyledProdViewThumbnail = styled.img`
 `;
 
 const StyledUnderline = styled.section`
-  color:white;
-  font-size:large;
+  color:#A7D4D9;
+  // font-size:large;
+  position:absolute;
   width: 10vw;
+  height:2px;
+
 `;
 
 
