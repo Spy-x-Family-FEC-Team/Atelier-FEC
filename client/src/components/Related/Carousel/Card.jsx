@@ -17,7 +17,7 @@ import localForage from "localforage";
 const CardContainer = styled.div`
   grid-column: span 1;
   scroll-snap-align: center;
-  width: 200px;
+  width: 10vw;
   height: 300px;
   display: grid;
   grid-template-rows: 200px 1fr;
@@ -25,10 +25,10 @@ const CardContainer = styled.div`
 `;
 
 const ProductContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 300px;
   display: grid;
-  grid-template-rows: 200px 1fr;
+  grid-template-rows: 10vw 1fr;
   position: relative;
   z-index: 1
 `
@@ -60,6 +60,15 @@ const ProductPrice = styled.div`
 const Stars = styled.div`
 `;
 const StyledCard = ({item, mode, list, setList, product}) => {
+
+  console.log('item in styledcard', item, 'product in styled card', product);
+
+  if (item[0].name === 'AxiosError') {
+    return (
+      <CardContainer>
+      </CardContainer>
+    )
+  }
 
   if (item === 'outfitAdd') {
     return (

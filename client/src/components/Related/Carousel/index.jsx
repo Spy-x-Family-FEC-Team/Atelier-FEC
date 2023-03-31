@@ -11,14 +11,12 @@ import localForage from "localforage";
 //might have to fix height offset
 const CarouselContainer = styled.div`
 	position: relative;
-	background-color: violet;
 	padding: 0;
 	margin: 0;
 	height: 308px;
 `
 
 const CarouselTrack = styled.div`
-	background-color: grey;
 	position: absolute;
 	width: 100%;
 	padding: 0;
@@ -33,7 +31,7 @@ const CarouselList = styled.div`
 	list-style: none;
 	display: grid;
 	grid-template-columns: repeat(${props => props ? props.list.length + 1 : 1}, fit-content(200px));
-	grid-column-gap: 10px;
+	grid-column-gap: 5%;
 	overflow-x: scroll;
 	overflow-y: hidden;
 	scroll-snap-type: x mandatory;
