@@ -62,6 +62,10 @@ div {
   color: ${Colors.night};
 }
 
+i {
+  font-weight: 200;
+}
+
 button {
   font-family: Biryani;
   font-size: 1.1rem;
@@ -93,6 +97,16 @@ select {
   border-radius: 6px;
   margin:5px;
   height:30px;
+}
+
+fieldset {
+  all: unset;
+}
+
+textarea {
+  all: unset;
+  border: 1px solid ${Colors.verdegris};
+  border-radius: 0.3rem;
 }
 `;
 

@@ -5,6 +5,8 @@ import OverlayWindow from "/client/src/components/assets/OverlayWindow.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 import {Colors} from '/client/src/components/assets/GlobalStyles.js';
+import axios from "axios";
+
 
 const ReviewCard = styled.div`
   margin: 2vh;
@@ -36,11 +38,6 @@ const ButtonSection = styled.div`
   height: 10vh;
 `
 
-const MarginlessButton = styled.button`
-  margin: 0;
-`
-
-
 const ReviewBody = styled.section`
 `; //tbd on stiling, originally had this here for overflow elements, but probably gonna style it eventually
 
@@ -52,7 +49,7 @@ const ThumbnailContainer = styled.section`
 
 const ThumbnailPic = styled.img`
   height: 100%;
-  max-width: 100%;
+  max-width: 90%;
   border-radius: 5px;
 `;
 
@@ -64,12 +61,31 @@ const OverlayPic = styled.img`
 
 
 
-const ReviewListItem = ({data}) => {
+const ReviewListItem = ({data, refresh}) => {
   const [expanded, setExpanded] = useState(false);
   const [imageOverlay, setImageOverlay] = useState(null);
   const clearImageOverlay = () => {setImageOverlay(null)}
   const toggleExpanded = () => {setExpanded((ex) => (!ex))};
   const imageClick = (event) => {setImageOverlay(event.target.getAttribute('src'))}
+
+  const HandleHelpful = () => {
+    axios.post(`/api/helpful/${data.review_id}`, {})
+    .then((results) => {
+			refresh()
+			// reload relevant data
+		}).catch((err) => {
+			console.log(err)
+		})
+  }
+  const HandleReport = () => {
+    axios.post(`/api/report/${data.review_id}`, {})
+    .then((results) => {
+			refresh()
+			// reload relevant data
+		}).catch((err) => {
+			console.log(err)
+		})
+  }
 
   return(
   <ReviewCard>
@@ -85,7 +101,7 @@ const ReviewListItem = ({data}) => {
 
     {data.photos.length ?
     <ThumbnailContainer>
-      {data.photos.map((photo) => (
+      {data.photos.slice(0,5).map((photo) => (
         <ThumbnailPic
           key={photo.id}
           src={photo.url}
@@ -100,10 +116,10 @@ const ReviewListItem = ({data}) => {
         <b>Was this review helpful?</b>
       </div>
       <div>
-        <MarginlessButton type="button" onClick={() => {console.log('clicked a review list yes button')}}>Yes</MarginlessButton>
+        <button type="button" onClick={HandleHelpful}>Yes</button>
       </div>
       <div>
-        <button type="button" onClick={() => {console.log('clicked a review list report button')}}>Report</button>
+        <button type="button" onClick={HandleReport}>Report</button>
       </div>
     </ButtonSection>
     {imageOverlay ?

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import ReviewListItem from "./ReviewListItem"
 import styled from "styled-components";
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 const ReviewSectionGridStyling = styled.div`
 grid-column-start: 2;
 grid-column-end: 3;
 grid-row-start: 1;
 grid-row-end: 2;
-height: 90%;
+height: 100%;
 width: 96%;
 display: grid;
 grid-template-rows: 10% 10% 80%;
@@ -18,10 +19,15 @@ const ReviewsStyling = styled.div`
   overflow-y: scroll;
   overflow-x: hidden;
   overflow-wrap: break-word;
+  scrollbar-color: rebeccapurple green;
 `
 
 const SortHead = styled.h4`
   display:inline;
+`
+
+const MoreWrapper = styled.div`
+  margin-bottom: 1vh;
 `
 
 const sortFunctions = {
@@ -104,9 +110,11 @@ const ReviewList = (props) => {
       .sort(sortFunctions[sortKey])
       .filter((rev) => (props.starFilter? rev.rating === props.starFilter: true))
       .slice(0, (moreReviews ? undefined : 2)) // this slice should do nothing if we want more reviews, and should slice to 2 reviews otherwise
-      .map((rev) => <ReviewListItem key={rev.review_id} data={rev}/>) // turn those array items into react elements
+      .map((rev) => <ReviewListItem key={rev.review_id} data={rev} refresh={props.refresh}/>) // turn those array items into react elements
       }
-      {props.reviews.results.length > 2 ? <button type="button" onClick={toggleMore}>{moreReviews ? "Less Reviews" : "More Reviews"}</button> : null }
+      <MoreWrapper>{
+        props.reviews.results.length > 2 ? <button type="button" onClick={toggleMore}>{moreReviews ? "Less Reviews" : "More Reviews"}</button> : null }
+      </MoreWrapper>
     </ReviewsStyling>
   </ReviewSectionGridStyling>);
 }

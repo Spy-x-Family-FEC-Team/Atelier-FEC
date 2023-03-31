@@ -72,6 +72,30 @@ exports.postReview = (req, res) => {
   })
 };
 
+exports.putHelpful = (req, res) => {
+  console.log(req.body)
+  console.log(req.params.id)
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${req.params.id}/helpful`, {} ,{headers:{Authorization:process.env.AUTH_KEY}}).then((results) => {
+    console.log(`Successfully rated review helpful.`)
+    res.sendStatus(201);
+  }).catch((err) => {
+    console.log(`  Error encountered during request ${err.message}`);
+    res.sendStatus(500);
+  })
+};
+
+exports.putReport = (req, res) => {
+  console.log(req.body)
+  console.log(req.params.id)
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${req.params.id}/report`, {} ,{headers:{Authorization:process.env.AUTH_KEY}}).then((results) => {
+    console.log(`Successfully reported review.`)
+    res.sendStatus(201);
+  }).catch((err) => {
+    console.log(`  Error encountered during request ${err.message}`);
+    res.sendStatus(500);
+  })
+};
+
 exports.addToCart = (req, res) => {
   // console.log("------------------------Got to addToCart with this req.body: ", req.body);
   axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/cart`, req.body,
