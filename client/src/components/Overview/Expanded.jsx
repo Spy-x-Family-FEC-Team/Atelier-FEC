@@ -81,15 +81,12 @@ const StyledMainImageWrapper = styled.section`
   justify-content: center;
   height:82vh;
   width:80vw;
-  // position:absolute;
   cursor:cell;
   background-repeat: no-repeat;
-  // background-size: contain;
-  // background-position: center;
   ${(props) => (css`
     background-image:url("${props.currentImage}");
     background-size:${props.backgroundSize};
-    background-position: ${props => props.backgroundPosition}};
+    background-position: ${props.backgroundPosition}};
   `)}
 `;
 
