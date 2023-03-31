@@ -33,7 +33,7 @@ h1 {
   font-weight: bold;
   font-size: 2.8rem;
   margin: 0;
-  color: ${Colors.brunswick};
+  color: ${Colors.night};
 }
 
 div {

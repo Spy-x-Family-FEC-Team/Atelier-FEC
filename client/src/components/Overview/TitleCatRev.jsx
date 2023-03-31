@@ -7,14 +7,15 @@ const TitleCatRevWrapper = styled.section`
   display:grid;
   grid-template-rows: 1fr 1fr 2fr;
   z-index:5;
+  height:15vh;
 `;
 
 const TitleWrapper = styled.section`
   font-family:Georgia;
-  font-size:2.8rem;
+  font-size:2.6rem;
   font-weight:bold;
-  padding-bottom:15px;
-  margin-bottom:15px;
+  // padding-bottom:15px;
+  // margin-bottom:15px;
 `;
 
 

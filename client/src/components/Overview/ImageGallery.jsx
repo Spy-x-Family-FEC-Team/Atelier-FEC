@@ -30,9 +30,8 @@ const StyledMainImageWrapper = styled.section`
 const StyledMainImage = styled.img`
   max-height: 65vh;
   max-width: 90%;
-  // object-position: 50% 50%;
   border-radius: 18px;
-  // margin:10px;
+  cursor:zoom-in;
 `;
 
 const StyledVerticalCarouselWrapper = styled.section`
@@ -55,6 +54,7 @@ const StyledRightButton = styled.section`
   background: rgba(255, 255, 255, .5);
   border-radius:50%;
   color:#23493F;
+  cursor:pointer;
 `;
 
 
@@ -70,6 +70,7 @@ const StyledLeftButton = styled.section`
   background: rgba(255, 255, 255, .5);
   border-radius:50%;
   color:#23493F;
+  cursor:pointer;
 `;
 
 
