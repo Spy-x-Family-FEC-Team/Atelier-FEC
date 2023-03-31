@@ -61,7 +61,8 @@ const VerticalCarousel = (props) => {
       {props.indexOfThisProdView > 0 ?
         <StyledUpButton
         onClick={() => {
-          props.handleViewSelection(props.indexOfThisProdView -1);
+          props.handleVerticalSliceSelection(props.viewListIndex -1);
+          // props.handleViewSelection(props.indexOfThisProdView -1);
           }}
         >
           <FontAwesomeIcon icon={solid('chevron-up')} />
@@ -90,7 +91,9 @@ const VerticalCarousel = (props) => {
       {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
         <StyledDownButton
           onClick={() => {
-            props.handleViewSelection(props.indexOfThisProdView +1);
+
+            props.handleVerticalSliceSelection(props.viewListIndex +1);
+            // props.handleViewSelection(props.indexOfThisProdView +1);
             }}
         >
           <FontAwesomeIcon icon={solid('chevron-down')} />

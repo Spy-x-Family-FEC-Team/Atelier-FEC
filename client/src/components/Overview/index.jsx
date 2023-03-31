@@ -80,7 +80,11 @@ const Overview = (props) => {
   const makeProdViewThumbnailsSlice = () => {
     console.log("slice==== ", prodViewThumbnails.slice(viewListIndex, viewListIndex + 7));
     return prodViewThumbnails.slice(viewListIndex, viewListIndex + 7);
-  }
+  };
+
+  const handleVerticalSliceSelection = (newViewListIndex) => {
+    setViewListIndex(newViewListIndex);
+  };
 
   const makeStylesThumbnailsList = (stylesObj) => {
     var thumbnails = [];
@@ -139,6 +143,8 @@ const Overview = (props) => {
             prodViewThumbnails={viewThumbnailsSlice}
             indexOfThisProdView={indexOfThisProdView}
             handleViewSelection={handleViewSelection}
+            handleVerticalSliceSelection={handleVerticalSliceSelection}
+            viewListIndex={viewListIndex}
           />
           <ProductDetailsWrapper>
             <ProductDetails
