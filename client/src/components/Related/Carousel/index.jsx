@@ -8,17 +8,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import localForage from "localforage";
 
-//might have to fix height offset
+const CarouselHeader = styled.header`
+	background-color: white;
+	padding: 10vh;
+	display: flex;
+	justify-content: center;
+`
+
 const CarouselContainer = styled.div`
 	position: relative;
-	background-color: violet;
 	padding: 0;
 	margin: 0;
-	height: 308px;
+	height: 400px;
 `
 
 const CarouselTrack = styled.div`
-	background-color: grey;
 	position: absolute;
 	width: 100%;
 	padding: 0;
@@ -33,7 +37,7 @@ const CarouselList = styled.div`
 	list-style: none;
 	display: grid;
 	grid-template-columns: repeat(${props => props ? props.list.length + 1 : 1}, fit-content(200px));
-	grid-column-gap: 10px;
+	grid-column-gap: 5%;
 	overflow-x: scroll;
 	overflow-y: hidden;
 	scroll-snap-type: x mandatory;
@@ -87,7 +91,7 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 
 	return (
 		<div>
-			{mode === 'related' ? (<h3>RELATED PRODUCTS</h3>) : <h3>YOUR OUTFIT</h3>}
+			{mode === 'related' ? (<CarouselHeader>RELATED PRODUCTS</CarouselHeader>) : <CarouselHeader>YOUR OUTFIT</CarouselHeader>}
 			<CarouselContainer>
 				<StyledLeftBtn onClick={scrollLeft} disp={displayLeft}>
 					<FontAwesomeIcon icon={solid('chevron-left')} />
