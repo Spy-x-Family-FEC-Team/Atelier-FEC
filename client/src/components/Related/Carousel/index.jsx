@@ -46,7 +46,7 @@ const CarouselList = styled.div`
 	scroll-snap-align: start;
 	scrollbar-color: white;
 	&::-webkit-scrollbar {
-		width: 2px;
+		height: 7px;
     background-color: rgba(0,0,0,0);
 	};
 	&::-webkit-scrollbar-thumb {

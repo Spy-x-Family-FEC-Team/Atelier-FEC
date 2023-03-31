@@ -50,9 +50,11 @@ const ProductInfo = styled.div`
 `;
 const ProductCategory = styled.div`
   background-color: white;
+  font-size: smaller;
 `;
 const ProductName = styled.div`
   background-color: white;
+  font-weight: bold;
 `;
 const ProductPrice = styled.div`
   background-color: white;
