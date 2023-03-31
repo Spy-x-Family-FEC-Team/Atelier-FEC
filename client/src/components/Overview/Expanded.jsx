@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled, {css} from 'styled-components';
 import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
 import Magnified from './Magnified.jsx';
@@ -16,21 +16,7 @@ const StyledCloseButton = styled.section`
   cursor:pointer;
 `;
 
-const StyledMainImageWrapper = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height:82vh;
-  width:80vw;
-  // position:absolute;
-  cursor:cell;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  ${(props) => (css`
-    background-image:url("${props.currentImage}");
-  `)}
-`;
+
 // height:82vh;
 // width:80vw; both from 100%
 
@@ -93,12 +79,34 @@ const StyledRightButton = styled.section`
   cursor:pointer;
 `;
 
+const StyledMainImageWrapper = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:82vh;
+  width:80vw;
+  // position:absolute;
+  cursor:cell;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  ${(props) => (css`
+    background-image:url("${props.currentImage}");
+  `)}
+`;
+
+    // background-position: ${props.position[0]}% ${props.position[1]};
 const Expanded = (props) => {
   const [magnifiedView, setMagnifiedView] = useState(false);
+  const [position, setPosition] = useState([50, 50]);
 
   const toggleMagnified = () => {
     setMagnifiedView(!magnifiedView);
   }
+
+  useEffect(() => {
+    console.log(position);
+  },[position]);
 
   return(
     <div>
@@ -114,12 +122,11 @@ const Expanded = (props) => {
           currentImage={props.currentImage}
           onClick={toggleMagnified}
           onMouseMove={(event) => {
-            // console.log("mouse position: x/y => ", event.clientX, event.clientY);
-            // console.log("event.target.getBoundingClientRect() :  ", event.target.getBoundingClientRect())
             var clientRect = event.target.getBoundingClientRect();
-            console.log("mouse position: x/y => ", ((event.clientX - clientRect.left)/clientRect.width) *100, ((event.clientY - clientRect.top)/clientRect.height) * 100);
+            var positionX = ((event.clientX - clientRect.left)/clientRect.width) * 100;
+            var positionY = ((event.clientY - clientRect.top)/clientRect.height) * 100;
+            setPosition([positionX, positionY]);
           }}
-
         >
           {!magnifiedView ?
               <>
