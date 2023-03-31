@@ -23,7 +23,7 @@ const RmvFromOutfit = ({item, list, setList}) => {
 
   return (
     <>
-      <ActionBtn onClick={rmvFromOutfit}>
+      <ActionBtn onClick={rmvFromOutfit} data-testid="button">
         <FontAwesomeIcon icon={solid("circle-xmark")} />
       </ActionBtn>
     </>
