@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -55,26 +55,49 @@ const StyledUnderline = styled.section`
 
 const VerticalCarousel = (props) => {
 
+  const [thumbnails, setThumbnails] = useState(props.prodViewThumbnails);
+  const [viewIndex, setViewIndex] = useState(props.viewListIndex);
+  const [listOffset, setListOffset] = useState(0);
+
+  const handleUpClick = () => {
+    setListOffset(listOffset-1);
+    props.handleVerticalSliceSelection(props.viewListIndex -1);
+    if(props.indexOfThisProdView > props.viewListIndex +7) {
+      props.handleViewSelection(props.viewListIndex +7);
+    }
+  };
+
+  const handleDownClick = () => {
+    setListOffset(listOffset + 1);
+    setViewIndex(viewIndex + 1);
+    props.handleVerticalSliceSelection(props.viewListIndex +1);
+    if(props.indexOfThisProdView < props.viewListIndex) {
+      props.handleViewSelection(props.viewListIndex +1);
+    }
+  };
+
+  useEffect (() => {
+    setThumbnails(props.prodViewThumbnails);
+    // setViewIndex(props.viewListIndex)
+  }, [props.prodViewThumbnails, props.viewListIndex, props.moreViews, props.indexOfThisProdView]);
+
 
   return(
     <StyledVerticalCarouselGrid>
-      {props.indexOfThisProdView > 0 ?
+      {props.viewListIndex > 0 ?
         <StyledUpButton
-        onClick={() => {
-          props.handleVerticalSliceSelection(props.viewListIndex -1);
-          // props.handleViewSelection(props.indexOfThisProdView -1);
-          }}
+        onClick={handleUpClick}
         >
           <FontAwesomeIcon icon={solid('chevron-up')} />
         </StyledUpButton>
       :null}
 
-      {props.prodViewThumbnails.map((url, index) => {
+      {thumbnails.map((url, index) => {
         return (
           <StyledProdViewThumbnailWrapper
             key={index}
             onClick={() => {
-              props.handleViewSelection(index);
+              props.handleViewSelection(index + listOffset);
               }}>
             <StyledProdViewThumbnail
               src={url}
@@ -88,13 +111,9 @@ const VerticalCarousel = (props) => {
         )
       })}
 
-      {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
+      {props.moreViews ?
         <StyledDownButton
-          onClick={() => {
-
-            props.handleVerticalSliceSelection(props.viewListIndex +1);
-            // props.handleViewSelection(props.indexOfThisProdView +1);
-            }}
+          onClick={handleDownClick}
         >
           <FontAwesomeIcon icon={solid('chevron-down')} />
         </StyledDownButton>

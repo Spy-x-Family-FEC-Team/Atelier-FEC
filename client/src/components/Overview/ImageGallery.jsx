@@ -90,6 +90,9 @@ const ImageGallery = (props) => {
             prodViewThumbnails={props.prodViewThumbnails}
             indexOfThisProdView={props.indexOfThisProdView}
             handleViewSelection={props.handleViewSelection}
+            handleVerticalSliceSelection={props.handleVerticalSliceSelection}
+            viewListIndex={props.viewListIndex}
+            moreViews={props.moreViews}
           />
         </StyledVerticalCarouselWrapper>
         <StyledMainImageWrapper>

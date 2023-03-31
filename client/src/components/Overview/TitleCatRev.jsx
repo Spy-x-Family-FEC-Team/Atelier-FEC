@@ -12,7 +12,7 @@ const TitleCatRevWrapper = styled.section`
 
 const TitleWrapper = styled.section`
   font-family:Georgia;
-  font-size:2.6rem;
+  font-size:2.8rem;
   font-weight:bold;
   // padding-bottom:15px;
   // margin-bottom:15px;
@@ -39,8 +39,10 @@ const TitleCatRev = (props) => {
         :null
       }
       <div>{props.category}</div>
+      {/* This hidden h1 is for accessibility, but h1 was causing styling issues for the rendered title. */}
+      <h1 hidden>{props.title}</h1>
       <TitleWrapper>
-        <h1>{props.title}</h1>
+        {props.title}
       </TitleWrapper>
     </TitleCatRevWrapper>
   )

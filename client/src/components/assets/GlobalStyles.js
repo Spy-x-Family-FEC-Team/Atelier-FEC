@@ -26,15 +26,7 @@ ${BiryaniCss}
 body {
   font-family: Biryani, sans-serif;
   font-weight: 300;
-}
-
-
-h1 {
-  font-family: Georgia;
-  font-weight: bold;
-  font-size: 3.6rem;
-  margin: 0;
-  color: ${Colors.brunswick};
+  color: ${Colors.night};
 }
 
 h2 {
@@ -58,9 +50,9 @@ h4 {
   color: ${Colors.night};
 }
 
-div {
-  color: ${Colors.night};
-}
+// div {
+//   color: ${Colors.night};
+// }
 
 button {
   font-family: Biryani;
