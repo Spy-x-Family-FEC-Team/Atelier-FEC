@@ -43,6 +43,10 @@ const CarouselList = styled.div`
 	scroll-snap-type: x mandatory;
 	scroll-behavior: smooth;
 	scroll-snap-align: start;
+	// &::-webkit-scrollbar {
+  //   width: 6px;
+  //   background-color: transparent;
+	// }
 `
 
 const Carousel = ({product, mode, list, setList, status, setStatus}) => {
@@ -50,15 +54,37 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
 	const [displayRight, setDisplayRight] = useState(false);
+	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 	const carouselID = `Carousel-List-${mode}`
 
 	//if current div is scrollable, display right button
 	useEffect( () => {
 		const list = document.querySelector(`#${carouselID}`);
-		if (list.clientWidth < list.scrollWidth) {
-			setDisplayRight(true);
+
+		const handleResize= () => {
+			setScreenWidth(window.innerWidth);
+
+			const scrollWidth = list.scrollWidth;
+			const position = list.scrollLeft;
+			const divWidth = list.offsetWidth;
+			console.log('scrollwidth', list.scrollWidth, 'clientwidth', list.clientWidth, 'window innerwidth', screenWidth);
+
+			if (list.clientWidth < list.scrollWidth) {
+				if (scrollWidth - position <= divWidth) {
+					setDisplayRight(false);
+				} else if (position === 0) {
+					setDisplayLeft(false);
+				} else {
+					setDisplayLeft(true);
+					setDisplayRight(true);
+				}
+			}
 		}
-	}, []);
+
+		window.addEventListener("resize", handleResize);
+		handleResize();
+
+	}, [screenWidth]);
 
 	//scroll left and right functions
 	const scrollRight = () => {
@@ -73,6 +99,8 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 
 	//update right/left button visibility based on scroll position
 	const handleScroll = (e) => {
+
+		console.log('window width', window.innerWidth);
 
 		const track = e.target;
 		const position = track.scrollLeft;

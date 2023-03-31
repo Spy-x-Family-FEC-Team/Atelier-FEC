@@ -11,8 +11,8 @@ const CompareTable = styled.table`
 
 const Table = ({item, product}) => {
 
-  const product1 = item[0].features;
-  const product2 = product[0].features;
+  const product1 = product[0].features;
+  const product2 = item[0].features;
 
   let combFeats = {};
 
@@ -35,9 +35,9 @@ const Table = ({item, product}) => {
       <CompareTable>
         <tbody>
           <tr>
-            <th>Product Short Name</th>
+            <th>{product[0].name}</th>
             <th></th>
-            <th>Product Short Name</th>
+            <th>{item[0].name}</th>
           </tr>
           {
             compareFeatures.map( feat => {
