@@ -65,23 +65,15 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 	const [displayRight, setDisplayRight] = useState(false);
 	const carouselID = `Carousel-List-${mode}`
 
+	console.log('rerendered carousel');
+
 	//if current div is scrollable, display right button
 	useEffect( () => {
 		const list = document.querySelector(`#${carouselID}`);
 
-		// const handleResize= () => {
-		// 	// const scrollWidth = list.scrollWidth;
-		// 	// const position = list.scrollLeft;
-		// 	// const divWidth = list.offsetWidth;
-		// 	// console.log('scrollwidth', list.scrollWidth, 'clientwidth', list.clientWidth, 'window innerwidth');
-
-			if (list.clientWidth < list.scrollWidth) {
-				setDisplayRight(true);
-			}
-		// }
-
-		// window.addEventListener("resize", handleResize);
-		// handleResize();
+		if (list.clientWidth < list.scrollWidth) {
+			setDisplayRight(true);
+		}
 
 	}, []);
 
@@ -143,3 +135,15 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 };
 
 export default Carousel;
+
+// const handleResize= () => {
+		// 	// const scrollWidth = list.scrollWidth;
+		// 	// const position = list.scrollLeft;
+		// 	// const divWidth = list.offsetWidth;
+		// 	// console.log('scrollwidth', list.scrollWidth, 'clientwidth', list.clientWidth, 'window innerwidth');
+
+
+		// }
+
+		// window.addEventListener("resize", handleResize);
+		// handleResize();

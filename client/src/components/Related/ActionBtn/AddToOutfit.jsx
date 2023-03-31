@@ -23,16 +23,6 @@ const AddOutfit = styled.div`
   font-family: Georgia;
   font-weight: Bold;
   color: ${Colors.brunswick};
-  box-shadow: 0 5px 10px 2px rgb(0, 0, 0, 0.6);
-  &:hover {
-    // transform: translateY(5px);
-    box-shadow: 0 5px 10px 5px rgb(0, 0, 0, 0.6);
-  };
-  &:active {
-    box-shadow: 0px 4px 5px 2px rgb(0, 0, 0, 0.6);
-    transform: translateX(1px);
-    transform: translateY(2px);
-  }
 `;
 
 const AddToOutfit = ({item, list, setList, product}) => {

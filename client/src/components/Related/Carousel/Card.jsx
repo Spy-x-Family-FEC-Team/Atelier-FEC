@@ -23,6 +23,15 @@ const CardContainer = styled.div`
   display: grid;
   grid-template-rows: 200px 1fr;
   position: relative;
+  box-shadow: 2px 5px 5px 2px rgb(0, 0, 0, 0.6);
+  &:hover {
+    box-shadow: 2px 5px 8px 3px rgb(0, 0, 0, 0.6);
+  };
+  &:active {
+    box-shadow: 0px 4px 5px 2px rgb(0, 0, 0, 0.6);
+    transform: translateX(1px);
+    transform: translateY(2px);
+  }
 `;
 
 const ProductContainer = styled.div`
