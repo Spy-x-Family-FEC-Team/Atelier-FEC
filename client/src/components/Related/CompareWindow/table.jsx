@@ -11,22 +11,27 @@ const CompareTable = styled.table`
 
 const Table = ({item, product}) => {
 
-  const product1 = item[0].features;
-  const product2 = product[0].features;
+  const product1 = product[0].features;
+  const product2 = item[0].features;
 
   let combFeats = {};
 
-  product1.forEach( feat => {
+  if(product1.length) {
+    product1.forEach( feat => {
     combFeats[feat.feature] = {a: feat.value, b: false};
-  });
+    });
+  }
 
-  product2.forEach( feat => {
-    if (!combFeats[feat.feature]) {
-      combFeats[feat.feature] = {a: false, b: feat.value}
-    } else {
-      combFeats[feat.feature].b = feat.value;
-    }
-  });
+  if(product2.length) {
+    product2.forEach( feat => {
+      if (!combFeats[feat.feature]) {
+        combFeats[feat.feature] = {a: false, b: feat.value}
+      } else {
+        combFeats[feat.feature].b = feat.value;
+      }
+    });
+  }
+
 
   const compareFeatures = Object.keys(combFeats);
 
@@ -35,9 +40,9 @@ const Table = ({item, product}) => {
       <CompareTable>
         <tbody>
           <tr>
-            <th>Product Short Name</th>
+            <th>{product[0].name}</th>
             <th></th>
-            <th>Product Short Name</th>
+            <th>{item[0].name}</th>
           </tr>
           {
             compareFeatures.map( feat => {

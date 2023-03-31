@@ -13,6 +13,7 @@ import { solid, thin, regular, brands, icon } from '@fortawesome/fontawesome-svg
 import whiteBackground from '/client/src/components/assets/images/whiteBackground.jpg';
 import outfit from '/client/src/components/assets/outfit.jsx'
 import localForage from "localforage";
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 const CardContainer = styled.div`
   grid-column: span 1;
@@ -22,6 +23,15 @@ const CardContainer = styled.div`
   display: grid;
   grid-template-rows: 200px 1fr;
   position: relative;
+  box-shadow: 2px 5px 5px 2px rgb(0, 0, 0, 0.6);
+  &:hover {
+    box-shadow: 2px 5px 8px 3px rgb(0, 0, 0, 0.6);
+  };
+  &:active {
+    box-shadow: 0px 4px 5px 2px rgb(0, 0, 0, 0.6);
+    transform: translateX(1px);
+    transform: translateY(2px);
+  }
 `;
 
 const ProductContainer = styled.div`
@@ -30,7 +40,7 @@ const ProductContainer = styled.div`
   display: grid;
   grid-template-rows: 200px 1fr;
   position: relative;
-  z-index: 1
+  text-decoration: none;
 `
 
 const ProductImage = styled.img`
@@ -46,12 +56,16 @@ const ProductInfo = styled.div`
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+  text-decoration: none;
 `;
 const ProductCategory = styled.div`
   background-color: white;
+  font-size: smaller;
 `;
 const ProductName = styled.div`
   background-color: white;
+  font-weight: bold;
+  color: ${Colors.brunswick};
 `;
 const ProductPrice = styled.div`
   background-color: white;
@@ -93,11 +107,6 @@ const StyledCard = ({item, mode, list, setList, product}) => {
   return (
 
     <CardContainer>
-      {/*if mode is related, display comparison button, otherwise display remove from outfit button*/}
-      {mode === 'related' ?
-      (<CompareItems item={item} product={product}/>) :
-      (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
-      {/*all cards product info format is the same*/}
       <ProductContainer as="a" href={url}>
         <ProductImage src={image} alt={'product image'}/>
         <ProductInfo>
@@ -120,6 +129,11 @@ const StyledCard = ({item, mode, list, setList, product}) => {
           </Stars>
         </ProductInfo>
       </ProductContainer>
+       {/*if mode is related, display comparison button, otherwise display remove from outfit button*/}
+       {mode === 'related' ?
+      (<CompareItems item={item} product={product}/>) :
+      (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
+      {/*all cards product info format is the same*/}
     </CardContainer>
 
   )

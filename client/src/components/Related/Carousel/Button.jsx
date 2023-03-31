@@ -8,7 +8,6 @@ const StyledLeftBtn = styled.div`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 3;
   display: ${props => props.disp ? "flex" : "none"};
   align-items: center;
   justify-content: center;
