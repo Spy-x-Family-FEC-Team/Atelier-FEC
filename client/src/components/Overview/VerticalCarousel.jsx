@@ -56,8 +56,9 @@ const StyledUnderline = styled.section`
 const VerticalCarousel = (props) => {
 
   const [thumbnails, setThumbnails] = useState(props.prodViewThumbnails);
-  const [viewIndex, setViewIndex] = useState(props.viewListIndex);
+  const [hereMoreViews, setHereMoreViews] = useState();
   const [listOffset, setListOffset] = useState(0);
+
 
   const handleUpClick = () => {
     setListOffset(listOffset-1);
@@ -69,7 +70,6 @@ const VerticalCarousel = (props) => {
 
   const handleDownClick = () => {
     setListOffset(listOffset + 1);
-    setViewIndex(viewIndex + 1);
     props.handleVerticalSliceSelection(props.viewListIndex +1);
     if(props.indexOfThisProdView < props.viewListIndex) {
       props.handleViewSelection(props.viewListIndex +1);
@@ -78,7 +78,7 @@ const VerticalCarousel = (props) => {
 
   useEffect (() => {
     setThumbnails(props.prodViewThumbnails);
-    // setViewIndex(props.viewListIndex)
+    setHereMoreViews(props.moreViews);
   }, [props.prodViewThumbnails, props.viewListIndex, props.moreViews, props.indexOfThisProdView]);
 
 
@@ -111,7 +111,7 @@ const VerticalCarousel = (props) => {
         )
       })}
 
-      {props.moreViews ?
+      {hereMoreViews ?
         <StyledDownButton
           onClick={handleDownClick}
         >

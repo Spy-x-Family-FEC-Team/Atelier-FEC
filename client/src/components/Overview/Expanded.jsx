@@ -27,8 +27,9 @@ const StyledMainImageWrapper = styled.section`
 `;
 
 const StyledExpandedImage = styled.img`
-  max-height: 90vh;
-  max-width: 100%;
+  max-height: 82vh;
+  max-width: 80vw;
+  border-radius: 7px;
 `;
 
 const StyledIconsGridWrapper = styled.section`
