@@ -8,13 +8,13 @@ const BasicStar = (props) => (<FontAwesomeIcon className={props.className} icon=
 const BasicEmptyStar = (props) => (<FontAwesomeIcon className={props.className} icon={regular('star')}/>)
 const BasicHalfStar = (props) => ( <FontAwesomeIcon className={props.className} icon={solid('star-half-stroke')}/> );
 const EmptyStar = styled(BasicEmptyStar)`
-  ${props => props.color ? "color: " + props.color : "" || ""};
+  ${props => props.color ? "color: " + props.color : "color: orange" || "color: orange"};
 `
 const HalfStar = styled(BasicHalfStar)`
-${props => props.color ? "color: " + props.color : "" || ""};
+${props => props.color ? "color: " + props.color : "color: orange" || "color: orange"};
 `
 const Star = styled(BasicStar)`
-  ${props => props.color ? "color: " + props.color : "" || ""};
+  ${props => props.color ? "color: " + props.color : "color: orange" || "color: orange"};
 `;
 const QuarterStar = styled(Star)`
   clip-path: polygon(0% 40%, 0% 100%, 50% 100%, 50% 55%);

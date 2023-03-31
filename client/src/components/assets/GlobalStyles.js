@@ -62,9 +62,12 @@ div {
   color: ${Colors.night};
 }
 
+i {
+  font-weight: 200;
+}
+
 button {
   font-family: Biryani;
-  margin: 2.5vh 0.5vw 2.5vh 0.5vw;
   font-size: 1.1rem;
   padding: 1vh 0.7vw;
   border-radius: 0.5vw;
@@ -73,11 +76,11 @@ button {
   font-weight: bold;
   border:none;
   cursor: pointer;
-  box-shadow: 0.2vw 0.4vh 0.1vw ${Colors.night};
+  box-shadow: 0.2vw 0.4vh 0.15vw ${Colors.night};
 }
 
 button:active {
-  margin: 2.9vh 0.5vw 2.5vh 0.7vw;
+  margin: 0.4vh 0vw 0vh 0.2vw;
   box-shadow: none;
 
 }
@@ -94,6 +97,16 @@ select {
   border-radius: 6px;
   margin:5px;
   height:30px;
+}
+
+fieldset {
+  all: unset;
+}
+
+textarea {
+  all: unset;
+  border: 1px solid ${Colors.verdegris};
+  border-radius: 0.3rem;
 }
 `;
 

@@ -12,6 +12,7 @@ const StyledPurchaseOrLikeWrapper = styled.section`
   // padding:5px;
   z-index:100;
   height:15vh;
+  place-items: center;
 `;
 
 const StyledDrop = styled.select`

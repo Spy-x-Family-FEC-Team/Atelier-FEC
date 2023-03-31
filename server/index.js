@@ -13,6 +13,7 @@ app.use(morgan('tiny'));
 app.use(express.json());
 app.use(compression())
 
+
 app.use('/items*', (req, res) => {
   res.sendFile(path.join(path.resolve('.'), '/client/dist/'));
 })
@@ -26,6 +27,8 @@ app.get('/api/products/:id/related', controllers.getRelated);
 app.get('/api/products/:id/styles', controllers.getStyles);
 app.post('/api/reviews', controllers.postReview);
 app.post('/api/cart', controllers.addToCart);
+app.post('/api/helpful/:id', controllers.putHelpful);
+app.post('/api/report/:id', controllers.putReport);
 
 
 // final fallback

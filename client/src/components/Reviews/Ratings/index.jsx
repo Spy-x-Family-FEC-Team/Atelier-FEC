@@ -36,7 +36,7 @@ const RatingsGridbox = styled.div`
   max-height: 80vh;
   width: 100%;
   padding-right: 0.8vw;
-  border-right: solid;
+  border-right: 1px solid ${Colors.verdegris};
 `;
 
 
