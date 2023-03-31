@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import styled, {css} from 'styled-components';
+import styled, {css, attrs} from 'styled-components';
 import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
 import Magnified from './Magnified.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -75,7 +75,7 @@ const StyledRightButton = styled.section`
   cursor:pointer;
 `;
 
-const StyledMainImageWrapper = styled.section`
+const StyledMainImageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,6 +91,31 @@ const StyledMainImageWrapper = styled.section`
 `;
 
 
+// .attrs(props => ({
+//   "background-position": props.backgroundPosition,
+// },
+// ))
+
+// .attrs(props => ({
+//   style: {
+//     "background-position": props.backgroundPosition,
+//   },
+// }
+// ))
+
+// background-position: ${props.backgroundPosition}};
+
+// .attrs(props => ({
+//   style: {
+//     `background-image:url("${props.currentImage}")`,
+//     `background-size:${props.backgroundSize}`,
+//     `background-position: ${props.backgroundPosition}`
+//   }
+//   }))
+
+
+
+
 const Expanded = (props) => {
   const [magnifiedView, setMagnifiedView] = useState(false);
   const [position, setPosition] = useState([50, 50]);
@@ -101,8 +126,9 @@ const Expanded = (props) => {
   }
 
   useEffect(() => {
-    console.log(position);
+    // console.log(position);
     setBackgroundPosition(position);
+    console.log(backgroundPosition)
   },[position]);
 
   return(
