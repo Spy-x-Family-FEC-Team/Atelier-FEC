@@ -13,6 +13,7 @@ import { solid, thin, regular, brands, icon } from '@fortawesome/fontawesome-svg
 import whiteBackground from '/client/src/components/assets/images/whiteBackground.jpg';
 import outfit from '/client/src/components/assets/outfit.jsx'
 import localForage from "localforage";
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 const CardContainer = styled.div`
   grid-column: span 1;
@@ -55,6 +56,7 @@ const ProductCategory = styled.div`
 const ProductName = styled.div`
   background-color: white;
   font-weight: bold;
+  color: ${Colors.brunswick};
 `;
 const ProductPrice = styled.div`
   background-color: white;

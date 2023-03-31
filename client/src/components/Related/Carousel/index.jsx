@@ -11,6 +11,8 @@ import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 const CarouselHeader = styled.header`
 	background-color: white;
+	font-size: 18px;
+	color: ${Colors.brunswick};
 	padding: 10vh;
 	display: flex;
 	justify-content: center;
