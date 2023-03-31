@@ -16,7 +16,7 @@ const ThirdsGrid = styled.section`
 `;
 
 const SectionWrapper = styled.div`
-	border-top: 1px solid ${Colors.lightBlue};
+	border-top: 1px solid ${Colors.verdegris};
 `
 
 const Reviews = (props) => {

@@ -4,10 +4,11 @@ import StarRating from "/client/src/components/assets/StarRating.jsx";
 import OverlayWindow from "/client/src/components/assets/OverlayWindow.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
+import {Colors} from '/client/src/components/assets/GlobalStyles.js';
 
 const ReviewCard = styled.div`
   margin: 2vh;
-  border-bottom: solid;
+  border-bottom: 1px solid ${Colors.verdegris};
 `
 
 
@@ -26,6 +27,19 @@ const NameAndDate = styled.div`
   text-overflow: ellipsis;
   overflow: hidden;
 `
+
+const ButtonSection = styled.div`
+  display: grid;
+  grid-template-columns: 50% 20% 30%;
+  place-items: center;
+  overflow: hidden;
+  height: 10vh;
+`
+
+const MarginlessButton = styled.button`
+  margin: 0;
+`
+
 
 const ReviewBody = styled.section`
 `; //tbd on stiling, originally had this here for overflow elements, but probably gonna style it eventually
@@ -47,6 +61,8 @@ const OverlayPic = styled.img`
   max-width: 80vw;
   border-radius: 8px;
 `;
+
+
 
 const ReviewListItem = ({data}) => {
   const [expanded, setExpanded] = useState(false);
@@ -79,10 +95,17 @@ const ReviewListItem = ({data}) => {
     : null}
     {data.response ? <div><h3>Store Response:</h3>{data.response}</div>: null}
     {data.recommend ? <div><FontAwesomeIcon icon={solid("square-check")}/> I recommend this product.</div> : null}
-    <div> Was this review helpful?
-      <button type="button" onClick={() => {console.log('clicked a review list yes button')}}>Yes</button>
-      <button type="button" onClick={() => {console.log('clicked a review list report button')}}>Report Review</button>
-    </div>
+    <ButtonSection>
+      <div>
+        <b>Was this review helpful?</b>
+      </div>
+      <div>
+        <MarginlessButton type="button" onClick={() => {console.log('clicked a review list yes button')}}>Yes</MarginlessButton>
+      </div>
+      <div>
+        <button type="button" onClick={() => {console.log('clicked a review list report button')}}>Report</button>
+      </div>
+    </ButtonSection>
     {imageOverlay ?
     <OverlayWindow onBgClick={clearImageOverlay}>
       <OverlayPic src={imageOverlay}/>
