@@ -3,29 +3,33 @@ import styled from "styled-components";
 import Ratings from "./Ratings"
 import ReviewList from "./ReviewList"
 import WriteReview from "./WriteReview"
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 const ThirdsGrid = styled.section`
-	margin-left: 1%;
-	margin-right: 1%;
+	margin-left: 0%;
 	display:grid;
-	column-gap: 1%;
-	grid-template-columns: 34% 65%;
+	column-gap: 2%;
+	grid-template-columns: 34% 64%;
 	grid-template-rows: 80vh 10vh;
 	max-width: 100%;
 	justify-items: stretch;
 `;
 
+const SectionWrapper = styled.div`
+	border-top: 1px solid ${Colors.lightBlue};
+`
+
 const Reviews = (props) => {
 	const [starFilter, updateStarFilter] = useState(null);
 	return(
-		<>
-		<h2>Ratings and Reviews</h2>
-		<ThirdsGrid>
-			<Ratings data={props.reviewData} updateFilter={updateStarFilter}/>
-			<ReviewList reviews={props.reviews} starFilter={starFilter}/>
-			<WriteReview data={props.reviewData} product={props.product} refresh={props.refresh}/>
-		</ThirdsGrid>
-		</>
+		<SectionWrapper>
+			<h2>Ratings and Reviews</h2>
+			<ThirdsGrid>
+				<Ratings data={props.reviewData} updateFilter={updateStarFilter}/>
+				<ReviewList reviews={props.reviews} starFilter={starFilter}/>
+				<WriteReview data={props.reviewData} product={props.product} refresh={props.refresh}/>
+			</ThirdsGrid>
+		</SectionWrapper>
 	)
 };
 

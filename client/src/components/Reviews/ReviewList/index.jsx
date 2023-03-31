@@ -7,17 +7,21 @@ grid-column-start: 2;
 grid-column-end: 3;
 grid-row-start: 1;
 grid-row-end: 2;
-height: 80vh;
-width: 100%;
+height: 90%;
+width: 96%;
 display: grid;
 grid-template-rows: 10% 10% 80%;
 `;
 
 const ReviewsStyling = styled.div`
-height: 100%;
-overflow-y: scroll;
-overflow-x: hidden;
-overflow-wrap: break-word;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+`
+
+const SortHead = styled.h4`
+  display:inline;
 `
 
 const sortFunctions = {
@@ -83,15 +87,18 @@ const ReviewList = (props) => {
 
   return (
   <ReviewSectionGridStyling id="ReviewList" >
-    <h2>User Reviews</h2>
-    <select name="sortSelect" value={sortKey} onChange={handleSortDropdown}>
-      <option value="relevantSort">Relevant</option>
-      <option value="helpfulSort">Helpful</option>
-      <option value="newSort">New</option>
-      <option value="irrelevantSort">Irrelevent</option>
-      <option value="unhelpfulSort">Unhelpful</option>
-      <option value="oldSort">Old</option>
-    </select>
+    <h3>User Reviews</h3>
+    <div>
+      <SortHead>Sort Reviews</SortHead>
+      <select name="sortSelect" value={sortKey} onChange={handleSortDropdown}>
+        <option value="relevantSort">Relevant</option>
+        <option value="helpfulSort">Helpful</option>
+        <option value="newSort">New</option>
+        <option value="irrelevantSort">Irrelevent</option>
+        <option value="unhelpfulSort">Unhelpful</option>
+        <option value="oldSort">Old</option>
+      </select>
+    </div>
     <ReviewsStyling>
       {props.reviews.results
       .sort(sortFunctions[sortKey])
