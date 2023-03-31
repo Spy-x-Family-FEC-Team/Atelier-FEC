@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import Biryani from "./fonts/
-biryani-v13-latin-regular.woff";
+import Biryani from "./fonts/biryani-v13-latin-regular.woff";
 import Biryani2 from "./fonts/biryani-v13-latin-regular.woff2";
 
 const Colors = {

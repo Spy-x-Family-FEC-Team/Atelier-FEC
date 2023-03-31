@@ -9,6 +9,7 @@ const SocialSectionWrapper = styled.section`
   display: flex;
   justify-content: space-around;
   margin-top:3px;
+  height:6vh;
 `;
 
 const IconWrapper = styled.section`
@@ -19,7 +20,6 @@ const IconWrapper = styled.section`
   border-radius:50%;
   display: flex;
   justify-content: space-around;
-  // Reviewer note that placing a color property here didn't work. Class was needed.
 `;
 
 

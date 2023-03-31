@@ -9,9 +9,9 @@ const StyledPurchaseOrLikeWrapper = styled.section`
   display:grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  padding: 40px;
-  padding:15px;
+  // padding:5px;
   z-index:100;
+  height:15vh;
 `;
 
 const StyledDrop = styled.select`
@@ -20,9 +20,9 @@ const StyledDrop = styled.select`
   border-color: #A7D4D9;
   color: #23493F;
   border-radius: 6px;
-  margin:5px;
-  height:30px;
+  margin: 5px 5px;
   cursor: pointer;
+  height:30px;
   `;
 
 const PurchaseOrLike = (props) => {

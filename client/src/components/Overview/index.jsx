@@ -11,19 +11,16 @@ import StyleSection from './StyleSection.jsx';
 // import Social from './Social.jsx';
 import whiteBackground from '/client/src/components/assets/images/whiteBackground.jpg';
 
- // Dummy data to use for now.
- import stylesForThisProduct from '/server/exampleData/styles.json';
-
- //Default data
- import defaultProduct from '/server/exampleData/defaultProduct.json';
- import defaultStyles from '/server/exampleData/defaultStyles.json';
+//Default data
+import defaultProduct from '/server/exampleData/defaultProduct.json';
+import defaultStyles from '/server/exampleData/defaultStyles.json';
 
 const NavBarPlaceHolder = styled.section`
   height:7vh;
   width:100%;
   background:#A7D4D9;
-  margin-bottom: 24px;
-  margin-top: 25px;
+  margin-bottom:3vh;
+  margin-top: 3vh;
   border-radius: 11px;
   padding-top:25px;
   padding-left:50px;
@@ -32,49 +29,58 @@ const NavBarPlaceHolder = styled.section`
   font-size:1.8rem;
   font-weight:bold;
 `;
+
 const OverviewGrid = styled.section`
   display: grid;
   grid-template-columns: 65% 35%;
   height: 80vh;
+  margin-bottom:20px;
 `;
-// 70vh is 70% of viewport.
-
 
 const SelectorSectionWrapper = styled.section`
   height:80vh;
-  margin-bottom:20px;
+  // margin-bottom:20px;
 `;
 
 const ProductDetailsWrapper = styled.section`
   margin: auto;
   width: 88.8888%;
   height: 15vh;
+  padding-bottom:15px;
+  // margin-bottom:20px;
 `;
 
 const ImageAndDetailsWrapper = styled.section`
   height:80vh;
-  margin-bottom:20px;
+  // margin-bottom:20px;
 `;
 
 const Overview = (props) => {
   const _id = useParams()['id'];
   const [indexOfStyleOption, setIndexOfStyleOption] = useState(0);
+  const [viewListIndex, setViewListIndex] = useState(0);
   const [indexOfThisProdView, setIndexOfThisProdView] = useState(0);
   const [currentStyles, setCurrentStyles] = useState(defaultStyles);
   const [currentImage, setCurrentImage] = useState(whiteBackground);
   const [currentProduct, setCurrentProduct] = useState(defaultProduct);
   const [prodViewThumbnails, setProdViewThumbnails]=useState([whiteBackground, whiteBackground, whiteBackground]);
-  const [styleThumbnails, setStyleThumbnails]=useState(["https://unsplash.com/photos/x-cSp1AR9i0","https://unsplash.com/photos/x-cSp1AR9i0", "https://unsplash.com/photos/x-cSp1AR9i0"]);
+  const [viewThumbnailsSlice, setViewThumbnailsSlice] = useState([whiteBackground, whiteBackground, whiteBackground]);
+  const [styleThumbnails, setStyleThumbnails]=useState([whiteBackground, whiteBackground, whiteBackground]);
+
 
   // helper function
   const makeProdViewThumbnailsList = () => {
     var thumbnails = [];
-    //TODO: Remove the slice here when I fix this.
     currentStyles.results[indexOfStyleOption].photos.forEach((photo) => {
       thumbnails.push(photo.thumbnail_url);
     })
     return thumbnails;
   };
+
+  const makeProdViewThumbnailsSlice = () => {
+    console.log("slice==== ", prodViewThumbnails.slice(viewListIndex, viewListIndex + 7));
+    return prodViewThumbnails.slice(viewListIndex, viewListIndex + 7);
+  }
 
   const makeStylesThumbnailsList = (stylesObj) => {
     var thumbnails = [];
@@ -105,16 +111,21 @@ const Overview = (props) => {
   }, [props.product]);
 
   useEffect (() => {
+    // Update thumbnails slice when new product or arrows pressed.
+    setViewThumbnailsSlice(makeProdViewThumbnailsSlice());
+  }, [prodViewThumbnails, viewListIndex]);
+
+  useEffect (() => {
     axios.get(`/api/products/${_id}/styles`)
       .then((results) => {
         setCurrentStyles(results.data);
         setStyleThumbnails(makeStylesThumbnailsList(results.data));
+        setViewThumbnailsSlice(makeProdViewThumbnailsSlice ());
         })
       .catch((err) => {
         console.log(err);
       })
   },[]);
-
 
   return(
     <div>
@@ -125,7 +136,7 @@ const Overview = (props) => {
         <ImageAndDetailsWrapper>
           <ImageGallery
             currentImage={currentImage}
-            prodViewThumbnails={prodViewThumbnails}
+            prodViewThumbnails={viewThumbnailsSlice}
             indexOfThisProdView={indexOfThisProdView}
             handleViewSelection={handleViewSelection}
           />
@@ -150,7 +161,6 @@ const Overview = (props) => {
           />
         </SelectorSectionWrapper>
       </OverviewGrid>
-
     </div>
   )
 };
