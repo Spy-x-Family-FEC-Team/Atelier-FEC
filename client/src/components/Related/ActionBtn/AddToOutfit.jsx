@@ -18,6 +18,12 @@ const AddOutfit = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: pointer;
+  box-shadow: 0 5px 10px 2px rgb(0, 0, 0, 0.6);
+  &:hover {
+    transform: translateY(5px);
+    box-shadow: 0 5px 10px 2px rgb(0, 0, 0, 0.6);
+  }
 `;
 
 const AddToOutfit = ({item, list, setList, product}) => {

@@ -16,6 +16,9 @@ const StyledLeftBtn = styled.div`
   opacity: .8;
   box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.8);
   border-radius: 50%;
+  &:hover {
+    box-shadow: 0 5px 10px 2px rgb(0, 0, 0, 0.6);
+  }
 `;
 
 const StyledRightBtn = styled(StyledLeftBtn)`

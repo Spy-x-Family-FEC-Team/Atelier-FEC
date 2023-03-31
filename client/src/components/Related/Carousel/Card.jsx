@@ -92,7 +92,7 @@ const StyledCard = ({item, mode, list, setList, product}) => {
 
   return (
 
-    <CardContainer onMouseOver={handleMouseOver}>
+    <CardContainer>
       {/*if mode is related, display comparison button, otherwise display remove from outfit button*/}
       {mode === 'related' ?
       (<CompareItems item={item} product={product}/>) :
