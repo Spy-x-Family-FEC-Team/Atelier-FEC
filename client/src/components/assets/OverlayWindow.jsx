@@ -15,7 +15,7 @@ z-index: 10;
 
 const OverlayContentFrame = styled.div`
 position: fixed;
-padding: 5vh 5vw;
+padding: 5vh 3vw;
 width: max-content;
 max-width: 85vw;
 height: max-content;
@@ -28,6 +28,7 @@ bottom: 0;
 background-color: white;
 z-index: 20;
 overflow-y: scroll;
+border-radius: 7px;
 `;
 
 const OverlayWindow = ({children, onBgClick}) => (

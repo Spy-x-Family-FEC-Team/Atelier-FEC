@@ -23,7 +23,6 @@ width: 90vw;
 const BelowFoldWrapper = styled.section`
 margin: auto;
 width: 80vw;
-background: lightgrey;
 `;
 
 

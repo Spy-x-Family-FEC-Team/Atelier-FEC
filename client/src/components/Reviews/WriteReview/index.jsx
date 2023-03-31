@@ -11,7 +11,7 @@ const WriteGridStyling = styled.div`
 	grid-column-end: 3;
 	grid-row-start: 2;
 	grid-row-end: 3;
-	max-height: 80vh;
+	max-height: 10vh;
 	overflow-y: scroll;
 	overflow-wrap: break-word;
 `;

@@ -2,23 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import StarRating from "/client/src/components/assets/StarRating.jsx";
 import { getNumberOfRatings, getMeanRating } from "/client/src/components/sharedComponents/ratingsObjectFunctions.js";
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 // TODO: Break this apart into smaller bits when it gets chubby
 
 const RatingsNumber = styled((props) => (
-  <div className={props.className}>{props.value}</div>
+  <h2 className={props.className}>{props.value + "/5"}</h2>
 ))`
-font-size: 7vh;
 `;
 
 const EmptyBar = styled.div`
-  background-color: rgb(171, 157, 163);
+  margin-left: 2vw;
+  background-color: ${Colors.snow};
+  border: 1px solid;
+  border-radius: 8px;
 `;
 
 const PercentBar = styled.div`
-  background-color: rgb(32, 128, 0);
-  height: 15px;
+  background-color: ${Colors.brunswick};
+  height: 18px;
   width: ${props => props.percent || 0}%;
+  border-radius: 7px;
+  color: ${Colors.snow};
+  text-align: center;
+  font-size: ${props => props.percent > 0 ? 0.7 : 0 || 0}rem;
 `;
 
 const RatingsGridbox = styled.div`
@@ -28,30 +35,37 @@ const RatingsGridbox = styled.div`
   grid-row-end: 3;
   max-height: 80vh;
   width: 100%;
+  padding-right: 0.8vw;
+  border-right: solid;
 `;
+
 
 const Ratings = ({data, updateFilter}) => {
   var numberOfRatings = getNumberOfRatings(data.ratings)
   var meanRating = getMeanRating(data.ratings)
 
   return(
-  <div>
-    <h2>Summary</h2>
+  <RatingsGridbox>
+    <h3>Summary</h3>
     <div>
       <RatingsNumber value={meanRating} />
-      <StarRating rawRating = {meanRating}/>
+      <StarRating rawRating = {meanRating} color="orange"/>
     </div>
-    <div>Rating Breakdown
+    <div>
+      <h4>Rating Breakdown</h4>
       {[5,4,3,2,1].map((value) => (
         <div key={`${value}StarRatings`} onClick={updateFilter.bind(this, value)}> {value} Stars
           <EmptyBar>
-            <PercentBar percent={(data.ratings[value]/numberOfRatings)*100}/>
+            <PercentBar percent={(data.ratings[value]/numberOfRatings)*100}>
+              {Math.round((data.ratings[value]/numberOfRatings)*100) + "%"}
+            </PercentBar>
             {/* number of ratings of N stars divided by total number of ratings times 100 */}
           </EmptyBar>
         </div>)
       )}
     </div>
-    <div>Factor Breakdown
+    <div>
+      <h4>Factor Breakdown</h4>
       {Object.keys(data.characteristics).map((key) => (
         <div key={key}>{key}
           <EmptyBar>
@@ -60,7 +74,7 @@ const Ratings = ({data, updateFilter}) => {
         </div>))
       }
     </div>
-  </div>)
+  </RatingsGridbox>)
 };
 
 export default Ratings;
