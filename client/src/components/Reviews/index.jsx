@@ -16,7 +16,7 @@ const ThirdsGrid = styled.section`
 `;
 
 const SectionWrapper = styled.div`
-	border-top: 1px solid ${Colors.lightBlue};
+	border-top: 1px solid ${Colors.verdegris};
 `
 
 const Reviews = (props) => {
@@ -26,7 +26,7 @@ const Reviews = (props) => {
 			<h2>Ratings and Reviews</h2>
 			<ThirdsGrid>
 				<Ratings data={props.reviewData} updateFilter={updateStarFilter}/>
-				<ReviewList reviews={props.reviews} starFilter={starFilter}/>
+				<ReviewList reviews={props.reviews} starFilter={starFilter} refresh={props.refresh}/>
 				<WriteReview data={props.reviewData} product={props.product} refresh={props.refresh}/>
 			</ThirdsGrid>
 		</SectionWrapper>

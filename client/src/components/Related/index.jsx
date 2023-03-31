@@ -28,7 +28,8 @@ const Related = ({product}) => {
 		// get related items id array then get related prodcuts as well as data in correct structure for current product
 			let _id = product ? product.id : 40344;
 
-			axios.get(`/api/products/${_id}/related`)
+			const getList = (_id) => {
+				axios.get(`/api/products/${_id}/related`)
 				.then((results) => {
 					results.data.unshift(_id);
 					const allItemPromises = results.data.map( item => {
@@ -59,6 +60,10 @@ const Related = ({product}) => {
 							setStatus(true);
 						})
 				.catch(err => err);
+		}
+
+			getList(_id);
+
 	}, [product]);
 
 //passing down product as data object

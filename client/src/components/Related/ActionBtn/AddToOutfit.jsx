@@ -2,14 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import localForage from "localforage";
 import outfit from '/client/src/components/assets/outfit.jsx'
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
-const AddOutfit = styled.button`
-  background-color: grey;
-  width: 50px;
-  height: 50px;
+const Wrapper = styled.div`
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+`
+
+const AddOutfit = styled.div`
+  width: 200px;
+  height: 100px;
   position: absolute;
-  transform: translateY(-50%);
-  transform: translateX(50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  font-family: Georgia;
+  font-weight: Bold;
+  color: ${Colors.brunswick};
 `;
 
 const AddToOutfit = ({item, list, setList, product}) => {
@@ -33,10 +46,11 @@ const AddToOutfit = ({item, list, setList, product}) => {
   };
 
   return (
-    <>
-      <AddOutfit onClick={addToOutfit}>Add to Outfit</AddOutfit>
-    </>
+    <Wrapper>
+        <AddOutfit onClick={addToOutfit}>Add To Outfit</AddOutfit>
+    </Wrapper>
   )
+
 
 }
 

@@ -9,7 +9,7 @@ top: 0;
 left: 0;
 right: 0;
 bottom: 0;
-background-color: rgba(0,0,0,0.7);d
+background-color: rgba(0,0,0,0.7);
 z-index: 10;
 `;
 
@@ -27,7 +27,7 @@ right: 0;
 bottom: 0;
 background-color: white;
 z-index: 20;
-overflow-y: scroll;
+overflow-y: auto;
 border-radius: 7px;
 `;
 

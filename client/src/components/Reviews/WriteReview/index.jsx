@@ -3,6 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import OverlayWindow from "/client/src/components/assets/OverlayWindow.jsx";
 import {Star, EmptyStar} from "/client/src/components/assets/StarRating.jsx";
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 const WriteGridStyling = styled.div`
 	color: navy;
@@ -23,21 +24,43 @@ const InvisibleRadio = styled.input`
 	margin: 0;
 	`;
 
+const StyledRadio = styled.input`
+/* remove standard background appearance */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+/* create custom radiobutton appearance */
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	padding: 2px;
+	margin: 3px 3px 0px 4px;
+	transform: translateY(2px);
+/* background-color only for content */
+	background-clip: content-box;
+	border: 1px solid #bbbbbb;
+	background-color: #e7e6e7;
+	border-radius: 50%;
+
+/* appearance for checked radiobutton */
+	&:checked {
+		background-color: ${Colors.verdegris};
+}
+`
+
 const QuestionLabel = styled.fieldset`
 	display:block;
 `;
 
-// const StatefulQuestion = (props) => (
-// 	<textarea
-// 		{props.cols? cols={props.cols} : null}
-// 		{props.rows? rows={props.rows} : null}
-// 		name="summary"
-// 		placeholder="Example: Best purchase ever!"
-// 		{props.required? required: null}
-// 		value={""}
-// 		onChange={""}
-// 	/>
-// )
+const RightPadText = styled.span`
+	margin-right: 0.5vw;
+`;
+
+const SectionWrapper = styled.div`
+	padding-bottom: 1.5vh;
+	margin-bottom: 1.5vh;
+	border-bottom 1px solid ${Colors.verdegris};
+`
 
 const StarRadio = (props) => (
 	<label>
@@ -106,6 +129,7 @@ const WriteReview = (props) => {
 			body: "",
 			nickname: "",
 			email: "",
+			photos: ""
 		}) //Characteristics aren't checked on API call, so I'm just gonna add them to the state as the form is filled out
 
 	/*~~~~~~State Update Functions~~~~~~*/
@@ -145,7 +169,7 @@ const WriteReview = (props) => {
 			"recommend": form.recommend,
 			"name": form.nickname,
 			"email": form.email,
-			"photos": [],
+			"photos": form.photos.split(",").map((photo) => (photo.trim())),
 			"characteristics": {}
 		}).then((results) => {
 			// blank the form
@@ -175,35 +199,47 @@ const WriteReview = (props) => {
 		</WriteGridStyling>
 		{modal ?
 		<OverlayWindow onBgClick={toggleModal}>
-			<div>Write your review </div>
-			<div>About the {props.product.name}</div>
+			<h2>Write your review </h2>
+			<h4>About the {props.product.name}</h4>
+			<div><i>(Fields with a * are required)</i></div>
 			<form onSubmit={handleFormSubmit}>
-				<QuestionLabel>Overall Rating*
-					{[...Array(5)].map((e, i) => (
-						<StarRadio star={i+1<=form.rating ? <Star/> : <EmptyStar/>} key={i+1} click={setStarRating.bind(this, i+1)}/>
-					))}
-					{[null, "Poor", "Fair", "Average", "Good", "Great" ][form.starRating]}
-				</QuestionLabel>
-				<QuestionLabel>Do you recommend this product?*
-					<label>Yes
-						<input type="radio" name="recommend" aria-label="recommend" value="true" checked={form.recommend === true} onChange={radioBool}/>
-					</label>
-					<label>No
-						<input type="radio" name="recommend" aria-label="recommend"  value="false" checked={form.recommend === false} onChange={radioBool}/>
-					</label>
-				</QuestionLabel>
-				<QuestionLabel>Characteristics*:
-					{Object.keys(props.data.characteristics).map((trait) => (
-						<QuestionLabel key={trait}> {trait}
-							{[...Array(5)].map(((e, i) => (
 
-									<input key={trait + (i+1)} type="radio" name={trait} aria-label={trait} value={i+1} checked={form.characteristics[trait] === i+1} onChange={radioCharacteristics}/>
-							)))}
-							<p>{form.characteristics[trait]? traitMessageDictionary[trait][form.characteristics[trait]] : null}</p>
-						</QuestionLabel>)
-					)}
-				</QuestionLabel>
-				<QuestionLabel>Review Summary:
+				<SectionWrapper>
+					<QuestionLabel
+						><RightPadText><b>Overall Rating</b>*:</RightPadText>
+						{[...Array(5)].map((e, i) => (
+							<StarRadio star={i+1<=form.rating ? <Star/> : <EmptyStar/>} key={i+1} click={setStarRating.bind(this, i+1)}/>
+						))}
+						<i>{[null, "  Poor", "  Fair", "  Average", "  Good", "  Great" ][form.rating]}</i>
+					</QuestionLabel>
+					<QuestionLabel>
+						<RightPadText>Do you recommend this product?*</RightPadText>
+						<label>Yes
+							<StyledRadio type="radio" name="recommend" aria-label="recommend" value="true" checked={form.recommend === true} onChange={radioBool}/>
+						</label>
+						<label>No
+							<StyledRadio type="radio" name="recommend" aria-label="recommend"  value="false" checked={form.recommend === false} onChange={radioBool}/>
+						</label>
+					</QuestionLabel>
+				</SectionWrapper>
+
+				<SectionWrapper>
+					<QuestionLabel><b>Characteristics</b>*:
+						{Object.keys(props.data.characteristics).map((trait) => (
+							<QuestionLabel key={trait}> <RightPadText>{trait + ":"}</RightPadText>
+								{[...Array(5)].map(((e, i) => (
+
+										<StyledRadio key={trait + (i+1)} type="radio" name={trait} aria-label={trait} value={i+1} checked={form.characteristics[trait] === i+1} onChange={radioCharacteristics}/>
+								)))}
+								<i>{form.characteristics[trait]? traitMessageDictionary[trait][form.characteristics[trait]] : null}</i>
+							</QuestionLabel>)
+						)}
+					</QuestionLabel>
+				</SectionWrapper>
+
+
+				<QuestionLabel><b>Review Summary</b>:
+					<br/>
 					<textarea
 						cols="48"
 						rows="3"
@@ -216,49 +252,68 @@ const WriteReview = (props) => {
 					/>
 				</QuestionLabel>
 
-				<QuestionLabel>Review Body*:
-          <textarea
-            cols="48"
-            rows="3"
-            name="body"
-						aria-label="body"
-            placeholder="Why did you like or dislike this product?"
-            required
-            autoComplete="off"
-            value={form.body}
-            onChange={handleInputChange}
+				<SectionWrapper>
+					<QuestionLabel><b>Review Body</b>*:
+						<br/>
+						<textarea
+							cols="48"
+							rows="3"
+							name="body"
+							aria-label="body"
+							placeholder="Why did you like or dislike this product?"
+							required
+							autoComplete="off"
+							value={form.body}
+							onChange={handleInputChange}/>
+						<div><i>{form.body.length < 60 ? `(Minimum required characters left: ${60-form.body.length})`:  `(Minimum reached)`}</i></div>
+					</QuestionLabel>
+				</SectionWrapper>
 
-          />
-					<p>{form.body.length < 60 ? `Minimum required characters left: ${60-form.body.length}`:  `Minimum reached`}</p>
-				</QuestionLabel>
-				<QuestionLabel>Photos:
-					<input/>
-				</QuestionLabel>
-				<QuestionLabel>What is your nickname?*
-          <input
-            type="text"
-            name="nickname"
-						aria-label="nickname"
-            placeholder="Example: jackson11!"
-            required
-            autoComplete="off"
-            value={form.nickname}
-            onChange={handleInputChange}
-          />
-				</QuestionLabel>
-				<QuestionLabel>Email*
-          <input
-            type="text"
-            name="email"
-						aria-label="email"
-            placeholder="Example: jackson11@email.com"
-            required
-            autoComplete="off"
-            value={form.email}
-            onChange={handleInputChange}
-          />
-				</QuestionLabel>
-				< input type="submit" value="Submit" aria-label="submit"/>
+				<SectionWrapper>
+					<QuestionLabel>
+						<RightPadText>Photos:</RightPadText>
+						<input
+							size="50"
+							type="text"
+							name="photos"
+							aria-label="photos"
+							placeholder="Please put photo urls here as a comma separated list"
+							required
+							autoComplete="off"
+							value={form.photos}
+							onChange={handleInputChange}
+						/>
+					</QuestionLabel>
+					<QuestionLabel>
+						<RightPadText>What is your nickname?*</RightPadText>
+						<input
+							type="text"
+							name="nickname"
+							aria-label="nickname"
+							placeholder="Example: jackson11!"
+							required
+							autoComplete="off"
+							value={form.nickname}
+							onChange={handleInputChange}
+							/>
+					</QuestionLabel>
+					<QuestionLabel>
+						<RightPadText>Email*</RightPadText>
+										<input
+											type="text"
+											name="email"
+							aria-label="email"
+											placeholder="Example: jackson11@email.com"
+											required
+											autoComplete="off"
+											value={form.email}
+											onChange={handleInputChange}
+										/>
+					</QuestionLabel>
+				</SectionWrapper>
+
+
+				<button>Submit</button>
 			</form>
 		</OverlayWindow>
 		: null}
