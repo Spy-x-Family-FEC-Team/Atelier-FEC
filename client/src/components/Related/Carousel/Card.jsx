@@ -30,6 +30,7 @@ const ProductContainer = styled.div`
   display: grid;
   grid-template-rows: 200px 1fr;
   position: relative;
+  text-decoration: none;
 `
 
 const ProductImage = styled.img`
@@ -45,6 +46,7 @@ const ProductInfo = styled.div`
   height: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+  text-decoration: none;
 `;
 const ProductCategory = styled.div`
   background-color: white;

@@ -7,6 +7,7 @@ import { StyledLeftBtn, StyledRightBtn } from "./Button.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import localForage from "localforage";
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 const CarouselHeader = styled.header`
 	background-color: white;
@@ -43,10 +44,16 @@ const CarouselList = styled.div`
 	scroll-snap-type: x mandatory;
 	scroll-behavior: smooth;
 	scroll-snap-align: start;
-	// &::-webkit-scrollbar {
-  //   width: 6px;
-  //   background-color: transparent;
-	// }
+	scrollbar-color: white;
+	&::-webkit-scrollbar {
+		width: 2px;
+    background-color: rgba(0,0,0,0);
+	};
+	&::-webkit-scrollbar-thumb {
+		width: 2px;
+		border-radius: 10px;
+		background-color: rgba(0, 0, 0, 0.11);
+	}
 `
 
 const Carousel = ({product, mode, list, setList, status, setStatus}) => {
@@ -54,35 +61,25 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 	//NEED TO RERENDER UPON WINDOW WIDTH CHANGE
 	const [displayLeft, setDisplayLeft] = useState(false);
 	const [displayRight, setDisplayRight] = useState(false);
-	const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 	const carouselID = `Carousel-List-${mode}`
 
 	//if current div is scrollable, display right button
 	useEffect( () => {
 		const list = document.querySelector(`#${carouselID}`);
 
-		const handleResize= () => {
-			setScreenWidth(window.innerWidth);
-
-			const scrollWidth = list.scrollWidth;
-			const position = list.scrollLeft;
-			const divWidth = list.offsetWidth;
-			console.log('scrollwidth', list.scrollWidth, 'clientwidth', list.clientWidth, 'window innerwidth', screenWidth);
+		// const handleResize= () => {
+		// 	// const scrollWidth = list.scrollWidth;
+		// 	// const position = list.scrollLeft;
+		// 	// const divWidth = list.offsetWidth;
+		// 	// console.log('scrollwidth', list.scrollWidth, 'clientwidth', list.clientWidth, 'window innerwidth');
 
 			if (list.clientWidth < list.scrollWidth) {
-				if (scrollWidth - position <= divWidth) {
-					setDisplayRight(false);
-				} else if (position === 0) {
-					setDisplayLeft(false);
-				} else {
-					setDisplayLeft(true);
-					setDisplayRight(true);
-				}
+				setDisplayRight(true);
 			}
-		}
+		// }
 
-		window.addEventListener("resize", handleResize);
-		handleResize();
+		// window.addEventListener("resize", handleResize);
+		// handleResize();
 
 	}, []);
 
@@ -121,9 +118,6 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 		<div>
 			{mode === 'related' ? (<CarouselHeader>RELATED PRODUCTS</CarouselHeader>) : <CarouselHeader>YOUR OUTFIT</CarouselHeader>}
 			<CarouselContainer>
-				<StyledLeftBtn onClick={scrollLeft} disp={displayLeft}>
-					<FontAwesomeIcon icon={solid('chevron-left')} />
-				</StyledLeftBtn>
 				<CarouselTrack>
 					<CarouselList onScroll={(e) => {handleScroll(e)}} id={carouselID} list={list}>
 						{mode === 'related' ? null :
@@ -137,6 +131,9 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 				<StyledRightBtn onClick={scrollRight}  disp={displayRight}>
 					<FontAwesomeIcon icon={solid('chevron-right')} />
 				</StyledRightBtn>
+				<StyledLeftBtn onClick={scrollLeft} disp={displayLeft}>
+					<FontAwesomeIcon icon={solid('chevron-left')} />
+				</StyledLeftBtn>
 		</CarouselContainer>
 		</div>
 	)
