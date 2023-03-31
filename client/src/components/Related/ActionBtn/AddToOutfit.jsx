@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import localForage from "localforage";
 import outfit from '/client/src/components/assets/outfit.jsx'
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 const Wrapper = styled.div`
   height: 200px;
@@ -19,11 +20,9 @@ const AddOutfit = styled.div`
   align-items: center;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0 5px 10px 2px rgb(0, 0, 0, 0.6);
-  &:hover {
-    transform: translateY(5px);
-    box-shadow: 0 5px 10px 2px rgb(0, 0, 0, 0.6);
-  }
+  font-family: Georgia;
+  font-weight: Bold;
+  color: ${Colors.brunswick};
 `;
 
 const AddToOutfit = ({item, list, setList, product}) => {

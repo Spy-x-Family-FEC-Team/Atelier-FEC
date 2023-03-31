@@ -3,15 +3,20 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
+const RightTD = styled.td`
+  text-align: center;
+  color: ${Colors.verdegris};
+`;
 
 const Row = ({feature, feat}) => {
 
   return (
     <tr>
-      {feature.a ? (<td><FontAwesomeIcon icon={faCheck}/></td>) : (<td>{null}</td>)}
-      <td>{feat}</td>
-      {feature.b ? (<td><FontAwesomeIcon icon={faCheck}/></td>) : (<td>{null}</td>)}
+      {feature.a ? (<RightTD><FontAwesomeIcon icon={faCheck}/></RightTD>) : (<td>{null}</td>)}
+      <td align="center">{feat}</td>
+      {feature.b ? (<RightTD><FontAwesomeIcon icon={faCheck}/></RightTD>) : (<td>{null}</td>)}
     </tr>
   )
 
