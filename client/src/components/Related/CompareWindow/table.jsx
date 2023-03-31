@@ -16,17 +16,22 @@ const Table = ({item, product}) => {
 
   let combFeats = {};
 
-  product1.forEach( feat => {
+  if(product1.length) {
+    product1.forEach( feat => {
     combFeats[feat.feature] = {a: feat.value, b: false};
-  });
+    });
+  }
 
-  product2.forEach( feat => {
-    if (!combFeats[feat.feature]) {
-      combFeats[feat.feature] = {a: false, b: feat.value}
-    } else {
-      combFeats[feat.feature].b = feat.value;
-    }
-  });
+  if(product2.length) {
+    product2.forEach( feat => {
+      if (!combFeats[feat.feature]) {
+        combFeats[feat.feature] = {a: false, b: feat.value}
+      } else {
+        combFeats[feat.feature].b = feat.value;
+      }
+    });
+  }
+
 
   const compareFeatures = Object.keys(combFeats);
 

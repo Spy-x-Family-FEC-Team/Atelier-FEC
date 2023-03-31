@@ -30,7 +30,6 @@ const ProductContainer = styled.div`
   display: grid;
   grid-template-rows: 200px 1fr;
   position: relative;
-  z-index: 1
 `
 
 const ProductImage = styled.img`
@@ -93,11 +92,6 @@ const StyledCard = ({item, mode, list, setList, product}) => {
   return (
 
     <CardContainer>
-      {/*if mode is related, display comparison button, otherwise display remove from outfit button*/}
-      {mode === 'related' ?
-      (<CompareItems item={item} product={product}/>) :
-      (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
-      {/*all cards product info format is the same*/}
       <ProductContainer as="a" href={url}>
         <ProductImage src={image} alt={'product image'}/>
         <ProductInfo>
@@ -120,6 +114,11 @@ const StyledCard = ({item, mode, list, setList, product}) => {
           </Stars>
         </ProductInfo>
       </ProductContainer>
+       {/*if mode is related, display comparison button, otherwise display remove from outfit button*/}
+       {mode === 'related' ?
+      (<CompareItems item={item} product={product}/>) :
+      (<RmvFromOutfit item={item} list={list} setList={setList}/>)}
+      {/*all cards product info format is the same*/}
     </CardContainer>
 
   )

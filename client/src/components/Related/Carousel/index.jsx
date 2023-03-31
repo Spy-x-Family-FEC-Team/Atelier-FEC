@@ -84,7 +84,7 @@ const Carousel = ({product, mode, list, setList, status, setStatus}) => {
 		window.addEventListener("resize", handleResize);
 		handleResize();
 
-	}, [screenWidth]);
+	}, []);
 
 	//scroll left and right functions
 	const scrollRight = () => {

@@ -11,7 +11,6 @@ const ActionBtn = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 3;
   background-color: white;
   opacity: .8;
   box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.8);
