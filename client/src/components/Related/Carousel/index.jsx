@@ -33,7 +33,7 @@ const CarouselList = styled.div`
 	background-color: white;
 	padding: 0;
 	margin: 0;
-	height: 105%;
+	height: 100%;
 	list-style: none;
 	display: grid;
 	grid-template-columns: repeat(${props => props ? props.list.length + 1 : 1}, fit-content(200px));

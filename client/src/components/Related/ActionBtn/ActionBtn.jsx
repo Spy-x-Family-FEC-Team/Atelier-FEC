@@ -18,7 +18,7 @@ const ActionBtn = styled.div`
   border-radius: 50%;
   cursor: pointer;
   &:hover {
-    box-shadow: inset 0 5px 20px 2px rgb(0, 0, 0, 0.6);
+    box-shadow: inset 0 2px 4px 2px rgb(0, 0, 0, 0.6);
   }
 `;
 

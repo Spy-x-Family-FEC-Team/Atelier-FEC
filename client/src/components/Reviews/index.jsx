@@ -6,6 +6,7 @@ import WriteReview from "./WriteReview"
 import {Colors} from "/client/src/components/assets/GlobalStyles.js"
 
 const ThirdsGrid = styled.section`
+	margin-top: 5%;
 	margin-left: 0%;
 	display:grid;
 	column-gap: 2%;
