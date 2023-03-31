@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
 import Magnified from './Magnified.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,11 +20,19 @@ const StyledMainImageWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  height:100%;
-  width:100%
-  position:absolute;
-  cursor:zoom-in;
+  height:82vh;
+  width:80vw;
+  // position:absolute;
+  cursor:cell;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  ${(props) => (css`
+    background-image:url("${props.currentImage}");
+  `)}
 `;
+// height:82vh;
+// width:80vw; both from 100%
 
 const StyledExpandedImage = styled.img`
   max-height: 82vh;
@@ -102,31 +110,44 @@ const Expanded = (props) => {
             X
           </button>
         </StyledCloseButton>
-        <StyledMainImageWrapper>
-          <StyledExpandedImage
-            src={props.currentImage}
-            onClick={toggleMagnified}
-          />
-          {props.indexOfThisProdView > 0 ?
-              <StyledLeftButton
-              onClick={() => {
-                props.handleViewSelection(props.indexOfThisProdView -1);
-                }}
-            >
-              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-left')} />
-            </StyledLeftButton>
-          :null}
-          {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
-            <StyledRightButton
-              onClick={() => {
-                props.handleViewSelection(props.indexOfThisProdView +1);
-                }}
-            >
-              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-right')} />
-            </StyledRightButton>
+        <StyledMainImageWrapper
+          currentImage={props.currentImage}
+          onClick={toggleMagnified}
+          onMouseMove={(event) => {
+            // console.log("mouse position: x/y => ", event.clientX, event.clientY);
+            // console.log("event.target.getBoundingClientRect() :  ", event.target.getBoundingClientRect())
+            var clientRect = event.target.getBoundingClientRect();
+            console.log("mouse position: x/y => ", ((event.clientX - clientRect.left)/clientRect.width) *100, ((event.clientY - clientRect.top)/clientRect.height) * 100);
+          }}
+
+        >
+          {!magnifiedView ?
+              <>
+              {props.indexOfThisProdView > 0 ?
+                  <StyledLeftButton
+                  onClick={(event) => {
+                    props.handleViewSelection(props.indexOfThisProdView -1);
+                    event.stopPropagation();
+                    }}
+                >
+                  &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-left')} />
+                </StyledLeftButton>
+              :null}
+              {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
+                <StyledRightButton
+                  onClick={(event) => {
+                    props.handleViewSelection(props.indexOfThisProdView +1);
+                    event.stopPropagation();
+                    }}
+                >
+                  &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-right')} />
+                </StyledRightButton>
+              :null}
+              </>
           :null}
         </StyledMainImageWrapper>
-        <StyledIconsGridWrapper>
+        {!magnifiedView ?
+          <StyledIconsGridWrapper>
           <StyledIconsGrid>
             {props.prodViewThumbnails.map((url, index) => {
                 return (
@@ -146,9 +167,10 @@ const Expanded = (props) => {
             }
           </StyledIconsGrid>
         </StyledIconsGridWrapper>
+        :null}
       </StyledExpandedWrapper>
 
-      {magnifiedView ?
+      {/* {magnifiedView ?
         <OverlayWindow
           onBgClick={toggleMagnified}
         >
@@ -157,7 +179,7 @@ const Expanded = (props) => {
             currentImage={props.currentImage}
           />
         </OverlayWindow>
-      :null}
+      :null} */}
     </div>
   );
 };
