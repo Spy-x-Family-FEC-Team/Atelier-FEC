@@ -7,12 +7,15 @@ import OneFeature from './OneFeature.jsx';
 import TitleCatRev from './TitleCatRev.jsx';
 
 const StyleSectionWrapper = styled.section`
-  height:100%;
-  display: grid;
-  grid-template-rows:20% 40% 20% 10% 10%;
+  height:80vh;
+  // display: grid;
+  // grid-template-rows:20% 40% 20% 10% 10%;
+  display:flex;
+  flex-direction:column;
 `;
 
 const FeaturesWrapper = styled.section`
+  height:12vh;
 `;
 
 
@@ -20,7 +23,8 @@ const FeaturesListWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 5px;
+  // padding-top: 5px;
+  overflow:hidden;
 `;
 
 const StyleSection = (props) => {

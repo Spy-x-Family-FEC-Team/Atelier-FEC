@@ -6,18 +6,19 @@ position:relative;
 height:90vh;
 width:90vh;
 `;
-//height:100%;
 
 const StyledCloseButton = styled.section`
 position:absolute;
 top:3px;
 right:3px;
+cursor:pointer;
 `;
 
 const StyledImageWrapper = styled.section`
 display: flex;
 align-items: center;
 justify-content: center;
+cursor:zoom-out;
 height:100%;
 width:100%
 position:absolute;

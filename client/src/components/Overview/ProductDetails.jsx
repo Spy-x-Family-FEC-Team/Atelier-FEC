@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 
 const ProductDetailsGrid = styled.section`
-  height: 18vh;
-  padding-top: 2vh;
-  padding-bottom:5vh;
+  height: 15vh;
 
 `;
 

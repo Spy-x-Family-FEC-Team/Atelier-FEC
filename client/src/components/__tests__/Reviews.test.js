@@ -23,7 +23,6 @@ afterEach(() => {
   cleanup();
 })
 
-
 test("should correctly render Reviews given blank data", async () => {
   const page = render(<Reviews reviewData={blankReviewData} reviews={blankReviews} product={blankProduct} refresh={() => {console.log('refreshed')}}/>);
   const responses = page.queryAllByText("Was this review helpful?")

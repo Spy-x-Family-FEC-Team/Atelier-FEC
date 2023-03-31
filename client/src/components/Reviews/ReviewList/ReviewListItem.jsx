@@ -5,6 +5,28 @@ import OverlayWindow from "/client/src/components/assets/OverlayWindow.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { solid, } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 
+const ReviewCard = styled.div`
+  margin: 2vh;
+  border-bottom: solid;
+`
+
+
+const Topmost = styled.div`
+  display: grid;
+	grid-template-columns: 34% 66%;
+  grid-template-rows: 30px;
+`
+
+const ReviewSummary = styled.div`
+  font-weight: 600;
+`
+
+const NameAndDate = styled.div`
+  text-align: end;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`
+
 const ReviewBody = styled.section`
 `; //tbd on stiling, originally had this here for overflow elements, but probably gonna style it eventually
 
@@ -17,11 +39,13 @@ const ThumbnailContainer = styled.section`
 const ThumbnailPic = styled.img`
   height: 100%;
   max-width: 100%;
+  border-radius: 5px;
 `;
 
 const OverlayPic = styled.img`
   max-height: 80vh;
   max-width: 80vw;
+  border-radius: 8px;
 `;
 
 const ReviewListItem = ({data}) => {
@@ -32,10 +56,12 @@ const ReviewListItem = ({data}) => {
   const imageClick = (event) => {setImageOverlay(event.target.getAttribute('src'))}
 
   return(
-  <div>
-    <StarRating rawRating={data.rating}/>
-    {data.reviewer_name} {new Date(data.date).toDateString()}
-    <div>{data.summary}</div>
+  <ReviewCard>
+    <Topmost>
+      <div><StarRating rawRating={data.rating} color="orange"/></div>
+      <NameAndDate>{data.reviewer_name} {new Date(data.date).toDateString()}</NameAndDate>
+    </Topmost>
+    <ReviewSummary>{data.summary}</ReviewSummary>
     <ReviewBody>{data.body.slice(0,(expanded ? undefined : 250)) // kinda wanna find a nice split function to put here
     }</ReviewBody>
     {(data.body.length > 250 && !expanded) ? <button type="button" onClick={toggleExpanded}>Show More</button> : null // probably some logic and state to figure out here
@@ -62,7 +88,7 @@ const ReviewListItem = ({data}) => {
       <OverlayPic src={imageOverlay}/>
     </OverlayWindow>
     : null}
-  </div>)
+  </ReviewCard>)
 }
 
 export default ReviewListItem;

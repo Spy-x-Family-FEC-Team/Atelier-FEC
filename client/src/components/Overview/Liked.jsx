@@ -21,6 +21,7 @@ const StyledLikeButton = styled.section`
   border-color:#A7D4D9;
   border-width: thin;
   height:28px;
+  cursor: pointer;
 `;
 
 const Liked = (props) => {

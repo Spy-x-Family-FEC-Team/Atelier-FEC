@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const StyleSectionWrapper = styled.section`
-  max-height:40vh;
-  overflow: hidden;
+  height:29vh;
+  // overflow: hidden;
 `;
 
 const StyleImageGridWrapper = styled.section`
@@ -29,13 +29,13 @@ const StyledStyleThumbnail = styled.img`
   object-fit:cover;
   max-height:100px;
   max-width:80px;
+  cursor:pointer;
 `;
 
 const StyledStyleThumbnailWrapper = styled.section`
   position: relative;
 `;
 
-// The look of this checkmark is just temporary until we make some aesthetic choices together.
 const StyledCheckmark = styled.section`
   color: #329FA9;
   font-size: 1.4rem;
