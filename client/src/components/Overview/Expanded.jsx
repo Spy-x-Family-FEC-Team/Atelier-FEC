@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
+import React, {useState, useEffect} from 'react';
+import styled, {css, attrs} from 'styled-components';
 import OverlayWindow from '/client/src/components/assets/OverlayWindow.jsx';
 import Magnified from './Magnified.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,19 +16,10 @@ const StyledCloseButton = styled.section`
   cursor:pointer;
 `;
 
-const StyledMainImageWrapper = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height:100%;
-  width:100%
-  position:absolute;
-  cursor:zoom-in;
-`;
-
 const StyledExpandedImage = styled.img`
-  max-height: 90vh;
-  max-width: 100%;
+  max-height: 82vh;
+  max-width: 80vw;
+  border-radius: 7px;
 `;
 
 const StyledIconsGridWrapper = styled.section`
@@ -84,12 +75,61 @@ const StyledRightButton = styled.section`
   cursor:pointer;
 `;
 
+const StyledMainImageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:82vh;
+  width:80vw;
+  cursor:cell;
+  background-repeat: no-repeat;
+  ${(props) => (css`
+    background-image:url("${props.currentImage}");
+    background-size:${props.backgroundSize};
+    background-position: ${props.backgroundPosition}};
+  `)}
+`;
+
+
+// .attrs(props => ({
+//   "background-position": props.backgroundPosition,
+// },
+// ))
+
+// .attrs(props => ({
+//   style: {
+//     "background-position": props.backgroundPosition,
+//   },
+// }
+// ))
+
+// background-position: ${props.backgroundPosition}};
+
+// .attrs(props => ({
+//   style: {
+//     `background-image:url("${props.currentImage}")`,
+//     `background-size:${props.backgroundSize}`,
+//     `background-position: ${props.backgroundPosition}`
+//   }
+//   }))
+
+
+
+
 const Expanded = (props) => {
   const [magnifiedView, setMagnifiedView] = useState(false);
+  const [position, setPosition] = useState([50, 50]);
+  const [backgroundPosition, setBackgroundPosition] = useState([50, 50]);
 
   const toggleMagnified = () => {
     setMagnifiedView(!magnifiedView);
   }
+
+  useEffect(() => {
+    // console.log(position);
+    setBackgroundPosition(position);
+    console.log(backgroundPosition)
+  },[position]);
 
   return(
     <div>
@@ -101,31 +141,51 @@ const Expanded = (props) => {
             X
           </button>
         </StyledCloseButton>
-        <StyledMainImageWrapper>
-          <StyledExpandedImage
-            src={props.currentImage}
-            onClick={toggleMagnified}
-          />
-          {props.indexOfThisProdView > 0 ?
-              <StyledLeftButton
-              onClick={() => {
-                props.handleViewSelection(props.indexOfThisProdView -1);
-                }}
-            >
-              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-left')} />
-            </StyledLeftButton>
-          :null}
-          {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
-            <StyledRightButton
-              onClick={() => {
-                props.handleViewSelection(props.indexOfThisProdView +1);
-                }}
-            >
-              &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-right')} />
-            </StyledRightButton>
+        <StyledMainImageWrapper
+          currentImage={props.currentImage}
+          onClick={toggleMagnified}
+          onMouseMove={(event) => {
+            var clientRect = event.target.getBoundingClientRect();
+            var positionX = ((event.clientX - clientRect.left)/clientRect.width) * 100;
+            var positionY = ((event.clientY - clientRect.top)/clientRect.height) * 100;
+            setPosition([positionX, positionY]);
+          }}
+          backgroundSize = {magnifiedView ?
+              "250%"
+              : "contain"
+            }
+          backgroundPosition = {magnifiedView ?
+             `${backgroundPosition[0]} ${backgroundPosition[1]}`
+             :"center"
+            }
+        >
+          {!magnifiedView ?
+              <>
+              {props.indexOfThisProdView > 0 ?
+                  <StyledLeftButton
+                  onClick={(event) => {
+                    props.handleViewSelection(props.indexOfThisProdView -1);
+                    event.stopPropagation();
+                    }}
+                >
+                  &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-left')} />
+                </StyledLeftButton>
+              :null}
+              {props.indexOfThisProdView < props.prodViewThumbnails.length - 1 ?
+                <StyledRightButton
+                  onClick={(event) => {
+                    props.handleViewSelection(props.indexOfThisProdView +1);
+                    event.stopPropagation();
+                    }}
+                >
+                  &nbsp;&nbsp;<FontAwesomeIcon icon={solid('chevron-right')} />
+                </StyledRightButton>
+              :null}
+              </>
           :null}
         </StyledMainImageWrapper>
-        <StyledIconsGridWrapper>
+        {!magnifiedView ?
+          <StyledIconsGridWrapper>
           <StyledIconsGrid>
             {props.prodViewThumbnails.map((url, index) => {
                 return (
@@ -145,9 +205,10 @@ const Expanded = (props) => {
             }
           </StyledIconsGrid>
         </StyledIconsGridWrapper>
+        :null}
       </StyledExpandedWrapper>
 
-      {magnifiedView ?
+      {/* {magnifiedView ?
         <OverlayWindow
           onBgClick={toggleMagnified}
         >
@@ -156,7 +217,7 @@ const Expanded = (props) => {
             currentImage={props.currentImage}
           />
         </OverlayWindow>
-      :null}
+      :null} */}
     </div>
   );
 };
