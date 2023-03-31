@@ -17,7 +17,7 @@ import localForage from "localforage";
 const CardContainer = styled.div`
   grid-column: span 1;
   scroll-snap-align: center;
-  width: 10vw;
+  width: 200px;
   height: 300px;
   display: grid;
   grid-template-rows: 200px 1fr;
@@ -28,13 +28,12 @@ const ProductContainer = styled.div`
   width: 200px;
   height: 300px;
   display: grid;
-  grid-template-rows: 10vw 1fr;
+  grid-template-rows: 200px 1fr;
   position: relative;
   z-index: 1
 `
 
 const ProductImage = styled.img`
-  background-color: pink;
   grid-rows-start: 1;
   height: 100%;
   width: 100%;
@@ -60,8 +59,6 @@ const ProductPrice = styled.div`
 const Stars = styled.div`
 `;
 const StyledCard = ({item, mode, list, setList, product}) => {
-
-  console.log('item in styledcard', item, 'product in styled card', product);
 
   if (item[0].name === 'AxiosError') {
     return (
@@ -95,7 +92,7 @@ const StyledCard = ({item, mode, list, setList, product}) => {
 
   return (
 
-    <CardContainer>
+    <CardContainer onMouseOver={handleMouseOver}>
       {/*if mode is related, display comparison button, otherwise display remove from outfit button*/}
       {mode === 'related' ?
       (<CompareItems item={item} product={product}/>) :

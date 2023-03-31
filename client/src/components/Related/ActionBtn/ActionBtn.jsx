@@ -2,16 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 const ActionBtn = styled.div`
-  height: 40px;
-  width: 40px;
+  height: 38px;
+  width: 38px;
   padding: 0;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2px;
+  right: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 3;
+  background-color: white;
+  opacity: .8;
+  box-shadow: 0px 0px 3px rgb(0, 0, 0, 0.8);
+  border-radius: 50%;
+  cursor: pointer;
 `;
 
 export default ActionBtn;
