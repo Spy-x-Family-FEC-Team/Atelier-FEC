@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -8,7 +8,7 @@ const StyledVerticalCarouselGrid = styled.section`
   display:grid;
   grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   width: 12vw;
-  max-height: 50vh;
+  height: 50vh;
 `;
 
 const StyledUpButton = styled.section`
@@ -36,6 +36,11 @@ const StyledProdViewThumbnailWrapper = styled.section`
   position:relative;
   height:9vh;
   width:9vw;
+  border-radius:12px;
+  ${(props) => (css`
+    background-color: ${props.backgroundColor}};
+  `)}
+
 `;
 
 const StyledProdViewThumbnail = styled.img`
@@ -44,6 +49,8 @@ const StyledProdViewThumbnail = styled.img`
   object-fit:cover;
   border-radius: 12px;
   cursor:pointer;
+  margin-left:5%;
+  margin-top:5%;
 `;
 
 const StyledUnderline = styled.section`
@@ -53,6 +60,11 @@ const StyledUnderline = styled.section`
   width: 10vw;
   height:2px;
 
+`;
+
+const StyledUpButtonHolder = styled.section`
+  height:5.5555vh;
+  width:7.5vw;
 `;
 
 
@@ -87,18 +99,23 @@ const VerticalCarousel = (props) => {
 
   return(
     <StyledVerticalCarouselGrid>
-      {props.viewListIndex > 0 ?
-        <StyledUpButton
-        onClick={handleUpClick}
-        >
-          <FontAwesomeIcon icon={solid('chevron-up')} />
-        </StyledUpButton>
-      :null}
+        {props.viewListIndex > 0 ?
+          <StyledUpButton
+          onClick={handleUpClick}
+          >
+            <FontAwesomeIcon icon={solid('chevron-up')} />
+          </StyledUpButton>
+        :null}
+
 
       {thumbnails.map((url, index) => {
         return (
           <StyledProdViewThumbnailWrapper
             key={index}
+            backgroundColor={props.indexOfThisProdView === index ?
+              "#A7D4D9"
+              :"white"
+            }
             onClick={() => {
               props.handleViewSelection(index + listOffset);
               }}>

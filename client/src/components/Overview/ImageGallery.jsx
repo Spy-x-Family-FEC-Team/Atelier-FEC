@@ -73,6 +73,8 @@ const StyledLeftButton = styled.section`
 `;
 
 
+
+
 const ImageGallery = (props) => {
 
   const [expandedView, setExpandedView] = useState(false);
