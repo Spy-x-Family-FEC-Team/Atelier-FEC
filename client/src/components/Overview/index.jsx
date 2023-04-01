@@ -66,6 +66,7 @@ const Overview = (props) => {
   const [prodViewThumbnails, setProdViewThumbnails]=useState([whiteBackground, whiteBackground, whiteBackground]);
   const [viewThumbnailsSlice, setViewThumbnailsSlice] = useState([whiteBackground, whiteBackground, whiteBackground]);
   const [styleThumbnails, setStyleThumbnails]=useState([whiteBackground, whiteBackground, whiteBackground]);
+  const [moreViews, setMoreViews] = useState(true);
 
 
   // helper function
@@ -84,6 +85,11 @@ const Overview = (props) => {
 
   const handleVerticalSliceSelection = (newViewListIndex) => {
     setViewListIndex(newViewListIndex);
+    if (prodViewThumbnails.length > newViewListIndex + 7) {
+      setMoreViews(true);
+    } else {
+      setMoreViews(false);
+    }
   };
 
   const makeStylesThumbnailsList = (stylesObj) => {
@@ -124,7 +130,7 @@ const Overview = (props) => {
       .then((results) => {
         setCurrentStyles(results.data);
         setStyleThumbnails(makeStylesThumbnailsList(results.data));
-        setViewThumbnailsSlice(makeProdViewThumbnailsSlice ());
+        setViewThumbnailsSlice(makeProdViewThumbnailsSlice());
         })
       .catch((err) => {
         console.log(err);
@@ -145,6 +151,7 @@ const Overview = (props) => {
             handleViewSelection={handleViewSelection}
             handleVerticalSliceSelection={handleVerticalSliceSelection}
             viewListIndex={viewListIndex}
+            moreViews={moreViews}
           />
           <ProductDetailsWrapper>
             <ProductDetails

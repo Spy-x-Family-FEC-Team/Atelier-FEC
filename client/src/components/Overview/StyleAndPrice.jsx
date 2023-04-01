@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 const StyleSectionWrapper = styled.section`
-  height:29vh;
-  // overflow: hidden;
+  height:36vh;
+  overflow: hidden;
 `;
 
 const StyleImageGridWrapper = styled.section`
@@ -43,7 +43,7 @@ const StyledCheckmark = styled.section`
   z-index: 2;
   margin-left:75%;
   margin-top: 15%;
-  background-color:white;
+
   // border-radius:50%;
   align-items: center;
   transform: translateY(-30%);

@@ -9,13 +9,14 @@ import TitleCatRev from './TitleCatRev.jsx';
 const StyleSectionWrapper = styled.section`
   height:80vh;
   // display: grid;
-  // grid-template-rows:20% 40% 20% 10% 10%;
+  // grid-template-rows:20% 45% 20% 10% 10%;
   display:flex;
   flex-direction:column;
 `;
 
 const FeaturesWrapper = styled.section`
-  height:12vh;
+  height:8vh;
+  overflow:hidden;
 `;
 
 
@@ -23,7 +24,6 @@ const FeaturesListWrapper = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  // padding-top: 5px;
   overflow:hidden;
 `;
 

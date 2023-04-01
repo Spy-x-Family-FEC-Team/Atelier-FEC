@@ -74,7 +74,7 @@ const Stars = styled.div`
 `;
 const StyledCard = ({item, mode, list, setList, product}) => {
 
-  if (item[0].name === 'AxiosError') {
+  if (!item || item[0].name === 'AxiosError') {
     return (
       <CardContainer>
       </CardContainer>

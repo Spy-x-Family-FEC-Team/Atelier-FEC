@@ -60,7 +60,6 @@ const StyledRightButton = styled.section`
 
 const StyledLeftButton = styled.section`
   position:absolute;
-  left:120px;
   top:40%;
   font-size:x-large;
   width: 40px;
@@ -72,6 +71,8 @@ const StyledLeftButton = styled.section`
   color:#23493F;
   cursor:pointer;
 `;
+
+
 
 
 const ImageGallery = (props) => {
@@ -90,6 +91,9 @@ const ImageGallery = (props) => {
             prodViewThumbnails={props.prodViewThumbnails}
             indexOfThisProdView={props.indexOfThisProdView}
             handleViewSelection={props.handleViewSelection}
+            handleVerticalSliceSelection={props.handleVerticalSliceSelection}
+            viewListIndex={props.viewListIndex}
+            moreViews={props.moreViews}
           />
         </StyledVerticalCarouselWrapper>
         <StyledMainImageWrapper>
