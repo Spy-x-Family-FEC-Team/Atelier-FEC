@@ -9,7 +9,8 @@ const Colors = {
   persian: "#32998b",
   verdegris: "#4eaeb6",
   lightBlue: "#a7d4d9",
-  snow: "#fffafb"
+  snow: "#FDFBFF"
+
 }
 
 /*
@@ -27,6 +28,7 @@ body {
   font-family: Biryani, sans-serif;
   font-weight: 300;
   color: ${Colors.night};
+  background-color: ${Colors.snow}
 }
 
 h2 {
@@ -77,9 +79,6 @@ button:active {
 
 }
 
-.JenessaSocial {
-  color:#329FA9;
-}
 
 select {
   font-size: 1.1rem;

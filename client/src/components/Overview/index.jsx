@@ -140,7 +140,7 @@ const Overview = (props) => {
   return(
     <div>
       <NavBarPlaceHolder>
-       <div>Spy x Family</div>
+       <div>Carty</div>
       </NavBarPlaceHolder>
       <OverviewGrid>
         <ImageAndDetailsWrapper>
