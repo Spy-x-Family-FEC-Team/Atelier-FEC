@@ -1,8 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import StarRating from "/client/src/components/assets/StarRating.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 import { getNumberOfRatings, getMeanRating } from "/client/src/components/sharedComponents/ratingsObjectFunctions.js";
 import {Colors} from "/client/src/components/assets/GlobalStyles.js"
+import traitMessageDictionary from "/client/src/components/sharedComponents/traitMessageDictionary.js";
 
 // TODO: Break this apart into smaller bits when it gets chubby
 
@@ -27,6 +30,39 @@ const PercentBar = styled.div`
   text-align: center;
   font-size: ${props => props.percent > 0 ? 0.7 : 0 || 0}rem;
 `;
+
+const FactorBar = styled.div`
+  position: relative;
+  margin-top: 1vh;
+  margin-left: 2.3vw;
+  margin-bottom: 1.5vh;
+  height: 3px;
+  background-color: ${Colors.verdegris};
+  border-radius: 8px;
+`
+
+const BasicFactorIndicator = (props) => (<FontAwesomeIcon className={props.className} icon={solid('arrow-up')}/>)
+
+const FactorIndicator = styled(BasicFactorIndicator)`
+  position: absolute;
+  bottom: -15px;
+  left: calc(${props => props.percent || 0}% - 6px);
+  color: ${Colors.brunswick};
+`
+
+const FactorText = styled.i`
+  position: absolute;
+  bottom: -6px;
+`
+
+const FactorTextLeft = styled(FactorText)`
+  left: 0%;
+`
+
+const FactorTextRight = styled(FactorText)`
+  transform-origin: right;
+  right: 0%;
+`
 
 const RatingsGridbox = styled.div`
   grid-column-start: 1;
@@ -68,9 +104,12 @@ const Ratings = ({data, updateFilter}) => {
       <h4>Factor Breakdown</h4>
       {Object.keys(data.characteristics).map((key) => (
         <div key={key}>{key}
-          <EmptyBar>
-            <PercentBar percent={(data.characteristics[key].value*20)}/>
-          </EmptyBar>
+          <FactorBar >
+            {/* <PercentBar percent={(data.characteristics[key].value*20)}/> */}
+            <FactorIndicator percent={(data.characteristics[key].value*20)}/>
+            <FactorTextLeft>{traitMessageDictionary[key][1]}</FactorTextLeft>
+            <FactorTextRight>{traitMessageDictionary[key][5]}</FactorTextRight>
+          </FactorBar>
         </div>))
       }
     </div>
