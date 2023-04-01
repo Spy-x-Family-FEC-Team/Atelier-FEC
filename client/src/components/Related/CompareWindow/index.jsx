@@ -10,7 +10,7 @@ import { solid, thin, regular, brands, icon } from '@fortawesome/fontawesome-svg
 const CompareItems = ({item, product}) => {
 
   const [modal, setModal] = useState(false);
-	const toggleModal = () => {setModal((value) => (!value))}
+	const toggleModal = () => {setModal((value) => (!value)); console.log("toggled")}
 
     return (
     <>
