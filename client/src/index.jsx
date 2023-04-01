@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {useState, useEffect} from 'react';
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes, useParams} from 'react-router-dom';
@@ -71,10 +71,14 @@ const ItemPage = () => {
       <FoldWrapper>
         <Overview product={product} reviewData={reviewData} />
       </FoldWrapper>
-      <BelowFoldWrapper>
-        <Related product={product}/>
-        <Reviews reviewData={reviewData} reviews={reviews} product={product} refresh={refreshProducts}/>
-      </BelowFoldWrapper>
+        <BelowFoldWrapper>
+        <Suspense fallback={<></>}>
+          <Related product={product}/>
+        </Suspense>
+        <Suspense fallback={<></>}>
+          <Reviews reviewData={reviewData} reviews={reviews} product={product} refresh={refreshProducts}/>
+        </Suspense>
+        </BelowFoldWrapper>
     </>)
 }
 
