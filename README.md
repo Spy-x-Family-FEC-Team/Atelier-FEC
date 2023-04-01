@@ -67,4 +67,4 @@ A client-facing ecommerce site designed to showcase products clearly and compell
 </details>
 
 
-[test](https://github.com/Spy-x-Family-FEC-Team/Atelier-FEC/blob/gifs/Screen-Recording-2023-04-01-at-3.gif)
+![test](https://github.com/Spy-x-Family-FEC-Team/Atelier-FEC/blob/gifs/Screen-Recording-2023-04-01-at-3.gif)
