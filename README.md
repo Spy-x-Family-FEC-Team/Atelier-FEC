@@ -48,6 +48,8 @@ A client-facing ecommerce site designed to showcase products clearly and compell
 </details>
 
 ## Related Items
+- A dynamically loaded carousel of related items.
+- User interaction with related item and outfit cards. 
 
 ## Reviews
 
