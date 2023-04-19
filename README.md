@@ -64,7 +64,6 @@ A client-facing ecommerce site designed to showcase products clearly and compell
 		<li>Invertable sorting</li>
 		<li>Live update in response to likes/reports/submissions</li>
 		<li>Fractional star rating</li>
-    <li></li>
 	</ul>
 </details>
 
